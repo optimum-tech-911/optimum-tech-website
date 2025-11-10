@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-secondary text-gray-200;
+  font-family: "Inter", sans-serif;
+}
+
+a {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary/60 rounded-sm;
+}
+
+.container {
+  @apply px-4 md:px-6;
+}
+
+/* Gooey effect helper: applies SVG filter defined in index.html */
+.goo-wrap {
+  filter: url('#goo');
+}
+
+/* Navbar active blob: animated electric gradient with soft blur */
+.nav-blob {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #0A84FF, #00E0B8, #7c3aed, #0A84FF);
+  background-size: 200% 200%;
+  animation: gradient 6s ease infinite;
+  filter: blur(8px) saturate(1.2);
+  opacity: 0.9;
+  z-index: -1;
+}
+
+/* Electric text glow + subtle flicker */
+.electric-text {
+  text-shadow: 0 0 6px rgba(10, 132, 255, 0.55), 0 0 14px rgba(0, 224, 184, 0.35);
+  animation: electricFlicker 3s ease-in-out infinite;
+}
+
+@keyframes electricFlicker {
+  0%, 100% { opacity: 1; filter: saturate(1); }
+  45% { opacity: 0.95; filter: saturate(1.05); }
+  50% { opacity: 0.85; filter: saturate(1.1); }
+  55% { opacity: 1; filter: saturate(1.05); }
+}
+
+/* Click shockwave */
+.electric-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(10,132,255,0.35), transparent 60%);
+  pointer-events: none;
+}
+
+/* Using Google Font: Pixelify Sans (imported above) */
+
+/* Animated gradient utility for buttons/borders */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
+
+.animate-gradient-fast {
+  background-size: 220% 220%;
+  animation: gradient 4s ease infinite;
+}
+
+.animate-gradient-slow {
+  background-size: 180% 180%;
+  animation: gradient 12s ease infinite;
+}
+
+/* Contact page animations */
+@keyframes shipFloat {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes thrustFlicker {
+  0%, 100% { opacity: 0.7; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.1); }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.7; }
+}
+
+.stars-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8) 80%, transparent 81%),
+    radial-gradient(2px 2px at 40% 60%, rgba(255,255,255,0.7) 80%, transparent 81%),
+    radial-gradient(1.5px 1.5px at 70% 40%, rgba(255,255,255,0.6) 80%, transparent 81%),
+    radial-gradient(2px 2px at 85% 75%, rgba(255,255,255,0.8) 80%, transparent 81%),
+    radial-gradient(1.5px 1.5px at 15% 80%, rgba(255,255,255,0.6) 80%, transparent 81%);
+  animation: starTwinkle 3.5s ease-in-out infinite;
+}
+
+.thrust-glow {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 90px;
+  background: radial-gradient(50% 60% at 50% 0%, rgba(0,224,184,0.85), rgba(10,132,255,0.4) 60%, transparent 61%);
+  filter: blur(8px) saturate(1.2);
+  opacity: 0.9;
+  clip-path: polygon(50% 0%, 70% 25%, 60% 100%, 40% 100%, 30% 25%);
+  animation: thrustFlicker 0.9s ease-in-out infinite;
+}
+
+.file-anim {
+  position: relative;
+  overflow: hidden;
+}
+.file-anim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.25) 15%, transparent 30%);
+  transform: translateX(-100%);
+}
+.file-anim:hover::after {
+  transition: transform 0.8s ease;
+  transform: translateX(100%);
+}
