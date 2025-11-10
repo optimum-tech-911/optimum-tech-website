@@ -3,16 +3,16 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Logo from "../assets/Logo.png";
 import { useI18n, LANG_OPTIONS } from "../i18n.jsx";
-import { Globe } from "lucide-react";
+import { Globe, Menu } from "lucide-react";
 
-const NavLink = ({ to, children }) => {
+const NavLink = ({ to, children, onClick, solid = false }) => {
   const location = useLocation();
   const active = location.pathname === to;
   const [pulseKey, setPulseKey] = React.useState(0);
   return (
     <Link
       to={to}
-      onClick={() => setPulseKey((k) => k + 1)}
+      onClick={(e) => { setPulseKey((k) => k + 1); onClick?.(e); }}
       className="relative inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-semibold text-gray-200 hover:text-white transition-colors"
     >
       {active && (
@@ -25,9 +25,9 @@ const NavLink = ({ to, children }) => {
           />
         </span>
       )}
-      <span className={active ? "electric-text text-white" : ""}>{children}</span>
-      {/* Subtle glass background for visibility on all links */}
-      <span className="absolute inset-0 -z-20 rounded-full border border-white/10 bg-white/0 backdrop-blur-sm" />
+      <span className={active ? "electric-text text-white" : "text-white"}>{children}</span>
+      {/* Background pill for links */}
+      <span className={`absolute inset-0 -z-20 rounded-full border backdrop-blur-sm ${solid ? "border-white/20 bg-white/15" : "border-white/10 bg-white/0"}`} />
       {/* Click pulse */}
       <motion.span
         key={pulseKey}
@@ -55,13 +55,15 @@ export const Navbar = () => {
         <span className="text-xl font-extrabold font-pixelify text-white group-hover:text-gray-100 transition-colors">Optimum Tech</span>
       </Link>
       <div className="relative flex items-center gap-3">
-        <div className="relative flex gap-3 items-center px-1 py-1 rounded-full">
+        {/* Desktop links */}
+        <div className="relative hidden md:flex gap-3 items-center px-1 py-1 rounded-full">
           <NavLink to="/">{t("nav.home")}</NavLink>
           <NavLink to="/projects">{t("nav.projects")}</NavLink>
           <NavLink to="/contact">{t("nav.contact")}</NavLink>
           <NavLink to="/policy">{t("nav.policy")}</NavLink>
         </div>
-        <div className="relative">
+        {/* Desktop language */}
+        <div className="relative hidden md:block">
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -101,6 +103,14 @@ export const Navbar = () => {
             </motion.ul>
           )}
         </div>
+        {/* Mobile controls */}
+        <Link
+          to="/menu"
+          className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/10"
+          aria-label="Open menu"
+        >
+          <Menu className="h-5 w-5" />
+        </Link>
       </div>
     </motion.nav>
   );

@@ -5,6 +5,7 @@ import { Home } from "./pages/Home";
 import { Contact } from "./pages/Contact";
 import { Projects } from "./pages/Projects";
 import { Policy } from "./pages/Policy";
+import { MenuPage } from "./pages/Menu";
 
 const PageWrapper = ({ children }) => (
   <motion.div
@@ -26,8 +27,8 @@ export default function App() {
         <Route path="/projects" element={<PageWrapper><Projects /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
         <Route path="/policy" element={<PageWrapper><Policy /></PageWrapper>} />
+        <Route path="/menu" element={<PageWrapper><MenuPage /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );
 }
-

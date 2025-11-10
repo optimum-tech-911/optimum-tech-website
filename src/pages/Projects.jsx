@@ -29,12 +29,34 @@ export const Projects = () => {
         >
           {t("projects.title")}
         </motion.h1>
+        {/* Mobile horizontal slider */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="md:hidden -mx-4 px-4"
+        >
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2">
+            {projects.map((p) => (
+              <motion.div
+                key={p.title}
+                variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
+                className="snap-center shrink-0 w-[86%]"
+              >
+                <ProjectCard {...p} />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Tablet/Desktop grid */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
+          className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {projects.map((p) => (
             <motion.div key={p.title} variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}>

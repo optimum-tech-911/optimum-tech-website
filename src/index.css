@@ -87,6 +87,15 @@ a {
   animation: gradient 12s ease infinite;
 }
 
+/* Hide scrollbar utility for horizontal carousels */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
 /* Contact page animations */
 @keyframes shipFloat {
   0% { transform: translateY(0px); }
