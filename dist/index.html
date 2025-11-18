@@ -2,13 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Optimum Tech</title>
-    <script type="module" crossorigin src="/assets/index-pr5S6mb0.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DuaZmqVt.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="theme-color" content="#0A84FF">
+    <script type="module" crossorigin src="/assets/index-DMVL_KNr.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CQVhwimd.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
+    <!-- SVG filters (gooey effect) -->
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+          <feColorMatrix in="blur" mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="goo" />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
   </body>
   </html>
-

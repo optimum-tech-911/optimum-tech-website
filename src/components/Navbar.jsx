@@ -13,7 +13,7 @@ const NavLink = ({ to, children, onClick, solid = false }) => {
     <Link
       to={to}
       onClick={(e) => { setPulseKey((k) => k + 1); onClick?.(e); }}
-      className="relative inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-semibold text-gray-200 hover:text-white transition-colors"
+      className="relative inline-flex items-center justify-center px-4 md:px-3.5 lg:px-3 py-2 md:py-1.75 lg:py-1.75 rounded-full text-xs font-semibold text-gray-200 hover:text-white transition-all duration-200 text-center"
     >
       {active && (
         <span className="absolute inset-0 -z-10 goo-wrap">
@@ -27,7 +27,7 @@ const NavLink = ({ to, children, onClick, solid = false }) => {
       )}
       <span className={active ? "electric-text text-white" : "text-white"}>{children}</span>
       {/* Background pill for links */}
-      <span className={`absolute inset-0 -z-20 rounded-full border backdrop-blur-sm ${solid ? "border-white/20 bg-white/15" : "border-white/10 bg-white/0"}`} />
+      <span className={`absolute inset-0 -z-20 rounded-full border backdrop-blur-sm transition-all duration-200 ${solid ? "border-white/20 bg-white/15" : "border-white/10 bg-white/0"}`} />
       {/* Click pulse */}
       <motion.span
         key={pulseKey}
@@ -48,15 +48,15 @@ export const Navbar = () => {
     <motion.nav
       initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="flex items-center justify-between px-6 py-4 sticky top-0 z-50 border-b border-white/10 bg-secondary/30 supports-[backdrop-filter]:bg-secondary/20 backdrop-blur-lg shadow-lg"
+      className="flex items-center justify-between px-6 md:px-5 lg:px-4 py-4 md:py-3 lg:py-2 sticky top-0 z-50 border-b border-white/10 bg-secondary/30 supports-[backdrop-filter]:bg-secondary/20 backdrop-blur-lg shadow-lg transition-[padding] duration-200 ease-in-out"
     >
       <Link to="/" className="flex items-center gap-3 group">
-        <img src={Logo} alt="Optimum Tech logo" className="h-8 w-8 rounded-md shadow-glow" />
-        <span className="text-xl font-extrabold font-pixelify text-white group-hover:text-gray-100 transition-colors">Optimum Tech</span>
+        <img src={Logo} alt="Optimum Tech logo" className="h-8 w-8 md:h-7 md:w-7 lg:h-6 lg:w-6 rounded-md shadow-glow transition-all duration-200" />
+        <span className="text-xl md:text-lg lg:text-base font-extrabold font-pixelify text-white group-hover:text-gray-100 transition-colors">Optimum Tech</span>
       </Link>
       <div className="relative flex items-center gap-3">
         {/* Desktop links */}
-        <div className="relative hidden md:flex gap-3 items-center px-1 py-1 rounded-full">
+        <div className="relative hidden md:flex gap-2.5 lg:gap-2 items-center px-1 py-1 rounded-full">
           <NavLink to="/">{t("nav.home")}</NavLink>
           <NavLink to="/projects">{t("nav.projects")}</NavLink>
           <NavLink to="/contact">{t("nav.contact")}</NavLink>
@@ -67,7 +67,7 @@ export const Navbar = () => {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white hover:bg-white/10"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 md:px-3.5 lg:px-3 py-2 md:py-1.75 lg:py-1.75 text-xs text-white hover:bg-white/10 transition-all duration-200 text-center"
             aria-haspopup="menu"
             aria-expanded={open}
           >
