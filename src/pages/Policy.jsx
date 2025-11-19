@@ -3,10 +3,50 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { useI18n } from "../i18n.jsx";
-import Plasma from "../components/Plasma/Plasma";
 
 export const Policy = () => {
   const { lang, t } = useI18n();
+  const BlueMatrix = () => {
+    const canvasRef = React.useRef(null);
+    React.useEffect(() => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let animationFrame;
+      const chars = "01".split("");
+      let columns, drops;
+      const resize = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = canvas.clientWidth * dpr;
+        canvas.height = canvas.clientHeight * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        columns = Math.floor(canvas.clientWidth / 18);
+        drops = new Array(columns).fill(0);
+      };
+      const draw = () => {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+        ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillStyle = "rgba(0, 122, 255, 0.75)";
+          ctx.font = "16px monospace";
+          ctx.fillText(text, i * 18, drops[i] * 18);
+          if (drops[i] * 18 > canvas.clientHeight && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+        animationFrame = requestAnimationFrame(draw);
+      };
+      resize();
+      draw();
+      const onResize = () => resize();
+      window.addEventListener("resize", onResize);
+      return () => {
+        cancelAnimationFrame(animationFrame);
+        window.removeEventListener("resize", onResize);
+      };
+    }, []);
+    return <canvas ref={canvasRef} className="w-full h-full" />;
+  };
 
   const Section = ({ title, children }) => (
     <>
@@ -259,7 +299,7 @@ export const Policy = () => {
 
   const PolicyCard = ({
     title,
-    titleClass = "text-primary electric-text",
+    titleClass = "electric-blue-glow",
     children,
     active = false,
     inactive = false,
@@ -269,40 +309,46 @@ export const Policy = () => {
     reducedMotion,
     isMobile = false,
   }) => (
-    <motion.div
-      className={`group touch-target rounded-2xl p-[1px] bg-[linear-gradient(90deg,#0A84FF,#7c3aed,#00E0B8,#0A84FF)] animate-gradient ${expanded ? "ring-4 ring-primary/70" : active ? "ring-2 ring-primary/60" : ""}`}
-      onClick={isMobile ? undefined : onClick}
-      onDoubleClick={isMobile ? undefined : onDoubleClick}
-      initial={{ opacity: 1, scale: 1 }}
-      animate={
-        reducedMotion || isMobile
-          ? { opacity: 1, scale: 1, z: 0 }
-          : expanded
-          ? { opacity: 1, scale: 1, z: 50, boxShadow: "0 22px 50px rgba(10,132,255,0.45)" }
-          : active
-          ? { opacity: 1, scale: 1.2, z: 16, boxShadow: "0 18px 40px rgba(10,132,255,0.35)" }
-          : inactive
-          ? { opacity: 0.7, scale: 0.9, z: 0, boxShadow: "0 0 0 rgba(0,0,0,0)" }
-          : { opacity: 1, scale: 1, z: 0, boxShadow: "0 0 0 rgba(0,0,0,0)" }
-      }
-      transition={reducedMotion ? { duration: 0 } : { duration: 0.3, ease: "easeInOut" }}
-      style={{
-        willChange: "transform",
-        transformPerspective: 1000,
-        zIndex: isMobile ? 1 : expanded ? 100 : active ? 20 : 1,
-        maxWidth: isMobile ? "100vw" : expanded ? "90vw" : "80vw",
-        maxHeight: isMobile ? "unset" : expanded ? "90vh" : "80vh",
-      }}
-    >
-      <div className="rounded-2xl bg-secondary/70 border border-gray-700/40 overflow-hidden min-h-[320px] shadow-sm">
-        <div className="px-5 py-4 border-b border-gray-700/60 bg-white/5 backdrop-blur supports-[backdrop-filter]:bg-white/10">
-          <h3 className={`text-xl font-semibold ${titleClass}`}>{title}</h3>
+    isMobile ? (
+      <motion.div
+        className={`group touch-target rounded-2xl p-[1px] bg-[linear-gradient(90deg,#0A84FF,#7c3aed,#00E0B8,#0A84FF)] animate-gradient ${expanded ? "ring-4 ring-primary/70" : active ? "ring-2 ring-primary/60" : ""}`}
+        onClick={undefined}
+        onDoubleClick={undefined}
+        initial={{ opacity: 1, scale: 1 }}
+        animate={{ opacity: 1, scale: 1, z: 0 }}
+        transition={{ duration: 0 }}
+        style={{ maxWidth: "100vw", willChange: "transform" }}
+      >
+        <div className="policy-card-frame rounded-2xl">
+          <div className="rounded-2xl bg-[#0A1A2F] border border-white/10 overflow-hidden min-h-[320px] shadow-sm">
+            <div className="px-5 py-4 border-b border-white/10 bg-transparent">
+              <h3 className={`text-xl font-semibold ${titleClass}`}>{title}</h3>
+            </div>
+            <div className="p-5 leading-relaxed policy-card-content">
+              {children}
+            </div>
+          </div>
         </div>
-        <div className="p-5 text-gray-200 leading-relaxed">
-          {children}
+      </motion.div>
+    ) : (
+      <div
+        className="group touch-target rounded-2xl"
+        onClick={onClick}
+        onDoubleClick={onDoubleClick}
+        style={{ maxWidth: "80vw", maxHeight: "80vh" }}
+      >
+        <div className="policy-card-frame rounded-2xl">
+          <div className="rounded-2xl bg-[#0A1A2F] border border-white/10 overflow-hidden min-h-[320px] shadow-sm">
+            <div className="px-5 py-4 border-b border-white/10 bg-transparent">
+              <h3 className={`text-xl font-semibold ${titleClass}`}>{title}</h3>
+            </div>
+            <div className="p-5 leading-relaxed policy-card-content">
+              {children}
+            </div>
+          </div>
         </div>
       </div>
-    </motion.div>
+    )
   );
 
   const policiesByLang = {
@@ -1057,7 +1103,7 @@ export const Policy = () => {
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden">
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <Plasma color="#0A84FF" speed={1} direction="forward" scale={1} opacity={0.8} mouseInteractive={false} />
+        <BlueMatrix />
       </div>
       <Navbar />
       <main className="container mx-auto max-w-7xl px-6 py-16 text-gray-200 leading-relaxed">
@@ -1066,9 +1112,8 @@ export const Policy = () => {
             const isActive = focusedIndex === idx && expandedIndex === null;
             const isInactive = (focusedIndex !== null || expandedIndex !== null) && focusedIndex !== idx && expandedIndex !== idx;
             return (
-              <div className={isMobile ? `order-[${(mobileOrderRankMap.get(idx) ?? idx) + 1}] md:order-none` : ""}>
+              <div key={idx} className={isMobile ? `order-[${(mobileOrderRankMap.get(idx) ?? idx) + 1}] md:order-none` : ""}>
                 <PolicyCard
-                  key={idx}
                   title={title}
                   active={isMobile ? false : isActive}
                   inactive={isMobile ? false : isInactive}

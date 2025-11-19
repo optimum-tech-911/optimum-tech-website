@@ -20,6 +20,13 @@ const PageWrapper = ({ children }) => (
 
 export default function App() {
   const location = useLocation();
+  React.useEffect(() => {
+    try {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>

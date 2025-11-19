@@ -6,7 +6,6 @@ import { useI18n } from "../i18n.jsx";
 import { motion, AnimatePresence } from "framer-motion";
 import { Rocket, Send, Paperclip, Check, AlertCircle, Loader2, Cloud, HardDrive, ArrowDownToLine, Globe, Plane, MailCheck } from "lucide-react";
 import LetterGlitch from "../components/LetterGlitch/LetterGlitch.jsx";
-import BallpitBackground from "../components/Ballpit";
 
 export const Contact = () => {
   const { t } = useI18n();
@@ -82,7 +81,6 @@ export const Contact = () => {
             style={{ position: "relative", minHeight: "500px", width: "100%" }}
             className={`${sending ? "sending-active" : ""} ${formHidden ? "form-hidden" : ""}`}
           >
-            <BallpitBackground />
             <motion.h1 className="relative z-10 text-3xl md:text-4xl font-bold text-white mb-10 md:mb-12" initial={false}>
               {t("contact.title")}
             </motion.h1>
