@@ -13,7 +13,7 @@ export const CookieBanner = () => {
 
   React.useEffect(() => {
     const prefs = getPrefs();
-    if (prefs && prefs.analytics) initGTM({});
+    if (prefs && prefs.analytics) initGTM({ gaId: "G-81DWTXG9MZ" });
     if (prefs) setCanReopen(false);
   }, []);
 
@@ -27,7 +27,7 @@ export const CookieBanner = () => {
   const acceptAll = () => {
     setPrefs({ analytics: true });
     setAnalytics(true);
-    initGTM({});
+    initGTM({ gaId: "G-81DWTXG9MZ" });
     setVisible(false);
     setCanReopen(false);
   };
@@ -41,7 +41,7 @@ export const CookieBanner = () => {
 
   const saveSettings = () => {
     setPrefs({ analytics });
-    if (analytics) initGTM({});
+    if (analytics) initGTM({ gaId: "G-81DWTXG9MZ" });
     setOpenSettings(false);
     setVisible(false);
     setCanReopen(false);

@@ -11,23 +11,8 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="theme-color" content="#0A84FF">
     <link rel="stylesheet" href="/assets/css/loader.css">
-    <script>
-      (function(){
-        window.dataLayer = window.dataLayer || [];
-        var prefsStr = null;
-        try { prefsStr = localStorage.getItem('ot_cookies_prefs'); } catch(e) {}
-        var prefs = prefsStr ? JSON.parse(prefsStr) : null;
-        var allowAnalytics = !!(prefs && prefs.analytics === true);
-        if (!allowAnalytics) return;
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-XXXXXXX';
-        document.head.appendChild(s);
-      })();
-    </script>
   </head>
   <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="loader" aria-hidden="true">
       <div class="loader-inner">
         <div class="loader-logo">
