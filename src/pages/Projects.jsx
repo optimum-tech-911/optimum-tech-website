@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useI18n } from "../i18n.jsx";
 import Beams from "../components/Beams/Beams.jsx";
+import { SEO } from "../components/SEO.jsx";
 
 export const Projects = () => {
   const { t } = useI18n();
@@ -60,6 +61,11 @@ export const Projects = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        path="/projects"
+        title="Nos Réalisations – Sites Web, Applications & IA | Optimum Tech"
+        description="Découvrez les projets réalisés par Optimum Tech : sites web professionnels, applications modernes et automatisations IA conçues pour améliorer la performance de nos clients."
+      />
       <Navbar />
       <main className="container mx-auto w-full max-w-6xl py-16 relative overflow-hidden">
         <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -107,20 +113,20 @@ export const Projects = () => {
           <div className="mb-3 flex items-center justify-between">
             <button
               type="button"
-              aria-label={t("projects.swipeNext")}
+              aria-label={t("projects.prev")}
               onClick={goPrev}
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
             >
               <ChevronLeft className="h-4 w-4" />
-              <span>Prev</span>
+              <span>{t("projects.prev")}</span>
             </button>
             <button
               type="button"
-              aria-label={t("projects.swipeNext")}
+              aria-label={t("projects.next")}
               onClick={goNext}
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
             >
-              <span>Next</span>
+              <span>{t("projects.next")}</span>
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
@@ -172,20 +178,20 @@ export const Projects = () => {
             <div className="flex items-center justify-between mb-4">
                 <button
                   type="button"
-                  aria-label={t("projects.swipeNext")}
+                  aria-label={t("projects.prev")}
                   onClick={goPrev}
                   className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
                 >
                   <ChevronLeft className="h-4 w-4" />
-                  <span>Prev</span>
+                  <span>{t("projects.prev")}</span>
                 </button>
                 <button
                   type="button"
-                  aria-label={t("projects.swipeNext")}
+                  aria-label={t("projects.next")}
                   onClick={goNext}
                   className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
                 >
-                  <span>Next</span>
+                  <span>{t("projects.next")}</span>
                   <ChevronRight className="h-4 w-4" />
                 </button>
               </div>

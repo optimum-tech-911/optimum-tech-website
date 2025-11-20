@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import { useI18n, LANG_OPTIONS } from "../i18n.jsx";
 import { ArrowRight } from "lucide-react";
 import FloatingLines from "../components/FloatingLines/FloatingLines.jsx";
+import { SEO } from "../components/SEO.jsx";
 
 export const MenuPage = () => {
   const { t, lang, setLang } = useI18n();
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO path="/menu" title="" description="" />
       <Navbar />
       <main className="container mx-auto w-full max-w-4xl py-10 relative overflow-hidden">
         <div className="absolute inset-0 -z-10 pointer-events-none">

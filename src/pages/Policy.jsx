@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { useI18n } from "../i18n.jsx";
+import { SEO } from "../components/SEO.jsx";
 
 export const Policy = () => {
   const { lang, t } = useI18n();
@@ -1102,6 +1103,11 @@ export const Policy = () => {
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden">
+      <SEO
+        path="/policy"
+        title="Informations Légales & Conformité – Optimum Tech"
+        description="Toutes les informations légales et de conformité du site Optimum Tech."
+      />
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <BlueMatrix />
       </div>

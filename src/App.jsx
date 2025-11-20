@@ -1,11 +1,15 @@
-import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Home } from "./pages/Home";
-import { Contact } from "./pages/Contact";
-import { Projects } from "./pages/Projects";
-import { Policy } from "./pages/Policy";
-import { MenuPage } from "./pages/Menu";
+const Home = React.lazy(() => import("./pages/Home").then(m => ({ default: m.Home })));
+const Contact = React.lazy(() => import("./pages/Contact").then(m => ({ default: m.Contact })));
+const Projects = React.lazy(() => import("./pages/Projects").then(m => ({ default: m.Projects })));
+const Policy = React.lazy(() => import("./pages/Policy").then(m => ({ default: m.Policy })));
+const MenuPage = React.lazy(() => import("./pages/Menu").then(m => ({ default: m.MenuPage })));
+const PrivacyPolicy = React.lazy(() => import("./pages/PrivacyPolicy").then(m => ({ default: m.PrivacyPolicy })));
+const CookiePolicy = React.lazy(() => import("./pages/CookiePolicy").then(m => ({ default: m.CookiePolicy })));
+import { CookieBanner } from "./components/CookieBanner.jsx";
+import { ScrollToTop } from "./components/ScrollToTop.jsx";
 
 const PageWrapper = ({ children }) => (
   <motion.div
@@ -19,23 +23,21 @@ const PageWrapper = ({ children }) => (
 );
 
 export default function App() {
-  const location = useLocation();
-  React.useEffect(() => {
-    try {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch {
-      window.scrollTo(0, 0);
-    }
-  }, [location.pathname]);
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
-        <Route path="/projects" element={<PageWrapper><Projects /></PageWrapper>} />
-        <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
-        <Route path="/policy" element={<PageWrapper><Policy /></PageWrapper>} />
-        <Route path="/menu" element={<PageWrapper><MenuPage /></PageWrapper>} />
-      </Routes>
+      <Suspense fallback={<div />}> 
+        <ScrollToTop />
+        <CookieBanner />
+        <Routes>
+          <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
+          <Route path="/projects" element={<PageWrapper><Projects /></PageWrapper>} />
+          <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+          <Route path="/policy" element={<PageWrapper><Policy /></PageWrapper>} />
+          <Route path="/privacy-policy" element={<PageWrapper><PrivacyPolicy /></PageWrapper>} />
+          <Route path="/cookie-policy" element={<PageWrapper><CookiePolicy /></PageWrapper>} />
+          <Route path="/menu" element={<PageWrapper><MenuPage /></PageWrapper>} />
+        </Routes>
+      </Suspense>
     </AnimatePresence>
   );
 }

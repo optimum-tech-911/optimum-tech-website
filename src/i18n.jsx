@@ -2,6 +2,26 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from "
 
 const I18nContext = createContext({ lang: "fr", dir: "ltr", t: (k) => k, setLang: () => {} });
 
+const safeWindow = () => (typeof window === "undefined" ? undefined : window);
+const getStoredLang = () => {
+  const win = safeWindow();
+  if (!win?.localStorage) return null;
+  try {
+    return win.localStorage.getItem("lang");
+  } catch {
+    return null;
+  }
+};
+const setStoredLang = (value) => {
+  const win = safeWindow();
+  if (!win?.localStorage) return;
+  try {
+    win.localStorage.setItem("lang", value);
+  } catch {
+    // ignore write issues (Safari private mode, etc.)
+  }
+};
+
 const DICT = {
   fr: {
     nav: { home: "Accueil", projects: "Projets", contact: "Contact", policy: "Politique" },
@@ -26,7 +46,7 @@ const DICT = {
       vision3: "Chez Optimum Tech, nous construisons ce futur, un projet après l’autre.",
     },
     intro: { title: "Optimum Tech", subtitle: "Bienvenue sur votre site" },
-    projects: { title: "Projets", swipeMore: "Glisser pour voir plus", swipeNext: "Voir suivant" },
+    projects: { title: "Projets", swipeMore: "Glisser pour voir plus", swipeNext: "Voir suivant", prev: "Projet précédent", next: "Projet suivant" },
     contact: {
       title: "Contactez-nous",
       form: {
@@ -44,7 +64,8 @@ const DICT = {
         uploadFailure: "Échec du téléchargement",
         sendButton: "Envoyer le message",
         success: "Merci ! Votre message a été envoyé.",
-        failure: "Échec de l’envoi. Réessayez."
+        failure: "Échec de l’envoi. Réessayez.",
+        genericError: "Échec de l’envoi. Contactez-nous sur optimum.tech.911@gmail.com en attendant."
       }
       ,
       confirm: {
@@ -70,6 +91,19 @@ const DICT = {
         contact: "Entrer en contact",
       },
     },
+    cookies: {
+      bannerTitle: "Cookies",
+      bannerText: "Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez accepter, refuser ou gérer vos préférences.",
+      acceptAll: "Accepter tout",
+      rejectAll: "Refuser tout",
+      settings: "Paramètres",
+      settingsTitle: "Paramètres des cookies",
+      analyticsTitle: "Statistiques (GTM/GA)",
+      analyticsDesc: "Activez les cookies analytiques pour des mesures anonymisées.",
+      save: "Enregistrer",
+      cancel: "Annuler",
+      reopen: "Paramètres",
+    },
   },
   en: {
     nav: { home: "Home", projects: "Projects", contact: "Contact", policy: "Policy" },
@@ -94,7 +128,7 @@ const DICT = {
       vision3: "At Optimum Tech, we’re building that future, one project at a time.",
     },
     intro: { title: "Optimum Tech", subtitle: "Welcome to your website" },
-    projects: { title: "Projects", swipeMore: "Swipe to see more", swipeNext: "See next" },
+    projects: { title: "Projects", swipeMore: "Swipe to see more", swipeNext: "See next", prev: "Previous project", next: "Next project" },
     contact: {
       title: "Contact Us",
       form: {
@@ -112,7 +146,8 @@ const DICT = {
         uploadFailure: "Upload failed",
         sendButton: "Send message",
         success: "Thanks! Your message has been sent.",
-        failure: "Sending failed. Please retry."
+        failure: "Sending failed. Please retry.",
+        genericError: "We couldn't send this message. Email us at optimum.tech.911@gmail.com while we sort this out."
       }
       ,
       confirm: {
@@ -138,6 +173,19 @@ const DICT = {
         contact: "Get in touch",
       },
     },
+    cookies: {
+      bannerTitle: "Cookies",
+      bannerText: "We use cookies to improve your experience. You can accept, refuse, or manage your preferences.",
+      acceptAll: "Accept all",
+      rejectAll: "Reject all",
+      settings: "Settings",
+      settingsTitle: "Cookie settings",
+      analyticsTitle: "Analytics (GTM/GA)",
+      analyticsDesc: "Enable analytics cookies for anonymized measurement.",
+      save: "Save",
+      cancel: "Cancel",
+      reopen: "Settings",
+    },
   },
   es: {
     nav: { home: "Inicio", projects: "Proyectos", contact: "Contacto", policy: "Política" },
@@ -162,7 +210,7 @@ const DICT = {
       vision3: "En Optimum Tech construimos ese futuro, un proyecto tras otro.",
     },
     intro: { title: "Optimum Tech", subtitle: "Bienvenido a tu sitio web" },
-    projects: { title: "Proyectos", swipeMore: "Desliza para ver más", swipeNext: "Ver siguiente" },
+    projects: { title: "Proyectos", swipeMore: "Desliza para ver más", swipeNext: "Ver siguiente", prev: "Proyecto anterior", next: "Proyecto siguiente" },
     contact: {
       title: "Contáctanos",
       form: {
@@ -180,7 +228,8 @@ const DICT = {
         uploadFailure: "Error al subir",
         sendButton: "Enviar mensaje",
         success: "¡Gracias! Tu mensaje ha sido enviado.",
-        failure: "Error al enviar. Inténtalo de nuevo."
+        failure: "Error al enviar. Inténtalo de nuevo.",
+        genericError: "No pudimos enviar tu mensaje. Escríbenos a optimum.tech.911@gmail.com mientras lo solucionamos."
       }
       ,
       confirm: {
@@ -206,6 +255,19 @@ const DICT = {
         contact: "Ponerse en contacto",
       },
     },
+    cookies: {
+      bannerTitle: "Cookies",
+      bannerText: "Usamos cookies para mejorar tu experiencia. Puedes aceptar, rechazar o gestionar tus preferencias.",
+      acceptAll: "Aceptar todo",
+      rejectAll: "Rechazar todo",
+      settings: "Configuración",
+      settingsTitle: "Configuración de cookies",
+      analyticsTitle: "Estadísticas (GTM/GA)",
+      analyticsDesc: "Activa las cookies analíticas para mediciones anonimizadas.",
+      save: "Guardar",
+      cancel: "Cancelar",
+      reopen: "Configuración",
+    },
   },
   ar: {
     nav: { home: "الرئيسية", projects: "المشاريع", contact: "تواصل معنا", policy: "السياسات" },
@@ -230,7 +292,7 @@ const DICT = {
       vision3: "في Optimum Tech نبني هذا المستقبل، مشروعًا بعد آخر.",
     },
     intro: { title: "Optimum Tech", subtitle: "مرحباً بك في موقعك" },
-    projects: { title: "المشاريع", swipeMore: "اسحب لرؤية المزيد", swipeNext: "التالي" },
+    projects: { title: "المشاريع", swipeMore: "اسحب لرؤية المزيد", swipeNext: "التالي", prev: "المشروع السابق", next: "المشروع التالي" },
     contact: {
       title: "تواصل معنا",
       form: {
@@ -248,7 +310,8 @@ const DICT = {
         uploadFailure: "فشل الرفع",
         sendButton: "إرسال الرسالة",
         success: "شكرًا! تم إرسال رسالتك.",
-        failure: "فشل الإرسال. حاول مرة أخرى."
+        failure: "فشل الإرسال. حاول مرة أخرى.",
+        genericError: "تعذر إرسال الرسالة. راسلنا على optimum.tech.911@gmail.com مؤقتًا."
       }
       ,
       confirm: {
@@ -273,19 +336,34 @@ const DICT = {
         contact: "راسلنا",
       },
     },
+    cookies: {
+      bannerTitle: "ملفات تعريف الارتباط",
+      bannerText: "نستخدم ملفات تعريف الارتباط لتحسين تجربتك. يمكنك القبول أو الرفض أو إدارة التفضيلات.",
+      acceptAll: "قبول الكل",
+      rejectAll: "رفض الكل",
+      settings: "الإعدادات",
+      settingsTitle: "إعدادات ملفات تعريف الارتباط",
+      analyticsTitle: "الإحصاءات (GTM/GA)",
+      analyticsDesc: "فعّل ملفات تعريف الارتباط التحليلية لقياسات مجهولة.",
+      save: "حفظ",
+      cancel: "إلغاء",
+      reopen: "الإعدادات",
+    },
   },
 };
 
 const DIR = { ar: "rtl", fr: "ltr", en: "ltr", es: "ltr" };
 
 export function I18nProvider({ children }) {
-  const [lang, setLang] = useState(() => localStorage.getItem("lang") || "fr");
+  const [lang, setLang] = useState(() => getStoredLang() || "fr");
   const dir = DIR[lang] || "ltr";
 
   useEffect(() => {
-    localStorage.setItem("lang", lang);
-    document.documentElement.lang = lang;
-    document.documentElement.dir = dir;
+    setStoredLang(lang);
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = dir;
+    }
   }, [lang, dir]);
 
   const t = (path) => {
@@ -308,4 +386,3 @@ export const LANG_OPTIONS = [
   { code: "es", label: "Español" },
   { code: "ar", label: "العربية" },
 ];
-

@@ -4,23 +4,24 @@ import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
 import { useI18n } from "../i18n.jsx";
 import { motion, AnimatePresence } from "framer-motion";
-import { Rocket, Send, Paperclip, Check, AlertCircle, Loader2, Cloud, HardDrive, ArrowDownToLine, Globe, Plane, MailCheck } from "lucide-react";
+import { Rocket, Send, Paperclip, Check, AlertCircle, Cloud, HardDrive, ArrowDownToLine, Globe, Plane, MailCheck } from "lucide-react";
 import LetterGlitch from "../components/LetterGlitch/LetterGlitch.jsx";
+import { SEO } from "../components/SEO.jsx";
 
 export const Contact = () => {
   const { t } = useI18n();
   const [landing, setLanding] = React.useState(true);
   const [form, setForm] = React.useState({ name: "", phone: "", email: "", message: "" });
   const [fileName, setFileName] = React.useState("");
-  const [sent, setSent] = React.useState(false);
-  const [uploading, setUploading] = React.useState(false);
-  const [uploadProgress, setUploadProgress] = React.useState(0);
+  const [attachment, setAttachment] = React.useState(null);
   const [uploadStatus, setUploadStatus] = React.useState(null);
   const [sending, setSending] = React.useState(false);
   const [sendProgress, setSendProgress] = React.useState(0);
   const [sendStatus, setSendStatus] = React.useState(null);
   const [showConfirm, setShowConfirm] = React.useState(false);
   const [formHidden, setFormHidden] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const FORM_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || "https://formsubmit.co/ajax/optimum.tech.911@gmail.com";
 
   const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   const isValid = form.name && isEmail(form.email) && form.message.length >= 5;
@@ -32,6 +33,11 @@ export const Contact = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        path="/contact"
+        title="Contactez Optimum Tech – Création de Sites Web & Solutions IA"
+        description="Besoin d’un site web, d’une automatisation ou d’un outil IA ? Contactez Optimum Tech et obtenez une réponse rapide pour votre projet digital."
+      />
       <Navbar />
       <main className="flex-1 relative overflow-hidden">
         <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -91,31 +97,42 @@ export const Contact = () => {
                   if (!isValid || sending) return;
                   setSending(true);
                   setSendStatus(null);
+                  setErrorMessage("");
                   setSendProgress(0);
-                  const simulateAjax = () => new Promise((resolve, reject) => {
-                    const shouldFail = Math.random() < 0.12;
-                    let progress = 0;
-                    const id = setInterval(() => {
-                      progress = Math.min(100, progress + 3);
-                      setSendProgress(progress);
-                      if (progress >= 100) {
-                        clearInterval(id);
-                        setTimeout(() => (shouldFail ? reject(new Error("fail")) : resolve({ ok: true })), 300);
-                      }
-                    }, 60);
-                  });
+                  const payload = new FormData();
+                  payload.append("name", form.name);
+                  payload.append("phone", form.phone);
+                  payload.append("email", form.email);
+                  payload.append("message", form.message);
+                  payload.append("_subject", `New inquiry from ${form.name || "Optimum Tech website"}`);
+                  payload.append("_template", "table");
+                  payload.append("_autoresponse", t("contact.confirm.message"));
+                  payload.append("_captcha", "false");
+                  if (attachment) payload.append("attachment", attachment, attachment.name);
+                  const progressId = window.setInterval(() => {
+                    setSendProgress((p) => (p >= 95 ? 95 : p + 2));
+                  }, 80);
                   try {
-                    await simulateAjax();
+                    const response = await fetch(FORM_ENDPOINT, {
+                      method: "POST",
+                      body: payload,
+                    });
+                    if (!response.ok) {
+                      throw new Error("NETWORK_ERROR");
+                    }
+                    setSendProgress(100);
                     setSendStatus("success");
-                    setSent(true);
                     setShowConfirm(true);
                     setFormHidden(true);
-                    setTimeout(() => setSending(false), 750);
                   } catch (err) {
+                    console.error(err);
+                    setErrorMessage(t("contact.form.genericError"));
                     setSendStatus("error");
-                    setSent(true);
-                    setFormHidden(true);
-                    setTimeout(() => setSending(false), 750);
+                    setShowConfirm(false);
+                    setFormHidden(false);
+                  } finally {
+                    window.clearInterval(progressId);
+                    setSending(false);
                   }
                 }}
                 className="grid grid-cols-1 gap-6 md:gap-7 lg:gap-8"
@@ -184,35 +201,19 @@ export const Contact = () => {
                   type="file"
                   className="hidden"
                   onChange={(e) => {
-                    const n = e.target.files?.[0]?.name || "";
+                    const file = e.target.files?.[0];
+                    setAttachment(file || null);
+                    const n = file?.name || "";
                     setFileName(n);
-                    if (n) {
-                      setUploading(true);
-                      setUploadProgress(0);
-                      setUploadStatus(null);
-                      const shouldFail = Math.random() < 0.15;
-                      const id = setInterval(() => {
-                        setUploadProgress((p) => {
-                          const next = Math.min(100, p + 3);
-                          if (next >= 100) {
-                            clearInterval(id);
-                            setTimeout(() => {
-                              setUploading(false);
-                              setUploadStatus(shouldFail ? "error" : "success");
-                            }, 300);
-                          }
-                          return next;
-                        });
-                      }, 60);
-                    }
+                    setUploadStatus(file ? "success" : null);
                   }}
                 />
                 <label
                   htmlFor="attachment"
-                  className={`file-anim inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-white hover:bg-white/10 cursor-pointer ${uploading ? "uploading-active animate-pulse" : ""} transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/60`}
+                  className={`file-anim inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-white hover:bg-white/10 cursor-pointer transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/60`}
                   aria-live="polite"
-                  aria-busy={uploading ? "true" : "false"}
-                  aria-label={uploading ? t("contact.form.uploading") : t("contact.form.attachLabel")}
+                  aria-busy="false"
+                  aria-label={t("contact.form.attachLabel")}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
@@ -223,12 +224,7 @@ export const Contact = () => {
                   }}
                 >
                   <span className="default-upload-content inline-flex items-center gap-2 transition-all duration-300">
-                    {uploading ? (
-                      <>
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                        <span>{t("contact.form.uploading")}</span>
-                      </>
-                    ) : uploadStatus === "success" ? (
+                    {uploadStatus === "success" ? (
                       <>
                         <Check className="h-4 w-4 text-green-400" />
                         <span>{t("contact.form.uploadSuccess")}</span>
@@ -245,23 +241,18 @@ export const Contact = () => {
                       </>
                     )}
                   </span>
-                  <span className={`upload-orbit ${uploading ? "upload-orbit-active" : ""}`} aria-hidden="true">
+                  <span className="upload-orbit" aria-hidden="true">
                     <Globe className="orbit-globe" />
                     <span className="orbit-ring">
                       <Plane className="orbit-plane" />
                     </span>
                   </span>
-                  {uploading && (
-                    <>
-                      <span className="ml-2 text-xs opacity-80">{uploadProgress}%</span>
-                      <span className="upload-trails" />
-                      <span className="upload-progress-bar" style={{ width: `${uploadProgress}%` }} />
-                      <span className="ml-2 inline-flex items-center text-xs opacity-80">
-                        <Cloud className="h-3.5 w-3.5 mr-1" />
-                        <ArrowDownToLine className="h-3.5 w-3.5 mx-1" />
-                        <HardDrive className="h-3.5 w-3.5 ml-1" />
-                      </span>
-                    </>
+                  {attachment && (
+                    <span className="ml-2 inline-flex items-center text-xs opacity-80">
+                      <Cloud className="h-3.5 w-3.5 mr-1" />
+                      <ArrowDownToLine className="h-3.5 w-3.5 mx-1" />
+                      <HardDrive className="h-3.5 w-3.5 ml-1" />
+                    </span>
                   )}
                 </label>
                 {fileName && <span className="text-xs text-gray-400">{fileName}</span>}
@@ -288,7 +279,7 @@ export const Contact = () => {
           </div>
 
           {/* Confirmation overlay */}
-          <div className={`confirmation-overlay ${sent ? "confirm-visible" : ""}`} role="status" aria-live="polite">
+          <div className={`confirmation-overlay ${sendStatus ? "confirm-visible" : ""}`} role="status" aria-live="polite">
             {showConfirm && sendStatus === "success" && (
               <div className="confirm-pane">
                 <div className="flex items-center gap-3 mb-3">
@@ -305,11 +296,12 @@ export const Contact = () => {
                     onClick={() => {
                       setForm({ name: "", phone: "", email: "", message: "" });
                       setFileName("");
-                      setSent(false);
                       setShowConfirm(false);
                       setSendProgress(0);
                       setSendStatus(null);
                       setFormHidden(false);
+                      setAttachment(null);
+                      setUploadStatus(null);
                     }}
                     aria-label={t("contact.confirm.writeAnother")}
                   >
@@ -321,18 +313,18 @@ export const Contact = () => {
                 </div>
               </div>
             )}
-            {!showConfirm && sent && sendStatus === "error" && (
+            {!showConfirm && sendStatus === "error" && (
               <div className="confirm-pane">
                 <div className="flex items-center gap-3 mb-3">
                   <AlertCircle className="text-red-400" />
                   <span className="text-sm md:text-base font-semibold">{t("contact.form.failure")}</span>
                 </div>
+                {errorMessage && <p className="text-xs text-gray-400 mb-3">{errorMessage}</p>}
                 <div className="confirm-actions">
                   <button
                     type="button"
                     className="confirm-btn confirm-primary"
                     onClick={() => {
-                      setSent(false);
                       setSendProgress(0);
                       setSendStatus(null);
                       setFormHidden(false);
@@ -354,4 +346,3 @@ export const Contact = () => {
     </div>
   );
 };
-

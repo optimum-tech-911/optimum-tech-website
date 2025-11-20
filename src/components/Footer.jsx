@@ -54,7 +54,7 @@ export const Footer = () => {
           </div>
           <div>
             <h4 className="text-xl md:text-base text-[#E6F1FF] font-semibold mb-3">{t("footer.contactTitle")}</h4>
-            <ul className="text-lg md:text-sm text:white/90 space-y-4 md:space-y-2">
+            <ul className="text-lg md:text-sm text-white/90 space-y-4 md:space-y-2">
               {[t("footer.location"), t("footer.hours")].map((text) => (
                 <li key={text} className="rounded-2xl border border-[#1B2A49] bg-white/5 px-6 py-4 md:px-4 md:py-2 text-[#E6F1FF] opacity-90">
                   {text}
@@ -157,4 +157,3 @@ export const Footer = () => {
     </footer>
   );
 };
-

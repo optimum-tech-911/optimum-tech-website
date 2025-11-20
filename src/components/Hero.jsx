@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight, Zap, Cpu, BarChart3 } from "lucide-react";
 import Logo2 from "../assets/Logo 2.jpeg";
 import { useI18n } from "../i18n.jsx";
@@ -178,15 +179,15 @@ export const Hero = () => {
           ))}
         </motion.div>
         <motion.div className="mt-10 flex items-center gap-x-3" variants={item}>
-          <a href="/contact" className="relative overflow-hidden rounded-full border border-white/15 px-4 py-2.5 text-sm md:text-sm font-semibold text-white shadow-sm transition-transform duration-300 active:scale-95 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 animate-gradient md:px-6 md:py-3 md:bg-white/10 md:backdrop-blur supports-[backdrop-filter]:md:bg-white/15 whitespace-nowrap btn-electric btn-heartbeat btn-spectrum">
+          <Link to="/contact" className="relative overflow-hidden rounded-full border border-white/15 px-4 py-2.5 text-sm md:text-sm font-semibold text-white shadow-sm transition-transform duration-300 active:scale-95 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 animate-gradient md:px-6 md:py-3 md:bg-white/10 md:backdrop-blur supports-[backdrop-filter]:md:bg-white/15 whitespace-nowrap btn-electric btn-heartbeat btn-spectrum">
             {t("hero.ctaStart")}<ArrowRight className="inline-block ml-2 h-4 w-4" />
-          </a>
-          <a href="/projects" className="group flex items-center gap-x-2 text-sm md:text-sm font-semibold leading-6 text-white rounded-full border px-4 py-2.5 md:px-5 md:py-2 backdrop-blur supports-[backdrop-filter]:bg-white/10 md:bg-white/10 whitespace-nowrap btn-golden btn-clockbeat">
+          </Link>
+          <Link to="/projects" className="group flex items-center gap-x-2 text-sm md:text-sm font-semibold leading-6 text-white rounded-full border px-4 py-2.5 md:px-5 md:py-2 backdrop-blur supports-[backdrop-filter]:bg-white/10 md:bg-white/10 whitespace-nowrap btn-golden btn-clockbeat">
             <span className="logo-dot">
               <img src={Logo2} alt="Optimum Tech logo" className="w-full h-full object-cover" />
             </span>
             <span>{t("hero.ctaSee")}</span>
-          </a>
+          </Link>
         </motion.div>
         <div className="mt-8 glass-base glass-blue-darker rounded-2xl p-4 glass-blur-2 glass-border-light">
           <h3 className="text-3xl md:text-4xl font-bold electric-blue-glow">{t("hero.missionTitle")}</h3>

@@ -1,25 +1,32 @@
 import React from "react";
 import { Navbar } from "../components/Navbar";
 import { Hero } from "../components/Hero";
-import HyperspeedIntro from "../components/HyperspeedIntro";
+const HyperspeedIntro = React.lazy(() => import("../components/HyperspeedIntro"));
 import { Footer } from "../components/Footer";
+import { isIntroUnlocked, subscribeToIntroUnlock } from "../utils/introState.js";
+import { SEO } from "../components/SEO.jsx";
+import { Helmet } from "react-helmet-async";
  
+
+const IntroFallback = () => (
+  <div className="fixed inset-0 z-40 flex items-center justify-center bg-black text-white/70 text-xs tracking-[0.4em] uppercase">
+    Initializing Hyperspeed
+  </div>
+);
 
 export const Home = () => {
   const [isMobile, setIsMobile] = React.useState(false);
-  React.useEffect(() => {
-    const mq = window.matchMedia("(max-width: 768px)");
-    const update = () => setIsMobile(mq.matches);
-    update();
-    if (mq.addEventListener) mq.addEventListener("change", update);
-    else mq.addListener(update);
-    return () => {
-      if (mq.removeEventListener) mq.removeEventListener("change", update);
-      else mq.removeListener(update);
-    };
-  }, []);
+  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false);
+  const wantsIntro = !isMobile && !prefersReducedMotion;
+  const [introReady, setIntroReady] = React.useState(() => isIntroUnlocked() || !wantsIntro);
 
-  const BlueMatrix = () => {
+  React.useEffect(() => {
+    if (introReady) return;
+    const unsubscribe = subscribeToIntroUnlock(() => setIntroReady(true));
+    return () => unsubscribe();
+  }, [introReady]);
+
+  const BlueMatrix = ({ mobile }) => {
     const canvasRef = React.useRef(null);
     React.useEffect(() => {
       const canvas = canvasRef.current;
@@ -27,59 +34,99 @@ export const Home = () => {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       let raf = 0;
-      let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+      let resizeRaf = 0;
+      let width = 0;
+      let height = 0;
       let fontSize = 16;
       let columns = 0;
       let drops = [];
+      const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
       const resize = () => {
-        w = Math.max(1, Math.floor(document.documentElement.clientWidth));
-        h = Math.max(1, Math.floor(document.documentElement.scrollHeight));
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
+        const bounds = canvas.parentElement?.getBoundingClientRect();
+        width = Math.max(1, Math.floor(bounds?.width || window.innerWidth));
+        height = Math.max(1, Math.floor(bounds?.height || window.innerHeight));
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
         canvas.style.width = "100%";
         canvas.style.height = "100%";
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        fontSize = Math.max(14, Math.floor(w / 90));
-        columns = Math.floor(w / fontSize);
+        fontSize = Math.max(mobile ? 14 : 18, Math.floor((width / 90) * (mobile ? 0.8 : 1)));
+        columns = Math.max(10, Math.floor((width / fontSize) * (mobile ? 0.8 : 1)));
         drops = new Array(columns).fill(0);
       };
-      resize();
-      const onResize = () => resize();
-      window.addEventListener("resize", onResize);
+      const handleResize = () => {
+        cancelAnimationFrame(resizeRaf);
+        resizeRaf = requestAnimationFrame(resize);
+      };
+      handleResize();
+      window.addEventListener("resize", handleResize);
       const draw = () => {
-        ctx.fillStyle = "rgba(0,0,0,0.08)";
-        ctx.fillRect(0, 0, w, h);
+        ctx.fillStyle = mobile ? "rgba(0,0,0,0.08)" : "rgba(0,0,0,0.05)";
+        ctx.fillRect(0, 0, width, height);
         ctx.font = fontSize + "px monospace";
         for (let i = 0; i < drops.length; i++) {
           const text = chars[Math.floor(Math.random() * chars.length)];
           const x = i * fontSize;
           const y = drops[i] * fontSize;
-          const head = Math.random() < 0.12;
-          ctx.fillStyle = head ? "rgba(0,123,255,0.95)" : "rgba(0,123,255,0.65)";
+          const head = Math.random() < (mobile ? 0.08 : 0.12);
+          ctx.fillStyle = head ? "rgba(10,132,255,0.95)" : "rgba(10,132,255,0.65)";
           ctx.fillText(text, x, y);
-          if (y > h && Math.random() > 0.975) drops[i] = 0; else drops[i]++;
+          if (y > height && Math.random() > 0.975) drops[i] = 0;
+          else drops[i]++;
         }
         raf = requestAnimationFrame(draw);
       };
       raf = requestAnimationFrame(draw);
       return () => {
         cancelAnimationFrame(raf);
-        window.removeEventListener("resize", onResize);
+        cancelAnimationFrame(resizeRaf);
+        window.removeEventListener("resize", handleResize);
       };
-    }, []);
+    }, [mobile]);
     return <canvas ref={canvasRef} className="absolute inset-0" />;
   };
 
+  const matrixEnabled = introReady && !prefersReducedMotion;
+
   return (
-    <div className="min-h-screen flex flex-col relative">
-      <Navbar />
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <BlueMatrix />
-      </div>
-      <HyperspeedIntro />
-      <Hero />
-      <Footer />
+    <div className="min-h-screen flex flex-col relative bg-black">
+      <SEO
+        path="/"
+        title="Optimum Tech – Création de Sites Web, Automatisation & IA au Service des Entreprises"
+        description="Optimum Tech accompagne les entreprises avec des sites web rapides, des automatisations intelligentes et des solutions IA sur mesure. Développez-vous plus vite avec une technologie simple, efficace et moderne."
+      />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: "Optimum Tech",
+            url: "https://optimutech.fr",
+            description: "Création de sites web, automatisation et IA pour entreprises.",
+            logo: "https://optimutech.fr/assets/logo.png",
+          })}
+        </script>
+      </Helmet>
+      {introReady ? (
+        <>
+          <Navbar />
+          {isMobile && (
+            <div className="absolute inset-0 z-0 pointer-events-none mobile-ambient" />
+          )}
+          {matrixEnabled && (
+            <div className="absolute inset-0 z-0 pointer-events-none">
+              <BlueMatrix mobile={isMobile} />
+            </div>
+          )}
+          <Hero />
+          <Footer />
+        </>
+      ) : (
+        <React.Suspense fallback={<IntroFallback />}>
+          <HyperspeedIntro onUnlocked={() => setIntroReady(true)} />
+        </React.Suspense>
+      )}
     </div>
   );
 };

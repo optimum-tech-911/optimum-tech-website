@@ -98,6 +98,8 @@ export const ProjectCard = ({ title, desc, href }) => {
               src={href}
               title={title}
               loading="lazy"
+              sandbox="allow-scripts allow-forms allow-pointer-lock allow-popups allow-same-origin allow-top-navigation-by-user-activation"
+              referrerPolicy="no-referrer"
               className="w-full h-[380px] md:h-[460px] bg-[#0f1520]"
             />
           </motion.div>
