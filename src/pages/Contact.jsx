@@ -104,7 +104,7 @@ export const Contact = () => {
                   payload.append("phone", form.phone);
                   payload.append("email", form.email);
                   payload.append("message", form.message);
-                  payload.append("_subject", `New inquiry from ${form.name || "Optimum Tech website"}`);
+                  payload.append("_subject", `New inquiry from ${form.name || "Optimum Tech website"} (optimutech.fr)`);
                   payload.append("_template", "table");
                   payload.append("_autoresponse", t("contact.confirm.message"));
                   payload.append("_captcha", "false");
@@ -113,10 +113,11 @@ export const Contact = () => {
                     setSendProgress((p) => (p >= 95 ? 95 : p + 2));
                   }, 80);
                   try {
-                    const response = await fetch(FORM_ENDPOINT, {
-                      method: "POST",
-                      body: payload,
-                    });
+                  const response = await fetch(FORM_ENDPOINT, {
+                    method: "POST",
+                    headers: { Accept: "application/json" },
+                    body: payload,
+                  });
                     if (!response.ok) {
                       throw new Error("NETWORK_ERROR");
                     }

@@ -40,11 +40,17 @@ export const Home = () => {
       let fontSize = 16;
       let columns = 0;
       let drops = [];
+      let lastWidth = 0;
       const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
       const resize = () => {
         const bounds = canvas.parentElement?.getBoundingClientRect();
-        width = Math.max(1, Math.floor(bounds?.width || window.innerWidth));
-        height = Math.max(1, Math.floor(bounds?.height || window.innerHeight));
+        const newWidth = Math.max(1, Math.floor(bounds?.width || window.innerWidth));
+        const newHeight = Math.max(1, Math.floor(bounds?.height || window.innerHeight));
+        // Ignore mobile address-bar height jitters; only reflow when width changes (orientation/viewport width change)
+        if (Math.abs(newWidth - lastWidth) < 2) return;
+        lastWidth = newWidth;
+        width = newWidth;
+        height = newHeight;
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
         canvas.width = width * dpr;
         canvas.height = height * dpr;
