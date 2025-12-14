@@ -41,7 +41,7 @@ export const Projects = () => {
   const projects = [
     { title: "UFSBD34.fr", desc: "Dental Association Website", href: "https://ufsbd34.fr" },
     { title: "CandyPlanet.fr", desc: "Sweet Shop E-Commerce", href: "https://candyplanet.fr" },
-    { title: "Abdessamed.pages.dev", desc: "Personal Portfolio / Dev Site", href: "https://abdessamed.pages.dev/" },
+    { title: "cabinetdentairesete.fr", desc: "Personal Portfolio / Dev Site", href: "https://cabinetdentairesete.fr/" },
     { title: "Marcellino Mockup", desc: "Design mockup preview", href: "https://marcellino-mockup.pages.dev/" },
     { title: "Abattoire Seddik", desc: "Business site preview", href: "https://abattoire-seddik.pages.dev/" },
     { title: "Sweet Serve Admin", desc: "Admin dashboard preview", href: "https://sweet-serve-admin1.pages.dev/" },
