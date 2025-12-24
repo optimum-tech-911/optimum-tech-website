@@ -44,7 +44,7 @@ function extendMaterial(BaseMaterial, cfg) {
     vertexShader: vert,
     fragmentShader: frag,
     lights: true,
-    fog: !!cfg.material?.fog
+    fog: !!cfg.material?.fog,
   });
 
   return mat;
@@ -56,7 +56,7 @@ const CanvasWrapper = ({ children }) => (
   </Canvas>
 );
 
-const hexToNormalizedRGB = hex => {
+const hexToNormalizedRGB = (hex) => {
   const clean = hex.replace('#', '');
   const r = parseInt(clean.substring(0, 2), 16);
   const g = parseInt(clean.substring(2, 4), 16);
@@ -149,7 +149,7 @@ export default function Beams({
   speed = 2,
   noiseIntensity = 1.75,
   scale = 0.2,
-  rotation = 0
+  rotation = 0,
 }) {
   const meshRef = useRef(null);
   const beamMaterial = useMemo(
@@ -190,7 +190,7 @@ export default function Beams({
         fragmentHeader: '',
         vertex: {
           '#include <begin_vertex>': `transformed.z += getPos(transformed.xyz);`,
-          '#include <beginnormal_vertex>': `objectNormal = getNormal(position.xyz);`
+          '#include <beginnormal_vertex>': `objectNormal = getNormal(position.xyz);`,
         },
         fragment: {
           '#include <dithering_fragment>': `
@@ -200,7 +200,7 @@ export default function Beams({
     float centerDist = abs(v - 0.5);
     float glowMask = 1.0 - smoothstep(uGlowWidth, 0.5, centerDist);
     vec3 glow = uGlowColor * glowMask * uGlowStrength;
-    gl_FragColor.rgb += glow;`
+    gl_FragColor.rgb += glow;`,
         },
         material: { fog: true },
         uniforms: {
@@ -214,8 +214,8 @@ export default function Beams({
           uScale: scale,
           uGlowColor: { value: new THREE.Color(...hexToNormalizedRGB('#0000FF')) },
           uGlowStrength: { value: 0.6 },
-          uGlowWidth: { value: 0.22 }
-        }
+          uGlowWidth: { value: 0.22 },
+        },
       }),
     [speed, noiseIntensity, scale]
   );
@@ -223,7 +223,13 @@ export default function Beams({
   return (
     <CanvasWrapper>
       <group rotation={[0, 0, degToRad(rotation)]}>
-        <PlaneNoise ref={meshRef} material={beamMaterial} count={beamNumber} width={beamWidth} height={beamHeight} />
+        <PlaneNoise
+          ref={meshRef}
+          material={beamMaterial}
+          count={beamNumber}
+          width={beamWidth}
+          height={beamHeight}
+        />
         <DirLight color={lightColor} position={[0, 3, 10]} />
       </group>
       <ambientLight intensity={1} />
@@ -296,7 +302,13 @@ const MergedPlanes = forwardRef(({ material, width, count, height }, ref) => {
 MergedPlanes.displayName = 'MergedPlanes';
 
 const PlaneNoise = forwardRef((props, ref) => (
-  <MergedPlanes ref={ref} material={props.material} width={props.width} count={props.count} height={props.height} />
+  <MergedPlanes
+    ref={ref}
+    material={props.material}
+    width={props.width}
+    count={props.count}
+    height={props.height}
+  />
 ));
 PlaneNoise.displayName = 'PlaneNoise';
 

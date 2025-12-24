@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "contact": "Contact",
+    "policy": "Politique",
+    "login": "Connexion"
+  },
+  "hero": {
+    "build": "Construisez",
+    "faster": "plus vite",
+    "grow": "Développez-vous",
+    "smarter": "plus intelligemment",
+    "automate": "Automatisez",
+    "everything": "tout",
+    "blurb": "Optimum Tech transforme vos idées en sites web, applications et automatisations IA qui délivrent des résultats concrets.",
+    "ctaStart": "Commencer votre projet",
+    "ctaSee": "Voir nos réalisations",
+    "missionTitle": "Mission",
+    "mission1": "Notre mission est de rendre la technologie simple, rapide et accessible pour chaque entreprise.",
+    "mission2": "Chez Optimum Tech, nous créons des sites web performants, des automatisations intelligentes et des outils IA qui améliorent réellement votre quotidien.",
+    "mission3": "Notre objectif : vous faire gagner du temps, augmenter votre efficacité et vous aider à atteindre vos ambitions plus rapidement.",
+    "visionTitle": "Vision",
+    "vision1": "Nous imaginons un futur où l’IA et l’automatisation sont au service de tous — même des plus petites structures.",
+    "vision2": "Notre vision est un monde où chaque entrepreneur peut se développer plus vite, sans complexité technique et sans perte de temps, grâce à des solutions modernes, fiables et conçues pour durer.",
+    "vision3": "Chez Optimum Tech, nous construisons ce futur, un projet après l’autre."
+  },
+  "intro": { "title": "Optimum Tech", "subtitle": "Bienvenue sur votre site" },
+  "projects": {
+    "title": "Projets",
+    "swipeMore": "Glisser pour voir plus",
+    "swipeNext": "Voir suivant",
+    "prev": "Projet précédent",
+    "next": "Projet suivant"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "form": {
+      "nameLabel": "Nom",
+      "namePlaceholder": "Votre nom",
+      "phoneLabel": "Téléphone",
+      "phonePlaceholder": "(+33) 6 12 34 56 78",
+      "emailLabel": "Email",
+      "emailPlaceholder": "vous@exemple.com",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Décrivez votre projet, budget et délais souhaités.",
+      "attachLabel": "Télécharger un fichier",
+      "uploading": "Téléchargement…",
+      "uploadSuccess": "Fichier téléchargé",
+      "uploadFailure": "Échec du téléchargement",
+      "sendButton": "Envoyer le message",
+      "success": "Merci ! Votre message a été envoyé.",
+      "failure": "Échec de l’envoi. Réessayez.",
+      "genericError": "Échec de l’envoi. Contactez-nous sur optimum.tech.911@gmail.com en attendant."
+    },
+    "confirm": {
+      "message": "Merci pour votre message ! Nous vous répondrons au plus vite.",
+      "writeAnother": "Écrire un autre message",
+      "exploreMore": "Voir nos projets"
+    }
+  },
+  "policy": { "title": "Politique générale" },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "description": "Nous créons des sites rapides, des apps et des automatisations propulsées par l'IA pour accélérer votre activité.",
+    "menuTitle": "Explorer",
+    "contactTitle": "Contact",
+    "location": "France • UE",
+    "hours": "Disponible 24/7 – nous sommes là à tout moment.",
+    "made": "Conçu avec soin – performance et accessibilité avant tout",
+    "links": {
+      "home": "Retour à l'accueil",
+      "projects": "Découvrir nos projets",
+      "policy": "Lire nos politiques",
+      "contact": "Entrer en contact"
+    }
+  },
+  "cookies": {
+    "bannerTitle": "Cookies",
+    "bannerText": "Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez accepter, refuser ou gérer vos préférences.",
+    "acceptAll": "Accepter tout",
+    "rejectAll": "Refuser tout",
+    "settings": "Paramètres",
+    "settingsTitle": "Paramètres des cookies",
+    "analyticsTitle": "Statistiques (GTM/GA)",
+    "analyticsDesc": "Activez les cookies analytiques pour des mesures anonymisées.",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "reopen": "Paramètres"
+  }
+}

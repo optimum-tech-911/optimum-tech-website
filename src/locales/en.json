@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact",
+    "policy": "Policy",
+    "login": "Log in"
+  },
+  "hero": {
+    "build": "Build",
+    "faster": "faster",
+    "grow": "Grow",
+    "smarter": "smarter",
+    "automate": "Automate",
+    "everything": "everything",
+    "blurb": "Optimum Tech turns your ideas into high-performance websites, apps, and AI-powered workflows that move the needle.",
+    "ctaStart": "Start Your Project",
+    "ctaSee": "See Our Work",
+    "missionTitle": "Mission",
+    "mission1": "Our mission is to make technology simple, fast, and accessible for every business.",
+    "mission2": "At Optimum Tech, we build high-performance websites, smart automations, and AI tools that truly improve your day-to-day.",
+    "mission3": "Our goal: save you time, increase efficiency, and help you reach your ambitions faster.",
+    "visionTitle": "Vision",
+    "vision1": "We imagine a future where AI and automation serve everyone — even the smallest teams.",
+    "vision2": "Our vision is a world where every entrepreneur can grow faster, without technical complexity or wasted time, through modern, reliable solutions built to last.",
+    "vision3": "At Optimum Tech, we’re building that future, one project at a time."
+  },
+  "intro": { "title": "Optimum Tech", "subtitle": "Welcome to your website" },
+  "projects": {
+    "title": "Projects",
+    "swipeMore": "Swipe to see more",
+    "swipeNext": "See next",
+    "prev": "Previous project",
+    "next": "Next project"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Your name",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "(+33) 6 12 34 56 78",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Describe your project, budget, and timeline.",
+      "attachLabel": "Upload File",
+      "uploading": "Uploading…",
+      "uploadSuccess": "File uploaded",
+      "uploadFailure": "Upload failed",
+      "sendButton": "Send message",
+      "success": "Thanks! Your message has been sent.",
+      "failure": "Sending failed. Please retry.",
+      "genericError": "We couldn't send this message. Email us at optimum.tech.911@gmail.com while we sort this out."
+    },
+    "confirm": {
+      "message": "Thank you for contacting us! We will get back to you ASAP",
+      "writeAnother": "Write Another Message",
+      "exploreMore": "Explore More"
+    }
+  },
+  "policy": { "title": "General Policy" },
+  "footer": {
+    "rights": "All rights reserved.",
+    "description": "We build fast websites, apps, and AI automations to help your business grow with confidence.",
+    "menuTitle": "Explore",
+    "contactTitle": "Contact",
+    "location": "France • EU",
+    "hours": "Available 24/7 – we're here anytime.",
+    "made": "Made with care – performance & accessibility first",
+    "links": {
+      "home": "Back to home",
+      "projects": "Explore our projects",
+      "policy": "Read our policies",
+      "contact": "Get in touch"
+    }
+  },
+  "cookies": {
+    "bannerTitle": "Cookies",
+    "bannerText": "We use cookies to improve your experience. You can accept, refuse, or manage your preferences.",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "settings": "Settings",
+    "settingsTitle": "Cookie settings",
+    "analyticsTitle": "Analytics (GTM/GA)",
+    "analyticsDesc": "Enable analytics cookies for anonymized measurement.",
+    "save": "Save",
+    "cancel": "Cancel",
+    "reopen": "Settings"
+  }
+}

@@ -1,9 +1,9 @@
-import React from "react";
-import { Helmet } from "react-helmet-async";
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
-export const SEO = ({ path, title = "", description = "" }) => {
-  const base = "https://optimutech.fr";
-  const canonical = `${base}${path || "/"}`;
+export const SEO = ({ path, title = '', description = '' }) => {
+  const base = 'https://optimutech.fr';
+  const canonical = `${base}${path || '/'}`;
   return (
     <Helmet>
       <link rel="canonical" href={canonical} />

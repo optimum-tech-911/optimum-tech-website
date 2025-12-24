@@ -1,4 +1,4 @@
-const KEY = "ot_cookies_prefs";
+const KEY = 'ot_cookies_prefs';
 
 export const getPrefs = () => {
   try {
@@ -12,7 +12,9 @@ export const getPrefs = () => {
 export const setPrefs = (prefs) => {
   try {
     localStorage.setItem(KEY, JSON.stringify(prefs));
-  } catch {}
+  } catch (err) {
+    /* ignore localStorage write errors */
+  }
 };
 
 export const hasConsent = (category) => {

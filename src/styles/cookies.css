@@ -1,30 +1,183 @@
-:root { --ot-bg: rgba(13,17,23,0.8); --ot-border: rgba(255,255,255,0.1); --ot-primary: #0A84FF; --ot-text: #fff; }
-.ot-cookie-banner { position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 1000; }
-.ot-cookie-content { border: 1px solid var(--ot-border); background: var(--ot-bg); backdrop-filter: blur(12px); border-radius: 16px; padding: 16px; color: var(--ot-text); }
-.ot-cookie-title { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
-.ot-cookie-text { font-size: 14px; opacity: 0.9; }
-.ot-cookie-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-.ot-btn { border-radius: 12px; padding: 8px 12px; font-weight: 600; font-size: 13px; border: 1px solid var(--ot-border); }
-.ot-btn-primary { background: rgba(10,132,255,0.2); color: #fff; }
-.ot-btn-secondary { background: rgba(255,255,255,0.06); color: #fff; }
-.ot-btn-tertiary { background: transparent; color: #fff; }
-.ot-cookie-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1001; }
-.ot-modal-card { width: 96%; max-width: 520px; border: 1px solid var(--ot-border); background: var(--ot-bg); backdrop-filter: blur(14px); border-radius: 18px; padding: 16px; color: var(--ot-text); }
-.ot-modal-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-.ot-setting { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; }
-.ot-setting-title { font-weight: 600; }
-.ot-setting-desc { font-size: 13px; opacity: 0.85; }
-.ot-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
-.ot-switch input { opacity: 0; width: 0; height: 0; }
-.ot-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.2); transition: .2s; border-radius: 999px; }
-.ot-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .2s; border-radius: 50%; }
-.ot-switch input:checked + .ot-slider { background-color: rgba(10,132,255,0.6); }
-.ot-switch input:checked + .ot-slider:before { transform: translateX(20px); }
-.ot-modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
-.ot-cookie-reopen { position: fixed; bottom: 16px; right: 16px; z-index: 999; border-radius: 999px; padding: 8px 12px; border: 1px solid var(--ot-border); background: rgba(255,255,255,0.06); color: #fff; font-weight: 600; font-size: 13px; }
-.ot-animate-in { animation: otSlideUp .24s ease-out both; }
-@keyframes otSlideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-.ot-cookie-modal .ot-modal-card.ot-animate-in { animation: otScaleIn .2s ease-out both; }
-@keyframes otScaleIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
-.ot-cookie-reopen { transition: transform .2s ease, background .2s ease; }
-.ot-cookie-reopen:hover { transform: translateY(-1px); background: rgba(255,255,255,0.1); }
+:root {
+  --ot-bg: rgba(13, 17, 23, 0.8);
+  --ot-border: rgba(255, 255, 255, 0.1);
+  --ot-primary: #0a84ff;
+  --ot-text: #fff;
+}
+.ot-cookie-banner {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 1000;
+}
+.ot-cookie-content {
+  border: 1px solid var(--ot-border);
+  background: var(--ot-bg);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 16px;
+  color: var(--ot-text);
+}
+.ot-cookie-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.ot-cookie-text {
+  font-size: 14px;
+  opacity: 0.9;
+}
+.ot-cookie-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.ot-btn {
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 13px;
+  border: 1px solid var(--ot-border);
+}
+.ot-btn-primary {
+  background: rgba(10, 132, 255, 0.2);
+  color: #fff;
+}
+.ot-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+.ot-btn-tertiary {
+  background: transparent;
+  color: #fff;
+}
+.ot-cookie-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+.ot-modal-card {
+  width: 96%;
+  max-width: 520px;
+  border: 1px solid var(--ot-border);
+  background: var(--ot-bg);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 16px;
+  color: var(--ot-text);
+}
+.ot-modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.ot-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.ot-setting-title {
+  font-weight: 600;
+}
+.ot-setting-desc {
+  font-size: 13px;
+  opacity: 0.85;
+}
+.ot-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.ot-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.ot-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: 0.2s;
+  border-radius: 999px;
+}
+.ot-slider:before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+.ot-switch input:checked + .ot-slider {
+  background-color: rgba(10, 132, 255, 0.6);
+}
+.ot-switch input:checked + .ot-slider:before {
+  transform: translateX(20px);
+}
+.ot-modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+.ot-cookie-reopen {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 999;
+  border-radius: 999px;
+  padding: 8px 12px;
+  border: 1px solid var(--ot-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+}
+.ot-animate-in {
+  animation: otSlideUp 0.24s ease-out both;
+}
+@keyframes otSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.ot-cookie-modal .ot-modal-card.ot-animate-in {
+  animation: otScaleIn 0.2s ease-out both;
+}
+@keyframes otScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.ot-cookie-reopen {
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.ot-cookie-reopen:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.1);
+}

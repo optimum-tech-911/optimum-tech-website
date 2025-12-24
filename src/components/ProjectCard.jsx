@@ -1,23 +1,25 @@
-import React, { useState, useMemo } from "react";
-import { motion } from "framer-motion";
-import { ExternalLink, Monitor, Tablet, Smartphone } from "lucide-react";
+import React, { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { ExternalLink, Monitor, Tablet, Smartphone } from 'lucide-react';
 
 export const ProjectCard = ({ title, desc, href }) => {
-  const [device, setDevice] = useState("desktop"); // 'desktop' | 'tablet' | 'mobile'
+  const [device, setDevice] = useState('desktop'); // 'desktop' | 'tablet' | 'mobile'
   const previewAnim = useMemo(() => {
     switch (device) {
-      case "tablet":
-        return { width: "85%", radius: 18 };
-      case "mobile":
-        return { width: "55%", radius: 22 };
+      case 'tablet':
+        return { width: '85%', radius: 18 };
+      case 'mobile':
+        return { width: '55%', radius: 22 };
       default:
-        return { width: "100%", radius: 12 };
+        return { width: '100%', radius: 12 };
     }
   }, [device]);
   let host = href;
   try {
-    host = new URL(href).hostname.replace("www.", "");
-  } catch {}
+    host = new URL(href).hostname.replace('www.', '');
+  } catch (err) {
+    /* ignore invalid URL */
+  }
 
   return (
     <motion.div
@@ -45,10 +47,12 @@ export const ProjectCard = ({ title, desc, href }) => {
             <button
               type="button"
               aria-label="Desktop preview"
-              aria-pressed={device === "desktop"}
-              onClick={() => setDevice("desktop")}
+              aria-pressed={device === 'desktop'}
+              onClick={() => setDevice('desktop')}
               className={`inline-flex items-center justify-center h-7 w-7 rounded-md border ${
-                device === "desktop" ? "border-primary/60 bg-white/10 text-white" : "border-white/10 text-gray-300 hover:bg-white/10"
+                device === 'desktop'
+                  ? 'border-primary/60 bg-white/10 text-white'
+                  : 'border-white/10 text-gray-300 hover:bg-white/10'
               }`}
             >
               <Monitor className="h-4 w-4" />
@@ -56,10 +60,12 @@ export const ProjectCard = ({ title, desc, href }) => {
             <button
               type="button"
               aria-label="Tablet preview"
-              aria-pressed={device === "tablet"}
-              onClick={() => setDevice("tablet")}
+              aria-pressed={device === 'tablet'}
+              onClick={() => setDevice('tablet')}
               className={`inline-flex items-center justify-center h-7 w-7 rounded-md border ${
-                device === "tablet" ? "border-primary/60 bg-white/10 text-white" : "border-white/10 text-gray-300 hover:bg-white/10"
+                device === 'tablet'
+                  ? 'border-primary/60 bg-white/10 text-white'
+                  : 'border-white/10 text-gray-300 hover:bg-white/10'
               }`}
             >
               <Tablet className="h-4 w-4" />
@@ -67,10 +73,12 @@ export const ProjectCard = ({ title, desc, href }) => {
             <button
               type="button"
               aria-label="Mobile preview"
-              aria-pressed={device === "mobile"}
-              onClick={() => setDevice("mobile")}
+              aria-pressed={device === 'mobile'}
+              onClick={() => setDevice('mobile')}
               className={`inline-flex items-center justify-center h-7 w-7 rounded-md border ${
-                device === "mobile" ? "border-primary/60 bg-white/10 text-white" : "border-white/10 text-gray-300 hover:bg-white/10"
+                device === 'mobile'
+                  ? 'border-primary/60 bg-white/10 text-white'
+                  : 'border-white/10 text-gray-300 hover:bg-white/10'
               }`}
             >
               <Smartphone className="h-4 w-4" />
@@ -92,7 +100,7 @@ export const ProjectCard = ({ title, desc, href }) => {
             className="mx-auto overflow-hidden border border-gray-700/60 bg-black/40"
             style={{ borderRadius: 12 }}
             animate={{ width: previewAnim.width, borderRadius: previewAnim.radius }}
-            transition={{ type: "spring", stiffness: 180, damping: 22 }}
+            transition={{ type: 'spring', stiffness: 180, damping: 22 }}
           >
             <iframe
               src={href}

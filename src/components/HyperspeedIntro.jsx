@@ -1,27 +1,26 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useI18n, LANG_OPTIONS } from "../i18n.jsx";
-import Hyperspeed from "./Hyperspeed/Hyperspeed.jsx";
-import { isIntroUnlocked, persistIntroUnlocked } from "../utils/introState.js";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useI18n, LANG_OPTIONS } from '../i18n.jsx';
+import Hyperspeed from './Hyperspeed/Hyperspeed.jsx';
+import { isIntroUnlocked, persistIntroUnlocked } from '../utils/introState.js';
 
 // Fullscreen, forward-motion hyperspeed intro that locks the site until "Enter" is pressed
 export function HyperspeedIntro({ onUnlocked }) {
-  
   const [locked, setLocked] = useState(() => !isIntroUnlocked());
   const [unlocking, setUnlocking] = useState(false);
   const { lang, setLang, t } = useI18n();
   const [selLang, setSelLang] = useState(lang);
   const [menuOpen, setMenuOpen] = useState(false);
-  const FLAG = { fr: "🇫🇷", en: "🇺🇸", es: "🇪🇸", ar: "🇸🇦" };
+  const FLAG = { fr: '🇫🇷', en: '🇺🇸', es: '🇪🇸', ar: '🇸🇦' };
   const audioNodes = useRef(null);
-  const [hyperReady, setHyperReady] = useState(false);
-  const hasWindow = () => typeof window !== "undefined";
+  // hyperReady state not used — kept out to avoid lint warnings
+  const hasWindow = () => typeof window !== 'undefined';
   const startAudio = useCallback(() => {
     if (audioNodes.current || !hasWindow()) return;
     const Ctx = window.AudioContext || window.webkitAudioContext;
     if (!Ctx) return;
     try {
-      console.log("[Intro] Initializing audio context");
+      console.log('[Intro] Initializing audio context');
       const ctx = new Ctx();
       const master = ctx.createGain();
       master.gain.value = 0;
@@ -40,14 +39,14 @@ export function HyperspeedIntro({ onUnlocked }) {
       noise.buffer = buffer;
       noise.loop = true;
       const bandpass = ctx.createBiquadFilter();
-      bandpass.type = "bandpass";
+      bandpass.type = 'bandpass';
       bandpass.frequency.value = 260;
       bandpass.Q.value = 0.9;
       const lowpass = ctx.createBiquadFilter();
-      lowpass.type = "lowpass";
+      lowpass.type = 'lowpass';
       lowpass.frequency.value = 14000;
       const highpass = ctx.createBiquadFilter();
-      highpass.type = "highpass";
+      highpass.type = 'highpass';
       highpass.frequency.value = 30;
       noise.connect(bandpass);
       bandpass.connect(lowpass);
@@ -57,17 +56,17 @@ export function HyperspeedIntro({ onUnlocked }) {
       highpass.connect(whooshGain);
       whooshGain.connect(master);
       const osc = ctx.createOscillator();
-      osc.type = "sawtooth";
+      osc.type = 'sawtooth';
       osc.frequency.value = 80;
       const oscGain = ctx.createGain();
       oscGain.gain.value = 0;
       osc.connect(oscGain);
       oscGain.connect(master);
       const techOsc = ctx.createOscillator();
-      techOsc.type = "square";
+      techOsc.type = 'square';
       techOsc.frequency.value = 420;
       const fm = ctx.createOscillator();
-      fm.type = "sine";
+      fm.type = 'sine';
       fm.frequency.value = 22;
       const fmGain = ctx.createGain();
       fmGain.gain.value = 55;
@@ -76,7 +75,7 @@ export function HyperspeedIntro({ onUnlocked }) {
       const techGain = ctx.createGain();
       techGain.gain.value = 0;
       const techBand = ctx.createBiquadFilter();
-      techBand.type = "bandpass";
+      techBand.type = 'bandpass';
       techBand.frequency.value = 1800;
       techBand.Q.value = 1.2;
       techOsc.connect(techBand);
@@ -95,22 +94,51 @@ export function HyperspeedIntro({ onUnlocked }) {
       metalDelay.connect(metalMix);
       metalMix.connect(master);
       const lfo = ctx.createOscillator();
-      lfo.type = "sine";
+      lfo.type = 'sine';
       lfo.frequency.value = 0.7;
       const lfoGain = ctx.createGain();
       lfoGain.gain.value = 200;
       lfo.connect(lfoGain);
       lfoGain.connect(bandpass.frequency);
-      const meta = { id: "hyperspeed_ship_v2", label: "Hyperspeed Spaceship", version: "2.0", duration: 1.2, author: "Optimum Tech", tags: ["spaceship","hyperspeed","whoosh","futuristic"] };
-      audioNodes.current = { ctx, compressor, master, noise, bandpass, lowpass, highpass, whooshGain, osc, oscGain, techOsc, fm, fmGain, techBand, techGain, metalDelay, metalFeedback, metalMix, lfo, lfoGain, meta };
+      const meta = {
+        id: 'hyperspeed_ship_v2',
+        label: 'Hyperspeed Spaceship',
+        version: '2.0',
+        duration: 1.2,
+        author: 'Optimum Tech',
+        tags: ['spaceship', 'hyperspeed', 'whoosh', 'futuristic'],
+      };
+      audioNodes.current = {
+        ctx,
+        compressor,
+        master,
+        noise,
+        bandpass,
+        lowpass,
+        highpass,
+        whooshGain,
+        osc,
+        oscGain,
+        techOsc,
+        fm,
+        fmGain,
+        techBand,
+        techGain,
+        metalDelay,
+        metalFeedback,
+        metalMix,
+        lfo,
+        lfoGain,
+        meta,
+      };
       noise.start();
       osc.start();
       techOsc.start();
       fm.start();
       lfo.start();
-      console.log("[Intro] Audio initialized");
+      console.log('[Intro] Audio initialized');
     } catch (err) {
-      console.warn("Audio unavailable", err);
+      console.warn('Audio unavailable', err);
       audioNodes.current = null;
     }
   }, []);
@@ -118,60 +146,76 @@ export function HyperspeedIntro({ onUnlocked }) {
     if (!audioNodes.current) startAudio();
     if (!audioNodes.current) return;
     const ctx = audioNodes.current.ctx;
-    if (ctx?.state === "suspended") {
+    if (ctx?.state === 'suspended') {
       try {
         await ctx.resume();
       } catch (err) {
-        console.warn("Unable to resume audio context", err);
+        console.warn('Unable to resume audio context', err);
       }
     }
   }, [startAudio]);
-  const playWhoosh = useCallback((dur = 1.2) => {
-    if (!audioNodes.current) return;
-    const { ctx, master, bandpass, lowpass, highpass, whooshGain, osc, oscGain, techOsc, techGain, techBand, metalMix } = audioNodes.current;
-    const t = ctx.currentTime;
-    master.gain.cancelScheduledValues(t);
-    master.gain.setValueAtTime(0, t);
-    master.gain.linearRampToValueAtTime(0.55, t + 0.06);
-    master.gain.linearRampToValueAtTime(0, t + dur);
-    bandpass.frequency.cancelScheduledValues(t);
-    bandpass.frequency.setValueAtTime(260, t);
-    bandpass.frequency.exponentialRampToValueAtTime(4200, t + dur * 0.7);
-    bandpass.frequency.exponentialRampToValueAtTime(360, t + dur);
-    lowpass.frequency.cancelScheduledValues(t);
-    lowpass.frequency.setValueAtTime(14000, t);
-    lowpass.frequency.linearRampToValueAtTime(9000, t + dur * 0.6);
-    highpass.frequency.cancelScheduledValues(t);
-    highpass.frequency.setValueAtTime(30, t);
-    highpass.frequency.linearRampToValueAtTime(50, t + dur * 0.5);
-    oscGain.gain.cancelScheduledValues(t);
-    oscGain.gain.setValueAtTime(0, t);
-    oscGain.gain.linearRampToValueAtTime(0.22, t + 0.08);
-    oscGain.gain.linearRampToValueAtTime(0, t + dur);
-    osc.frequency.cancelScheduledValues(t);
-    osc.frequency.setValueAtTime(100, t);
-    osc.frequency.exponentialRampToValueAtTime(260, t + dur * 0.6);
-    osc.frequency.linearRampToValueAtTime(140, t + dur);
-    techGain.gain.cancelScheduledValues(t);
-    techGain.gain.setValueAtTime(0, t);
-    techGain.gain.linearRampToValueAtTime(0.16, t + 0.12);
-    techGain.gain.linearRampToValueAtTime(0, t + dur);
-    techOsc.frequency.cancelScheduledValues(t);
-    techOsc.frequency.setValueAtTime(420, t);
-    techOsc.frequency.exponentialRampToValueAtTime(1200, t + dur * 0.7);
-    techOsc.frequency.linearRampToValueAtTime(500, t + dur);
-    techBand.frequency.cancelScheduledValues(t);
-    techBand.frequency.setValueAtTime(1800, t);
-    techBand.frequency.linearRampToValueAtTime(2400, t + dur * 0.5);
-    whooshGain.gain.cancelScheduledValues(t);
-    whooshGain.gain.setValueAtTime(0, t);
-    whooshGain.gain.linearRampToValueAtTime(0.5, t + 0.04);
-    whooshGain.gain.linearRampToValueAtTime(0, t + dur);
-    metalMix.gain.cancelScheduledValues(t);
-    metalMix.gain.setValueAtTime(0, t);
-    metalMix.gain.linearRampToValueAtTime(0.12, t + 0.18);
-    metalMix.gain.linearRampToValueAtTime(0, t + dur);
-  }, [audioNodes]);
+  const playWhoosh = useCallback(
+    (dur = 1.2) => {
+      if (!audioNodes.current) return;
+      const {
+        ctx,
+        master,
+        bandpass,
+        lowpass,
+        highpass,
+        whooshGain,
+        osc,
+        oscGain,
+        techOsc,
+        techGain,
+        techBand,
+        metalMix,
+      } = audioNodes.current;
+      const t = ctx.currentTime;
+      master.gain.cancelScheduledValues(t);
+      master.gain.setValueAtTime(0, t);
+      master.gain.linearRampToValueAtTime(0.55, t + 0.06);
+      master.gain.linearRampToValueAtTime(0, t + dur);
+      bandpass.frequency.cancelScheduledValues(t);
+      bandpass.frequency.setValueAtTime(260, t);
+      bandpass.frequency.exponentialRampToValueAtTime(4200, t + dur * 0.7);
+      bandpass.frequency.exponentialRampToValueAtTime(360, t + dur);
+      lowpass.frequency.cancelScheduledValues(t);
+      lowpass.frequency.setValueAtTime(14000, t);
+      lowpass.frequency.linearRampToValueAtTime(9000, t + dur * 0.6);
+      highpass.frequency.cancelScheduledValues(t);
+      highpass.frequency.setValueAtTime(30, t);
+      highpass.frequency.linearRampToValueAtTime(50, t + dur * 0.5);
+      oscGain.gain.cancelScheduledValues(t);
+      oscGain.gain.setValueAtTime(0, t);
+      oscGain.gain.linearRampToValueAtTime(0.22, t + 0.08);
+      oscGain.gain.linearRampToValueAtTime(0, t + dur);
+      osc.frequency.cancelScheduledValues(t);
+      osc.frequency.setValueAtTime(100, t);
+      osc.frequency.exponentialRampToValueAtTime(260, t + dur * 0.6);
+      osc.frequency.linearRampToValueAtTime(140, t + dur);
+      techGain.gain.cancelScheduledValues(t);
+      techGain.gain.setValueAtTime(0, t);
+      techGain.gain.linearRampToValueAtTime(0.16, t + 0.12);
+      techGain.gain.linearRampToValueAtTime(0, t + dur);
+      techOsc.frequency.cancelScheduledValues(t);
+      techOsc.frequency.setValueAtTime(420, t);
+      techOsc.frequency.exponentialRampToValueAtTime(1200, t + dur * 0.7);
+      techOsc.frequency.linearRampToValueAtTime(500, t + dur);
+      techBand.frequency.cancelScheduledValues(t);
+      techBand.frequency.setValueAtTime(1800, t);
+      techBand.frequency.linearRampToValueAtTime(2400, t + dur * 0.5);
+      whooshGain.gain.cancelScheduledValues(t);
+      whooshGain.gain.setValueAtTime(0, t);
+      whooshGain.gain.linearRampToValueAtTime(0.5, t + 0.04);
+      whooshGain.gain.linearRampToValueAtTime(0, t + dur);
+      metalMix.gain.cancelScheduledValues(t);
+      metalMix.gain.setValueAtTime(0, t);
+      metalMix.gain.linearRampToValueAtTime(0.12, t + 0.18);
+      metalMix.gain.linearRampToValueAtTime(0, t + dur);
+    },
+    [audioNodes]
+  );
   const startBoostAudio = useCallback(() => {
     if (!audioNodes.current) return;
     const { ctx, master, bandpass, lfo, lfoGain, techGain, metalMix } = audioNodes.current;
@@ -199,15 +243,31 @@ export function HyperspeedIntro({ onUnlocked }) {
     onUnlocked?.();
   }, [onUnlocked]);
   useEffect(() => {
-    console.log("[Intro] Mounting intro overlay");
+    console.log('[Intro] Mounting intro overlay');
     startAudio();
     return () => {
       const n = audioNodes.current;
       if (!n) return;
-      try { n.noise.stop(); } catch {}
-      try { n.osc.stop(); } catch {}
-      try { n.lfo.stop(); } catch {}
-      try { n.ctx.close(); } catch {}
+      try {
+        n.noise.stop();
+      } catch (err) {
+        /* ignore */
+      }
+      try {
+        n.osc.stop();
+      } catch (err) {
+        /* ignore */
+      }
+      try {
+        n.lfo.stop();
+      } catch (err) {
+        /* ignore */
+      }
+      try {
+        n.ctx.close();
+      } catch (err) {
+        /* ignore */
+      }
       audioNodes.current = null;
     };
   }, [startAudio]);
@@ -220,14 +280,13 @@ export function HyperspeedIntro({ onUnlocked }) {
 
   // no time-based auto unlock; user must click the Enter button
 
-
-  
-
   // color shuffle removed from UI per request; keep state for future presets
 
-  const handleHyperInit = useCallback(() => { console.log("[Intro] Hyperspeed initialized"); setHyperReady(true); }, []);
+  const handleHyperInit = useCallback(() => {
+    console.log('[Intro] Hyperspeed initialized');
+  }, []);
   const handleHyperInitError = useCallback(() => {
-    console.error("[Intro] Hyperspeed init error; unlocking");
+    console.error('[Intro] Hyperspeed init error; unlocking');
     announceUnlocked();
     setLocked(false);
   }, [announceUnlocked]);
@@ -268,10 +327,10 @@ export function HyperspeedIntro({ onUnlocked }) {
         background: 0x000000,
         shoulderLines: 0xffffff,
         brokenLines: 0xffffff,
-        leftCars: [0x8A2BE2, 0x7C3AED, 0x9933FF],
-        rightCars: [0x0A84FF, 0x1E3A8A, 0x0E2A5A],
-        sticks: [0x8A2BE2, 0x7C3AED, 0x0A84FF, 0x1E3A8A]
-      }
+        leftCars: [0x8a2be2, 0x7c3aed, 0x9933ff],
+        rightCars: [0x0a84ff, 0x1e3a8a, 0x0e2a5a],
+        sticks: [0x8a2be2, 0x7c3aed, 0x0a84ff, 0x1e3a8a],
+      },
     }),
     [handleHyperSpeedUp, handleHyperSlowDown, handleHyperInit, handleHyperInitError]
   );
@@ -286,15 +345,17 @@ export function HyperspeedIntro({ onUnlocked }) {
       // safety in case onAnimationComplete doesn't fire
       setTimeout(() => {
         if (locked) {
-          console.warn("[Intro] Safety unlock after Enter");
+          console.warn('[Intro] Safety unlock after Enter');
           onUnlockAnimationComplete();
         }
       }, 1300);
-    } catch {}
+    } catch (err) {
+      /* ignore */
+    }
   };
 
   const onUnlockAnimationComplete = () => {
-    console.log("[Intro] Unlock animation complete");
+    console.log('[Intro] Unlock animation complete');
     announceUnlocked();
     setLocked(false);
   };
@@ -305,29 +366,52 @@ export function HyperspeedIntro({ onUnlocked }) {
         {locked && (
           <motion.div
             key="lock"
-            initial={{ opacity: 0, scale: 1, filter: "none" }}
-            animate={unlocking ? { opacity: 0, scale: 1.08, filter: "blur(6px) brightness(1.12)" } : { opacity: 1, scale: 1, filter: "none" }}
-            transition={{ duration: 1.0, ease: "easeInOut" }}
+            initial={{ opacity: 0, scale: 1, filter: 'none' }}
+            animate={
+              unlocking
+                ? { opacity: 0, scale: 1.08, filter: 'blur(6px) brightness(1.12)' }
+                : { opacity: 1, scale: 1, filter: 'none' }
+            }
+            transition={{ duration: 1.0, ease: 'easeInOut' }}
             onAnimationComplete={unlocking ? onUnlockAnimationComplete : undefined}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[60] bg-black"
-            onMouseDown={async()=>{ await ensureAudio(); startBoostAudio(); }}
-            onMouseUp={()=>{ stopBoostAudio(); }}
-            onMouseLeave={()=>{ stopBoostAudio(); }}
-            onTouchStart={async()=>{ await ensureAudio(); startBoostAudio(); }}
-            onTouchEnd={()=>{ stopBoostAudio(); }}
+            onMouseDown={async () => {
+              await ensureAudio();
+              startBoostAudio();
+            }}
+            onMouseUp={() => {
+              stopBoostAudio();
+            }}
+            onMouseLeave={() => {
+              stopBoostAudio();
+            }}
+            onTouchStart={async () => {
+              await ensureAudio();
+              startBoostAudio();
+            }}
+            onTouchEnd={() => {
+              stopBoostAudio();
+            }}
           >
-            <div className="absolute inset-0" style={{ background: "radial-gradient(80% 80% at 50% 50%, #0b0b0b, #000000)", pointerEvents: "none" }} />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: 'radial-gradient(80% 80% at 50% 50%, #0b0b0b, #000000)',
+                pointerEvents: 'none',
+              }}
+            />
             <Hyperspeed effectOptions={hyperEffectOptions} />
             {unlocking && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 0.6, 0] }}
-                transition={{ duration: 0.9, times: [0, 0.35, 1], ease: "easeOut" }}
+                transition={{ duration: 0.9, times: [0, 0.35, 1], ease: 'easeOut' }}
                 className="absolute inset-0"
                 style={{
-                  background: "radial-gradient(60% 60% at 50% 55%, rgba(255,255,255,0.9), rgba(255,255,255,0) 60%)",
-                  mixBlendMode: "screen",
+                  background:
+                    'radial-gradient(60% 60% at 50% 55%, rgba(255,255,255,0.9), rgba(255,255,255,0) 60%)',
+                  mixBlendMode: 'screen',
                 }}
               />
             )}
@@ -347,10 +431,17 @@ export function HyperspeedIntro({ onUnlocked }) {
               className="relative z-10 h-full w-full flex items-center justify-center text-center px-6"
             >
               <div>
-                <h2 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow font-pixelify">{t("intro.title")}</h2>
-                <p className="mt-3 md:mt-4 text-gray-300 max-w-2xl mx-auto">{t("intro.subtitle")}</p>
+                <h2 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow font-pixelify">
+                  {t('intro.title')}
+                </h2>
+                <p className="mt-3 md:mt-4 text-gray-300 max-w-2xl mx-auto">
+                  {t('intro.subtitle')}
+                </p>
                 <div className="mt-8 flex items-center justify-center gap-4 relative">
-                  <button onClick={handleEnter} className="rounded-full bg-white text-black px-6 py-3 text-sm font-semibold shadow-sm hover:bg-gray-100 active:scale-95">
+                  <button
+                    onClick={handleEnter}
+                    className="rounded-full bg-white text-black px-6 py-3 text-sm font-semibold shadow-sm hover:bg-gray-100 active:scale-95"
+                  >
                     Enter
                   </button>
                   <div className="relative">
@@ -362,7 +453,7 @@ export function HyperspeedIntro({ onUnlocked }) {
                       aria-expanded={menuOpen}
                       title="Select language"
                     >
-                      {FLAG[selLang] || "🌐"}
+                      {FLAG[selLang] || '🌐'}
                     </button>
                     {menuOpen && (
                       <motion.ul
@@ -377,13 +468,18 @@ export function HyperspeedIntro({ onUnlocked }) {
                           <li key={opt.code}>
                             <button
                               type="button"
-                              onClick={() => { setSelLang(opt.code); setMenuOpen(false); }}
+                              onClick={() => {
+                                setSelLang(opt.code);
+                                setMenuOpen(false);
+                              }}
                               className={`w-full text-left px-3 py-2 rounded-md text-sm flex items-center gap-2 ${
-                                selLang === opt.code ? "bg-white/15 text-white" : "text-gray-200 hover:bg-white/10"
+                                selLang === opt.code
+                                  ? 'bg-white/15 text-white'
+                                  : 'text-gray-200 hover:bg-white/10'
                               }`}
                               role="menuitem"
                             >
-                              <span className="text-lg">{FLAG[opt.code] || "🌐"}</span>
+                              <span className="text-lg">{FLAG[opt.code] || '🌐'}</span>
                               <span>{opt.label}</span>
                             </button>
                           </li>

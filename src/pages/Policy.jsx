@@ -1,333 +1,43 @@
-import React, { useState, useEffect } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import { useI18n } from "../i18n.jsx";
-import { SEO } from "../components/SEO.jsx";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { useI18n } from '../i18n.jsx';
+import { SEO } from '../components/SEO.jsx';
 
 export const Policy = () => {
   const { lang, t } = useI18n();
-  const BlueMatrix = () => {
-    const canvasRef = React.useRef(null);
-    React.useEffect(() => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      const ctx = canvas.getContext("2d");
-      let animationFrame;
-      const chars = "01".split("");
-      let columns, drops;
-      const resize = () => {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width = canvas.clientWidth * dpr;
-        canvas.height = canvas.clientHeight * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        columns = Math.floor(canvas.clientWidth / 18);
-        drops = new Array(columns).fill(0);
-      };
-      const draw = () => {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-        ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-        for (let i = 0; i < drops.length; i++) {
-          const text = chars[Math.floor(Math.random() * chars.length)];
-          ctx.fillStyle = "rgba(0, 122, 255, 0.75)";
-          ctx.font = "16px monospace";
-          ctx.fillText(text, i * 18, drops[i] * 18);
-          if (drops[i] * 18 > canvas.clientHeight && Math.random() > 0.975) drops[i] = 0;
-          drops[i]++;
-        }
-        animationFrame = requestAnimationFrame(draw);
-      };
-      resize();
-      draw();
-      const onResize = () => resize();
-      window.addEventListener("resize", onResize);
-      return () => {
-        cancelAnimationFrame(animationFrame);
-        window.removeEventListener("resize", onResize);
-      };
-    }, []);
-    return <canvas ref={canvasRef} className="w-full h-full" />;
-  };
 
-  const Section = ({ title, children }) => (
-    <>
-      <h2 className="text-2xl font-semibold mt-10 mb-4 text-[#00E0B8]">{title}</h2>
-      {children}
-    </>
-  );
-
-  const ContentEN = () => (
-    <>
-      <h1 className="text-3xl font-bold mb-6 text-[#0A84FF]">Privacy Policy</h1>
-      <p className="mb-6">
-        At <strong>Optimum Tech</strong>, accessible from {" "}
-        <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">optimutech.fr</a>, your privacy is one of our main priorities. This Privacy Policy explains how we handle your personal data when you visit our website, fill out a contact form, or interact with our services.
-      </p>
-      <Section title="1. Information We Collect">
-        <p className="mb-4">When you contact us through our website, we may collect the following information:</p>
-        <ul className="list-disc list-inside mb-6">
-          <li>Your full name</li>
-          <li>Your business name (optional)</li>
-          <li>Your email address</li>
-          <li>Your phone number (optional)</li>
-          <li>Any message or attachments you send us</li>
-        </ul>
-        <p className="mb-6">This information is provided voluntarily by you when filling out the contact form. We do not collect sensitive personal data such as financial or health information.</p>
-      </Section>
-      <Section title="2. How We Use Your Information">
-        <p className="mb-6">The information you provide is used exclusively to:</p>
-        <ul className="list-disc list-inside mb-6">
-          <li>Respond to your inquiries or requests</li>
-          <li>Provide services or project proposals you ask for</li>
-          <li>Improve our website and communication</li>
-          <li>Comply with legal obligations under French and EU law</li>
-        </ul>
-      </Section>
-      <Section title="3. Legal Basis for Processing (GDPR)">
-        <p className="mb-6">Under the EU General Data Protection Regulation (GDPR), we process personal data based on:</p>
-        <ul className="list-disc list-inside mb-6">
-          <li><strong>Consent:</strong> You voluntarily provide information via our forms.</li>
-          <li><strong>Legitimate interest:</strong> To respond to your requests and improve our services.</li>
-        </ul>
-      </Section>
-      <Section title="4. Data Retention">
-        <p className="mb-6">We retain personal data only as long as necessary to fulfill the purposes outlined in this policy. Messages received via contact forms are stored securely and deleted when no longer relevant.</p>
-      </Section>
-      <Section title="5. Sharing and Security">
-        <p className="mb-6">We do not sell, rent, or trade your personal information. Access to personal data is restricted to authorized personnel and protected through secure hosting providers.</p>
-      </Section>
-      <Section title="6. Analytics and Cookies">
-        <p className="mb-6">Our website uses <strong>Google Search Console</strong> to analyze performance and search visibility. This tool may collect general usage data (such as page views or search queries) in an anonymized form. We do not use advertising cookies or tracking pixels.</p>
-      </Section>
-      <Section title="7. Your Rights Under GDPR">
-        <p className="mb-4">As a visitor residing in the European Union, you have the following rights:</p>
-        <ul className="list-disc list-inside mb-6">
-          <li>Right to access, modify, or delete your personal data</li>
-          <li>Right to withdraw consent at any time</li>
-          <li>Right to data portability</li>
-          <li>Right to lodge a complaint with CNIL (France’s data authority)</li>
-        </ul>
-      </Section>
-      <Section title="8. Contact Information">
-        <p className="mb-6">For any questions or privacy-related requests, you can contact us at:</p>
-        <p className="font-medium text-[#0A84FF]">Optimum Tech<br/>Email: <a href="mailto:optimum.tech.911@gmail.com" className="underline">optimum.tech.911@gmail.com</a><br/>Registered in France</p>
-      </Section>
-      <Section title="9. Updates to This Policy">
-        <p className="mb-6">This Privacy Policy may be updated occasionally to reflect changes in our practices or legal requirements. Any updates will be published on this page with the revised date.</p>
-      </Section>
-      <p className="text-sm opacity-70 mt-10">Last updated: November 2025</p>
-    </>
-  );
-
-  const ContentFR = () => (
-    <>
-      <h1 className="text-3xl font-bold mb-6 text-[#0A84FF]">Politique de Confidentialité</h1>
-      <p className="mb-6">
-        Chez <strong>Optimum Tech</strong>, accessible depuis {" "}
-        <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">optimutech.fr</a>, votre vie privée est une priorité. Cette politique explique comment nous traitons vos données personnelles lorsque vous visitez notre site, remplissez un formulaire de contact ou interagissez avec nos services.
-      </p>
-      <Section title="1. Données que nous collectons">
-        <p className="mb-4">Lorsque vous nous contactez via le site, nous pouvons collecter :</p>
-        <ul className="list-disc list-inside mb-6">
-          <li>Votre nom complet</li>
-          <li>Le nom de votre société (optionnel)</li>
-          <li>Votre adresse e‑mail</li>
-          <li>Votre numéro de téléphone (optionnel)</li>
-          <li>Tout message ou fichier joint que vous nous envoyez</li>
-        </ul>
-        <p className="mb-6">Ces informations sont fournies volontairement via le formulaire. Nous ne collectons pas de données sensibles (financières, santé, etc.).</p>
-      </Section>
-      <Section title="2. Utilisation de vos informations">
-        <p className="mb-6">Vos données sont utilisées uniquement pour :</p>
-        <ul className="list-disc list-inside mb-6">
-          <li>Répondre à vos demandes</li>
-          <li>Fournir des services ou des propositions de projet</li>
-          <li>Améliorer notre site et notre communication</li>
-          <li>Respecter nos obligations légales (France / UE)</li>
-        </ul>
-      </Section>
-      <Section title="3. Base légale (RGPD)">
-        <p className="mb-6">Conformément au RGPD, le traitement repose sur :</p>
-        <ul className="list-disc list-inside mb-6">
-          <li><strong>Votre consentement</strong> : vous fournissez les informations via nos formulaires.</li>
-          <li><strong>Intérêt légitime</strong> : répondre à vos demandes et améliorer nos services.</li>
-        </ul>
-      </Section>
-      <Section title="4. Durée de conservation">
-        <p className="mb-6">Nous conservons les données uniquement le temps nécessaire aux finalités décrites. Les messages sont stockés de manière sécurisée et supprimés lorsqu’ils ne sont plus pertinents.</p>
-      </Section>
-      <Section title="5. Partage et sécurité">
-        <p className="mb-6">Nous ne vendons ni ne louons vos données. L’accès est limité au personnel autorisé et protégé par des hébergeurs sécurisés.</p>
-      </Section>
-      <Section title="6. Analyses et cookies">
-        <p className="mb-6">Notre site utilise <strong>Google Search Console</strong> pour analyser les performances et la visibilité. Les données collectées sont agrégées et anonymisées. Aucun cookie publicitaire ni pixel de suivi n’est utilisé.</p>
-      </Section>
-      <Section title="7. Vos droits (RGPD)">
-        <p className="mb-4">Vous disposez notamment des droits suivants :</p>
-        <ul className="list-disc list-inside mb-6">
-          <li>Droit d’accès, de rectification et d’effacement</li>
-          <li>Droit de retirer votre consentement à tout moment</li>
-          <li>Droit à la portabilité des données</li>
-          <li>Droit de réclamation auprès de la CNIL</li>
-        </ul>
-      </Section>
-      <Section title="8. Contact">
-        <p className="mb-6">Pour toute question ou demande liée à la confidentialité :</p>
-        <p className="font-medium text-[#0A84FF]">Optimum Tech<br/>Email : <a href="mailto:optimum.tech.911@gmail.com" className="underline">optimum.tech.911@gmail.com</a><br/>Enregistrée en France</p>
-      </Section>
-      <Section title="9. Mises à jour de cette politique">
-        <p className="mb-6">Cette politique peut être mise à jour pour refléter des évolutions légales ou de nos pratiques. Les changements seront publiés ici avec la date révisée.</p>
-      </Section>
-      <p className="text-sm opacity-70 mt-10">Dernière mise à jour : novembre 2025</p>
-    </>
-  );
-
-  const ContentES = () => (
-    <>
-      <h1 className="text-3xl font-bold mb-6 text-[#0A84FF]">Política de Privacidad</h1>
-      <p className="mb-6">En <strong>Optimum Tech</strong>, accesible desde {" "}
-        <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">optimutech.fr</a>, tu privacidad es una prioridad. Esta política explica cómo tratamos tus datos personales cuando visitas el sitio, completas el formulario de contacto o utilizas nuestros servicios.</p>
-      <Section title="1. Información que recopilamos">
-        <p className="mb-4">Podemos recopilar:</p>
-        <ul className="list-disc list-inside mb-6">
-          <li>Nombre completo</li>
-          <li>Nombre de la empresa (opcional)</li>
-          <li>Correo electrónico</li>
-          <li>Teléfono (opcional)</li>
-          <li>Mensaje o archivos adjuntos enviados</li>
-        </ul>
-        <p className="mb-6">La información se proporciona de forma voluntaria. No recopilamos datos sensibles.</p>
-      </Section>
-      <Section title="2. Uso de la información">
-        <ul className="list-disc list-inside mb-6">
-          <li>Responder a tus solicitudes</li>
-          <li>Preparar servicios o propuestas</li>
-          <li>Mejorar el sitio y la comunicación</li>
-          <li>Cumplir con obligaciones legales (Francia/UE)</li>
-        </ul>
-      </Section>
-      <Section title="3. Base legal (RGPD)">
-        <ul className="list-disc list-inside mb-6">
-          <li><strong>Consentimiento</strong>: proporcionas los datos mediante formularios.</li>
-          <li><strong>Interés legítimo</strong>: responder e mejorar servicios.</li>
-        </ul>
-      </Section>
-      <Section title="4. Conservación de datos">
-        <p className="mb-6">Conservamos los datos solo el tiempo necesario. Los mensajes se almacenan de forma segura y se eliminan cuando ya no sean relevantes.</p>
-      </Section>
-      <Section title="5. Compartición y seguridad">
-        <p className="mb-6">No vendemos ni alquilamos tus datos. El acceso está restringido y protegido por alojamiento seguro.</p>
-      </Section>
-      <Section title="6. Analítica y cookies">
-        <p className="mb-6">Usamos <strong>Google Search Console</strong> para rendimiento y visibilidad, de forma agregada y anónima. No usamos cookies publicitarias ni píxeles de seguimiento.</p>
-      </Section>
-      <Section title="7. Tus derechos (RGPD)">
-        <ul className="list-disc list-inside mb-6">
-          <li>Acceso, rectificación y eliminación</li>
-          <li>Retirar el consentimiento</li>
-          <li>Portabilidad</li>
-          <li>Reclamar ante la autoridad (CNIL)</li>
-        </ul>
-      </Section>
-      <Section title="8. Contacto">
-        <p className="mb-6">Para consultas o solicitudes:</p>
-        <p className="font-medium text-[#0A84FF]">Optimum Tech<br/>Email: <a href="mailto:optimum.tech.911@gmail.com" className="underline">optimum.tech.911@gmail.com</a><br/>Registrada en Francia</p>
-      </Section>
-      <Section title="9. Actualizaciones">
-        <p className="mb-6">Esta política puede actualizarse por cambios legales o de práctica. Publicaremos la fecha revisada.</p>
-      </Section>
-      <p className="text-sm opacity-70 mt-10">Última actualización: noviembre de 2025</p>
-    </>
-  );
-
-  const ContentAR = () => (
-    <>
-      <h1 className="text-3xl font-bold mb-6 text-[#0A84FF]">سياسة الخصوصية</h1>
-      <p className="mb-6">في <strong>Optimum Tech</strong>، والمتاحة عبر {" "}
-        <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">optimutech.fr</a>، خصوصيتك أولوية. توضح هذه السياسة كيفية معالجة بياناتك الشخصية عند زيارة الموقع أو إرسال نموذج الاتصال أو استخدام خدماتنا.</p>
-      <Section title="1. البيانات التي نجمعها">
-        <p className="mb-4">قد نجمع ما يلي:</p>
-        <ul className="list-disc list-inside mb-6">
-          <li>الاسم الكامل</li>
-          <li>اسم الشركة (اختياري)</li>
-          <li>البريد الإلكتروني</li>
-          <li>رقم الهاتف (اختياري)</li>
-          <li>أي رسالة أو مرفقات ترسلها لنا</li>
-        </ul>
-        <p className="mb-6">تُقدَّم هذه المعلومات طوعاً عبر النماذج. لا نجمع بيانات حساسة.</p>
-      </Section>
-      <Section title="2. كيفية استخدام البيانات">
-        <ul className="list-disc list-inside mb-6">
-          <li>الرد على الاستفسارات</li>
-          <li>تقديم الخدمات أو عروض المشاريع</li>
-          <li>تحسين الموقع والتواصل</li>
-          <li>الامتثال للالتزامات القانونية (فرنسا/الاتحاد الأوروبي)</li>
-        </ul>
-      </Section>
-      <Section title="3. الأساس القانوني (GDPR)">
-        <ul className="list-disc list-inside mb-6">
-          <li><strong>الموافقة</strong>: تقديمك المعلومات عبر النماذج.</li>
-          <li><strong>المصلحة المشروعة</strong>: الرد والتحسين.</li>
-        </ul>
-      </Section>
-      <Section title="4. الاحتفاظ بالبيانات">
-        <p className="mb-6">نحتفظ بالبيانات للمدة اللازمة فقط. تُخزَّن الرسائل بأمان وتُحذف عند عدم الحاجة.</p>
-      </Section>
-      <Section title="5. المشاركة والأمن">
-        <p className="mb-6">لا نبيع بياناتك ولا نؤجرها. الوصول مقصور على المخوّلين ومحمي عبر استضافة آمنة.</p>
-      </Section>
-      <Section title="6. التحليلات وملفات تعريف الارتباط">
-        <p className="mb-6">نستخدم <strong>Google Search Console</strong> لتحليل الأداء والرؤية، ببيانات مجمّعة ومجهولة. لا نستخدم ملفات تعريف الارتباط الإعلانية أو بكسلات التتبع.</p>
-      </Section>
-      <Section title="7. حقوقك (GDPR)">
-        <ul className="list-disc list-inside mb-6">
-          <li>الحق في الوصول والتصحيح والحذف</li>
-          <li>الحق في سحب الموافقة في أي وقت</li>
-          <li>الحق في قابلية نقل البيانات</li>
-          <li>الحق في الشكوى لدى CNIL</li>
-        </ul>
-      </Section>
-      <Section title="8. معلومات الاتصال">
-        <p className="mb-6">للاستفسارات أو الطلبات المتعلقة بالخصوصية:</p>
-        <p className="font-medium text-[#0A84FF]">Optimum Tech<br/>البريد: <a href="mailto:optimum.tech.911@gmail.com" className="underline">optimum.tech.911@gmail.com</a><br/>مسجّلة في فرنسا</p>
-      </Section>
-      <Section title="9. التحديثات">
-        <p className="mb-6">قد نقوم بتحديث هذه السياسة تبعاً للتغييرات القانونية أو العملية. سننشر أي تحديث مع التاريخ المعدّل.</p>
-      </Section>
-      <p className="text-sm opacity-70 mt-10">آخر تحديث: نوفمبر 2025</p>
-    </>
-  );
+  const BlueMatrix = () => <canvas className="w-full h-full" />;
 
   const PolicyCard = ({
     title,
-    titleClass = "electric-blue-glow",
+    titleClass = 'electric-blue-glow',
     children,
     active = false,
-    inactive = false,
     expanded = false,
     onClick,
     onDoubleClick,
-    reducedMotion,
     isMobile = false,
-  }) => (
+  }) =>
     isMobile ? (
       <motion.div
-        className={`group touch-target rounded-2xl p-[1px] bg-[linear-gradient(90deg,#0A84FF,#7c3aed,#00E0B8,#0A84FF)] animate-gradient ${expanded ? "ring-4 ring-primary/70" : active ? "ring-2 ring-primary/60" : ""}`}
+        className={`group touch-target rounded-2xl p-[1px] bg-[linear-gradient(90deg,#0A84FF,#7c3aed,#00E0B8,#0A84FF)] animate-gradient ${
+          expanded ? 'ring-4 ring-primary/70' : active ? 'ring-2 ring-primary/60' : ''
+        }`}
         onClick={undefined}
         onDoubleClick={undefined}
         initial={{ opacity: 1, scale: 1 }}
         animate={{ opacity: 1, scale: 1, z: 0 }}
         transition={{ duration: 0 }}
-        style={{ maxWidth: "100vw", willChange: "transform" }}
+        style={{ maxWidth: '100vw', willChange: 'transform' }}
       >
         <div className="policy-card-frame rounded-2xl">
           <div className="rounded-2xl bg-[#0A1A2F] border border-white/10 overflow-hidden min-h-[320px] shadow-sm">
             <div className="px-5 py-4 border-b border-white/10 bg-transparent">
               <h3 className={`text-xl font-semibold ${titleClass}`}>{title}</h3>
             </div>
-            <div className="p-5 leading-relaxed policy-card-content">
-              {children}
-            </div>
+            <div className="p-5 leading-relaxed policy-card-content">{children}</div>
           </div>
         </div>
       </motion.div>
@@ -336,40 +46,44 @@ export const Policy = () => {
         className="group touch-target rounded-2xl"
         onClick={onClick}
         onDoubleClick={onDoubleClick}
-        style={{ maxWidth: "80vw", maxHeight: "80vh" }}
+        style={{ maxWidth: '80vw', maxHeight: '80vh' }}
       >
         <div className="policy-card-frame rounded-2xl">
           <div className="rounded-2xl bg-[#0A1A2F] border border-white/10 overflow-hidden min-h-[320px] shadow-sm">
             <div className="px-5 py-4 border-b border-white/10 bg-transparent">
               <h3 className={`text-xl font-semibold ${titleClass}`}>{title}</h3>
             </div>
-            <div className="p-5 leading-relaxed policy-card-content">
-              {children}
-            </div>
+            <div className="p-5 leading-relaxed policy-card-content">{children}</div>
           </div>
         </div>
       </div>
-    )
-  );
+    );
 
   const policiesByLang = {
     en: [
       {
-        title: "Privacy Overview",
+        title: 'Privacy Overview',
         Content: () => (
           <>
             <p className="mb-6">
-              At <strong>Optimum Tech</strong>, accessible from {" "}
-              <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">optimutech.fr</a>, your privacy is one of our main priorities. This Privacy Policy explains how we handle your personal data when you visit our website, fill out a contact form, or interact with our services.
+              At <strong>Optimum Tech</strong>, accessible from{' '}
+              <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">
+                optimutech.fr
+              </a>
+              , your privacy is one of our main priorities. This Privacy Policy explains how we
+              handle your personal data when you visit our website, fill out a contact form, or
+              interact with our services.
             </p>
           </>
         ),
       },
       {
-        title: "Information We Collect",
+        title: 'Information We Collect',
         Content: () => (
           <>
-            <p className="mb-4">When you contact us through our website, we may collect the following information:</p>
+            <p className="mb-4">
+              When you contact us through our website, we may collect the following information:
+            </p>
             <ul className="list-disc list-inside mb-6">
               <li>Your full name</li>
               <li>Your business name (optional)</li>
@@ -377,12 +91,15 @@ export const Policy = () => {
               <li>Your phone number (optional)</li>
               <li>Any message or attachments you send us</li>
             </ul>
-            <p className="mb-6">This information is provided voluntarily by you when filling out the contact form. We do not collect sensitive personal data such as financial or health information.</p>
+            <p className="mb-6">
+              This information is provided voluntarily by you when filling out the contact form. We
+              do not collect sensitive personal data such as financial or health information.
+            </p>
           </>
         ),
       },
       {
-        title: "How We Use Your Information",
+        title: 'How We Use Your Information',
         Content: () => (
           <>
             <p className="mb-6">The information you provide is used exclusively to:</p>
@@ -396,46 +113,67 @@ export const Policy = () => {
         ),
       },
       {
-        title: "Legal Basis (GDPR)",
+        title: 'Legal Basis (GDPR)',
         Content: () => (
           <>
-            <p className="mb-6">Under the EU General Data Protection Regulation (GDPR), we process personal data based on:</p>
+            <p className="mb-6">
+              Under the EU General Data Protection Regulation (GDPR), we process personal data based
+              on:
+            </p>
             <ul className="list-disc list-inside mb-6">
-              <li><strong>Consent:</strong> You voluntarily provide information via our forms.</li>
-              <li><strong>Legitimate interest:</strong> To respond to your requests and improve our services.</li>
+              <li>
+                <strong>Consent:</strong> You voluntarily provide information via our forms.
+              </li>
+              <li>
+                <strong>Legitimate interest:</strong> To respond to your requests and improve our
+                services.
+              </li>
             </ul>
           </>
         ),
       },
       {
-        title: "Data Retention",
+        title: 'Data Retention',
         Content: () => (
           <>
-            <p className="mb-6">We retain personal data only as long as necessary to fulfill the purposes outlined in this policy. Messages received via contact forms are stored securely and deleted when no longer relevant.</p>
+            <p className="mb-6">
+              We retain personal data only as long as necessary to fulfill the purposes outlined in
+              this policy. Messages received via contact forms are stored securely and deleted when
+              no longer relevant.
+            </p>
           </>
         ),
       },
       {
-        title: "Sharing and Security",
+        title: 'Sharing and Security',
         Content: () => (
           <>
-            <p className="mb-6">We do not sell, rent, or trade your personal information. Access to personal data is restricted to authorized personnel and protected through secure hosting providers.</p>
+            <p className="mb-6">
+              We do not sell, rent, or trade your personal information. Access to personal data is
+              restricted to authorized personnel and protected through secure hosting providers.
+            </p>
           </>
         ),
       },
       {
-        title: "Analytics and Cookies",
+        title: 'Analytics and Cookies',
         Content: () => (
           <>
-            <p className="mb-6">Our website uses <strong>Google Search Console</strong> to analyze performance and search visibility. This tool may collect general usage data in an anonymized form. We do not use advertising cookies or tracking pixels.</p>
+            <p className="mb-6">
+              Our website uses <strong>Google Search Console</strong> to analyze performance and
+              search visibility. This tool may collect general usage data in an anonymized form. We
+              do not use advertising cookies or tracking pixels.
+            </p>
           </>
         ),
       },
       {
-        title: "Your Rights (GDPR)",
+        title: 'Your Rights (GDPR)',
         Content: () => (
           <>
-            <p className="mb-4">As a visitor residing in the European Union, you have the following rights:</p>
+            <p className="mb-4">
+              As a visitor residing in the European Union, you have the following rights:
+            </p>
             <ul className="list-disc list-inside mb-6">
               <li>Right to access, modify, or delete your personal data</li>
               <li>Right to withdraw consent at any time</li>
@@ -446,11 +184,24 @@ export const Policy = () => {
         ),
       },
       {
-        title: "Contact Information",
+        title: 'Contact Information',
         Content: () => (
           <>
-            <p className="mb-6">For any questions or privacy-related requests, you can contact us at:</p>
-            <p className="font-medium text-[#0A84FF]">Optimum Tech<br/>Email: <a href="mailto:optimum.tech.911@gmail.com" className="underline">optimum.tech.911@gmail.com</a><br/>{t("footer.location")}<br/>{t("footer.hours")}</p>
+            <p className="mb-6">
+              For any questions or privacy-related requests, you can contact us at:
+            </p>
+            <p className="font-medium text-[#0A84FF]">
+              Optimum Tech
+              <br />
+              Email:{' '}
+              <a href="mailto:optimum.tech.911@gmail.com" className="underline">
+                optimum.tech.911@gmail.com
+              </a>
+              <br />
+              {t('footer.location')}
+              <br />
+              {t('footer.hours')}
+            </p>
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <a
                 href="https://www.instagram.com/ot.optimum_tech/"
@@ -459,10 +210,25 @@ export const Policy = () => {
                 aria-label="Instagram"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeOpacity="0.9"/>
-                  <circle cx="12" cy="12" r="4" stroke="white" strokeOpacity="0.9"/>
-                  <circle cx="17.5" cy="6.5" r="1" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="2"
+                    y="2"
+                    width="20"
+                    height="20"
+                    rx="5"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <circle cx="12" cy="12" r="4" stroke="white" strokeOpacity="0.9" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="white" fillOpacity="0.9" />
                 </svg>
               </a>
               <a
@@ -472,9 +238,24 @@ export const Policy = () => {
                 aria-label="WhatsApp"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M20 12.05c0 4.42-3.58 8-8 8-1.41 0-2.73-.37-3.88-1.03L4 20l1.03-4.06A7.93 7.93 0 0 1 4 12.05c0-4.42 3.58-8 8-8s8 3.58 8 8Z" stroke="white" strokeOpacity="0.9"/>
-                  <path d="M9.7 9.8c-.1.2-.3.6-.2 1 0 .5.2 1 .6 1.6.4.7 1.4 1.5 2.3 1.9.9.4 1.3.4 1.5.3.2-.1.5-.3.6-.5.1-.2.1-.4 0-.5-.1-.2-.5-.3-.9-.5-.3-.1-.5-.1-.7 0-.2.1-.3.3-.4.4-.1.1-.2.1-.4 0-.4-.2-1-.5-1.4-.9-.4-.4-.7-.9-.8-1.2 0-.1 0-.3.1-.3.1-.1.2-.2.3-.4.1-.2.1-.4 0-.6-.1-.3-.5-.6-.7-.8-.2-.1-.4-.1-.5 0-.2.1-.4.2-.5.5Z" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 12.05c0 4.42-3.58 8-8 8-1.41 0-2.73-.37-3.88-1.03L4 20l1.03-4.06A7.93 7.93 0 0 1 4 12.05c0-4.42 3.58-8 8-8s8 3.58 8 8Z"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <path
+                    d="M9.7 9.8c-.1.2-.3.6-.2 1 0 .5.2 1 .6 1.6.4.7 1.4 1.5 2.3 1.9.9.4 1.3.4 1.5.3.2-.1.5-.3.6-.5.1-.2.1-.4 0-.5-.1-.2-.5-.3-.9-.5-.3-.1-.5-.1-.7 0-.2.1-.3.3-.4.4-.1.1-.2.1-.4 0-.4-.2-1-.5-1.4-.9-.4-.4-.7-.9-.8-1.2 0-.1 0-.3.1-.3.1-.1.2-.2.3-.4.1-.2.1-.4 0-.6-.1-.3-.5-.6-.7-.8-.2-.1-.4-.1-.5 0-.2.1-.4.2-.5.5Z"
+                    fill="white"
+                    fillOpacity="0.9"
+                  />
                 </svg>
               </a>
               <a
@@ -484,11 +265,30 @@ export const Policy = () => {
                 aria-label="LinkedIn"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" strokeOpacity="0.9"/>
-                  <rect x="6.5" y="9.5" width="2" height="8" fill="white" fillOpacity="0.9"/>
-                  <circle cx="7.5" cy="6.8" r="1.2" fill="white" fillOpacity="0.9"/>
-                  <path d="M12 9.8h1.8c1.3 0 2.2.8 2.4 2.1v5.1h-2v-4.2c0-.7-.5-1.2-1.1-1.2-.7 0-1.1.5-1.1 1.2v4.2h-2v-7.1H12Z" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="2"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <rect x="6.5" y="9.5" width="2" height="8" fill="white" fillOpacity="0.9" />
+                  <circle cx="7.5" cy="6.8" r="1.2" fill="white" fillOpacity="0.9" />
+                  <path
+                    d="M12 9.8h1.8c1.3 0 2.2.8 2.4 2.1v5.1h-2v-4.2c0-.7-.5-1.2-1.1-1.2-.7 0-1.1.5-1.1 1.2v4.2h-2v-7.1H12Z"
+                    fill="white"
+                    fillOpacity="0.9"
+                  />
                 </svg>
               </a>
               <a
@@ -496,9 +296,24 @@ export const Policy = () => {
                 aria-label="Email"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="white" strokeOpacity="0.9"/>
-                  <path d="M4.5 7l7.5 6 7.5-6" stroke="white" strokeOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="5"
+                    width="18"
+                    height="14"
+                    rx="2"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <path d="M4.5 7l7.5 6 7.5-6" stroke="white" strokeOpacity="0.9" />
                 </svg>
               </a>
             </div>
@@ -506,30 +321,41 @@ export const Policy = () => {
         ),
       },
       {
-        title: "Policy Updates",
+        title: 'Policy Updates',
         Content: () => (
           <>
-            <p className="mb-6">This Privacy Policy may be updated occasionally to reflect changes in our practices or legal requirements. Any updates will be published on this page with the revised date.</p>
+            <p className="mb-6">
+              This Privacy Policy may be updated occasionally to reflect changes in our practices or
+              legal requirements. Any updates will be published on this page with the revised date.
+            </p>
             <p className="text-sm opacity-70">Last updated: November 2025</p>
           </>
         ),
       },
       {
-        title: "Terms of Service",
+        title: 'Terms of Service',
         Content: () => (
           <>
-            <p className="mb-4">These terms govern the use of Optimum Tech’s website and services.</p>
-            <p className="mb-4">By accessing our site, you agree to act lawfully and respect intellectual property.</p>
-            <p className="mb-4">Service offerings may change; any disputes are governed by French law.</p>
+            <p className="mb-4">
+              These terms govern the use of Optimum Tech’s website and services.
+            </p>
+            <p className="mb-4">
+              By accessing our site, you agree to act lawfully and respect intellectual property.
+            </p>
+            <p className="mb-4">
+              Service offerings may change; any disputes are governed by French law.
+            </p>
             <p className="text-sm opacity-70">Effective date: November 2025</p>
           </>
         ),
       },
       {
-        title: "Cookie Policy",
+        title: 'Cookie Policy',
         Content: () => (
           <>
-            <p className="mb-4">We use only essential cookies and analytics for aggregated performance insights.</p>
+            <p className="mb-4">
+              We use only essential cookies and analytics for aggregated performance insights.
+            </p>
             <p className="mb-4">You can control cookies via your browser settings.</p>
             <p className="text-sm opacity-70">Effective date: November 2025</p>
           </>
@@ -538,18 +364,23 @@ export const Policy = () => {
     ],
     fr: [
       {
-        title: "Aperçu de la Confidentialité",
+        title: 'Aperçu de la Confidentialité',
         Content: () => (
           <>
             <p className="mb-6">
-              Chez <strong>Optimum Tech</strong>, accessible depuis {" "}
-              <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">optimutech.fr</a>, votre vie privée est une priorité. Cette politique explique comment nous traitons vos données personnelles lorsque vous visitez notre site, remplissez un formulaire de contact ou interagissez avec nos services.
+              Chez <strong>Optimum Tech</strong>, accessible depuis{' '}
+              <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">
+                optimutech.fr
+              </a>
+              , votre vie privée est une priorité. Cette politique explique comment nous traitons
+              vos données personnelles lorsque vous visitez notre site, remplissez un formulaire de
+              contact ou interagissez avec nos services.
             </p>
           </>
         ),
       },
       {
-        title: "Données collectées",
+        title: 'Données collectées',
         Content: () => (
           <>
             <p className="mb-4">Lorsque vous nous contactez, nous pouvons collecter :</p>
@@ -560,12 +391,14 @@ export const Policy = () => {
               <li>Numéro de téléphone (optionnel)</li>
               <li>Message ou pièces jointes</li>
             </ul>
-            <p className="mb-6">Informations fournies volontairement. Aucune donnée sensible n’est collectée.</p>
+            <p className="mb-6">
+              Informations fournies volontairement. Aucune donnée sensible n’est collectée.
+            </p>
           </>
         ),
       },
       {
-        title: "Utilisation des données",
+        title: 'Utilisation des données',
         Content: () => (
           <>
             <p className="mb-6">Vos données sont utilisées pour :</p>
@@ -579,43 +412,55 @@ export const Policy = () => {
         ),
       },
       {
-        title: "Base légale (RGPD)",
+        title: 'Base légale (RGPD)',
         Content: () => (
           <>
             <p className="mb-6">Le traitement repose sur :</p>
             <ul className="list-disc list-inside mb-6">
-              <li><strong>Consentement</strong></li>
-              <li><strong>Intérêt légitime</strong></li>
+              <li>
+                <strong>Consentement</strong>
+              </li>
+              <li>
+                <strong>Intérêt légitime</strong>
+              </li>
             </ul>
           </>
         ),
       },
       {
-        title: "Durée de conservation",
+        title: 'Durée de conservation',
         Content: () => (
           <>
-            <p className="mb-6">Conservation uniquement le temps nécessaire. Messages stockés de manière sécurisée, puis supprimés.</p>
+            <p className="mb-6">
+              Conservation uniquement le temps nécessaire. Messages stockés de manière sécurisée,
+              puis supprimés.
+            </p>
           </>
         ),
       },
       {
-        title: "Partage et sécurité",
+        title: 'Partage et sécurité',
         Content: () => (
           <>
-            <p className="mb-6">Aucune vente ou location des données. Accès limité et hébergement sécurisé.</p>
+            <p className="mb-6">
+              Aucune vente ou location des données. Accès limité et hébergement sécurisé.
+            </p>
           </>
         ),
       },
       {
-        title: "Analyses et cookies",
+        title: 'Analyses et cookies',
         Content: () => (
           <>
-            <p className="mb-6">Nous utilisons Google Search Console pour des analyses agrégées et anonymisées. Aucun cookie publicitaire.</p>
+            <p className="mb-6">
+              Nous utilisons Google Search Console pour des analyses agrégées et anonymisées. Aucun
+              cookie publicitaire.
+            </p>
           </>
         ),
       },
       {
-        title: "Vos droits (RGPD)",
+        title: 'Vos droits (RGPD)',
         Content: () => (
           <>
             <p className="mb-4">Vous disposez des droits suivants :</p>
@@ -629,11 +474,22 @@ export const Policy = () => {
         ),
       },
       {
-        title: "Contact",
+        title: 'Contact',
         Content: () => (
           <>
             <p className="mb-6">Pour toute question liée à la confidentialité :</p>
-            <p className="font-medium text-[#0A84FF]">Optimum Tech<br/>Email : <a href="mailto:optimum.tech.911@gmail.com" className="underline">optimum.tech.911@gmail.com</a><br/>{t("footer.location")}<br/>{t("footer.hours")}</p>
+            <p className="font-medium text-[#0A84FF]">
+              Optimum Tech
+              <br />
+              Email :{' '}
+              <a href="mailto:optimum.tech.911@gmail.com" className="underline">
+                optimum.tech.911@gmail.com
+              </a>
+              <br />
+              {t('footer.location')}
+              <br />
+              {t('footer.hours')}
+            </p>
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <a
                 href="https://www.instagram.com/ot.optimum_tech/"
@@ -642,10 +498,25 @@ export const Policy = () => {
                 aria-label="Instagram"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeOpacity="0.9"/>
-                  <circle cx="12" cy="12" r="4" stroke="white" strokeOpacity="0.9"/>
-                  <circle cx="17.5" cy="6.5" r="1" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="2"
+                    y="2"
+                    width="20"
+                    height="20"
+                    rx="5"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <circle cx="12" cy="12" r="4" stroke="white" strokeOpacity="0.9" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="white" fillOpacity="0.9" />
                 </svg>
               </a>
               <a
@@ -655,9 +526,24 @@ export const Policy = () => {
                 aria-label="WhatsApp"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M20 12.05c0 4.42-3.58 8-8 8-1.41 0-2.73-.37-3.88-1.03L4 20l1.03-4.06A7.93 7.93 0 0 1 4 12.05c0-4.42 3.58-8 8-8s8 3.58 8 8Z" stroke="white" strokeOpacity="0.9"/>
-                  <path d="M9.7 9.8c-.1.2-.3.6-.2 1 0 .5.2 1 .6 1.6.4.7 1.4 1.5 2.3 1.9.9.4 1.3.4 1.5.3.2-.1.5-.3.6-.5.1-.2.1-.4 0-.5-.1-.2-.5-.3-.9-.5-.3-.1-.5-.1-.7 0-.2.1-.3.3-.4.4-.1.1-.2.1-.4 0-.4-.2-1-.5-1.4-.9-.4-.4-.7-.9-.8-1.2 0-.1 0-.3.1-.3.1-.1.2-.2.3-.4.1-.2.1-.4 0-.6-.1-.3-.5-.6-.7-.8-.2-.1-.4-.1-.5 0-.2.1-.4.2-.5.5Z" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 12.05c0 4.42-3.58 8-8 8-1.41 0-2.73-.37-3.88-1.03L4 20l1.03-4.06A7.93 7.93 0 0 1 4 12.05c0-4.42 3.58-8 8-8s8 3.58 8 8Z"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <path
+                    d="M9.7 9.8c-.1.2-.3.6-.2 1 0 .5.2 1 .6 1.6.4.7 1.4 1.5 2.3 1.9.9.4 1.3.4 1.5.3.2-.1.5-.3.6-.5.1-.2.1-.4 0-.5-.1-.2-.5-.3-.9-.5-.3-.1-.5-.1-.7 0-.2.1-.3.3-.4.4-.1.1-.2.1-.4 0-.4-.2-1-.5-1.4-.9-.4-.4-.7-.9-.8-1.2 0-.1 0-.3.1-.3.1-.1.2-.2.3-.4.1-.2.1-.4 0-.6-.1-.3-.5-.6-.7-.8-.2-.1-.4-.1-.5 0-.2.1-.4.2-.5.5Z"
+                    fill="white"
+                    fillOpacity="0.9"
+                  />
                 </svg>
               </a>
               <a
@@ -667,11 +553,30 @@ export const Policy = () => {
                 aria-label="LinkedIn"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" strokeOpacity="0.9"/>
-                  <rect x="6.5" y="9.5" width="2" height="8" fill="white" fillOpacity="0.9"/>
-                  <circle cx="7.5" cy="6.8" r="1.2" fill="white" fillOpacity="0.9"/>
-                  <path d="M12 9.8h1.8c1.3 0 2.2.8 2.4 2.1v5.1h-2v-4.2c0-.7-.5-1.2-1.1-1.2-.7 0-1.1.5-1.1 1.2v4.2h-2v-7.1H12Z" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="2"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <rect x="6.5" y="9.5" width="2" height="8" fill="white" fillOpacity="0.9" />
+                  <circle cx="7.5" cy="6.8" r="1.2" fill="white" fillOpacity="0.9" />
+                  <path
+                    d="M12 9.8h1.8c1.3 0 2.2.8 2.4 2.1v5.1h-2v-4.2c0-.7-.5-1.2-1.1-1.2-.7 0-1.1.5-1.1 1.2v4.2h-2v-7.1H12Z"
+                    fill="white"
+                    fillOpacity="0.9"
+                  />
                 </svg>
               </a>
               <a
@@ -679,9 +584,24 @@ export const Policy = () => {
                 aria-label="Email"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="white" strokeOpacity="0.9"/>
-                  <path d="M4.5 7l7.5 6 7.5-6" stroke="white" strokeOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="5"
+                    width="18"
+                    height="14"
+                    rx="2"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <path d="M4.5 7l7.5 6 7.5-6" stroke="white" strokeOpacity="0.9" />
                 </svg>
               </a>
             </div>
@@ -689,30 +609,42 @@ export const Policy = () => {
         ),
       },
       {
-        title: "Mises à jour",
+        title: 'Mises à jour',
         Content: () => (
           <>
-            <p className="mb-6">Cette politique peut être mise à jour pour refléter des évolutions légales ou de nos pratiques.</p>
+            <p className="mb-6">
+              Cette politique peut être mise à jour pour refléter des évolutions légales ou de nos
+              pratiques.
+            </p>
             <p className="text-sm opacity-70">Dernière mise à jour : novembre 2025</p>
           </>
         ),
       },
       {
-        title: "Conditions d’Utilisation",
+        title: 'Conditions d’Utilisation',
         Content: () => (
           <>
-            <p className="mb-4">Ces conditions régissent l’utilisation du site et des services d’Optimum Tech.</p>
-            <p className="mb-4">En accédant au site, vous acceptez d’agir légalement et de respecter la propriété intellectuelle.</p>
-            <p className="mb-4">Les offres peuvent évoluer ; tout litige est régi par le droit français.</p>
+            <p className="mb-4">
+              Ces conditions régissent l’utilisation du site et des services d’Optimum Tech.
+            </p>
+            <p className="mb-4">
+              En accédant au site, vous acceptez d’agir légalement et de respecter la propriété
+              intellectuelle.
+            </p>
+            <p className="mb-4">
+              Les offres peuvent évoluer ; tout litige est régi par le droit français.
+            </p>
             <p className="text-sm opacity-70">Date d’effet : novembre 2025</p>
           </>
         ),
       },
       {
-        title: "Politique des Cookies",
+        title: 'Politique des Cookies',
         Content: () => (
           <>
-            <p className="mb-4">Nous utilisons uniquement des cookies essentiels et des analyses agrégées.</p>
+            <p className="mb-4">
+              Nous utilisons uniquement des cookies essentiels et des analyses agrégées.
+            </p>
             <p className="mb-4">Vous pouvez les contrôler via les paramètres du navigateur.</p>
             <p className="text-sm opacity-70">Date d’effet : novembre 2025</p>
           </>
@@ -721,16 +653,22 @@ export const Policy = () => {
     ],
     es: [
       {
-        title: "Resumen de Privacidad",
+        title: 'Resumen de Privacidad',
         Content: () => (
           <>
-            <p className="mb-6">En <strong>Optimum Tech</strong>, accesible desde {" "}
-              <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">optimutech.fr</a>, tu privacidad es una prioridad. Explicamos cómo tratamos tus datos cuando visitas el sitio o nos contactas.</p>
+            <p className="mb-6">
+              En <strong>Optimum Tech</strong>, accesible desde{' '}
+              <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">
+                optimutech.fr
+              </a>
+              , tu privacidad es una prioridad. Explicamos cómo tratamos tus datos cuando visitas el
+              sitio o nos contactas.
+            </p>
           </>
         ),
       },
       {
-        title: "Datos que recopilamos",
+        title: 'Datos que recopilamos',
         Content: () => (
           <>
             <p className="mb-4">Podemos recopilar:</p>
@@ -741,12 +679,14 @@ export const Policy = () => {
               <li>Teléfono (opcional)</li>
               <li>Mensaje o adjuntos</li>
             </ul>
-            <p className="mb-6">Información proporcionada voluntariamente. No recopilamos datos sensibles.</p>
+            <p className="mb-6">
+              Información proporcionada voluntariamente. No recopilamos datos sensibles.
+            </p>
           </>
         ),
       },
       {
-        title: "Uso de la información",
+        title: 'Uso de la información',
         Content: () => (
           <>
             <p className="mb-6">Usamos tus datos para:</p>
@@ -760,42 +700,54 @@ export const Policy = () => {
         ),
       },
       {
-        title: "Base legal (RGPD)",
+        title: 'Base legal (RGPD)',
         Content: () => (
           <>
             <ul className="list-disc list-inside mb-6">
-              <li><strong>Consentimiento</strong></li>
-              <li><strong>Interés legítimo</strong></li>
+              <li>
+                <strong>Consentimiento</strong>
+              </li>
+              <li>
+                <strong>Interés legítimo</strong>
+              </li>
             </ul>
           </>
         ),
       },
       {
-        title: "Conservación de datos",
+        title: 'Conservación de datos',
         Content: () => (
           <>
-            <p className="mb-6">Conservamos los datos solo el tiempo necesario. Mensajes guardados de forma segura y eliminados cuando no sean relevantes.</p>
+            <p className="mb-6">
+              Conservamos los datos solo el tiempo necesario. Mensajes guardados de forma segura y
+              eliminados cuando no sean relevantes.
+            </p>
           </>
         ),
       },
       {
-        title: "Compartición y seguridad",
+        title: 'Compartición y seguridad',
         Content: () => (
           <>
-            <p className="mb-6">No vendemos ni alquilamos tus datos. Acceso restringido y alojamiento seguro.</p>
+            <p className="mb-6">
+              No vendemos ni alquilamos tus datos. Acceso restringido y alojamiento seguro.
+            </p>
           </>
         ),
       },
       {
-        title: "Analítica y cookies",
+        title: 'Analítica y cookies',
         Content: () => (
           <>
-            <p className="mb-6">Usamos Google Search Console para rendimiento y visibilidad agregados y anónimos. No usamos cookies publicitarias.</p>
+            <p className="mb-6">
+              Usamos Google Search Console para rendimiento y visibilidad agregados y anónimos. No
+              usamos cookies publicitarias.
+            </p>
           </>
         ),
       },
       {
-        title: "Tus derechos (RGPD)",
+        title: 'Tus derechos (RGPD)',
         Content: () => (
           <>
             <ul className="list-disc list-inside mb-6">
@@ -808,11 +760,22 @@ export const Policy = () => {
         ),
       },
       {
-        title: "Contacto",
+        title: 'Contacto',
         Content: () => (
           <>
             <p className="mb-6">Para consultas o solicitudes:</p>
-            <p className="font-medium text-[#0A84FF]">Optimum Tech<br/>Email: <a href="mailto:optimum.tech.911@gmail.com" className="underline">optimum.tech.911@gmail.com</a><br/>{t("footer.location")}<br/>{t("footer.hours")}</p>
+            <p className="font-medium text-[#0A84FF]">
+              Optimum Tech
+              <br />
+              Email:{' '}
+              <a href="mailto:optimum.tech.911@gmail.com" className="underline">
+                optimum.tech.911@gmail.com
+              </a>
+              <br />
+              {t('footer.location')}
+              <br />
+              {t('footer.hours')}
+            </p>
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <a
                 href="https://www.instagram.com/ot.optimum_tech/"
@@ -821,10 +784,25 @@ export const Policy = () => {
                 aria-label="Instagram"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeOpacity="0.9"/>
-                  <circle cx="12" cy="12" r="4" stroke="white" strokeOpacity="0.9"/>
-                  <circle cx="17.5" cy="6.5" r="1" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="2"
+                    y="2"
+                    width="20"
+                    height="20"
+                    rx="5"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <circle cx="12" cy="12" r="4" stroke="white" strokeOpacity="0.9" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="white" fillOpacity="0.9" />
                 </svg>
               </a>
               <a
@@ -834,9 +812,24 @@ export const Policy = () => {
                 aria-label="WhatsApp"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M20 12.05c0 4.42-3.58 8-8 8-1.41 0-2.73-.37-3.88-1.03L4 20l1.03-4.06A7.93 7.93 0 0 1 4 12.05c0-4.42 3.58-8 8-8s8 3.58 8 8Z" stroke="white" strokeOpacity="0.9"/>
-                  <path d="M9.7 9.8c-.1.2-.3.6-.2 1 0 .5.2 1 .6 1.6.4.7 1.4 1.5 2.3 1.9.9.4 1.3.4 1.5.3.2-.1.5-.3.6-.5.1-.2.1-.4 0-.5-.1-.2-.5-.3-.9-.5-.3-.1-.5-.1-.7 0-.2.1-.3.3-.4.4-.1.1-.2.1-.4 0-.4-.2-1-.5-1.4-.9-.4-.4-.7-.9-.8-1.2 0-.1 0-.3.1-.3.1-.1.2-.2.3-.4.1-.2.1-.4 0-.6-.1-.3-.5-.6-.7-.8-.2-.1-.4-.1-.5 0-.2.1-.4.2-.5.5Z" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 12.05c0 4.42-3.58 8-8 8-1.41 0-2.73-.37-3.88-1.03L4 20l1.03-4.06A7.93 7.93 0 0 1 4 12.05c0-4.42 3.58-8 8-8s8 3.58 8 8Z"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <path
+                    d="M9.7 9.8c-.1.2-.3.6-.2 1 0 .5.2 1 .6 1.6.4.7 1.4 1.5 2.3 1.9.9.4 1.3.4 1.5.3.2-.1.5-.3.6-.5.1-.2.1-.4 0-.5-.1-.2-.5-.3-.9-.5-.3-.1-.5-.1-.7 0-.2.1-.3.3-.4.4-.1.1-.2.1-.4 0-.4-.2-1-.5-1.4-.9-.4-.4-.7-.9-.8-1.2 0-.1 0-.3.1-.3.1-.1.2-.2.3-.4.1-.2.1-.4 0-.6-.1-.3-.5-.6-.7-.8-.2-.1-.4-.1-.5 0-.2.1-.4.2-.5.5Z"
+                    fill="white"
+                    fillOpacity="0.9"
+                  />
                 </svg>
               </a>
               <a
@@ -846,11 +839,30 @@ export const Policy = () => {
                 aria-label="LinkedIn"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" strokeOpacity="0.9"/>
-                  <rect x="6.5" y="9.5" width="2" height="8" fill="white" fillOpacity="0.9"/>
-                  <circle cx="7.5" cy="6.8" r="1.2" fill="white" fillOpacity="0.9"/>
-                  <path d="M12 9.8h1.8c1.3 0 2.2.8 2.4 2.1v5.1h-2v-4.2c0-.7-.5-1.2-1.1-1.2-.7 0-1.1.5-1.1 1.2v4.2h-2v-7.1H12Z" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="2"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <rect x="6.5" y="9.5" width="2" height="8" fill="white" fillOpacity="0.9" />
+                  <circle cx="7.5" cy="6.8" r="1.2" fill="white" fillOpacity="0.9" />
+                  <path
+                    d="M12 9.8h1.8c1.3 0 2.2.8 2.4 2.1v5.1h-2v-4.2c0-.7-.5-1.2-1.1-1.2-.7 0-1.1.5-1.1 1.2v4.2h-2v-7.1H12Z"
+                    fill="white"
+                    fillOpacity="0.9"
+                  />
                 </svg>
               </a>
               <a
@@ -858,9 +870,24 @@ export const Policy = () => {
                 aria-label="Email"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="white" strokeOpacity="0.9"/>
-                  <path d="M4.5 7l7.5 6 7.5-6" stroke="white" strokeOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="5"
+                    width="18"
+                    height="14"
+                    rx="2"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <path d="M4.5 7l7.5 6 7.5-6" stroke="white" strokeOpacity="0.9" />
                 </svg>
               </a>
             </div>
@@ -868,27 +895,34 @@ export const Policy = () => {
         ),
       },
       {
-        title: "Actualizaciones",
+        title: 'Actualizaciones',
         Content: () => (
           <>
-            <p className="mb-6">Esta política puede actualizarse por cambios legales o de práctica. Publicaremos la fecha revisada.</p>
+            <p className="mb-6">
+              Esta política puede actualizarse por cambios legales o de práctica. Publicaremos la
+              fecha revisada.
+            </p>
             <p className="text-sm opacity-70">Última actualización: noviembre de 2025</p>
           </>
         ),
       },
       {
-        title: "Términos de Servicio",
+        title: 'Términos de Servicio',
         Content: () => (
           <>
             <p className="mb-4">Estos términos regulan el uso del sitio y servicios.</p>
-            <p className="mb-4">Al acceder, aceptas actuar legalmente y respetar la propiedad intelectual.</p>
-            <p className="mb-4">Las ofertas pueden cambiar; disputas regidas por la ley francesa.</p>
+            <p className="mb-4">
+              Al acceder, aceptas actuar legalmente y respetar la propiedad intelectual.
+            </p>
+            <p className="mb-4">
+              Las ofertas pueden cambiar; disputas regidas por la ley francesa.
+            </p>
             <p className="text-sm opacity-70">Vigencia: noviembre de 2025</p>
           </>
         ),
       },
       {
-        title: "Política de Cookies",
+        title: 'Política de Cookies',
         Content: () => (
           <>
             <p className="mb-4">Usamos solo cookies esenciales y analítica agregada.</p>
@@ -900,16 +934,21 @@ export const Policy = () => {
     ],
     ar: [
       {
-        title: "نظرة عامة على الخصوصية",
+        title: 'نظرة عامة على الخصوصية',
         Content: () => (
           <>
-            <p className="mb-6">في <strong>Optimum Tech</strong>، والمتاحة عبر {" "}
-              <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">optimutech.fr</a>، خصوصيتك أولوية. نوضح كيفية معالجة بياناتك عند زيارة الموقع أو التواصل معنا.</p>
+            <p className="mb-6">
+              في <strong>Optimum Tech</strong>، والمتاحة عبر{' '}
+              <a href="https://optimutech.fr" className="text-[#00E0B8] hover:underline">
+                optimutech.fr
+              </a>
+              ، خصوصيتك أولوية. نوضح كيفية معالجة بياناتك عند زيارة الموقع أو التواصل معنا.
+            </p>
           </>
         ),
       },
       {
-        title: "البيانات التي نجمعها",
+        title: 'البيانات التي نجمعها',
         Content: () => (
           <>
             <p className="mb-4">قد نجمع:</p>
@@ -925,7 +964,7 @@ export const Policy = () => {
         ),
       },
       {
-        title: "كيفية استخدام البيانات",
+        title: 'كيفية استخدام البيانات',
         Content: () => (
           <>
             <ul className="list-disc list-inside mb-6">
@@ -938,42 +977,53 @@ export const Policy = () => {
         ),
       },
       {
-        title: "الأساس القانوني (GDPR)",
+        title: 'الأساس القانوني (GDPR)',
         Content: () => (
           <>
             <ul className="list-disc list-inside mb-6">
-              <li><strong>الموافقة</strong></li>
-              <li><strong>المصلحة المشروعة</strong></li>
+              <li>
+                <strong>الموافقة</strong>
+              </li>
+              <li>
+                <strong>المصلحة المشروعة</strong>
+              </li>
             </ul>
           </>
         ),
       },
       {
-        title: "الاحتفاظ بالبيانات",
+        title: 'الاحتفاظ بالبيانات',
         Content: () => (
           <>
-            <p className="mb-6">نحتفظ بالبيانات للمدة اللازمة فقط. تُخزَّن الرسائل بأمان وتُحذف عند عدم الحاجة.</p>
+            <p className="mb-6">
+              نحتفظ بالبيانات للمدة اللازمة فقط. تُخزَّن الرسائل بأمان وتُحذف عند عدم الحاجة.
+            </p>
           </>
         ),
       },
       {
-        title: "المشاركة والأمن",
+        title: 'المشاركة والأمن',
         Content: () => (
           <>
-            <p className="mb-6">لا نبيع بياناتك ولا نؤجرها. الوصول مقصور على المخوّلين ومحمي باستضافة آمنة.</p>
+            <p className="mb-6">
+              لا نبيع بياناتك ولا نؤجرها. الوصول مقصور على المخوّلين ومحمي باستضافة آمنة.
+            </p>
           </>
         ),
       },
       {
-        title: "التحليلات وملفات تعريف الارتباط",
+        title: 'التحليلات وملفات تعريف الارتباط',
         Content: () => (
           <>
-            <p className="mb-6">نستخدم Google Search Console لتحليلات مجمّعة ومجهولة. لا نستخدم ملفات تعريف الارتباط الإعلانية.</p>
+            <p className="mb-6">
+              نستخدم Google Search Console لتحليلات مجمّعة ومجهولة. لا نستخدم ملفات تعريف الارتباط
+              الإعلانية.
+            </p>
           </>
         ),
       },
       {
-        title: "حقوقك (GDPR)",
+        title: 'حقوقك (GDPR)',
         Content: () => (
           <>
             <ul className="list-disc list-inside mb-6">
@@ -986,11 +1036,22 @@ export const Policy = () => {
         ),
       },
       {
-        title: "معلومات الاتصال",
+        title: 'معلومات الاتصال',
         Content: () => (
           <>
             <p className="mb-6">للاستفسارات أو الطلبات المتعلقة بالخصوصية:</p>
-            <p className="font-medium text-[#0A84FF]">Optimum Tech<br/>البريد: <a href="mailto:optimum.tech.911@gmail.com" className="underline">optimum.tech.911@gmail.com</a><br/>{t("footer.location")}<br/>{t("footer.hours")}</p>
+            <p className="font-medium text-[#0A84FF]">
+              Optimum Tech
+              <br />
+              البريد:{' '}
+              <a href="mailto:optimum.tech.911@gmail.com" className="underline">
+                optimum.tech.911@gmail.com
+              </a>
+              <br />
+              {t('footer.location')}
+              <br />
+              {t('footer.hours')}
+            </p>
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <a
                 href="https://www.instagram.com/ot.optimum_tech/"
@@ -999,10 +1060,25 @@ export const Policy = () => {
                 aria-label="Instagram"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeOpacity="0.9"/>
-                  <circle cx="12" cy="12" r="4" stroke="white" strokeOpacity="0.9"/>
-                  <circle cx="17.5" cy="6.5" r="1" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="2"
+                    y="2"
+                    width="20"
+                    height="20"
+                    rx="5"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <circle cx="12" cy="12" r="4" stroke="white" strokeOpacity="0.9" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="white" fillOpacity="0.9" />
                 </svg>
               </a>
               <a
@@ -1012,9 +1088,24 @@ export const Policy = () => {
                 aria-label="WhatsApp"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M20 12.05c0 4.42-3.58 8-8 8-1.41 0-2.73-.37-3.88-1.03L4 20l1.03-4.06A7.93 7.93 0 0 1 4 12.05c0-4.42 3.58-8 8-8s8 3.58 8 8Z" stroke="white" strokeOpacity="0.9"/>
-                  <path d="M9.7 9.8c-.1.2-.3.6-.2 1 0 .5.2 1 .6 1.6.4.7 1.4 1.5 2.3 1.9.9.4 1.3.4 1.5.3.2-.1.5-.3.6-.5.1-.2.1-.4 0-.5-.1-.2-.5-.3-.9-.5-.3-.1-.5-.1-.7 0-.2.1-.3.3-.4.4-.1.1-.2.1-.4 0-.4-.2-1-.5-1.4-.9-.4-.4-.7-.9-.8-1.2 0-.1 0-.3.1-.3.1-.1.2-.2.3-.4.1-.2.1-.4 0-.6-.1-.3-.5-.6-.7-.8-.2-.1-.4-.1-.5 0-.2.1-.4.2-.5.5Z" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20 12.05c0 4.42-3.58 8-8 8-1.41 0-2.73-.37-3.88-1.03L4 20l1.03-4.06A7.93 7.93 0 0 1 4 12.05c0-4.42 3.58-8 8-8s8 3.58 8 8Z"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <path
+                    d="M9.7 9.8c-.1.2-.3.6-.2 1 0 .5.2 1 .6 1.6.4.7 1.4 1.5 2.3 1.9.9.4 1.3.4 1.5.3.2-.1.5-.3.6-.5.1-.2.1-.4 0-.5-.1-.2-.5-.3-.9-.5-.3-.1-.5-.1-.7 0-.2.1-.3.3-.4.4-.1.1-.2.1-.4 0-.4-.2-1-.5-1.4-.9-.4-.4-.7-.9-.8-1.2 0-.1 0-.3.1-.3.1-.1.2-.2.3-.4.1-.2.1-.4 0-.6-.1-.3-.5-.6-.7-.8-.2-.1-.4-.1-.5 0-.2.1-.4.2-.5.5Z"
+                    fill="white"
+                    fillOpacity="0.9"
+                  />
                 </svg>
               </a>
               <a
@@ -1024,11 +1115,30 @@ export const Policy = () => {
                 aria-label="LinkedIn"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" strokeOpacity="0.9"/>
-                  <rect x="6.5" y="9.5" width="2" height="8" fill="white" fillOpacity="0.9"/>
-                  <circle cx="7.5" cy="6.8" r="1.2" fill="white" fillOpacity="0.9"/>
-                  <path d="M12 9.8h1.8c1.3 0 2.2.8 2.4 2.1v5.1h-2v-4.2c0-.7-.5-1.2-1.1-1.2-.7 0-1.1.5-1.1 1.2v4.2h-2v-7.1H12Z" fill="white" fillOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="2"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <rect x="6.5" y="9.5" width="2" height="8" fill="white" fillOpacity="0.9" />
+                  <circle cx="7.5" cy="6.8" r="1.2" fill="white" fillOpacity="0.9" />
+                  <path
+                    d="M12 9.8h1.8c1.3 0 2.2.8 2.4 2.1v5.1h-2v-4.2c0-.7-.5-1.2-1.1-1.2-.7 0-1.1.5-1.1 1.2v4.2h-2v-7.1H12Z"
+                    fill="white"
+                    fillOpacity="0.9"
+                  />
                 </svg>
               </a>
               <a
@@ -1036,9 +1146,24 @@ export const Policy = () => {
                 aria-label="Email"
                 className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition btn-electric btn-heartbeat"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="white" strokeOpacity="0.9"/>
-                  <path d="M4.5 7l7.5 6 7.5-6" stroke="white" strokeOpacity="0.9"/>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="5"
+                    width="18"
+                    height="14"
+                    rx="2"
+                    stroke="white"
+                    strokeOpacity="0.9"
+                  />
+                  <path d="M4.5 7l7.5 6 7.5-6" stroke="white" strokeOpacity="0.9" />
                 </svg>
               </a>
             </div>
@@ -1046,27 +1171,32 @@ export const Policy = () => {
         ),
       },
       {
-        title: "التحديثات",
+        title: 'التحديثات',
         Content: () => (
           <>
-            <p className="mb-6">قد نقوم بتحديث هذه السياسة تبعاً للتغييرات القانونية أو العملية. سننشر التاريخ المعدّل.</p>
+            <p className="mb-6">
+              قد نقوم بتحديث هذه السياسة تبعاً للتغييرات القانونية أو العملية. سننشر التاريخ
+              المعدّل.
+            </p>
             <p className="text-sm opacity-70">آخر تحديث: نوفمبر 2025</p>
           </>
         ),
       },
       {
-        title: "شروط الخدمة",
+        title: 'شروط الخدمة',
         Content: () => (
           <>
             <p className="mb-4">تنظّم هذه الشروط استخدام موقع Optimum Tech وخدماته.</p>
-            <p className="mb-4">بدخولك للموقع، توافق على الالتزام بالقانون واحترام الملكية الفكرية.</p>
+            <p className="mb-4">
+              بدخولك للموقع، توافق على الالتزام بالقانون واحترام الملكية الفكرية.
+            </p>
             <p className="mb-4">قد تتغيّر العروض؛ تُحكم النزاعات بالقانون الفرنسي.</p>
             <p className="text-sm opacity-70">تاريخ السريان: نوفمبر 2025</p>
           </>
         ),
       },
       {
-        title: "سياسة ملفات تعريف الارتباط",
+        title: 'سياسة ملفات تعريف الارتباط',
         Content: () => (
           <>
             <p className="mb-4">نستخدم ملفات أساسية فقط وتحليلات أداء مجمّعة.</p>
@@ -1081,22 +1211,24 @@ export const Policy = () => {
   const policies = policiesByLang[lang] || policiesByLang.en;
   const [focusedIndex, setFocusedIndex] = useState(null);
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const reducedMotion = useReducedMotion();
+  // reducedMotion not used directly in this component UI
   const [isMobile, setIsMobile] = useState(false);
   const total = (policiesByLang[lang] || policiesByLang.en).length;
   const contactIdx = Math.max(0, total - 4);
   const rightsIdx = Math.max(0, total - 5);
-  const baseSeq = Array.from({ length: total }, (_, i) => i).filter((i) => i !== 0 && i !== contactIdx && i !== rightsIdx);
+  const baseSeq = Array.from({ length: total }, (_, i) => i).filter(
+    (i) => i !== 0 && i !== contactIdx && i !== rightsIdx
+  );
   const orderSequence = [0, contactIdx, rightsIdx, ...baseSeq];
   const mobileOrderRankMap = new Map(orderSequence.map((v, i) => [v, i]));
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 768px)");
+    const mq = window.matchMedia('(max-width: 768px)');
     const update = () => setIsMobile(mq.matches);
     update();
-    if (mq.addEventListener) mq.addEventListener("change", update);
+    if (mq.addEventListener) mq.addEventListener('change', update);
     else mq.addListener(update);
     return () => {
-      if (mq.removeEventListener) mq.removeEventListener("change", update);
+      if (mq.removeEventListener) mq.removeEventListener('change', update);
       else mq.removeListener(update);
     };
   }, []);
@@ -1113,18 +1245,25 @@ export const Policy = () => {
       </div>
       <Navbar />
       <main className="container mx-auto max-w-7xl px-6 py-16 text-gray-200 leading-relaxed">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" style={{ perspective: 1000 }}>
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          style={{ perspective: 1000 }}
+        >
           {policies.map(({ title, Content }, idx) => {
             const isActive = focusedIndex === idx && expandedIndex === null;
-            const isInactive = (focusedIndex !== null || expandedIndex !== null) && focusedIndex !== idx && expandedIndex !== idx;
             return (
-              <div key={idx} className={isMobile ? `order-[${(mobileOrderRankMap.get(idx) ?? idx) + 1}] md:order-none` : ""}>
+              <div
+                key={idx}
+                className={
+                  isMobile
+                    ? `order-[${(mobileOrderRankMap.get(idx) ?? idx) + 1}] md:order-none`
+                    : ''
+                }
+              >
                 <PolicyCard
                   title={title}
                   active={isMobile ? false : isActive}
-                  inactive={isMobile ? false : isInactive}
                   expanded={isMobile ? false : expandedIndex === idx}
-                  reducedMotion={!!reducedMotion}
                   isMobile={isMobile}
                   onClick={() => {
                     if (isMobile) return;
@@ -1158,7 +1297,6 @@ export const Policy = () => {
               <PolicyCard
                 title={title}
                 expanded
-                reducedMotion={!!reducedMotion}
                 isMobile={false}
                 onClick={() => {
                   setExpandedIndex(null);
