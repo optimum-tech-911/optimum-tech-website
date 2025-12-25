@@ -20,6 +20,8 @@ import {
 import LetterGlitch from '../components/LetterGlitch/LetterGlitch.jsx';
 import { SEO } from '../components/SEO.jsx';
 
+import { supabase } from '../../supabaseClient';
+
 export const Contact = () => {
   const { t } = useI18n();
   const [landing, setLanding] = React.useState(true);
@@ -133,6 +135,23 @@ export const Contact = () => {
                     setSendProgress((p) => (p >= 95 ? 95 : p + 2));
                   }, 80);
                   try {
+                    // 1. Send to Supabase
+                    const { error: dbError } = await supabase.from('messages').insert([
+                      {
+                        subject: `New inquiry from ${form.name}`,
+                        from_email: form.email,
+                        status: 'Unread',
+                        phone: form.phone,
+                        body: form.message
+                      }
+                    ]);
+                    
+                    if (dbError) {
+                      console.error('Supabase error:', dbError);
+                      alert('Database Error: ' + dbError.message); // Show error to user for debugging
+                    }
+
+                    // 2. Send Email via FormSubmit
                     const response = await fetch(FORM_ENDPOINT, {
                       method: 'POST',
                       headers: { Accept: 'application/json' },

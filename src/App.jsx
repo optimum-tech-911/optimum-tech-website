@@ -21,6 +21,9 @@ const AdminPanel = React.lazy(() =>
 import { CookieBanner } from './components/CookieBanner.jsx';
 import { ScrollToTop } from './components/ScrollToTop.jsx';
 
+import { ProtectedRoute } from './components/ProtectedRoute.jsx';
+import { seedProjects } from './utils/seedProjects.js';
+
 const PageWrapper = ({ children }) => (
   <motion.div
     initial={{ opacity: 0 }}
@@ -33,6 +36,10 @@ const PageWrapper = ({ children }) => (
 );
 
 export default function App() {
+  React.useEffect(() => {
+    seedProjects();
+  }, []);
+
   return (
     <AnimatePresence mode="wait">
       <Suspense fallback={<div />}>
@@ -106,9 +113,11 @@ export default function App() {
           <Route
             path="/admin"
             element={
-              <PageWrapper>
-                <AdminPanel />
-              </PageWrapper>
+              <ProtectedRoute>
+                <PageWrapper>
+                  <AdminPanel />
+                </PageWrapper>
+              </ProtectedRoute>
             }
           />
         </Routes>

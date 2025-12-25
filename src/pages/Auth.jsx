@@ -34,7 +34,13 @@ export const AuthPage = () => {
           },
         });
         if (error) throw error;
-        alert('Check your email for the confirmation link!');
+        if (data.session) {
+          // If email confirmation is disabled, we get a session immediately
+          navigate('/admin');
+        } else {
+          // Otherwise, we wait for email
+          alert('Check your email for the confirmation link!');
+        }
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({
           email: form.email,
@@ -55,7 +61,7 @@ export const AuthPage = () => {
   const sub = mode === 'login' ? 'Use your credentials to access the admin panel.' : 'Enter your details to manage the admin panel.';
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#0b1020] via-[#0d1117] to-[#0b1020] text-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#0b1020] via-[#0d1117] to-[#0b1020] text-white">
       <SEO path="/auth" title="Auth | Optimum Tech" description="Admin login and signup page." />
       <Navbar />
       <main className="flex-1 w-full flex items-center justify-center px-4 py-12">

@@ -46,6 +46,26 @@ export const Projects = () => {
   const goNext = () => setActiveIndex((i) => (i + 1) % projects.length);
   const goPrev = () => setActiveIndex((i) => (i - 1 + projects.length) % projects.length);
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0b1020] text-white">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+      </div>
+    );
+  }
+
+  if (projects.length === 0) {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#0b1020]">
+        <Navbar />
+        <main className="flex-1 flex items-center justify-center">
+           <p className="text-white/60">No projects found. Add some in the admin panel.</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <SEO
@@ -124,6 +144,9 @@ export const Projects = () => {
           <AnimatePresence initial={false} mode="wait">
             {(() => {
               const p = projects[activeIndex];
+              // Ensure p exists before rendering
+              if (!p) return null;
+              
               return (
                 <motion.div
                   key={p.title}
@@ -193,6 +216,9 @@ export const Projects = () => {
             <AnimatePresence initial={false} mode="wait">
               {(() => {
                 const p = projects[activeIndex];
+                // Ensure p exists before rendering
+                if (!p) return null;
+
                 return (
                   <motion.div
                     key={p.title}

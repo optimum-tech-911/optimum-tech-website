@@ -18,6 +18,7 @@ import {
   Trash2,
   X,
   Save,
+  Eye,
 } from 'lucide-react';
 
 const SECTIONS = [
@@ -41,6 +42,7 @@ export const AdminPanel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null); // If null, we are creating
   const [formData, setFormData] = useState({});
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -88,6 +90,39 @@ export const AdminPanel = () => {
     setFormData({});
   };
 
+  const handleFileUpload = async (e) => {
+    try {
+      setUploading(true);
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('gallery')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('gallery')
+        .getPublicUrl(filePath);
+
+      setFormData({ 
+        ...formData, 
+        url: publicUrl,
+        type: file.type.startsWith('image/') ? 'Image' : 'Video'
+      });
+    } catch (error) {
+      alert('Error uploading file: ' + error.message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
     try {
@@ -106,6 +141,33 @@ export const AdminPanel = () => {
         }
         fetchData();
         handleCloseModal();
+      } else if (active === 'messages') {
+        // Only allow updating status for messages
+        const { error } = await supabase
+          .from('messages')
+          .update({ status: formData.status })
+          .eq('id', editingItem.id);
+        
+        if (error) throw error;
+        fetchData();
+        handleCloseModal();
+      } else if (active === 'gallery') {
+        if (editingItem) {
+          const { error } = await supabase.from('gallery').update(formData).eq('id', editingItem.id);
+          if (error) throw error;
+        } else {
+          const { error } = await supabase.from('gallery').insert([formData]);
+          if (error) throw error;
+        }
+        fetchData();
+        handleCloseModal();
+      } else if (active === 'users') {
+         if (editingItem) {
+           const { error } = await supabase.from('users').update(formData).eq('id', editingItem.id);
+           if (error) throw error;
+         }
+         fetchData();
+         handleCloseModal();
       }
       // Add logic for other sections here if needed
     } catch (error) {
@@ -119,6 +181,18 @@ export const AdminPanel = () => {
     try {
       if (active === 'projects') {
         const { error } = await supabase.from('projects').delete().eq('id', id);
+        if (error) throw error;
+        fetchData();
+      } else if (active === 'messages') {
+        const { error } = await supabase.from('messages').delete().eq('id', id);
+        if (error) throw error;
+        fetchData();
+      } else if (active === 'gallery') {
+        const { error } = await supabase.from('gallery').delete().eq('id', id);
+        if (error) throw error;
+        fetchData();
+      } else if (active === 'users') {
+        const { error } = await supabase.from('users').delete().eq('id', id);
         if (error) throw error;
         fetchData();
       }
@@ -185,13 +259,38 @@ export const AdminPanel = () => {
               content.gallery.map((item) => (
                 <div
                   key={item.id || item.title}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4 flex items-center justify-between"
+                  className="rounded-2xl border border-white/10 bg-white/5 p-4 flex items-center justify-between group"
                 >
-                  <div>
-                    <p className="font-semibold text-white">{item.title}</p>
-                    <p className="text-xs text-white/60">{item.type}</p>
+                  <div className="flex items-center gap-4">
+                    {item.type === 'Video' ? (
+                       <video src={item.url} className="w-12 h-12 object-cover rounded-lg bg-black/50" />
+                    ) : (
+                       <img src={item.url} alt={item.title} className="w-12 h-12 object-cover rounded-lg bg-black/50" />
+                    )}
+                    <div>
+                      <p className="font-semibold text-white">{item.title}</p>
+                      <p className="text-xs text-white/60">{item.type}</p>
+                    </div>
                   </div>
-                  <p className="text-xs text-white/60">Updated: {item.updated_at ? new Date(item.updated_at).toLocaleDateString() : 'N/A'}</p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs text-white/60 mr-4">Updated: {item.updated_at ? new Date(item.updated_at).toLocaleDateString() : 'N/A'}</p>
+                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button
+                        onClick={() => handleOpenModal(item)}
+                        className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition"
+                        title="Edit"
+                      >
+                        <Edit3 className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(item.id)}
+                        className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 transition"
+                        title="Delete"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ))
             )}
@@ -206,13 +305,35 @@ export const AdminPanel = () => {
               content.messages.map((item) => (
                 <div
                   key={item.id || item.subject}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4 flex items-center justify-between"
+                  className="rounded-2xl border border-white/10 bg-white/5 p-4 flex items-center justify-between group"
                 >
                   <div>
                     <p className="font-semibold text-white">{item.subject}</p>
                     <p className="text-xs text-white/60">{item.from_email || item.from}</p>
                   </div>
-                  <span className="text-xs text-white/70">{item.status}</span>
+                  <div className="flex items-center gap-4">
+                    <span className={`text-xs px-2 py-1 rounded-full border ${
+                      item.status === 'Unread' 
+                        ? 'bg-blue-500/10 text-blue-200 border-blue-500/30' 
+                        : 'bg-emerald-500/10 text-emerald-200 border-emerald-500/30'
+                    }`}>
+                      {item.status}
+                    </span>
+                    <button
+                      onClick={() => handleOpenModal(item)}
+                      className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition"
+                      title="View Details"
+                    >
+                      <Eye className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 transition"
+                      title="Delete"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
               ))
             )}
@@ -227,15 +348,33 @@ export const AdminPanel = () => {
               content.users.map((item) => (
                 <div
                   key={item.id || item.email}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4 flex items-center justify-between"
+                  className="rounded-2xl border border-white/10 bg-white/5 p-4 flex items-center justify-between group"
                 >
                   <div>
                     <p className="font-semibold text-white">{item.name}</p>
                     <p className="text-xs text-white/60">{item.email}</p>
                   </div>
-                  <span className="inline-flex items-center rounded-full px-3 py-1 text-xs bg-blue-500/10 text-blue-100 border border-blue-400/30">
-                    {item.role}
-                  </span>
+                  <div className="flex items-center gap-4">
+                    <span className="inline-flex items-center rounded-full px-3 py-1 text-xs bg-blue-500/10 text-blue-100 border border-blue-400/30">
+                      {item.role}
+                    </span>
+                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button
+                        onClick={() => handleOpenModal(item)}
+                        className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition"
+                        title="Edit Role"
+                      >
+                        <Edit3 className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(item.id)}
+                        className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 transition"
+                        title="Delete User"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ))
             )}
@@ -436,8 +575,147 @@ export const AdminPanel = () => {
                   </>
                 )}
                 
+                {active === 'gallery' && (
+                  <>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Title</label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.title || ''}
+                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Upload Media</label>
+                      <div className="flex items-center gap-4">
+                        <label className="cursor-pointer rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white hover:bg-white/10 transition">
+                          <input 
+                            type="file" 
+                            accept="image/*,video/*" 
+                            className="hidden" 
+                            onChange={handleFileUpload}
+                            disabled={uploading}
+                          />
+                          {uploading ? 'Uploading...' : 'Choose File'}
+                        </label>
+                        {formData.url && (
+                          <span className="text-xs text-green-400">File uploaded!</span>
+                        )}
+                      </div>
+                    </div>
+                    {formData.url && (
+                      <div className="rounded-xl overflow-hidden border border-white/10 bg-black/20 p-2">
+                        {formData.type === 'Video' ? (
+                          <video src={formData.url} controls className="w-full h-48 object-cover rounded-lg" />
+                        ) : (
+                          <img src={formData.url} alt="Preview" className="w-full h-48 object-cover rounded-lg" />
+                        )}
+                      </div>
+                    )}
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Type</label>
+                      <select
+                        value={formData.type || 'Image'}
+                        onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                      >
+                        <option value="Image" className="bg-[#0f1520]">Image</option>
+                        <option value="Video" className="bg-[#0f1520]">Video</option>
+                      </select>
+                    </div>
+                  </>
+                )}
+
+                {active === 'users' && (
+                  <>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Name</label>
+                      <input
+                        type="text"
+                        readOnly
+                        value={formData.name || ''}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none opacity-70 cursor-not-allowed"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Email</label>
+                      <input
+                        type="email"
+                        readOnly
+                        value={formData.email || ''}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none opacity-70 cursor-not-allowed"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Role</label>
+                      <select
+                        value={formData.role || 'user'}
+                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                      >
+                        <option value="user" className="bg-[#0f1520]">User</option>
+                        <option value="admin" className="bg-[#0f1520]">Admin</option>
+                        <option value="visitor" className="bg-[#0f1520]">Visitor</option>
+                      </select>
+                    </div>
+                  </>
+                )}
+
+                  <>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">From</label>
+                      <input
+                        type="text"
+                        readOnly
+                        value={formData.from_email || ''}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none opacity-70 cursor-not-allowed"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Phone</label>
+                      <input
+                        type="text"
+                        readOnly
+                        value={formData.phone || 'N/A'}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none opacity-70 cursor-not-allowed"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Subject</label>
+                      <input
+                        type="text"
+                        readOnly
+                        value={formData.subject || ''}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none opacity-70 cursor-not-allowed"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Message Body</label>
+                      <textarea
+                        readOnly
+                        value={formData.body || 'No content available.'}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none h-32 resize-none opacity-70 cursor-not-allowed"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Status</label>
+                      <select
+                        value={formData.status || 'Unread'}
+                        onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                      >
+                        <option value="Unread" className="bg-[#0f1520]">Unread</option>
+                        <option value="Read" className="bg-[#0f1520]">Read</option>
+                        <option value="Replied" className="bg-[#0f1520]">Replied</option>
+                      </select>
+                    </div>
+                  </>
+                )}
+
                 {/* Fallback for other sections */}
-                {active !== 'projects' && (
+                {active !== 'projects' && active !== 'messages' && (
                   <div className="text-center py-8 text-white/50">
                     Editing for {active} is not yet implemented.
                   </div>
