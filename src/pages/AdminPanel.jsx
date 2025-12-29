@@ -51,7 +51,7 @@ export const AdminPanel = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const { data: projects } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
+      const { data: projects } = await supabase.from('projects').select('*').order('sort_order', { ascending: true });
       const { data: gallery } = await supabase.from('gallery').select('*');
       const { data: messages } = await supabase.from('messages').select('*');
       const { data: users } = await supabase.from('users').select('*');
@@ -69,14 +69,15 @@ export const AdminPanel = () => {
     }
   };
 
-  const handleOpenModal = (item = null) => {
+  const handleOpenModal = (item = null, section = 'default') => {
     setEditingItem(item);
     if (item) {
       setFormData(item);
     } else {
       // Default empty form based on active section
       if (active === 'projects') {
-        setFormData({ title: '', description: '', url: '', status: 'In progress', owner: '' });
+        const defaultStatus = section === 'progress' ? 'In progress' : 'Launched';
+        setFormData({ title: '', description: '', url: '', status: defaultStatus, owner: '', sort_order: 0 });
       } else {
         setFormData({});
       }
@@ -210,44 +211,120 @@ export const AdminPanel = () => {
 
     switch (active) {
       case 'projects':
+        const launchedProjects = content.projects.filter(p => p.status !== 'In progress');
+        const progressProjects = content.projects.filter(p => p.status === 'In progress');
+
         return (
-          <div className="space-y-4">
-            {content.projects.length === 0 ? (
-              <p className="text-white/50">No projects found.</p>
-            ) : (
-              content.projects.map((p) => (
-                <div
-                  key={p.id || p.title}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4 flex items-center justify-between group"
-                >
-                  <div>
-                    <p className="font-semibold text-white">{p.title}</p>
-                    <p className="text-xs text-white/60">Owner: {p.owner}</p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center rounded-full px-3 py-1 text-xs bg-emerald-500/15 text-emerald-200 border border-emerald-400/30">
-                      {p.status}
-                    </span>
-                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button
-                        onClick={() => handleOpenModal(p)}
-                        className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition"
-                        title="Edit"
-                      >
-                        <Edit3 className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(p.id)}
-                        className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 transition"
-                        title="Delete"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
+          <div className="space-y-8">
+            {/* Launched Projects Section */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold text-white">Launched Projects</h3>
+                <button
+                    onClick={() => handleOpenModal(null, 'launched')}
+                    className="flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs hover:bg-white/15 transition"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Add Launched
+                </button>
+              </div>
+              {launchedProjects.length === 0 ? (
+                <p className="text-white/50">No launched projects found.</p>
+              ) : (
+                <div className="space-y-4">
+                {launchedProjects.map((p) => (
+                  <div
+                    key={p.id || p.title}
+                    className="rounded-2xl border border-white/10 bg-white/5 p-4 flex items-center justify-between group"
+                  >
+                    <div className="flex items-center gap-4">
+                       <span className="text-xs font-mono text-white/40 w-6 text-center">{p.sort_order || '-'}</span>
+                       <div>
+                        <p className="font-semibold text-white">{p.title}</p>
+                        <p className="text-xs text-white/60">Owner: {p.owner}</p>
+                       </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex items-center rounded-full px-3 py-1 text-xs bg-emerald-500/15 text-emerald-200 border border-emerald-400/30">
+                        {p.status}
+                      </span>
+                      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button
+                          onClick={() => handleOpenModal(p)}
+                          className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition"
+                          title="Edit"
+                        >
+                          <Edit3 className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(p.id)}
+                          className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 transition"
+                          title="Delete"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
                     </div>
                   </div>
+                ))}
                 </div>
-              ))
-            )}
+              )}
+            </div>
+
+            {/* Current Progress Projects Section */}
+            <div>
+              <div className="flex items-center justify-between mb-4 pt-4 border-t border-white/10">
+                <h3 className="text-xl font-semibold text-white">Current Progress Projects</h3>
+                <button
+                    onClick={() => handleOpenModal(null, 'progress')}
+                    className="flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs hover:bg-white/15 transition"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Add Progress
+                </button>
+              </div>
+              {progressProjects.length === 0 ? (
+                <p className="text-white/50">No progress projects found.</p>
+              ) : (
+                <div className="space-y-4">
+                {progressProjects.map((p) => (
+                  <div
+                    key={p.id || p.title}
+                    className="rounded-2xl border border-white/10 bg-white/5 p-4 flex items-center justify-between group"
+                  >
+                    <div className="flex items-center gap-4">
+                       <span className="text-xs font-mono text-white/40 w-6 text-center">{p.sort_order || '-'}</span>
+                       <div>
+                        <p className="font-semibold text-white">{p.title}</p>
+                        <p className="text-xs text-white/60">Owner: {p.owner}</p>
+                       </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex items-center rounded-full px-3 py-1 text-xs bg-blue-500/15 text-blue-200 border border-blue-400/30">
+                        {p.status}
+                      </span>
+                      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button
+                          onClick={() => handleOpenModal(p)}
+                          className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition"
+                          title="Edit"
+                        >
+                          <Edit3 className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(p.id)}
+                          className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 transition"
+                          title="Delete"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                </div>
+              )}
+            </div>
           </div>
         );
       case 'gallery':
@@ -505,9 +582,9 @@ export const AdminPanel = () => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-lg rounded-3xl border border-white/10 bg-[#0f1520] p-6 shadow-2xl"
+              className="relative w-full max-w-lg rounded-3xl border border-white/10 bg-[#0f1520] p-6 shadow-2xl flex flex-col max-h-[85vh]"
             >
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-6 shrink-0">
                 <h3 className="text-xl font-semibold">
                   {editingItem ? 'Edit Item' : 'New Item'}
                 </h3>
@@ -519,17 +596,17 @@ export const AdminPanel = () => {
                 </button>
               </div>
 
-              <form onSubmit={handleSave} className="space-y-4">
+              <form onSubmit={handleSave} className="space-y-4 overflow-y-auto pr-2 custom-scrollbar">
                 {active === 'projects' && (
                   <>
                     <div>
                       <label className="block text-xs text-white/60 mb-1">Title</label>
                       <input
                         type="text"
-                        required
                         value={formData.title || ''}
                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white focus:outline-none focus:border-blue-500/50 transition"
+                        required
                       />
                     </div>
                     <div>
@@ -537,16 +614,8 @@ export const AdminPanel = () => {
                       <textarea
                         value={formData.description || ''}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500 h-24 resize-none"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs text-white/60 mb-1">URL</label>
-                      <input
-                        type="url"
-                        value={formData.url || ''}
-                        onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white focus:outline-none focus:border-blue-500/50 transition h-24 resize-none"
+                        required
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -555,22 +624,42 @@ export const AdminPanel = () => {
                         <select
                           value={formData.status || 'In progress'}
                           onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white focus:outline-none focus:border-blue-500/50 transition"
                         >
-                          <option value="In progress" className="bg-[#0f1520]">In progress</option>
                           <option value="Launched" className="bg-[#0f1520]">Launched</option>
+                          <option value="In progress" className="bg-[#0f1520]">In progress</option>
                           <option value="Review" className="bg-[#0f1520]">Review</option>
+                          <option value="Planning" className="bg-[#0f1520]">Planning</option>
                         </select>
                       </div>
                       <div>
-                        <label className="block text-xs text-white/60 mb-1">Owner</label>
+                        <label className="block text-xs text-white/60 mb-1">Owner / Client</label>
                         <input
                           type="text"
                           value={formData.owner || ''}
                           onChange={(e) => setFormData({ ...formData, owner: e.target.value })}
-                          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+                          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white focus:outline-none focus:border-blue-500/50 transition"
                         />
                       </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Project URL</label>
+                      <input
+                        type="url"
+                        value={formData.url || ''}
+                        onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white focus:outline-none focus:border-blue-500/50 transition"
+                        placeholder="https://..."
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-white/60 mb-1">Display Order (e.g. 1, 2, 3)</label>
+                      <input
+                        type="number"
+                        value={formData.sort_order || 0}
+                        onChange={(e) => setFormData({ ...formData, sort_order: parseInt(e.target.value) || 0 })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-white focus:outline-none focus:border-blue-500/50 transition"
+                      />
                     </div>
                   </>
                 )}

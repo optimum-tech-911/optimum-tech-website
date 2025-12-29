@@ -3,17 +3,186 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { ProjectCard } from '../components/ProjectCard';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ChevronDown } from 'lucide-react';
 import { useI18n } from '../i18n.jsx';
 import Beams from '../components/Beams/Beams.jsx';
 import { SEO } from '../components/SEO.jsx';
 import { supabase } from '../../supabaseClient';
 
+const ProjectCarousel = ({ title, projects }) => {
+  const { t } = useI18n();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const goNext = () => setActiveIndex((i) => (i + 1) % projects.length);
+  const goPrev = () => setActiveIndex((i) => (i - 1 + projects.length) % projects.length);
+
+  if (projects.length === 0) return null;
+
+  return (
+    <div className="mb-24 last:mb-0">
+      {title && (
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+          className="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
+        >
+          {title}
+        </motion.h2>
+      )}
+
+      {/* Mobile Carousel */}
+      <div className="md:hidden -mx-4 px-4">
+        <div className="mb-3 flex flex-col items-center gap-2">
+          <motion.div
+            key={projects[activeIndex]?.title || `Project ${activeIndex + 1}`}
+            initial={{ opacity: 0, y: 3 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+            className="text-xs text-white"
+          >
+            {projects[activeIndex]?.title
+              ? projects[activeIndex].title
+              : `Project ${activeIndex + 1}`}
+          </motion.div>
+          <div className="w-full h-1 rounded-full bg-white/10 overflow-hidden">
+            <motion.div
+              initial={false}
+              animate={{
+                width: `${Math.round((activeIndex / Math.max(projects.length - 1, 1)) * 100)}%`,
+              }}
+              transition={{ duration: 0.3 }}
+              className="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-fuchsia-500 shadow-[0_0_6px_rgba(10,132,255,0.6)]"
+            />
+          </div>
+        </div>
+        <div className="mb-3 flex items-center justify-between">
+          <button
+            type="button"
+            aria-label={t('projects.prev')}
+            onClick={goPrev}
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            <span>{t('projects.prev')}</span>
+          </button>
+          <button
+            type="button"
+            aria-label={t('projects.next')}
+            onClick={goNext}
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
+          >
+            <span>{t('projects.next')}</span>
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+        <AnimatePresence initial={false} mode="wait">
+          {(() => {
+            const p = projects[activeIndex];
+            if (!p) return null;
+            
+            return (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, x: 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -24 }}
+                transition={{ duration: 0.25 }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                onDragEnd={(e, info) => {
+                  if (info.offset.x < -60) goNext();
+                  else if (info.offset.x > 60) goPrev();
+                }}
+              >
+                <ProjectCard {...p} />
+              </motion.div>
+            );
+          })()}
+        </AnimatePresence>
+      </div>
+
+      {/* Desktop Carousel */}
+      <div className="hidden md:block">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-3 flex flex-col items-center gap-2">
+            <motion.div
+              key={projects[activeIndex]?.title || `Project ${activeIndex + 1}`}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+              className="text-sm md:text-base text-white"
+            >
+              {projects[activeIndex]?.title
+                ? `${projects[activeIndex].title} — ${projects[activeIndex].desc || 'Project'}`
+                : `Project ${activeIndex + 1}`}
+            </motion.div>
+            <div className="w-full max-w-3xl h-1.5 md:h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <motion.div
+                initial={false}
+                animate={{
+                  width: `${Math.round((activeIndex / Math.max(projects.length - 1, 1)) * 100)}%`,
+                }}
+                transition={{ duration: 0.3 }}
+                className="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-fuchsia-500 shadow-[0_0_8px_rgba(10,132,255,0.6)]"
+              />
+            </div>
+          </div>
+          <div className="flex items-center justify-between mb-4">
+            <button
+              type="button"
+              aria-label={t('projects.prev')}
+              onClick={goPrev}
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              <span>{t('projects.prev')}</span>
+            </button>
+            <button
+              type="button"
+              aria-label={t('projects.next')}
+              onClick={goNext}
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
+            >
+              <span>{t('projects.next')}</span>
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+          <AnimatePresence initial={false} mode="wait">
+            {(() => {
+              const p = projects[activeIndex];
+              if (!p) return null;
+
+              return (
+                <motion.div
+                  key={p.title}
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.25 }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  onDragEnd={(e, info) => {
+                    if (info.offset.x < -80) goNext();
+                    else if (info.offset.x > 80) goPrev();
+                  }}
+                >
+                  <ProjectCard {...p} />
+                </motion.div>
+              );
+            })()}
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const Projects = () => {
   const { t } = useI18n();
-  const [activeIndex, setActiveIndex] = React.useState(0);
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState({ launched: [], progress: [] });
   const [loading, setLoading] = useState(true);
+  const [showProgress, setShowProgress] = useState(false);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -21,17 +190,20 @@ export const Projects = () => {
         const { data, error } = await supabase
           .from('projects')
           .select('*')
-          .order('created_at', { ascending: false });
+          .order('sort_order', { ascending: true }); // Use sort_order
         
         if (error) throw error;
         
         const mappedData = (data || []).map(p => ({
           ...p,
-          desc: p.description || p.status, // Fallback if description is missing
+          desc: p.description || p.status,
           href: p.url || '#'
         }));
-        
-        setProjects(mappedData);
+
+        setProjects({
+          launched: mappedData.filter(p => p.status !== 'In progress'),
+          progress: mappedData.filter(p => p.status === 'In progress')
+        });
       } catch (error) {
         console.error('Error fetching projects:', error);
       } finally {
@@ -42,26 +214,10 @@ export const Projects = () => {
     fetchProjects();
   }, []);
 
-  // mobile detection removed — not used in layout
-  const goNext = () => setActiveIndex((i) => (i + 1) % projects.length);
-  const goPrev = () => setActiveIndex((i) => (i - 1 + projects.length) % projects.length);
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#0b1020] text-white">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
-      </div>
-    );
-  }
-
-  if (projects.length === 0) {
-    return (
-      <div className="min-h-screen flex flex-col bg-[#0b1020]">
-        <Navbar />
-        <main className="flex-1 flex items-center justify-center">
-           <p className="text-white/60">No projects found. Add some in the admin panel.</p>
-        </main>
-        <Footer />
       </div>
     );
   }
@@ -87,158 +243,45 @@ export const Projects = () => {
             rotation={20}
           />
         </div>
-        <motion.h1
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35 }}
-          className="text-3xl md:text-4xl font-bold text-white mb-8"
-        >
-          {t('projects.title')}
-        </motion.h1>
-        {/* Mobile horizontal slider */}
-        {/* Mobile single-item carousel */}
-        <div className="md:hidden -mx-4 px-4">
-          <div className="mb-3 flex flex-col items-center gap-2">
-            <motion.div
-              key={projects[activeIndex]?.title || `Project ${activeIndex + 1}`}
-              initial={{ opacity: 0, y: 3 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25 }}
-              className="text-xs text-white"
-            >
-              {projects[activeIndex]?.title
-                ? projects[activeIndex].title
-                : `Project ${activeIndex + 1}`}
-            </motion.div>
-            <div className="w-full h-1 rounded-full bg-white/10 overflow-hidden">
-              <motion.div
-                initial={false}
-                animate={{
-                  width: `${Math.round((activeIndex / Math.max(projects.length - 1, 1)) * 100)}%`,
-                }}
-                transition={{ duration: 0.3 }}
-                className="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-fuchsia-500 shadow-[0_0_6px_rgba(10,132,255,0.6)]"
-              />
-            </div>
-          </div>
-          <div className="mb-3 flex items-center justify-between">
-            <button
-              type="button"
-              aria-label={t('projects.prev')}
-              onClick={goPrev}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
-            >
-              <ChevronLeft className="h-4 w-4" />
-              <span>{t('projects.prev')}</span>
-            </button>
-            <button
-              type="button"
-              aria-label={t('projects.next')}
-              onClick={goNext}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
-            >
-              <span>{t('projects.next')}</span>
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-          <AnimatePresence initial={false} mode="wait">
-            {(() => {
-              const p = projects[activeIndex];
-              // Ensure p exists before rendering
-              if (!p) return null;
-              
-              return (
-                <motion.div
-                  key={p.title}
-                  initial={{ opacity: 0, x: 24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -24 }}
-                  transition={{ duration: 0.25 }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  onDragEnd={(e, info) => {
-                    if (info.offset.x < -60) goNext();
-                    else if (info.offset.x > 60) goPrev();
-                  }}
-                >
-                  <ProjectCard {...p} />
-                </motion.div>
-              );
-            })()}
-          </AnimatePresence>
-        </div>
+        
+        <div className="space-y-12">
+          {projects.launched.length > 0 && (
+             <ProjectCarousel title={t('projects.title')} projects={projects.launched} />
+          )}
 
-        <div className="hidden md:block">
-          <div className="max-w-5xl mx-auto">
-            <div className="mb-3 flex flex-col items-center gap-2">
-              <motion.div
-                key={projects[activeIndex]?.title || `Project ${activeIndex + 1}`}
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25 }}
-                className="text-sm md:text-base text-white"
-              >
-                {projects[activeIndex]?.title
-                  ? `${projects[activeIndex].title} — ${projects[activeIndex].desc || 'Project'}`
-                  : `Project ${activeIndex + 1}`}
-              </motion.div>
-              <div className="w-full max-w-3xl h-1.5 md:h-1.5 rounded-full bg-white/10 overflow-hidden">
-                <motion.div
-                  initial={false}
-                  animate={{
-                    width: `${Math.round((activeIndex / Math.max(projects.length - 1, 1)) * 100)}%`,
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-fuchsia-500 shadow-[0_0_8px_rgba(10,132,255,0.6)]"
-                />
-              </div>
-            </div>
-            <div className="flex items-center justify-between mb-4">
-              <button
-                type="button"
-                aria-label={t('projects.prev')}
-                onClick={goPrev}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                <span>{t('projects.prev')}</span>
-              </button>
-              <button
-                type="button"
-                aria-label={t('projects.next')}
-                onClick={goNext}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/15 active:scale-[0.98] transition btn-electric btn-heartbeat btn-spectrum"
-              >
-                <span>{t('projects.next')}</span>
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-            <AnimatePresence initial={false} mode="wait">
-              {(() => {
-                const p = projects[activeIndex];
-                // Ensure p exists before rendering
-                if (!p) return null;
+          {projects.progress.length > 0 && (
+             <div className="flex flex-col items-center border-t border-white/10 pt-12 mt-12 w-full">
+               <button
+                 onClick={() => setShowProgress(!showProgress)}
+                 className="flex items-center gap-3 px-8 py-3 rounded-2xl bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] transition-all group"
+               >
+                 <span className="font-medium text-lg">Current Progress Projects</span>
+                 <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${showProgress ? 'rotate-180' : ''} text-blue-400`} />
+               </button>
 
-                return (
-                  <motion.div
-                    key={p.title}
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -40 }}
-                    transition={{ duration: 0.25 }}
-                    drag="x"
-                    dragConstraints={{ left: 0, right: 0 }}
-                    onDragEnd={(e, info) => {
-                      if (info.offset.x < -80) goNext();
-                      else if (info.offset.x > 80) goPrev();
-                    }}
-                  >
-                    <ProjectCard {...p} />
-                  </motion.div>
-                );
-              })()}
-            </AnimatePresence>
-          </div>
+               <AnimatePresence>
+                 {showProgress && (
+                   <motion.div
+                     initial={{ height: 0, opacity: 0 }}
+                     animate={{ height: 'auto', opacity: 1 }}
+                     exit={{ height: 0, opacity: 0 }}
+                     transition={{ duration: 0.4, ease: "easeInOut" }}
+                     className="w-full overflow-hidden"
+                   >
+                     <div className="pt-12">
+                       <ProjectCarousel title="" projects={projects.progress} />
+                     </div>
+                   </motion.div>
+                 )}
+               </AnimatePresence>
+             </div>
+          )}
+
+          {projects.launched.length === 0 && projects.progress.length === 0 && (
+             <div className="flex flex-col items-center justify-center py-20">
+                <p className="text-white/60">No projects found. Add some in the admin panel.</p>
+             </div>
+          )}
         </div>
       </main>
       <Footer />
