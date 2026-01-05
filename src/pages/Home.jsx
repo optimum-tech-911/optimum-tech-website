@@ -105,11 +105,51 @@ export const Home = () => {
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
-            name: 'Optimum Tech',
-            url: 'https://optimutech.fr',
-            description: 'Création de sites web, automatisation et IA pour entreprises.',
-            logo: 'https://optimutech.fr/assets/logo.png',
+            '@graph': [
+              {
+                '@type': 'Organization',
+                '@id': 'https://optimutech.fr/#organization',
+                name: 'Optimum Tech',
+                url: 'https://optimutech.fr',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://optimutech.fr/assets/logo.png'
+                },
+                description: 'Création de sites web, automatisation et IA pour entreprises.',
+                sameAs: [
+                  'https://twitter.com/optimutech',
+                  'https://www.linkedin.com/company/optimutech'
+                ]
+              },
+              {
+                '@type': 'WebSite',
+                '@id': 'https://optimutech.fr/#website',
+                url: 'https://optimutech.fr',
+                name: 'Optimum Tech',
+                description: 'Solutions Digitales & IA',
+                publisher: {
+                  '@id': 'https://optimutech.fr/#organization'
+                },
+                potentialAction: {
+                  '@type': 'SearchAction',
+                  target: 'https://optimutech.fr/search?q={search_term_string}',
+                  'query-input': 'required name=search_term_string'
+                }
+              },
+              {
+                '@type': 'LocalBusiness',
+                '@id': 'https://optimutech.fr/#localbusiness',
+                parentOrganization: {
+                  '@id': 'https://optimutech.fr/#organization'
+                },
+                name: 'Optimum Tech',
+                url: 'https://optimutech.fr',
+                description: 'Création de sites web, automatisation et IA pour entreprises.',
+                logo: 'https://optimutech.fr/assets/logo.png',
+                image: 'https://optimutech.fr/assets/og-image.png',
+                priceRange: '$$'
+              }
+            ]
           })}
         </script>
       </Helmet>
