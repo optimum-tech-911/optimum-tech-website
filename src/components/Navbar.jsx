@@ -1,135 +1,211 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../assets/Logo.png';
 import { useI18n, LANG_OPTIONS } from '../i18n.jsx';
-import { Globe, Menu } from 'lucide-react';
+import { Globe, Menu, Sun, Moon, X } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
-const NavLink = ({ to, children, onClick, solid = false }) => {
+const NavLink = ({ to, children, onClick }) => {
   const location = useLocation();
   const active = location.pathname === to;
-  const [pulseKey, setPulseKey] = React.useState(0);
+  const { theme } = useTheme();
+
   return (
     <Link
       to={to}
       onClick={(e) => {
-        setPulseKey((k) => k + 1);
         onClick?.(e);
       }}
-      className="relative inline-flex items-center justify-center px-4 md:px-3.5 lg:px-3 py-2 md:py-1.75 lg:py-1.75 rounded-full text-xs font-semibold text-gray-200 hover:text-white transition-all duration-200 text-center"
+      className={`relative inline-flex items-center justify-center px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+        theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'
+      }`}
     >
       {active && (
-        <span className="absolute inset-0 -z-10 goo-wrap">
-          <motion.span
-            layoutId="nav-blob"
-            className="nav-blob"
-            initial={false}
-            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-          />
-        </span>
+        <motion.span
+          layoutId="nav-active-bg"
+          className={`absolute inset-0 rounded-full border backdrop-blur-md ${
+            theme === 'dark' ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'
+          }`}
+          initial={false}
+          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+        />
       )}
-      <span className={active ? 'electric-text text-white' : 'text-white'}>{children}</span>
-      {/* Background pill for links */}
-      <span
-        className={`absolute inset-0 -z-20 rounded-full border backdrop-blur-sm transition-all duration-200 ${
-          solid ? 'border-white/20 bg-white/15' : 'border-white/10 bg-white/0'
-        }`}
-      />
-      {/* Click pulse */}
-      <motion.span
-        key={pulseKey}
-        className="electric-pulse"
-        initial={{ opacity: 0.0, scale: 0.8 }}
-        animate={{ opacity: [0.25, 0.12, 0], scale: [0.95, 1.2, 1.45] }}
-        transition={{ duration: 0.45, ease: 'easeOut' }}
-      />
+      <span className="relative z-10">{children}</span>
     </Link>
   );
 };
 
 export const Navbar = () => {
   const { t, lang, setLang } = useI18n();
+  const { theme, toggleTheme } = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const current = LANG_OPTIONS.find((l) => l.code === lang) || LANG_OPTIONS[0];
+
+  const navItems = [
+    { to: "/", label: t('nav.home') },
+    { to: "/services", label: t('nav.services') || 'Services' },
+    { to: "/projects", label: t('nav.projects') },
+    { to: "/policy", label: t('nav.policy') || 'Politiques' },
+    { to: "/contact", label: t('nav.contact') },
+  ];
+
   return (
-    <motion.nav
-      initial={{ y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      className="flex items-center justify-between px-6 md:px-5 lg:px-4 py-4 md:py-3 lg:py-2 sticky top-0 z-50 border-b border-white/10 bg-secondary/30 supports-[backdrop-filter]:bg-secondary/20 backdrop-blur-lg shadow-lg transition-[padding] duration-200 ease-in-out"
-    >
-      <Link to="/" className="flex items-center gap-3 group">
-        <img
-          src={Logo}
-          alt="Optimum Tech logo"
-          className="h-8 w-8 md:h-7 md:w-7 lg:h-6 lg:w-6 rounded-md shadow-glow transition-all duration-200"
-        />
-        <span className="text-xl md:text-lg lg:text-base font-extrabold font-pixelify text-white group-hover:text-gray-100 transition-colors">
-          Optimum Tech
-        </span>
-      </Link>
-      <div className="relative flex items-center gap-3">
-        {/* Desktop links */}
-        <div className="relative hidden md:flex gap-2.5 lg:gap-2 items-center px-1 py-1 rounded-full">
-          <NavLink to="/">{t('nav.home')}</NavLink>
-          <NavLink to="/projects">{t('nav.projects')}</NavLink>
-          <NavLink to="/contact">{t('nav.contact')}</NavLink>
-          <NavLink to="/policy">{t('nav.policy')}</NavLink>
-          <NavLink to="/auth" solid>
-            {t('nav.login') || 'Log in'}
-          </NavLink>
+    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-6">
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className={`flex items-center justify-between w-full max-w-5xl px-6 py-3 rounded-full border backdrop-blur-2xl transition-all duration-500 ${
+          theme === 'dark' 
+            ? 'bg-black/20 border-white/10 shadow-2xl' 
+            : 'bg-gray-500/10 border-black/10 shadow-xl'
+        }`}
+      >
+        <Link to="/" className="flex items-center gap-3 group">
+          <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.95 }}>
+            <img src={Logo} alt="Logo" className="h-8 w-8 rounded-lg shadow-lg" />
+          </motion.div>
+          <span className={`text-lg font-bold tracking-tighter transition-colors ${
+            theme === 'dark' ? 'text-white' : 'text-black'
+          }`}>
+            Optimum Tech
+          </span>
+        </Link>
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center gap-1">
+          {navItems.map((item) => (
+            <NavLink key={item.to} to={item.to}>{item.label}</NavLink>
+          ))}
         </div>
-        {/* Desktop language */}
-        <div className="relative hidden md:block">
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 md:px-3.5 lg:px-3 py-2 md:py-1.75 lg:py-1.75 text-xs text-white hover:bg-white/10 transition-all duration-200 text-center"
-            aria-haspopup="menu"
-            aria-expanded={open}
+
+        <div className="flex items-center gap-2">
+          {/* Login Button */}
+          <Link
+            to="/auth"
+            className={`hidden md:inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              theme === 'dark' ? 'bg-white/10 text-white/80 hover:bg-white/15 hover:text-white' : 'bg-black/5 text-black/80 hover:bg-black/10 hover:text-black'
+            }`}
           >
-            <Globe className="h-4 w-4" />
-            <span>{current.label}</span>
+            Log in
+          </Link>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className={`p-2 rounded-full transition-all duration-300 ${
+              theme === 'dark' ? 'hover:bg-white/10 text-white' : 'hover:bg-black/5 text-black'
+            }`}
+          >
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          {open && (
-            <motion.ul
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.15 }}
-              className="absolute right-0 mt-2 w-44 rounded-lg border border-white/10 bg-secondary/80 backdrop-blur p-1 shadow-lg z-50"
-              role="menu"
+
+          {/* Language Selector */}
+          <div className="relative hidden md:block">
+            <button
+              onClick={() => setOpen(!open)}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                theme === 'dark' ? 'bg-white/5 text-white hover:bg-white/10' : 'bg-black/5 text-black hover:bg-black/10'
+              }`}
             >
-              {LANG_OPTIONS.map((opt) => (
-                <li key={opt.code}>
+              <Globe size={14} />
+              <span>{current.label}</span>
+            </button>
+            <AnimatePresence>
+              {open && (
+                <motion.ul
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className={`absolute right-0 mt-2 w-32 rounded-2xl border p-1 shadow-2xl backdrop-blur-xl ${
+                    theme === 'dark' ? 'bg-black/80 border-white/10' : 'bg-white/90 border-black/10'
+                  }`}
+                >
+                  {LANG_OPTIONS.map((opt) => (
+                    <li key={opt.code}>
+                      <button
+                        onClick={() => { setLang(opt.code); setOpen(false); }}
+                        className={`w-full text-left px-3 py-2 rounded-xl text-xs transition-colors ${
+                          lang === opt.code 
+                            ? (theme === 'dark' ? 'bg-white/10 text-white' : 'bg-black/5 text-black') 
+                            : (theme === 'dark' ? 'text-white/60 hover:bg-white/5' : 'text-black/60 hover:bg-black/5')
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    </li>
+                  ))}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`md:hidden p-2 rounded-full ${
+              theme === 'dark' ? 'text-white hover:bg-white/10' : 'text-black hover:bg-black/5'
+            }`}
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className={`absolute top-20 left-6 right-6 p-6 rounded-[2rem] border shadow-2xl backdrop-blur-2xl md:hidden ${
+              theme === 'dark' ? 'bg-black/90 border-white/10' : 'bg-white/95 border-black/10'
+            }`}
+          >
+            <div className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-lg font-semibold ${
+                    theme === 'dark' ? 'text-white' : 'text-black'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <div className="h-px w-full bg-current opacity-10 my-2" />
+              <Link
+                to="/auth"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-lg font-semibold ${
+                  theme === 'dark' ? 'text-white' : 'text-black'
+                }`}
+              >
+                Log in
+              </Link>
+              <div className="flex flex-wrap gap-2">
+                {LANG_OPTIONS.map((opt) => (
                   <button
-                    type="button"
-                    onClick={() => {
-                      setLang(opt.code);
-                      setOpen(false);
-                    }}
-                    className={`w-full text-left px-3 py-2 rounded-md text-sm ${
-                      lang === opt.code
-                        ? 'bg-white/10 text-white'
-                        : 'text-gray-200 hover:bg-white/10'
+                    key={opt.code}
+                    onClick={() => { setLang(opt.code); setMobileMenuOpen(false); }}
+                    className={`px-4 py-2 rounded-full text-sm font-medium ${
+                      lang === opt.code 
+                        ? (theme === 'dark' ? 'bg-white/20 text-white' : 'bg-black/10 text-black')
+                        : (theme === 'dark' ? 'bg-white/5 text-white/60' : 'bg-black/5 text-black/60')
                     }`}
-                    role="menuitem"
                   >
                     {opt.label}
                   </button>
-                </li>
-              ))}
-            </motion.ul>
-          )}
-        </div>
-        {/* Mobile controls */}
-        <Link
-          to="/menu"
-          className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/10"
-          aria-label="Open menu"
-        >
-          <Menu className="h-5 w-5" />
-        </Link>
-      </div>
-    </motion.nav>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };

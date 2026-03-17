@@ -1,29 +1,15 @@
 import React from 'react';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
-const HyperspeedIntro = React.lazy(() => import('../components/HyperspeedIntro'));
+import { useTheme } from '../context/ThemeContext';
 import { Footer } from '../components/Footer';
-import { isIntroUnlocked, subscribeToIntroUnlock } from '../utils/introState.js';
 import { SEO } from '../components/SEO.jsx';
 import { Helmet } from 'react-helmet-async';
 
-const IntroFallback = () => (
-  <div className="fixed inset-0 z-40 flex items-center justify-center bg-black text-white/70 text-xs tracking-[0.4em] uppercase">
-    Initializing Hyperspeed
-  </div>
-);
-
 export const Home = () => {
+  const { theme } = useTheme();
   const [isMobile] = React.useState(false);
   const [prefersReducedMotion] = React.useState(false);
-  const wantsIntro = !isMobile && !prefersReducedMotion;
-  const [introReady, setIntroReady] = React.useState(() => isIntroUnlocked() || !wantsIntro);
-
-  React.useEffect(() => {
-    if (introReady) return;
-    const unsubscribe = subscribeToIntroUnlock(() => setIntroReady(true));
-    return () => unsubscribe();
-  }, [introReady]);
 
   const BlueMatrix = ({ mobile }) => {
     const canvasRef = React.useRef(null);
@@ -92,13 +78,15 @@ export const Home = () => {
     return <canvas ref={canvasRef} className="absolute inset-0" />;
   };
 
-  const matrixEnabled = introReady && !prefersReducedMotion;
+  const matrixEnabled = !prefersReducedMotion && theme === 'dark';
 
   return (
-    <div className="min-h-screen flex flex-col relative bg-black">
+    <div className={`min-h-screen flex flex-col relative transition-colors duration-500 ${
+      theme === 'dark' ? 'bg-[#050505]' : 'bg-[#F5F5F7]'
+    }`}>
       <SEO
         path="/"
-        title="Optimum Tech – Création de Sites Web, Automatisation & IA au Service des Entreprises"
+        title="Optimum Tech – Excellence en Développement & IA"
         description="Optimum Tech accompagne les entreprises avec des sites web rapides, des automatisations intelligentes et des solutions IA sur mesure. Développez-vous plus vite avec une technologie simple, efficace et moderne."
       />
       <Helmet>
@@ -153,23 +141,15 @@ export const Home = () => {
           })}
         </script>
       </Helmet>
-      {introReady ? (
-        <>
-          <Navbar />
-          {isMobile && <div className="absolute inset-0 z-0 pointer-events-none mobile-ambient" />}
-          {matrixEnabled && (
-            <div className="absolute inset-0 z-0 pointer-events-none">
-              <BlueMatrix mobile={isMobile} />
-            </div>
-          )}
-          <Hero />
-          <Footer />
-        </>
-      ) : (
-        <React.Suspense fallback={<IntroFallback />}>
-          <HyperspeedIntro onUnlocked={() => setIntroReady(true)} />
-        </React.Suspense>
+      <Navbar />
+      {isMobile && theme === 'dark' && <div className="absolute inset-0 z-0 pointer-events-none mobile-ambient" />}
+      {matrixEnabled && (
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <BlueMatrix mobile={isMobile} />
+        </div>
       )}
+      <Hero />
+      <Footer />
     </div>
   );
 };

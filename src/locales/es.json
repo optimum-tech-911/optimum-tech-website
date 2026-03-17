@@ -3,6 +3,7 @@
     "home": "Inicio",
     "projects": "Proyectos",
     "contact": "Contacto",
+    "services": "Servicios",
     "policy": "Política",
     "login": "Iniciar sesión"
   },
@@ -13,7 +14,12 @@
     "smarter": "más inteligente",
     "automate": "Automatiza",
     "everything": "todo",
-    "blurb": "Optimum Tech convierte tus ideas en sitios, aplicaciones y flujos con IA que generan resultados reales.",
+    "blurb": "Hacemos realidad tus ideas mediante el código, el desarrollo de software y aplicaciones de alto rendimiento. Desde aplicaciones web personalizadas hasta automatizaciones inteligentes, te acompañamos desde 0 hasta las últimas tecnologías.",
+    "growthTitle": "Nuestros Resultados",
+    "growth1": "Aumento de Ventas",
+    "growth2": "Más Visibilidad",
+    "growth3": "Más Control",
+    "growth4": "Escalabilidad",
     "ctaStart": "Comienza tu proyecto",
     "ctaSee": "Ver nuestro trabajo",
     "missionTitle": "Misión",
@@ -24,6 +30,60 @@
     "vision1": "Imaginamos un futuro donde la IA y la automatización estén al servicio de todos — incluso de las estructuras más pequeñas.",
     "vision2": "Nuestra visión es un mundo donde cada emprendedor pueda crecer más rápido, sin complejidad técnica ni pérdida de tiempo, gracias a soluciones modernas, fiables y duraderas.",
     "vision3": "En Optimum Tech construimos ese futuro, un proyecto tras otro."
+  },
+  "contact_v2": {
+    "title": "Hablemos de tu proyecto",
+    "subtitle": "Elige una categoría para comenzar la experiencia.",
+    "back": "Atrás",
+    "close": "Cerrar",
+    "fillForm": "Completar formulario de contacto",
+    "readyTitle": "¿Listo para transformar tu idea?",
+    "launchProject": "Lanzar tu proyecto",
+    "questions": {
+      "main": "¿Qué estás buscando?",
+      "app": {
+        "title": "Crear una Aplicación",
+        "field": "¿Cuál es tu campo de actividad?",
+        "goal": "¿Cuál es tu objetivo principal?",
+        "team": "¿Cuántas personas sois?",
+        "desc": "Describe la aplicación perfecta que imaginas:"
+      },
+      "web": {
+        "title": "Crear un Sitio Web",
+        "field": "¿Cuál es tu sector?",
+        "workers": "¿Cuántos empleados tienes?",
+        "type": "¿Qué tipo de sitio?",
+        "types": {
+          "vitrine": "Sitio Vitrina",
+          "ecom": "Venta de productos (E-commerce)",
+          "service": "Venta de servicios",
+          "booking": "Reservas",
+          "multi": "Multi-servicios"
+        }
+      },
+      "software": {
+        "title": "Crear un Software",
+        "role": "¿Eres dueño de la empresa o responsable de proyecto?",
+        "field": "¿Cuál es tu campo?",
+        "problem": "¿Qué problema estás enfrentando?"
+      },
+      "ai": {
+        "title": "Integraciones de IA",
+        "field": "¿Cuál es tu dominio?",
+        "dailyProblem": "¿Cuáles son tus problemas diarios?",
+        "replace": "¿Qué puesto repetitivo te gustaría reemplazar con una IA precisa, sin errores, disponible 24/7 y pagada una sola vez?"
+      },
+      "consultation": {
+        "title": "Consultoría",
+        "field": "¿Cuál es tu campo?",
+        "problem": "¿Cuál es tu problema brevemente?"
+      }
+    },
+    "success": {
+      "title": "¡Formulario recibido!",
+      "message": "Nos pondremos en contacto contigo lo antes posible.",
+      "urgent": "Si tu caso es urgente, contáctanos por teléfono o WhatsApp: +33 7 45 30 51 13"
+    }
   },
   "intro": { "title": "Optimum Tech", "subtitle": "Bienvenido a tu sitio web" },
   "projects": {
@@ -70,9 +130,44 @@
     "made": "Hecho con cuidado – rendimiento y accesibilidad primero",
     "links": {
       "home": "Volver al inicio",
+      "services": "Nuestros Servicios",
       "projects": "Explora nuestros proyectos",
       "policy": "Lee nuestras políticas",
       "contact": "Ponerse en contacto"
+    }
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Soluciones tecnológicas a medida para impulsar tu negocio.",
+    "web": {
+      "title": "Desarrollo Web",
+      "desc": "Sitios vitrina, E-commerce y Web Apps de alto rendimiento.",
+      "items": ["React / Next.js", "E-commerce (Shopify/Woo)", "Portafolios Premium"]
+    },
+    "mobile": {
+      "title": "Aplicaciones Móviles",
+      "desc": "iOS y Android con una experiencia de usuario fluida.",
+      "items": ["React Native", "Apps Nativas", "Apps de Escritorio"]
+    },
+    "software": {
+      "title": "Software & SaaS",
+      "desc": "Soluciones empresariales complejas y plataformas SaaS escalables.",
+      "items": ["Arquitectura Cloud", "Dashboards", "SaaS Escalable"]
+    },
+    "automation": {
+      "title": "IA & Automatización",
+      "desc": "Ahorra tiempo mediante la automatización inteligente.",
+      "items": ["Workflows de IA", "Bots & Scripts", "Optimización de Procesos"]
+    },
+    "games": {
+      "title": "Juegos & Interactividad",
+      "desc": "Experiencias inmersivas y entretenimiento digital.",
+      "items": ["Unity / Unreal", "Juegos Web", "3D Interactivo"]
+    },
+    "infra": {
+      "title": "Asesoramiento Tech",
+      "desc": "De 0 a la vanguardia tecnológica.",
+      "items": ["Auditoría Tech", "Migración Cloud", "Mantenimiento 24/7"]
     }
   },
   "cookies": {

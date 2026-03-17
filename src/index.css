@@ -7,8 +7,14 @@
 @tailwind utilities;
 
 body {
-  @apply bg-secondary text-gray-200;
+  @apply bg-black text-gray-200 transition-colors duration-500;
   font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  perspective: 2000px;
+}
+
+.light body {
+  @apply bg-[#F5F5F7] text-[#1D1D1F];
 }
 
 h1,
@@ -18,6 +24,11 @@ h4,
 h5,
 h6 {
   font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.05em;
+}
+
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
+  @apply text-[#1D1D1F];
 }
 
 p {
@@ -140,10 +151,11 @@ img {
   text-shadow: 0 0 6px rgba(10, 26, 47, 0.45), 0 0 14px rgba(10, 26, 47, 0.3);
 }
 
-.policy-card-content,
+/* Removing forced blue color to allow theme-aware text colors */
+/* .policy-card-content,
 .policy-card-content * {
   color: #007bff !important;
-}
+} */
 
 .electric-blue-glow {
   color: #007bff;

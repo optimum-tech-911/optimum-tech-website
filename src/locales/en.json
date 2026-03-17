@@ -3,6 +3,7 @@
     "home": "Home",
     "projects": "Projects",
     "contact": "Contact",
+    "services": "Services",
     "policy": "Policy",
     "login": "Log in"
   },
@@ -13,7 +14,12 @@
     "smarter": "smarter",
     "automate": "Automate",
     "everything": "everything",
-    "blurb": "Optimum Tech turns your ideas into high-performance websites, apps, and AI-powered workflows that move the needle.",
+    "blurb": "We make your ideas real through coding, software development, and high-performance applications. From custom web apps and software to smart automations, we take you from 0 to the latest technologies.",
+    "growthTitle": "Our Results",
+    "growth1": "Increased Sales",
+    "growth2": "More Visibility",
+    "growth3": "More Control",
+    "growth4": "Scalability",
     "ctaStart": "Start Your Project",
     "ctaSee": "See Our Work",
     "missionTitle": "Mission",
@@ -23,9 +29,63 @@
     "visionTitle": "Vision",
     "vision1": "We imagine a future where AI and automation serve everyone — even the smallest teams.",
     "vision2": "Our vision is a world where every entrepreneur can grow faster, without technical complexity or wasted time, through modern, reliable solutions built to last.",
-    "vision3": "At Optimum Tech, we’re building that future, one project at a time."
+    "vision3": "At Optimum Tech, we build this future, one project at a time."
   },
-  "intro": { "title": "Optimum Tech", "subtitle": "Welcome to your website" },
+  "contact_v2": {
+    "title": "Let's talk about your project",
+    "subtitle": "Choose a category to start the experience.",
+    "back": "Back",
+    "close": "Close",
+    "fillForm": "Fill the contact form",
+    "readyTitle": "Ready to transform your idea?",
+    "launchProject": "Launch your project",
+    "questions": {
+      "main": "What are you looking for?",
+      "app": {
+        "title": "Create an Application",
+        "field": "What is your field of activity?",
+        "goal": "What is your main goal?",
+        "team": "How many people are you?",
+        "desc": "Describe the perfect app you imagine:"
+      },
+      "web": {
+        "title": "Create a Website",
+        "field": "What is your field?",
+        "workers": "How many workers do you have?",
+        "type": "What type of site?",
+        "types": {
+          "vitrine": "Showcase Site",
+          "ecom": "Product Sales (E-commerce)",
+          "service": "Service Sales",
+          "booking": "Booking",
+          "multi": "Multi-services"
+        }
+      },
+      "software": {
+        "title": "Create a Software",
+        "role": "Are you a business owner or project manager?",
+        "field": "What is your field?",
+        "problem": "What problem are you facing?"
+      },
+      "ai": {
+        "title": "AI Integrations",
+        "field": "What is your field?",
+        "dailyProblem": "What are your daily problems?",
+        "replace": "What repetitive job would you like to replace with a precise AI that doesn't make mistakes, works 24/7, and you only pay once?"
+      },
+      "consultation": {
+        "title": "Consultation",
+        "field": "What is your field?",
+        "problem": "What is your problem briefly?"
+      }
+    },
+    "success": {
+      "title": "Form received!",
+      "message": "We will get back to you as soon as possible.",
+      "urgent": "If your case is urgent, contact us by phone or WhatsApp: +33 7 45 30 51 13"
+    }
+  },
+  "intro": { "title": "Optimum Tech", "subtitle": "Welcome to your site" },
   "projects": {
     "title": "Projects",
     "swipeMore": "Swipe to see more",
@@ -69,10 +129,45 @@
     "hours": "Available 24/7 – we're here anytime.",
     "made": "Made with care – performance & accessibility first",
     "links": {
-      "home": "Back to home",
-      "projects": "Explore our projects",
-      "policy": "Read our policies",
-      "contact": "Get in touch"
+      "home": "Back to Home",
+      "services": "Our Services",
+      "projects": "Discover Projects",
+      "policy": "Read Policies",
+      "contact": "Get in Touch"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Bespoke technological solutions to propel your business.",
+    "web": {
+      "title": "Web Development",
+      "desc": "Showcase sites, E-commerce, and high-performance Web Apps.",
+      "items": ["React / Next.js", "E-commerce (Shopify/Woo)", "Premium Portfolios"]
+    },
+    "mobile": {
+      "title": "Mobile Applications",
+      "desc": "iOS and Android with a smooth user experience.",
+      "items": ["React Native", "Native Apps", "Desktop Apps"]
+    },
+    "software": {
+      "title": "Software & SaaS",
+      "desc": "Complex business solutions and scalable SaaS platforms.",
+      "items": ["Cloud Architecture", "Dashboards", "Scalable SaaS"]
+    },
+    "automation": {
+      "title": "AI & Automation",
+      "desc": "Save time through intelligent automation.",
+      "items": ["AI Workflows", "Bots & Scripts", "Process Optimization"]
+    },
+    "games": {
+      "title": "Games & Interactive",
+      "desc": "Immersive experiences and digital entertainment.",
+      "items": ["Unity / Unreal", "Web Games", "Interactive 3D"]
+    },
+    "infra": {
+      "title": "Tech Partnership",
+      "desc": "From 0 to the cutting edge of technology.",
+      "items": ["Tech Audit", "Cloud Migration", "24/7 Maintenance"]
     }
   },
   "cookies": {

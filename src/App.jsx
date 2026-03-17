@@ -7,6 +7,7 @@ const Projects = React.lazy(() =>
   import('./pages/Projects').then((m) => ({ default: m.Projects }))
 );
 const Policy = React.lazy(() => import('./pages/Policy').then((m) => ({ default: m.Policy })));
+const Services = React.lazy(() => import('./pages/Services').then((m) => ({ default: m.Services })));
 const MenuPage = React.lazy(() => import('./pages/Menu').then((m) => ({ default: m.MenuPage })));
 const PrivacyPolicy = React.lazy(() =>
   import('./pages/PrivacyPolicy').then((m) => ({ default: m.PrivacyPolicy }))
@@ -37,7 +38,9 @@ const PageWrapper = ({ children }) => (
 
 export default function App() {
   React.useEffect(() => {
-    seedProjects();
+    if (import.meta.env.DEV && import.meta.env.VITE_SEED_PROJECTS === 'true') {
+      seedProjects();
+    }
   }, []);
 
   return (
@@ -51,6 +54,14 @@ export default function App() {
             element={
               <PageWrapper>
                 <Home />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/services"
+            element={
+              <PageWrapper>
+                <Services />
               </PageWrapper>
             }
           />

@@ -1,6 +1,10 @@
 import { supabase } from '../../supabaseClient';
 
 export const seedProjects = async () => {
+  if (!supabase) {
+    console.warn('Supabase not configured. Skipping seeding.');
+    return;
+  }
   try {
     const launchedProjects = [
       { title: 'CandyPlanet.fr', url: 'https://candyplanet.fr' },
