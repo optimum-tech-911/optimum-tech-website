@@ -9,7 +9,6 @@ import {
   FolderGit2,
   Images,
   MessagesSquare,
-  Users,
   Plus,
   Edit3,
   ShieldCheck,
@@ -18,6 +17,7 @@ import {
   X,
   Save,
   Eye,
+  LogOut,
 } from 'lucide-react';
 
 import { useTheme } from '../context/ThemeContext';
@@ -26,7 +26,6 @@ const SECTIONS = [
   { id: 'projects', label: 'Projects', icon: <FolderGit2 className="h-4 w-4" /> },
   { id: 'gallery', label: 'Gallery', icon: <Images className="h-4 w-4" /> },
   { id: 'messages', label: 'Messages', icon: <MessagesSquare className="h-4 w-4" /> },
-  { id: 'users', label: 'Users', icon: <Users className="h-4 w-4" /> },
 ];
 
 export const AdminPanel = () => {
@@ -39,6 +38,8 @@ export const AdminPanel = () => {
     users: [],
   });
   const [loading, setLoading] = useState(true);
+  const [panelWarnings, setPanelWarnings] = useState([]);
+  const [adminEmail, setAdminEmail] = useState('');
   
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -91,6 +92,14 @@ export const AdminPanel = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (!supabase) return;
+
+    supabase.auth.getUser().then(({ data }) => {
+      setAdminEmail(data?.user?.email || '');
+    });
+  }, []);
+
   const fetchData = async () => {
     if (!supabase) {
       console.warn('Supabase not configured.');
@@ -98,36 +107,55 @@ export const AdminPanel = () => {
       return;
     }
     setLoading(true);
+    const nextContent = {
+      projects: [],
+      gallery: [],
+      messages: [],
+      users: [],
+    };
+    const warnings = [];
     try {
       const { data: projects, error: projectsError } = await supabase
         .from('projects')
         .select('*')
         .order('sort_order', { ascending: true });
-      if (projectsError) throw projectsError;
+      if (projectsError) {
+        warnings.push('Projects could not be loaded.');
+      } else {
+        nextContent.projects = projects || [];
+      }
 
       const { data: gallery, error: galleryError } = await supabase.from('gallery').select('*');
-      if (galleryError) throw galleryError;
+      if (galleryError) {
+        warnings.push('Gallery could not be loaded.');
+      } else {
+        nextContent.gallery = gallery || [];
+      }
 
       const { data: messages, error: messagesError } = await supabase
         .from('messages')
         .select('*')
         .order('created_at', { ascending: false });
-      if (messagesError) throw messagesError;
+      if (messagesError) {
+        warnings.push('Messages could not be loaded.');
+      } else {
+        nextContent.messages = messages || [];
+      }
 
-      const { data: users, error: usersError } = await supabase.from('users').select('*');
-      if (usersError) throw usersError;
-
-      setContent({
-        projects: projects || [],
-        gallery: gallery || [],
-        messages: messages || [],
-        users: users || [],
-      });
+      setContent(nextContent);
+      setPanelWarnings(warnings);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setPanelWarnings(['The admin data could not be refreshed.']);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSignOut = async () => {
+    if (!supabase) return;
+    await supabase.auth.signOut();
+    window.location.assign('/auth');
   };
 
   const handleOpenModal = (item = null, section = 'default') => {
@@ -595,6 +623,11 @@ export const AdminPanel = () => {
               <div>
                 <p className={`text-xs ${theme === 'dark' ? 'text-white/60' : 'text-black/60'}`}>Control</p>
                 <p className="font-semibold">Admin panel</p>
+                {adminEmail && (
+                  <p className={`text-xs mt-0.5 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}>
+                    {adminEmail}
+                  </p>
+                )}
               </div>
             </div>
             <div className="p-3 space-y-2">
@@ -634,6 +667,15 @@ export const AdminPanel = () => {
                     <Plus className="h-4 w-4" />
                     New item
                   </button>
+                  <button
+                    onClick={handleSignOut}
+                    className={`flex items-center gap-2 w-full rounded-xl px-3 py-2 transition ${
+                      theme === 'dark' ? 'bg-red-500/10 hover:bg-red-500/15 text-red-200' : 'bg-red-500/10 hover:bg-red-500/15 text-red-600'
+                    }`}
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Sign out
+                  </button>
                 </div>
               </div>
             </div>
@@ -659,6 +701,16 @@ export const AdminPanel = () => {
                 Protected area
               </div>
             </div>
+
+            {panelWarnings.length > 0 && (
+              <div className={`mb-6 rounded-2xl border px-4 py-3 text-sm ${
+                theme === 'dark'
+                  ? 'border-amber-500/20 bg-amber-500/10 text-amber-100'
+                  : 'border-amber-500/30 bg-amber-500/10 text-amber-800'
+              }`}>
+                {panelWarnings.join(' ')}
+              </div>
+            )}
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
               <div className={`rounded-2xl border p-4 ${

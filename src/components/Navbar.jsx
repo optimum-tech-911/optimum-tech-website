@@ -47,6 +47,7 @@ export const Navbar = () => {
     { to: "/", label: t('nav.home') },
     { to: "/services", label: t('nav.services') || 'Services' },
     { to: "/projects", label: t('nav.projects') },
+    { to: "/blog", label: 'Blog' },
     { to: "/policy", label: t('nav.policy') || 'Politiques' },
     { to: "/contact", label: t('nav.contact') },
   ];

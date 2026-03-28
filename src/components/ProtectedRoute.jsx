@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { supabase } from '../../supabaseClient';
+import { getAdminEmailAllowlist, isAdminSession } from '../utils/adminAuth';
 
 export const ProtectedRoute = ({ children }) => {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [role, setRole] = useState(null);
+  const [profileRole, setProfileRole] = useState(null);
   const [roleLoading, setRoleLoading] = useState(true);
 
   useEffect(() => {
     if (!supabase) {
       setLoading(false);
       setSession(null);
-      setRole(null);
+      setProfileRole(null);
       setRoleLoading(false);
       return;
     }
@@ -37,7 +38,7 @@ export const ProtectedRoute = ({ children }) => {
     const loadRole = async () => {
       if (!supabase) return;
       if (!session?.user?.id) {
-        setRole(null);
+        setProfileRole(null);
         setRoleLoading(false);
         return;
       }
@@ -49,9 +50,10 @@ export const ProtectedRoute = ({ children }) => {
           .eq('id', session.user.id)
           .maybeSingle();
         if (error) throw error;
-        setRole(data?.role || null);
-      } catch {
-        setRole(null);
+        setProfileRole(data?.role || null);
+      } catch (error) {
+        console.warn('Unable to load admin role from users table:', error);
+        setProfileRole(null);
       } finally {
         setRoleLoading(false);
       }
@@ -85,8 +87,33 @@ export const ProtectedRoute = ({ children }) => {
     return <Navigate to="/auth" replace />;
   }
 
-  if (role !== 'admin') {
-    return <Navigate to="/" replace />;
+  if (!isAdminSession(session, profileRole)) {
+    const allowlistConfigured = getAdminEmailAllowlist().length > 0;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0b1020] text-white px-6">
+        <div className="max-w-lg rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur">
+          <div className="text-xl font-semibold mb-2">Admin access not available</div>
+          <div className="text-white/70 text-sm leading-relaxed">
+            You are signed in, but this account is not recognized as an admin yet.
+            {!allowlistConfigured && ' The app is currently relying on the database role check only.'}
+          </div>
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <Link
+              to="/auth"
+              className="rounded-xl bg-white/10 px-4 py-2 text-sm font-medium hover:bg-white/15 transition"
+            >
+              Back to login
+            </Link>
+            <Link
+              to="/"
+              className="rounded-xl border border-white/10 px-4 py-2 text-sm font-medium hover:bg-white/5 transition"
+            >
+              Go home
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return children;

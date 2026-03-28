@@ -8,6 +8,7 @@ import { Lock, LogIn, UserPlus, Phone, Mail, User } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 
 import { useTheme } from '../context/ThemeContext';
+import { isAdminSession } from '../utils/adminAuth';
 
 export const AuthPage = () => {
   const navigate = useNavigate();
@@ -18,6 +19,16 @@ export const AuthPage = () => {
   const allowSignup = import.meta.env.DEV && import.meta.env.VITE_ENABLE_ADMIN_SIGNUP === 'true';
 
   const onChange = (key) => (e) => setForm((v) => ({ ...v, [key]: e.target.value }));
+
+  React.useEffect(() => {
+    if (!supabase) return;
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (isAdminSession(session)) {
+        navigate('/admin', { replace: true });
+      }
+    });
+  }, [navigate]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -45,12 +56,19 @@ export const AuthPage = () => {
         if (error) throw error;
         alert('Check your email for the confirmation link!');
       } else {
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
           email: form.email,
           password: form.password,
         });
         if (error) throw error;
-        navigate('/admin');
+
+        if (!isAdminSession(data?.session)) {
+          setError(
+            'Login succeeded, but this account is not recognized as an admin yet. Please check the admin role setup.'
+          );
+        }
+
+        navigate('/admin', { replace: true });
       }
     } catch (err) {
       setError(err.message);

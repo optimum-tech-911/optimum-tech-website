@@ -15,6 +15,10 @@ const PrivacyPolicy = React.lazy(() =>
 const CookiePolicy = React.lazy(() =>
   import('./pages/CookiePolicy').then((m) => ({ default: m.CookiePolicy }))
 );
+const BlogPage = React.lazy(() => import('./pages/Blog').then((m) => ({ default: m.BlogPage })));
+const BlogArticlePage = React.lazy(() =>
+  import('./pages/BlogArticle').then((m) => ({ default: m.BlogArticlePage }))
+);
 const AuthPage = React.lazy(() => import('./pages/Auth').then((m) => ({ default: m.AuthPage })));
 const AdminPanel = React.lazy(() =>
   import('./pages/AdminPanel').then((m) => ({ default: m.AdminPanel }))
@@ -78,6 +82,22 @@ export default function App() {
             element={
               <PageWrapper>
                 <Contact />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/blog"
+            element={
+              <PageWrapper>
+                <BlogPage />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/blog/:slug"
+            element={
+              <PageWrapper>
+                <BlogArticlePage />
               </PageWrapper>
             }
           />
