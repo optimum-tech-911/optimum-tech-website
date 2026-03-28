@@ -1,14 +1,14 @@
-import associationImage from "../Blogs pics/Association et impact communautaire en ligne.png";
-import boucherieImage from "../Blogs pics/Boucherie moderne et technologies innovantes.png";
-import cabinetDentaireImage from "../Blogs pics/Cabinet dentaire moderne et intelligent.png";
-import aiImage from "../Blogs pics/L'intelligence artificielle booste les ventes.png";
-import coutSiteImage from "../Blogs pics/Le vrai coût d’un site web rentable.png";
-import cabinetMedicalImage from "../Blogs pics/Médecin devant un site médical professionnel.png";
-import garageImage from "../Blogs pics/Réservation confirmée pour entretien automobile.png";
-import restaurantImage from "../Blogs pics/Réservation et livraison au restaurant.png";
-import salonImage from "../Blogs pics/Salon moderne et réservation facile.png";
-import applicationImage from "../Blogs pics/Une application web qui génère plus.png";
-import siteWebImage from "../Blogs pics/Une présence en ligne personnalisée.png";
+import associationImage from "../assets/blog/association-impact-communautaire.webp";
+import boucherieImage from "../assets/blog/boucherie-moderne-technologies.webp";
+import cabinetDentaireImage from "../assets/blog/cabinet-dentaire-moderne.webp";
+import aiImage from "../assets/blog/intelligence-artificielle-ventes.webp";
+import coutSiteImage from "../assets/blog/cout-site-web-rentable.webp";
+import cabinetMedicalImage from "../assets/blog/medecin-site-medical-professionnel.webp";
+import garageImage from "../assets/blog/garage-rendez-vous-entretien.webp";
+import restaurantImage from "../assets/blog/restaurant-reservation-livraison.webp";
+import salonImage from "../assets/blog/salon-reservation-facile.webp";
+import applicationImage from "../assets/blog/application-web-genere-plus.webp";
+import siteWebImage from "../assets/blog/presence-en-ligne-personnalisee.webp";
 
 export const blogPosts = [
   {
