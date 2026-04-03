@@ -47,6 +47,7 @@ export const Footer = () => {
             <nav className="flex flex-col gap-4">
               {[
                 { to: '/', label: t('footer.links.home') },
+                { to: '/jobs', label: 'Jobs' },
                 { to: '/projects', label: t('footer.links.projects') },
                 { to: '/policy', label: t('footer.links.policy') },
                 { to: '/contact', label: t('footer.links.contact') },

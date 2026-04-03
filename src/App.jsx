@@ -8,6 +8,7 @@ const Projects = React.lazy(() =>
 );
 const Policy = React.lazy(() => import('./pages/Policy').then((m) => ({ default: m.Policy })));
 const Services = React.lazy(() => import('./pages/Services').then((m) => ({ default: m.Services })));
+const JobsPage = React.lazy(() => import('./pages/Jobs').then((m) => ({ default: m.JobsPage })));
 const MenuPage = React.lazy(() => import('./pages/Menu').then((m) => ({ default: m.MenuPage })));
 const PrivacyPolicy = React.lazy(() =>
   import('./pages/PrivacyPolicy').then((m) => ({ default: m.PrivacyPolicy }))
@@ -74,6 +75,14 @@ export default function App() {
             element={
               <PageWrapper>
                 <Projects />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/jobs"
+            element={
+              <PageWrapper>
+                <JobsPage />
               </PageWrapper>
             }
           />

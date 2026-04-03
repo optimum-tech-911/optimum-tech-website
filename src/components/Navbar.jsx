@@ -17,7 +17,7 @@ const NavLink = ({ to, children, onClick }) => {
       onClick={(e) => {
         onClick?.(e);
       }}
-      className={`relative inline-flex items-center justify-center px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+      className={`relative inline-flex items-center justify-center whitespace-nowrap px-4 lg:px-5 py-2 rounded-full text-xs lg:text-sm font-medium transition-all duration-300 ${
         theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'
       }`}
     >
@@ -47,6 +47,7 @@ export const Navbar = () => {
     { to: "/", label: t('nav.home') },
     { to: "/services", label: t('nav.services') || 'Services' },
     { to: "/projects", label: t('nav.projects') },
+    { to: "/jobs", label: 'Jobs' },
     { to: "/blog", label: 'Blog' },
     { to: "/policy", label: t('nav.policy') || 'Politiques' },
     { to: "/contact", label: t('nav.contact') },
@@ -57,17 +58,17 @@ export const Navbar = () => {
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className={`flex items-center justify-between w-full max-w-5xl px-6 py-3 rounded-full border backdrop-blur-2xl transition-all duration-500 ${
+        className={`flex items-center justify-between w-full max-w-7xl px-5 lg:px-6 py-3 rounded-full border backdrop-blur-2xl transition-all duration-500 ${
           theme === 'dark' 
             ? 'bg-black/20 border-white/10 shadow-2xl' 
             : 'bg-gray-500/10 border-black/10 shadow-xl'
         }`}
       >
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
           <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.95 }}>
             <img src={Logo} alt="Logo" className="h-8 w-8 rounded-lg shadow-lg" />
           </motion.div>
-          <span className={`text-lg font-bold tracking-tighter transition-colors ${
+          <span className={`text-lg font-bold tracking-tighter transition-colors whitespace-nowrap ${
             theme === 'dark' ? 'text-white' : 'text-black'
           }`}>
             Optimum Tech
@@ -75,17 +76,17 @@ export const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-0.5 lg:gap-1 min-w-0 px-4">
           {navItems.map((item) => (
             <NavLink key={item.to} to={item.to}>{item.label}</NavLink>
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-shrink-0">
           {/* Login Button */}
           <Link
             to="/auth"
-            className={`hidden md:inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+            className={`hidden md:inline-flex items-center justify-center whitespace-nowrap px-4 py-2 rounded-full text-xs lg:text-sm font-medium transition-all duration-300 ${
               theme === 'dark' ? 'bg-white/10 text-white/80 hover:bg-white/15 hover:text-white' : 'bg-black/5 text-black/80 hover:bg-black/10 hover:text-black'
             }`}
           >
@@ -106,7 +107,7 @@ export const Navbar = () => {
           <div className="relative hidden md:block">
             <button
               onClick={() => setOpen(!open)}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+              className={`flex items-center gap-2 whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                 theme === 'dark' ? 'bg-white/5 text-white hover:bg-white/10' : 'bg-black/5 text-black hover:bg-black/10'
               }`}
             >
