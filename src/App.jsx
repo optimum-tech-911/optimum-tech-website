@@ -24,11 +24,18 @@ const AuthPage = React.lazy(() => import('./pages/Auth').then((m) => ({ default:
 const AdminPanel = React.lazy(() =>
   import('./pages/AdminPanel').then((m) => ({ default: m.AdminPanel }))
 );
+const SeoLandingPage = React.lazy(() =>
+  import('./pages/SeoLandingPage').then((m) => ({ default: m.SeoLandingPage }))
+);
+const AboutPage = React.lazy(() =>
+  import('./pages/About').then((m) => ({ default: m.AboutPage }))
+);
 import { CookieBanner } from './components/CookieBanner.jsx';
 import { ScrollToTop } from './components/ScrollToTop.jsx';
 
 import { ProtectedRoute } from './components/ProtectedRoute.jsx';
 import { seedProjects } from './utils/seedProjects.js';
+import { localPages, servicePages } from './data/seoPages.js';
 
 const PageWrapper = ({ children }) => (
   <motion.div
@@ -70,6 +77,28 @@ export default function App() {
               </PageWrapper>
             }
           />
+          {servicePages.map((page) => (
+            <Route
+              key={page.slug}
+              path={`/${page.slug}`}
+              element={
+                <PageWrapper>
+                  <SeoLandingPage page={page} categoryLabel="Services" />
+                </PageWrapper>
+              }
+            />
+          ))}
+          {localPages.map((page) => (
+            <Route
+              key={page.slug}
+              path={`/${page.slug}`}
+              element={
+                <PageWrapper>
+                  <SeoLandingPage page={page} categoryLabel="Local" />
+                </PageWrapper>
+              }
+            />
+          ))}
           <Route
             path="/projects"
             element={
@@ -91,6 +120,14 @@ export default function App() {
             element={
               <PageWrapper>
                 <Contact />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/a-propos"
+            element={
+              <PageWrapper>
+                <AboutPage />
               </PageWrapper>
             }
           />

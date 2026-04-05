@@ -14,6 +14,7 @@ export const CookiePolicy = () => {
         path="/cookie-policy"
         title="Politique de Cookies – Optimum Tech"
         description="En savoir plus sur les cookies utilisés par Optimum Tech et vos choix en matière de consentement selon le RGPD."
+        robots="noindex, follow"
       />
       <Navbar />
       <main className="container mx-auto max-w-3xl px-6 py-32">
@@ -21,7 +22,7 @@ export const CookiePolicy = () => {
         <div className={`space-y-6 text-lg font-light leading-relaxed ${
           theme === 'dark' ? 'text-white' : 'text-black'
         }`}>
-          <p>Contenu à venir…</p>
+          <p>Cette page sera complétée avec le détail des cookies, de leurs finalités et des moyens de gestion du consentement sur le site.</p>
         </div>
       </main>
       <Footer />

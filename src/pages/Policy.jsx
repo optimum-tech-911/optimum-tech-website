@@ -360,7 +360,7 @@ export const Policy = () => {
     <div className={`min-h-screen transition-colors duration-500 flex flex-col relative overflow-x-hidden ${
       theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
     }`}>
-      <SEO path="/policy" title={t('policy.title')} />
+      <SEO path="/policy" title="Mentions et politique générale | Optimum Tech" description="Informations générales et mentions du site Optimum Tech." robots="noindex, follow" />
       <Navbar />
 
       <main className="flex-grow container mx-auto px-6 py-24 relative z-10">

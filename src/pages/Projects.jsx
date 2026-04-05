@@ -318,8 +318,8 @@ export const Projects = () => {
       {theme === 'dark' && <div className="fixed inset-0 z-[-10] bg-[#050505]" />}
       <SEO
         path="/projects"
-        title={t('projects.title')}
-        description="Explore our latest software development projects, mobile apps, and web solutions."
+        title="Réalisations web et digitales | Optimum Tech"
+        description="Découvrez des réalisations, projets web et solutions digitales signées Optimum Tech pour illustrer notre approche en création de site, logiciel et automatisation."
       />
       <Navbar />
       

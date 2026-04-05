@@ -83,7 +83,7 @@ export const AuthPage = () => {
     <div className={`min-h-screen flex flex-col transition-colors duration-500 ${
       theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
     }`}>
-      <SEO path="/auth" title="Auth | Optimum Tech" description="Admin login and signup page." />
+      <SEO path="/auth" title="Connexion | Optimum Tech" description="Espace de connexion administrateur." robots="noindex, nofollow" />
       <Navbar />
       <main className="flex-1 w-full flex items-center justify-center px-4 py-32">
         <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-10">

@@ -601,7 +601,7 @@ export const AdminPanel = () => {
     <div className={`min-h-screen flex flex-col transition-colors duration-500 ${
       theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
     }`}>
-      <SEO path="/admin" title="Admin | Optimum Tech" description="Admin panel for projects, gallery, messages, and users." />
+      <SEO path="/admin" title="Administration | Optimum Tech" description="Espace d’administration." robots="noindex, nofollow" />
       <Navbar />
       <main className="flex-1 w-full">
         <div className="max-w-6xl mx-auto px-4 py-32 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6">

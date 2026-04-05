@@ -150,7 +150,32 @@ export const Services = () => {
     <div className={`min-h-screen transition-colors duration-500 flex flex-col relative overflow-x-hidden ${
       theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
     }`}>
-      <SEO path="/services" title={t('services.title')} />
+      <SEO
+        path="/services"
+        title="Services web, SEO et automatisation IA | Optimum Tech"
+        description="Découvrez les services d’Optimum Tech: création de site web, référencement SEO, automatisation IA, logiciels et accompagnement digital pour entreprises à Sète, dans l’Hérault et en France."
+        keywords="services Optimum Tech, création site web, référencement SEO, automatisation IA, agence digitale hérault, développeur web sète"
+        schema={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Accueil',
+                item: 'https://optimutech.fr/',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Services',
+                item: 'https://optimutech.fr/services',
+              },
+            ],
+          },
+        ]}
+      />
       <Navbar />
 
       <main className="flex-grow container mx-auto px-6 py-32 relative z-10">
@@ -172,6 +197,73 @@ export const Services = () => {
             />
           ))}
         </div>
+
+        <section className="mt-20 grid gap-6 lg:grid-cols-3">
+          {[
+            {
+              to: '/creation-site-web',
+              title: 'Création de site web',
+              desc: 'Page service dédiée pour les requêtes site web, site vitrine et refonte.',
+            },
+            {
+              to: '/referencement-seo',
+              title: 'Référencement SEO',
+              desc: 'Page service dédiée aux recherches SEO locales et commerciales.',
+            },
+            {
+              to: '/automatisation-ia',
+              title: 'Automatisation IA',
+              desc: 'Page service dédiée aux entreprises qui veulent automatiser intelligemment.',
+            },
+          ].map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className={`rounded-[2rem] border p-6 transition ${
+                theme === 'dark'
+                  ? 'border-white/10 bg-white/5 hover:border-[#007BFF]/30'
+                  : 'border-black/10 bg-white/75 hover:border-[#007BFF]/30 shadow-lg'
+              }`}
+            >
+              <h2 className="text-2xl font-bold tracking-tight">{item.title}</h2>
+              <p className={`mt-4 text-sm leading-7 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
+                {item.desc}
+              </p>
+            </Link>
+          ))}
+        </section>
+
+        <section className={`mt-20 rounded-[2.5rem] border p-8 md:p-12 ${
+          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+        }`}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            Services prioritaires pour le SEO local dans le Sud de la France
+          </h2>
+          <div className={`mt-5 max-w-4xl space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/74' : 'text-black/74'}`}>
+            <p>Pour améliorer la visibilité locale d’Optimum Tech, nous concentrons l’architecture sur les intentions commerciales les plus fortes: création de site web, agence web, développeur web, référencement SEO et automatisation IA.</p>
+            <p>Le hub services relaie ces pages afin d’aider Google à comprendre les thématiques principales du site et à mieux identifier les sous-pages qui méritent d’apparaître dans les résultats.</p>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              ['/creation-site-web-sete', 'Création site web Sète'],
+              ['/agence-web-herault', 'Agence web Hérault'],
+              ['/referencement-seo-sete', 'SEO Sète'],
+              ['/automatisation-ia-occitanie', 'Automatisation IA Occitanie'],
+            ].map(([to, label]) => (
+              <Link
+                key={to}
+                to={to}
+                className={`rounded-[1.5rem] border px-4 py-4 transition ${
+                  theme === 'dark'
+                    ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
+                    : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                }`}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </section>
 
         <ScrollReveal className="mt-32">
           <div className={`rounded-[3rem] border p-12 md:p-20 text-center relative overflow-hidden group shadow-2xl ${

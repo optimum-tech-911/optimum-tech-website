@@ -11,7 +11,7 @@ export const MenuPage = () => {
   const { t, lang, setLang } = useI18n();
   return (
     <div className="min-h-screen flex flex-col">
-      <SEO path="/menu" title="" description="" />
+      <SEO path="/menu" title="Menu | Optimum Tech" description="Menu interne du site." robots="noindex, nofollow" />
       <Navbar />
       <main className="container mx-auto w-full max-w-4xl py-10 relative overflow-hidden">
         <div className="absolute inset-0 -z-10 pointer-events-none">

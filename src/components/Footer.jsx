@@ -47,9 +47,11 @@ export const Footer = () => {
             <nav className="flex flex-col gap-4">
               {[
                 { to: '/', label: t('footer.links.home') },
-                { to: '/jobs', label: 'Jobs' },
+                { to: '/creation-site-web', label: 'Création de site web' },
+                { to: '/referencement-seo', label: 'Référencement SEO' },
+                { to: '/automatisation-ia', label: 'Automatisation IA' },
                 { to: '/projects', label: t('footer.links.projects') },
-                { to: '/policy', label: t('footer.links.policy') },
+                { to: '/a-propos', label: 'À propos' },
                 { to: '/contact', label: t('footer.links.contact') },
               ].map((link) => (
                 <Link
@@ -74,8 +76,14 @@ export const Footer = () => {
             <div className={`flex flex-col gap-4 text-base font-light ${
               theme === 'dark' ? 'text-white/70' : 'text-black/70'
             }`}>
-              <p>{t('footer.location')}</p>
+              <p>Sète, Hérault, Occitanie, France</p>
               <p>{t('footer.hours')}</p>
+              <a href="tel:+33745305113" className="hover:text-[#007BFF] transition-colors">
+                +33 7 45 30 51 13
+              </a>
+              <a href="mailto:optimum.tech.911@gmail.com" className="hover:text-[#007BFF] transition-colors">
+                optimum.tech.911@gmail.com
+              </a>
             </div>
           </div>
 
@@ -173,6 +181,7 @@ export const Footer = () => {
           <div className="flex gap-8">
             <Link to="/privacy-policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Privacy Policy</Link>
             <Link to="/cookie-policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Cookie Policy</Link>
+            <Link to="/policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Mentions</Link>
           </div>
         </div>
       </div>

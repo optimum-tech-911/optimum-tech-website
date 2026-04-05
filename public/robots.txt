@@ -12,5 +12,8 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /auth
+Disallow: /menu
 
 Sitemap: https://optimutech.fr/sitemap.xml

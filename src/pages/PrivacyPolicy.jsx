@@ -14,6 +14,7 @@ export const PrivacyPolicy = () => {
         path="/privacy-policy"
         title="Politique de Confidentialité – Optimum Tech"
         description="Découvrez comment Optimum Tech protège vos données personnelles conformément au RGPD."
+        robots="noindex, follow"
       />
       <Navbar />
       <main className="container mx-auto max-w-3xl px-6 py-32">
@@ -21,7 +22,7 @@ export const PrivacyPolicy = () => {
         <div className={`space-y-6 text-lg font-light leading-relaxed ${
           theme === 'dark' ? 'text-white' : 'text-black'
         }`}>
-          <p>Contenu à venir…</p>
+          <p>Cette page sera complétée avec le détail des traitements, finalités, durées de conservation et droits des personnes conformément au RGPD.</p>
         </div>
       </main>
       <Footer />

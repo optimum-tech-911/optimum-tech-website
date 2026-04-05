@@ -18,8 +18,8 @@ export const BlogPage = () => {
     >
       <SEO
         path="/blog"
-        title="Blog SEO & Digital | Optimum Tech"
-        description="Articles en francais sur la creation de sites web, les applications sur mesure, l automatisation, l IA et les solutions digitales pour les entreprises en France."
+        title="Blog création de site, SEO local et automatisation | Optimum Tech"
+        description="Conseils en français sur la création de site web, le SEO local, l’automatisation IA et la croissance digitale pour entreprises en France."
       />
       <Navbar />
 

@@ -45,11 +45,13 @@ export const Navbar = () => {
 
   const navItems = [
     { to: "/", label: t('nav.home') },
+    { to: "/creation-site-web", label: 'Site web' },
+    { to: "/referencement-seo", label: 'SEO' },
+    { to: "/automatisation-ia", label: 'IA' },
     { to: "/services", label: t('nav.services') || 'Services' },
     { to: "/projects", label: t('nav.projects') },
-    { to: "/jobs", label: 'Jobs' },
+    { to: "/a-propos", label: 'À propos' },
     { to: "/blog", label: 'Blog' },
-    { to: "/policy", label: t('nav.policy') || 'Politiques' },
     { to: "/contact", label: t('nav.contact') },
   ];
 
@@ -66,7 +68,7 @@ export const Navbar = () => {
       >
         <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
           <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.95 }}>
-            <img src={Logo} alt="Logo" className="h-8 w-8 rounded-lg shadow-lg" />
+            <img src={Logo} alt="Optimum Tech logo" className="h-8 w-8 rounded-lg shadow-lg" />
           </motion.div>
           <span className={`text-lg font-bold tracking-tighter transition-colors whitespace-nowrap ${
             theme === 'dark' ? 'text-white' : 'text-black'

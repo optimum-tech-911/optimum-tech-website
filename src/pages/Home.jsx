@@ -4,7 +4,7 @@ import { Hero } from '../components/Hero';
 import { useTheme } from '../context/ThemeContext';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO.jsx';
-import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
   const { theme } = useTheme();
@@ -86,61 +86,56 @@ export const Home = () => {
     }`}>
       <SEO
         path="/"
-        title="Optimum Tech – Excellence en Développement & IA"
-        description="Optimum Tech accompagne les entreprises avec des sites web rapides, des automatisations intelligentes et des solutions IA sur mesure. Développez-vous plus vite avec une technologie simple, efficace et moderne."
-      />
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify({
+        title="Optimum Tech | Création site web, SEO et automatisation IA en France"
+        description="Optimum Tech accompagne les entreprises à Sète, dans l’Hérault, en Occitanie et en France pour la création de site web, le référencement SEO, l’automatisation IA et les solutions digitales."
+        keywords="Optimum Tech, création site web sud de la france, création site web sète, agence web sète, développeur web sète, création site internet hérault, agence digitale hérault, référencement SEO sète, automatisation IA entreprise france"
+        schema={[
+          {
             '@context': 'https://schema.org',
-            '@graph': [
-              {
-                '@type': 'Organization',
-                '@id': 'https://optimutech.fr/#organization',
-                name: 'Optimum Tech',
-                url: 'https://optimutech.fr',
-                logo: {
-                  '@type': 'ImageObject',
-                  url: 'https://optimutech.fr/assets/logo.png'
-                },
-                description: 'Création de sites web, automatisation et IA pour entreprises.',
-                sameAs: [
-                  'https://twitter.com/optimutech',
-                  'https://www.linkedin.com/company/optimutech'
-                ]
-              },
-              {
-                '@type': 'WebSite',
-                '@id': 'https://optimutech.fr/#website',
-                url: 'https://optimutech.fr',
-                name: 'Optimum Tech',
-                description: 'Solutions Digitales & IA',
-                publisher: {
-                  '@id': 'https://optimutech.fr/#organization'
-                },
-                potentialAction: {
-                  '@type': 'SearchAction',
-                  target: 'https://optimutech.fr/search?q={search_term_string}',
-                  'query-input': 'required name=search_term_string'
-                }
-              },
-              {
-                '@type': 'LocalBusiness',
-                '@id': 'https://optimutech.fr/#localbusiness',
-                parentOrganization: {
-                  '@id': 'https://optimutech.fr/#organization'
-                },
-                name: 'Optimum Tech',
-                url: 'https://optimutech.fr',
-                description: 'Création de sites web, automatisation et IA pour entreprises.',
-                logo: 'https://optimutech.fr/assets/logo.png',
-                image: 'https://optimutech.fr/assets/og-image.png',
-                priceRange: '$$'
-              }
-            ]
-          })}
-        </script>
-      </Helmet>
+            '@type': 'Organization',
+            '@id': 'https://optimutech.fr/#organization',
+            name: 'Optimum Tech',
+            url: 'https://optimutech.fr',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://optimutech.fr/apple-touch-icon.png',
+            },
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+33 7 45 30 51 13',
+              contactType: 'customer service',
+              areaServed: ['FR'],
+              availableLanguage: ['fr', 'en'],
+            },
+            sameAs: [
+              'https://www.instagram.com/ot.optimum_tech/',
+              'https://www.linkedin.com/in/sid-ahmed-larabi-09b328286/',
+            ],
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            '@id': 'https://optimutech.fr/#website',
+            url: 'https://optimutech.fr',
+            name: 'Optimum Tech',
+            publisher: {
+              '@id': 'https://optimutech.fr/#organization',
+            },
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ProfessionalService',
+            '@id': 'https://optimutech.fr/#service',
+            name: 'Optimum Tech',
+            url: 'https://optimutech.fr',
+            image: 'https://optimutech.fr/apple-touch-icon.png',
+            telephone: '+33 7 45 30 51 13',
+            email: 'optimum.tech.911@gmail.com',
+            areaServed: ['Sète', 'Hérault', 'Occitanie', 'France'],
+            serviceType: ['Création de site web', 'Référencement SEO', 'Automatisation IA', 'Solutions digitales'],
+          },
+        ]}
+      />
       <Navbar />
       {isMobile && theme === 'dark' && <div className="absolute inset-0 z-0 pointer-events-none mobile-ambient" />}
       {matrixEnabled && (
@@ -149,6 +144,82 @@ export const Home = () => {
         </div>
       )}
       <Hero />
+      <main className="relative z-10 px-4 pb-8 md:px-6">
+        <section className="mx-auto max-w-6xl">
+          <div className={`rounded-[2.5rem] border p-6 md:p-10 ${
+            theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+          }`}>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+              Services prioritaires
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+              Une architecture plus claire pour les recherches locales à forte intention
+            </h2>
+            <p className={`mt-5 max-w-4xl text-base leading-8 md:text-lg ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
+              Optimum Tech accompagne les entreprises qui recherchent un site web plus rentable, une meilleure visibilité locale ou des automatisations utiles. Nos pages prioritaires sont pensées pour Sète, l’Hérault, l’Occitanie, le Sud de la France et les besoins business en France.
+            </p>
+
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {[
+                {
+                  to: '/creation-site-web',
+                  title: 'Création de site web',
+                  desc: 'Sites vitrines, refontes et pages orientées conversion.',
+                },
+                {
+                  to: '/referencement-seo',
+                  title: 'Référencement SEO',
+                  desc: 'SEO local, architecture, snippets et contenus business.',
+                },
+                {
+                  to: '/automatisation-ia',
+                  title: 'Automatisation IA',
+                  desc: 'Workflows utiles, qualification de leads et gains de temps.',
+                },
+              ].map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className={`rounded-[1.8rem] border p-5 transition ${
+                    theme === 'dark'
+                      ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
+                      : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                  }`}
+                >
+                  <h3 className="text-xl font-semibold">{item.title}</h3>
+                  <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
+                    {item.desc}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto mt-10 max-w-6xl grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {[
+            ['/creation-site-web-sete', 'Création site web Sète'],
+            ['/agence-web-herault', 'Agence web Hérault'],
+            ['/referencement-seo-sete', 'SEO Sète'],
+            ['/automatisation-ia-occitanie', 'Automatisation IA Occitanie'],
+          ].map(([to, label]) => (
+            <Link
+              key={to}
+              to={to}
+              className={`rounded-[1.8rem] border p-5 transition ${
+                theme === 'dark'
+                  ? 'border-white/10 bg-white/5 hover:border-[#007BFF]/30'
+                  : 'border-black/10 bg-white/80 hover:border-[#007BFF]/30 shadow-lg'
+              }`}
+            >
+              <h2 className="text-lg font-semibold">{label}</h2>
+              <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
+                Page locale dédiée avec contenu unique, CTA et maillage vers les pages business.
+              </p>
+            </Link>
+          ))}
+        </section>
+      </main>
       <Footer />
     </div>
   );

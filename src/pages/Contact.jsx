@@ -349,7 +349,12 @@ export const Contact = () => {
     <div className={`min-h-screen flex flex-col transition-colors duration-500 ${
       theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
     }`}>
-      <SEO path="/contact" title={t('contact_v2.title')} />
+      <SEO
+        path="/contact"
+        title="Contact Optimum Tech | Devis site web, SEO et automatisation IA"
+        description="Contactez Optimum Tech pour un devis de création de site web, de référencement SEO ou d’automatisation IA à Sète, dans l’Hérault, en Occitanie et en France."
+        keywords="contact Optimum Tech, devis site web sète, agence web hérault, SEO local sète, automatisation IA france"
+      />
       <Navbar />
 
       <main className="flex-grow container mx-auto px-6 py-32 flex flex-col items-center">
