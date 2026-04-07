@@ -176,13 +176,25 @@ export const BlogArticlePage = () => {
                   {post.cta}
                 </p>
                 <div className="mt-6">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-3 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#007BFF]/90"
-                  >
-                    Discuter de votre projet
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  <div className="flex flex-col gap-3 sm:flex-row">
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center gap-3 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#007BFF]/90"
+                    >
+                      Envoyer un message
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <a
+                      href="tel:+33745305113"
+                      className={`inline-flex items-center gap-3 rounded-full border px-6 py-3 text-sm font-semibold transition ${
+                        theme === 'dark'
+                          ? 'border-white/10 bg-white/5 text-white hover:bg-white/10'
+                          : 'border-black/10 bg-white/70 text-black hover:bg-white'
+                      }`}
+                    >
+                      Nous appeler
+                    </a>
+                  </div>
                 </div>
               </section>
             </div>

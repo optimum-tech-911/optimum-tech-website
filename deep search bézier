@@ -1,0 +1,115 @@
+# 01 - Live SERP Competitor Analysis : Béziers Web Agency
+
+## What is currently ranking in Béziers?
+Based on live Google Search data, the Béziers market is currently dominated by freelancers and agile micro-agencies battling heavily on **transparent pricing** and **subscription models**.
+
+### The Main Competitors:
+1. **IDEAXE (M. Bersali Freelance):** Highly visible. 
+   * **Strategy:** Positions as a freelancer but uses agency "we" language. 
+   * **Pricing hook:** Explicitly states prices. 750€ for a vitrine site (up to 5 pages), 1990€ for WooCommerce. 
+   * **Strengths:** Heavily pushes WordPress/WooCommerce, highlights speed, and has strong local testimonials mentioning surrounding towns like Sérignan.
+2. **Publiko (Agence Web Béziers):** Extremely aggressive local positioning.
+   * **Strategy:** High local trust. They specifically say "We are not at the other end of France" and mention local cultural markers like the "Férias" and "Biterrois". 
+   * **Pricing hook:** They offer a "Site as a Service" model. 0€ creation fee + 49€/month, or a 250€ HT one-off basic site. 
+3. **PrestaWeb:** A larger regional player (Montpellier/Béziers).
+   * **Strategy:** Focuses heavily on PrestaShop for e-commerce, 17 years of experience, and uses massive FAQ sections on their pages to capture long-tail keywords.
+4. **PixelHub:** * **Strategy:** Focuses on higher-end aesthetics, SaaS, and custom development.
+5. **Grafibox (Pouzolles) & Net.fr (Manuel Cebrian):** * **Strategy:** Older school, standard agency copy relying on regional age/authority.
+
+## The Gap & Your Opportunity
+You cannot out-cheap Publiko's 0€ + 49€/mo model without killing your margins. Your best angle is to position the agency right in the middle: **The Premium, High-ROI Local Partner.**
+Do not sell a "250€ template." Sell a custom, conversion-optimized machine for Biterrois businesses who have outgrown cheap freelancer sites. 
+
+**Winning Page Format:**
+You must use extreme local relevance. Mention "Biterrois", the "Hérault" economy, and offer to "meet for a coffee in Béziers." Combine this with premium case studies that the cheaper competitors lack.
+
+# 02 - Search Intent & Site Architecture
+
+## Search Intent Mapping
+
+| Keyword Cluster | Main Intent | What the User Wants | Ideal Ranking Page Format |
+| :--- | :--- | :--- | :--- |
+| **création site internet Béziers** | Commercial Investigation | A trusted local partner. | **Core Local Homepage:** High trust, team photos, clear value proposition, robust portfolio of Biterrois businesses. |
+| **création site vitrine Béziers** | Transactional | A fast, professional presence. | **Service Page:** Clear starting prices (e.g., "À partir de 900€"), fast turnaround, mobile-first design focus. |
+| **création site e-commerce Béziers** | Transactional | Complex needs. Selling products online. | **Service Page:** Highlight WooCommerce/Shopify, case studies showing revenue growth, and training/support. |
+| **refonte site internet Béziers** | Transactional (Pain-driven) | Current site is broken or invisible. | **Service Page:** "Before/After" visual sliders, speed comparison charts, explanation of SEO migration. |
+| **freelance web Béziers** | Commercial Investigation | Budget-conscious or looking for 1-on-1 contact. | **Profile Page:** Counter this by offering "a dedicated project manager" so they get freelancer proximity with agency reliability. |
+
+## Content Architecture
+
+A flat, highly interlinked architecture works best for local SEO.
+
+* `/` (Homepage optimized for *Agence Web Béziers*)
+    * `/creation-site-vitrine/` (Broad service)
+    * `/creation-site-e-commerce/` (Broad service)
+    * `/refonte-site-internet/` (Broad service)
+    * `/maintenance-wordpress/` (Crucial: Competitors like IDEAXE are pushing maintenance heavily)
+    * `/solutions/` (Industry Hub)
+        * `/solutions/domaine-viticole/` (Niche page)
+        * `/solutions/artisan-btp/` (Niche page)
+        * `/solutions/chr-tourisme/` (Niche page)
+    * `/realisations/` (Portfolio - Tagged by industry)
+
+    # 03 - Local Business Verticals & Market Relevance
+
+## Business Vertical Opportunities in Béziers
+
+Béziers relies heavily on agriculture, tourism, and local services. Do not target "startups" here; target the traditional economy.
+
+1. **Viticulture (Domaines & Caves)**
+   * **Value:** Very High. Need to bypass distributors via D2C sales and attract wine tourism.
+   * **Strategy:** Create a niche page: *Création de site internet pour domaine viticole*. Highlight international SEO, age-gate compliance, and Click & Collect.
+2. **Tourism & Accommodation (Gîtes, Hôtels near Canal du Midi)**
+   * **Value:** High. Desperate to reduce OTA (Booking.com) commission fees.
+   * **Strategy:** Showcase a case study on increasing direct bookings with an integrated calendar system.
+3. **Artisans & BTP (Plumbers, Electricians, Roofers)**
+   * **Value:** High lifetime value (SEO retainers).
+   * **Strategy:** Bundle a "Site Vitrine + Google Business Profile" package specifically for tradesmen to capture local emergency searches.
+4. **Real Estate (Agences Immobilières indépendantes)**
+   * **Value:** High. Booming market in Occitanie.
+   * **Strategy:** Target independent agencies looking to outrank national franchises locally via custom property feeds.
+
+## Local Copywriting Angle
+Use local markers in your H1s, H2s, and body text. 
+* *Bad:* "We build modern websites to grow your business."
+* *Good:* "Nous accompagnons les artisans et commerçants du Biterrois dans leur croissance digitale. Rencontrons-nous autour d'un café à Béziers pour parler de votre projet."
+
+# 04 - Conversion Tactics, Local Signals & 30-Day Action Plan
+
+## Conversion Strategy
+
+* **Pricing Framing:** The Béziers market expects prices upfront. Use a "Starting at [X]€" model. This filters out the 200€ budget clients (let Publiko have them) while keeping you competitive against IDEAXE.
+* **The Process Block:** Local businesses fear long, messy web projects. Include a 4-step visual process: *1. Rencontre à Béziers > 2. Maquette > 3. Développement > 4. Lancement & Formation.*
+* **Maintenance & Security Focus:** Competitors highlight daily backups and malware protection. You must include a "Maintenance & Support" section on your service pages to reassure clients.
+* **Ownership Guarantee:** State clearly: "Vous êtes propriétaire à 100% de votre site et de votre nom de domaine."
+
+## Google Business Profile (GBP) & Trust Signals
+
+* **Categories:** Primary: "Agence de création de sites web". Secondary: "Concepteur de sites Web", "Agence de marketing".
+* **Review Strategy:** GBP is critical. Ask clients to write highly specific reviews including the city and service. Example: "Super agence qui a créé la refonte de notre site e-commerce à Béziers." (Competitors like Publiko boast 5/5 ratings; you must match this social proof).
+* **Local Schema:** Implement `LocalBusiness` Schema on the homepage detailing your Béziers coordinates.
+
+## Final Action Plan (First 30 Days)
+
+**What to publish first:**
+1. Homepage (Agence Web Béziers)
+2. Core Service pages (Vitrine, E-commerce, Refonte, Maintenance)
+3. Google Business Profile setup + immediate push for 5 initial reviews.
+
+**Top 5 Pages to Build First:**
+1. `Homepage`: Focus on *Agence Web Béziers* and trust signals.
+2. `/creation-site-vitrine/`: Target *Création Site Vitrine Béziers*.
+3. `/creation-site-e-commerce/`: Target *Création Site E-commerce Béziers*.
+4. `/refonte-site-internet/`: Target *Refonte Site Web Béziers*.
+5. `/solutions/domaine-viticole/`: Niche target for regional wineries.
+
+**First 5 Supporting Blog Posts (Long-tail capture):**
+1. *Combien coûte la création d'un site internet à Béziers en 2026 ?*
+2. *Artisans : Pourquoi un site web et une fiche Google sont indispensables dans l'Hérault.*
+3. *Vignerons : Les clés d'un site e-commerce qui vend vraiment sans intermédiaire.*
+4. *Comment choisir son agence web à Béziers (Les pièges à éviter).*
+5. *Pourquoi la maintenance WordPress est cruciale pour votre TPE.*
+
+**Mistakes to Avoid:**
+* **Hiding your pricing:** The top-ranking competitors in Béziers explicitly show their prices. If you hide yours, you look expensive and untrustworthy.
+* **Sounding like a Parisian startup:** Do not use corporate jargon. The winning competitors specifically talk about the region, the *Férias*, and the local economy. Match that energy.

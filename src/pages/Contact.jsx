@@ -6,6 +6,7 @@ import { useI18n } from '../i18n.jsx';
 import { useTheme } from '../context/ThemeContext';
 import { SEO } from '../components/SEO.jsx';
 import { useLocation } from 'react-router-dom';
+import { supabase } from '../../supabaseClient';
 import { 
   Rocket, 
   ChevronLeft, 
@@ -139,6 +140,30 @@ export const Contact = () => {
   const isRTL = lang === 'ar';
   const tapeRef = useRef(null);
   const [isInteracting, setIsInteracting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    company: '',
+    message: '',
+    businessSector: '',
+    objective: '',
+    teamSize: '',
+    appVision: '',
+    employeeCount: '',
+    websiteType: '',
+    role: '',
+    currentProblem: '',
+    dailyProblem: '',
+    replaceTask: '',
+    consultationNeed: '',
+  });
+
+  const setField = (key) => (e) => {
+    setFormData((prev) => ({ ...prev, [key]: e.target.value }));
+  };
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -234,6 +259,113 @@ export const Contact = () => {
     else if (el.scrollLeft > segment * 1.5) el.scrollLeft -= segment;
   };
 
+  const categoryLabel = categories.find((item) => item.id === category)?.title || 'Demande générale';
+
+  const buildSubject = () => {
+    const companyPart = formData.company ? ` - ${formData.company}` : '';
+    return `${categoryLabel}${companyPart}`;
+  };
+
+  const buildBody = () => {
+    const lines = [
+      `Nom: ${formData.fullName || '-'}`,
+      `Email: ${formData.email || '-'}`,
+      `Telephone: ${formData.phone || '-'}`,
+      `Entreprise: ${formData.company || '-'}`,
+      `Categorie: ${categoryLabel}`,
+    ];
+
+    if (category === 'app') {
+      lines.push(`Secteur: ${formData.businessSector || '-'}`);
+      lines.push(`Objectif principal: ${formData.objective || '-'}`);
+      lines.push(`Taille de l equipe: ${formData.teamSize || '-'}`);
+      lines.push(`Vision de l application: ${formData.appVision || '-'}`);
+    }
+
+    if (category === 'web') {
+      lines.push(`Secteur: ${formData.businessSector || '-'}`);
+      lines.push(`Nombre d employes: ${formData.employeeCount || '-'}`);
+      lines.push(`Type de site: ${formData.websiteType || '-'}`);
+    }
+
+    if (category === 'software') {
+      lines.push(`Role: ${formData.role || '-'}`);
+      lines.push(`Secteur: ${formData.businessSector || '-'}`);
+      lines.push(`Probleme actuel: ${formData.currentProblem || '-'}`);
+    }
+
+    if (category === 'ai') {
+      lines.push(`Secteur: ${formData.businessSector || '-'}`);
+      lines.push(`Problemes quotidiens: ${formData.dailyProblem || '-'}`);
+      lines.push(`Tache a automatiser: ${formData.replaceTask || '-'}`);
+    }
+
+    if (category === 'consultation') {
+      lines.push(`Secteur: ${formData.businessSector || '-'}`);
+      lines.push(`Besoin: ${formData.consultationNeed || '-'}`);
+    }
+
+    if (!category) {
+      lines.push(`Message: ${formData.message || '-'}`);
+    } else if (formData.message) {
+      lines.push(`Message complementaire: ${formData.message}`);
+    }
+
+    return lines.join('\n');
+  };
+
+  const resetForm = () => {
+    setFormData({
+      fullName: '',
+      email: '',
+      phone: '',
+      company: '',
+      message: '',
+      businessSector: '',
+      objective: '',
+      teamSize: '',
+      appVision: '',
+      employeeCount: '',
+      websiteType: '',
+      role: '',
+      currentProblem: '',
+      dailyProblem: '',
+      replaceTask: '',
+      consultationNeed: '',
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitError('');
+
+    if (!supabase) {
+      setSubmitError('Supabase is not configured.');
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      const payload = {
+        subject: buildSubject(),
+        body: buildBody(),
+        from_email: formData.email,
+        status: 'Unread',
+      };
+
+      const { error } = await supabase.from('messages').insert([payload]);
+      if (error) throw error;
+
+      resetForm();
+      setStep('success');
+    } catch (error) {
+      console.error('Error sending contact request:', error);
+      setSubmitError(error.message || 'Unable to send your request right now.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const renderFormFields = () => {
     const inputClass = `w-full p-4 rounded-2xl border transition-all duration-300 ${
       theme === 'dark' 
@@ -248,19 +380,19 @@ export const Contact = () => {
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
             <div>
               <label className={labelClass}>Quel est votre domaine d’activité ?</label>
-              <input required type="text" className={inputClass} placeholder="Ex: E-commerce, Sport, Éducation..." />
+              <input required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Ex: E-commerce, Sport, Éducation..." />
             </div>
             <div>
               <label className={labelClass}>Quel est votre objectif principal ?</label>
-              <input required type="text" className={inputClass} placeholder="Ex: Gagner des utilisateurs, automatiser les ventes..." />
+              <input required type="text" value={formData.objective} onChange={setField('objective')} className={inputClass} placeholder="Ex: Gagner des utilisateurs, automatiser les ventes..." />
             </div>
             <div>
               <label className={labelClass}>Combien de personnes êtes-vous ?</label>
-              <input required type="text" className={inputClass} placeholder="Ex: 1-5, 10+, Juste moi..." />
+              <input required type="text" value={formData.teamSize} onChange={setField('teamSize')} className={inputClass} placeholder="Ex: 1-5, 10+, Juste moi..." />
             </div>
             <div>
               <label className={labelClass}>Décrivez brièvement l’application parfaite que vous imaginez :</label>
-              <textarea required className={inputClass} rows={4} placeholder="Votre vision..." />
+              <textarea required value={formData.appVision} onChange={setField('appVision')} className={inputClass} rows={4} placeholder="Votre vision..." />
             </div>
           </motion.div>
         );
@@ -269,15 +401,15 @@ export const Contact = () => {
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
             <div>
               <label className={labelClass}>Quel est votre domaine d’activité ?</label>
-              <input required type="text" className={inputClass} placeholder="Ex: Immobilier, Restaurant, Portfolio..." />
+              <input required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Ex: Immobilier, Restaurant, Portfolio..." />
             </div>
             <div>
               <label className={labelClass}>Combien d’employés avez-vous ?</label>
-              <input required type="text" className={inputClass} placeholder="Nombre de collaborateurs..." />
+              <input required type="text" value={formData.employeeCount} onChange={setField('employeeCount')} className={inputClass} placeholder="Nombre de collaborateurs..." />
             </div>
             <div>
               <label className={labelClass}>Quel type de site souhaitez-vous ?</label>
-              <select required className={inputClass}>
+              <select required value={formData.websiteType} onChange={setField('websiteType')} className={inputClass}>
                 <option value="">Sélectionnez un type...</option>
                 <option value="vitrine">Site Vitrine</option>
                 <option value="ecommerce">Vente de produits (E‑commerce)</option>
@@ -293,15 +425,15 @@ export const Contact = () => {
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
             <div>
               <label className={labelClass}>Êtes-vous propriétaire d’entreprise ou chargé de mission ?</label>
-              <input required type="text" className={inputClass} placeholder="Votre rôle..." />
+              <input required type="text" value={formData.role} onChange={setField('role')} className={inputClass} placeholder="Votre rôle..." />
             </div>
             <div>
               <label className={labelClass}>Quel est votre domaine d’activité ?</label>
-              <input required type="text" className={inputClass} placeholder="Ex: Logistique, Finance, Santé..." />
+              <input required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Ex: Logistique, Finance, Santé..." />
             </div>
             <div>
               <label className={labelClass}>Quel problème rencontrez-vous actuellement ?</label>
-              <textarea required className={inputClass} rows={4} placeholder="Décrivez votre défi technique..." />
+              <textarea required value={formData.currentProblem} onChange={setField('currentProblem')} className={inputClass} rows={4} placeholder="Décrivez votre défi technique..." />
             </div>
           </motion.div>
         );
@@ -315,15 +447,15 @@ export const Contact = () => {
             </div>
             <div>
               <label className={labelClass}>Quel est votre domaine d’activité ?</label>
-              <input required type="text" className={inputClass} placeholder="Votre secteur..." />
+              <input required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Votre secteur..." />
             </div>
             <div>
               <label className={labelClass}>Quels sont les problèmes quotidiens pour lesquels vous seriez prêt à payer ?</label>
-              <textarea required className={inputClass} rows={3} placeholder="Tâches répétitives, erreurs humaines..." />
+              <textarea required value={formData.dailyProblem} onChange={setField('dailyProblem')} className={inputClass} rows={3} placeholder="Tâches répétitives, erreurs humaines..." />
             </div>
             <div>
               <label className={labelClass}>Quel poste ou tâche souhaiteriez-vous remplacer par une IA précise et infatigable ?</label>
-              <textarea required className={inputClass} rows={4} placeholder="Décrivez le besoin..." />
+              <textarea required value={formData.replaceTask} onChange={setField('replaceTask')} className={inputClass} rows={4} placeholder="Décrivez le besoin..." />
             </div>
           </motion.div>
         );
@@ -332,11 +464,11 @@ export const Contact = () => {
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
             <div>
               <label className={labelClass}>Quel est votre domaine d’activité ?</label>
-              <input required type="text" className={inputClass} placeholder="Votre secteur..." />
+              <input required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Votre secteur..." />
             </div>
             <div>
               <label className={labelClass}>Décrivez brièvement votre problème ou besoin :</label>
-              <textarea required className={inputClass} rows={4} placeholder="Comment pouvons-nous vous aider ?" />
+              <textarea required value={formData.consultationNeed} onChange={setField('consultationNeed')} className={inputClass} rows={4} placeholder="Comment pouvons-nous vous aider ?" />
             </div>
           </motion.div>
         );
@@ -438,7 +570,7 @@ export const Contact = () => {
                 <h2 className="text-3xl font-bold">{category ? categories.find(c => c.id === category)?.title : t('contact_v2.fillForm')}</h2>
               </div>
 
-              <form className="space-y-8" onSubmit={(e) => { e.preventDefault(); setStep('success'); }}>
+              <form className="space-y-8" onSubmit={handleSubmit}>
                   {category && (
                     <>
                       {renderFormFields()}
@@ -449,7 +581,7 @@ export const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Nom complet</label>
-                      <input required type="text" placeholder="Ex: Jean Dupont" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <input required type="text" value={formData.fullName} onChange={setField('fullName')} placeholder="Ex: Jean Dupont" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
@@ -457,7 +589,7 @@ export const Contact = () => {
                     </div>
                     <div className="space-y-2">
                       <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Email professionnel</label>
-                      <input required type="email" placeholder="Ex: jean@entreprise.com" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <input required type="email" value={formData.email} onChange={setField('email')} placeholder="Ex: jean@entreprise.com" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
@@ -465,7 +597,7 @@ export const Contact = () => {
                     </div>
                     <div className="space-y-2">
                       <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Téléphone</label>
-                      <input required type="tel" placeholder="Ex: +33 6 12 34 56 78" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <input required type="tel" value={formData.phone} onChange={setField('phone')} placeholder="Ex: +33 6 12 34 56 78" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
@@ -473,7 +605,7 @@ export const Contact = () => {
                     </div>
                     <div className="space-y-2">
                       <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Entreprise / Organisation</label>
-                      <input type="text" placeholder="Nom de votre entreprise" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <input type="text" value={formData.company} onChange={setField('company')} placeholder="Nom de votre entreprise" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
@@ -484,7 +616,7 @@ export const Contact = () => {
                   {!category && (
                     <div className="space-y-2">
                       <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message</label>
-                      <textarea required rows={5} placeholder="Comment pouvons-nous vous aider ?" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <textarea required value={formData.message} onChange={setField('message')} rows={5} placeholder="Comment pouvons-nous vous aider ?" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
@@ -492,9 +624,30 @@ export const Contact = () => {
                     </div>
                   )}
 
-                  <button type="submit" className="w-full py-5 rounded-full bg-[#007BFF] text-white font-bold text-xl shadow-xl shadow-[#007BFF]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+                  {category && (
+                    <div className="space-y-2">
+                      <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message complémentaire</label>
+                      <textarea value={formData.message} onChange={setField('message')} rows={4} placeholder="Ajoutez un contexte utile, vos délais ou votre budget." className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                        theme === 'dark' 
+                          ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
+                          : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
+                      }`} />
+                    </div>
+                  )}
+
+                  {submitError && (
+                    <div className={`rounded-2xl border px-4 py-3 text-sm ${
+                      theme === 'dark'
+                        ? 'border-red-500/20 bg-red-500/10 text-red-200'
+                        : 'border-red-500/30 bg-red-500/5 text-red-600'
+                    }`}>
+                      {submitError}
+                    </div>
+                  )}
+
+                  <button disabled={isSubmitting} type="submit" className="w-full py-5 rounded-full bg-[#007BFF] text-white font-bold text-xl shadow-xl shadow-[#007BFF]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:hover:scale-100">
                     <Send size={20} />
-                    Envoyer ma demande
+                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
                   </button>
                 </form>
             </motion.div>
