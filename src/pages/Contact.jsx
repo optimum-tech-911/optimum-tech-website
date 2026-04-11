@@ -135,7 +135,7 @@ export const Contact = () => {
   const { t, lang } = useI18n();
   const { theme } = useTheme();
   const location = useLocation();
-  const [step, setStep] = useState('selection'); // selection, form, success
+  const [step, setStep] = useState('form');
   const [category, setCategory] = useState(null);
   const isRTL = lang === 'ar';
   const tapeRef = useRef(null);
@@ -491,83 +491,82 @@ export const Contact = () => {
 
       <main className="flex-grow container mx-auto px-6 py-32 flex flex-col items-center">
         <AnimatePresence mode="wait">
-          {step === 'selection' && (
-            <motion.div
-              key="selection"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="w-full max-w-5xl"
-            >
-              <div className="text-center mb-16">
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4">{t('contact_v2.title')}</h1>
-                <p className="text-xl opacity-50 font-light">{t('contact_v2.subtitle')}</p>
-              </div>
-
-              <div className="w-full overflow-hidden relative mb-12">
-                <div
-                  ref={tapeRef}
-                  onScroll={handleTapeScroll}
-                  onMouseEnter={() => setIsInteracting(true)}
-                  onMouseLeave={() => setIsInteracting(false)}
-                  onPointerDown={() => setIsInteracting(true)}
-                  onPointerUp={() => setIsInteracting(false)}
-                  onPointerCancel={() => setIsInteracting(false)}
-                  onTouchStart={() => setIsInteracting(true)}
-                  onTouchEnd={() => setIsInteracting(false)}
-                  className="w-full overflow-x-auto no-scrollbar"
-                  dir="ltr"
-                >
-                  <div className="flex items-center gap-8 px-4 w-max py-2">
-                    {tapeItems.map((cat, i) => (
-                      <ContactOption
-                        key={`${cat.id}-${i}`}
-                        icon={cat.icon}
-                        title={cat.title}
-                        image={cat.image}
-                        delay={i % tapeBase.length}
-                        onClick={() => { setCategory(cat.id); setStep('form'); }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-center">
-                <button
-                  onClick={() => setStep('form')}
-                  className={`px-8 py-4 rounded-full font-bold transition-all ${
-                    theme === 'dark' ? 'bg-white/10 hover:bg-white/20' : 'bg-black/5 hover:bg-black/10'
-                  }`}
-                >
-                  {t('contact_v2.fillForm')}
-                </button>
-              </div>
-            </motion.div>
-          )}
-
           {step === 'form' && (
             <motion.div
               key="form"
-              initial={{ opacity: 0, scale: 0.95, rotateX: -10 }}
-              animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-              exit={{ opacity: 0, scale: 0.95, rotateX: 10 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 25 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.25 }}
               className={`w-full max-w-3xl p-8 md:p-12 rounded-[3rem] border shadow-2xl relative ${
                 theme === 'dark' ? 'bg-black/40 border-white/10' : 'bg-gray-500/10 border-black/10 backdrop-blur-2xl shadow-2xl'
               }`}
-              style={{ perspective: 1000 }}
             >
-              <button
-                onClick={() => { setCategory(null); setStep('selection'); }}
-                className="absolute top-8 left-8 flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity"
-              >
-                <ChevronLeft size={20} />
-                <span>{t('contact_v2.back')}</span>
-              </button>
+              <div className="text-center mb-10">
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Parlez-nous de votre projet</h1>
+                <p className={`mt-4 text-base leading-8 md:text-lg ${theme === 'dark' ? 'text-white/65' : 'text-black/65'}`}>
+                  Decrivez simplement votre besoin en creation de site web, SEO local, automatisation IA ou accompagnement digital. Nous revenons vers vous rapidement avec une reponse claire.
+                </p>
+              </div>
 
-              <div className="text-center mb-12 mt-4">
-                <h2 className="text-3xl font-bold">{category ? categories.find(c => c.id === category)?.title : t('contact_v2.fillForm')}</h2>
+              <div className="mb-10 grid gap-4 md:grid-cols-3">
+                {[
+                  { label: 'Telephone', value: '+33 7 45 30 51 13', href: 'tel:+33745305113' },
+                  { label: 'Email', value: 'optimum.tech.911@gmail.com', href: 'mailto:optimum.tech.911@gmail.com' },
+                  { label: 'WhatsApp', value: 'Envoyer un message', href: 'https://wa.me/33745305113' },
+                ].map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target={item.label === 'WhatsApp' ? '_blank' : undefined}
+                    rel={item.label === 'WhatsApp' ? 'noopener noreferrer' : undefined}
+                    className={`rounded-[1.6rem] border p-4 transition ${
+                      theme === 'dark'
+                        ? 'border-white/10 bg-white/5 hover:bg-white/10'
+                        : 'border-black/10 bg-black/5 hover:bg-black/10'
+                    }`}
+                  >
+                    <div className="text-xs uppercase tracking-[0.16em] text-[#007BFF]">{item.label}</div>
+                    <div className="mt-2 text-sm font-semibold md:text-base">{item.value}</div>
+                  </a>
+                ))}
+              </div>
+
+              <div className="mb-10">
+                <p className={`text-sm font-medium mb-3 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
+                  Vous pouvez aussi preciser votre besoin principal :
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setCategory(null)}
+                    className={`rounded-full border px-4 py-2 text-sm transition ${
+                      category === null
+                        ? 'border-[#007BFF]/40 bg-[#007BFF]/15 text-[#007BFF]'
+                        : theme === 'dark'
+                          ? 'border-white/10 bg-white/5 text-white/75 hover:bg-white/10'
+                          : 'border-black/10 bg-black/5 text-black/75 hover:bg-black/10'
+                    }`}
+                  >
+                    Demande generale
+                  </button>
+                  {categories.map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => setCategory(item.id)}
+                      className={`rounded-full border px-4 py-2 text-sm transition ${
+                        category === item.id
+                          ? 'border-[#007BFF]/40 bg-[#007BFF]/15 text-[#007BFF]'
+                          : theme === 'dark'
+                            ? 'border-white/10 bg-white/5 text-white/75 hover:bg-white/10'
+                            : 'border-black/10 bg-black/5 text-black/75 hover:bg-black/10'
+                      }`}
+                    >
+                      {item.title}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <form className="space-y-8" onSubmit={handleSubmit}>
@@ -664,7 +663,7 @@ export const Contact = () => {
                 <Rocket size={48} />
               </div>
               <h2 className="text-4xl font-bold">Demande envoyée !</h2>
-              <p className={`text-xl max-w-md mx-auto ${theme === 'dark' ? 'text-white/60' : 'text-black/60'}`}>
+                <p className={`text-xl max-w-md mx-auto ${theme === 'dark' ? 'text-white/60' : 'text-black/60'}`}>
                 Nous avons bien reçu votre formulaire. Nous reviendrons vers vous dans les plus brefs délais.
               </p>
               
@@ -677,10 +676,10 @@ export const Contact = () => {
               </div>
 
               <button
-                onClick={() => { setStep('selection'); setCategory(null); }}
+                onClick={() => { setStep('form'); setCategory(null); }}
                 className="px-8 py-4 rounded-full border border-current opacity-50 hover:opacity-100 transition-opacity"
               >
-                Retour à l’accueil
+                Envoyer une autre demande
               </button>
             </motion.div>
           )}

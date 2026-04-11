@@ -78,7 +78,7 @@ export const Home = () => {
     return <canvas ref={canvasRef} className="absolute inset-0" />;
   };
 
-  const matrixEnabled = !prefersReducedMotion && theme === 'dark';
+  const matrixEnabled = false;
 
   return (
     <div className={`min-h-screen flex flex-col relative transition-colors duration-500 ${
@@ -139,7 +139,7 @@ export const Home = () => {
       <Navbar />
       {isMobile && theme === 'dark' && <div className="absolute inset-0 z-0 pointer-events-none mobile-ambient" />}
       {matrixEnabled && (
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
           <BlueMatrix mobile={isMobile} />
         </div>
       )}
@@ -150,31 +150,31 @@ export const Home = () => {
             theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
           }`}>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
-              Services prioritaires
+              Premiers pas
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
-              Une architecture plus claire pour les recherches locales à forte intention
+              Avancez rapidement vers l action qui compte pour votre projet
             </h2>
             <p className={`mt-5 max-w-4xl text-base leading-8 md:text-lg ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
-              Optimum Tech accompagne les entreprises qui recherchent un site web plus rentable, une meilleure visibilité locale ou des automatisations utiles. Nos pages prioritaires sont pensées pour Sète, l’Hérault, l’Occitanie, le Sud de la France et les besoins business en France.
+              Nous avons simplifié le parcours pour vous aider a faire trois choses rapidement : decouvrir les services, voir des realisations concretes et demander un devis adapte a votre activite.
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {[
                 {
-                  to: '/creation-site-web',
-                  title: 'Création de site web',
-                  desc: 'Sites vitrines, refontes et pages orientées conversion.',
+                  to: '/services',
+                  title: 'Decouvrir les services',
+                  desc: 'Creation de site web, SEO local, automatisation IA et accompagnement digital.',
                 },
                 {
-                  to: '/referencement-seo',
-                  title: 'Référencement SEO',
-                  desc: 'SEO local, architecture, snippets et contenus business.',
+                  to: '/projects',
+                  title: 'Voir les realisations',
+                  desc: 'Consultez des projets et des exemples de prestations utiles pour les entreprises.',
                 },
                 {
-                  to: '/automatisation-ia',
-                  title: 'Automatisation IA',
-                  desc: 'Workflows utiles, qualification de leads et gains de temps.',
+                  to: '/contact',
+                  title: 'Demander un devis',
+                  desc: 'Parlez de votre besoin et obtenez une reponse rapide par message, email ou telephone.',
                 },
               ].map((item) => (
                 <Link
@@ -196,11 +196,84 @@ export const Home = () => {
           </div>
         </section>
 
+        <section className="mx-auto mt-10 max-w-6xl">
+          <div className={`rounded-[2.5rem] border p-6 md:p-10 ${
+            theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+          }`}>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+              Confiance
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+              Une expertise digitale claire, locale et orientee resultats
+            </h2>
+            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+              {[
+                ['Base locale', 'Sete, Herault, Occitanie, France'],
+                ['Reponse rapide', 'Retour rapide par message, email ou telephone'],
+                ['Services concrets', 'Site vitrine, SEO local, automatisation IA, maintenance'],
+                ['Approche business', 'Des solutions pensees pour convertir, gagner du temps et etre visibles'],
+                ['Accompagnement humain', 'Des conseils clairs, un suivi direct, sans agence opaque'],
+              ].map(([title, desc]) => (
+                <div
+                  key={title}
+                  className={`rounded-[1.8rem] border p-5 ${
+                    theme === 'dark'
+                      ? 'border-white/10 bg-black/20'
+                      : 'border-black/10 bg-black/5'
+                  }`}
+                >
+                  <h3 className="text-lg font-semibold">{title}</h3>
+                  <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
+                    {desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto mt-10 max-w-6xl">
+          <div className={`rounded-[2.5rem] border p-6 md:p-10 ${
+            theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+          }`}>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+              Preuves concretes
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+              Des services utiles pour gagner en visibilite, en temps et en confiance
+            </h2>
+            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+              {[
+                ['Site vitrine professionnel', 'Un site clair, rapide et pense pour convertir', '/creation-site-web'],
+                ['SEO local', 'Ameliorez votre visibilite sur Google dans votre zone', '/referencement-seo'],
+                ['Automatisation IA', 'Gagnez du temps sur les taches repetitives', '/automatisation-ia'],
+                ['Maintenance et suivi', 'Un accompagnement fiable apres la mise en ligne', '/services'],
+                ['Reponse rapide', 'Un echange simple par telephone, email ou message', '/contact'],
+              ].map(([title, desc, to]) => (
+                <Link
+                  key={title}
+                  to={to}
+                  className={`rounded-[1.8rem] border p-5 transition ${
+                    theme === 'dark'
+                      ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
+                      : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                  }`}
+                >
+                  <h3 className="text-lg font-semibold">{title}</h3>
+                  <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
+                    {desc}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="mx-auto mt-10 max-w-6xl grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {[
-            ['/creation-site-web-sete', 'Création site web Sète'],
-            ['/agence-web-herault', 'Agence web Hérault'],
-            ['/referencement-seo-sete', 'SEO Sète'],
+            ['/creation-site-web-sete', 'Creation site web Sete'],
+            ['/agence-web-herault', 'Agence web Herault'],
+            ['/referencement-seo-sete', 'SEO Sete'],
             ['/automatisation-ia-occitanie', 'Automatisation IA Occitanie'],
           ].map(([to, label]) => (
             <Link
@@ -214,7 +287,7 @@ export const Home = () => {
             >
               <h2 className="text-lg font-semibold">{label}</h2>
               <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
-                Page locale dédiée avec contenu unique, CTA et maillage vers les pages business.
+                Une page locale claire pour les entreprises qui recherchent un partenaire digital proche et reactif.
               </p>
             </Link>
           ))}
