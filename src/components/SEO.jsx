@@ -26,6 +26,7 @@ export const SEO = ({
       <meta charSet="UTF-8" />
       <meta name="robots" content={robots} />
       <meta name="author" content="Optimum Tech" />
+      <meta name="msvalidate.01" content="F5677BF31E95B5616D068583AC27DC63" />
       <meta name="theme-color" content="#0A84FF" />
       <meta property="og:locale" content="fr_FR" />
       <meta property="og:site_name" content="Optimum Tech" />
