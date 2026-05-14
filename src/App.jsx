@@ -1,33 +1,49 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-const Home = React.lazy(() => import('./pages/Home').then((m) => ({ default: m.Home })));
-const Contact = React.lazy(() => import('./pages/Contact').then((m) => ({ default: m.Contact })));
-const Projects = React.lazy(() =>
+import { Home as HomeSync } from './pages/Home';
+import { Contact as ContactSync } from './pages/Contact';
+import { Projects as ProjectsSync } from './pages/Projects';
+import { Policy as PolicySync } from './pages/Policy';
+import { Services as ServicesSync } from './pages/Services';
+import { JobsPage as JobsPageSync } from './pages/Jobs';
+import { MenuPage as MenuPageSync } from './pages/Menu';
+import { PrivacyPolicy as PrivacyPolicySync } from './pages/PrivacyPolicy';
+import { CookiePolicy as CookiePolicySync } from './pages/CookiePolicy';
+import { BlogPage as BlogPageSync } from './pages/Blog';
+import { BlogArticlePage as BlogArticlePageSync } from './pages/BlogArticle';
+import { AuthPage as AuthPageSync } from './pages/Auth';
+import { AdminPanel as AdminPanelSync } from './pages/AdminPanel';
+import { SeoLandingPage as SeoLandingPageSync } from './pages/SeoLandingPage';
+import { AboutPage as AboutPageSync } from './pages/About';
+const isServer = typeof window === 'undefined';
+const Home = isServer ? HomeSync : React.lazy(() => import('./pages/Home').then((m) => ({ default: m.Home })));
+const Contact = isServer ? ContactSync : React.lazy(() => import('./pages/Contact').then((m) => ({ default: m.Contact })));
+const Projects = isServer ? ProjectsSync : React.lazy(() =>
   import('./pages/Projects').then((m) => ({ default: m.Projects }))
 );
-const Policy = React.lazy(() => import('./pages/Policy').then((m) => ({ default: m.Policy })));
-const Services = React.lazy(() => import('./pages/Services').then((m) => ({ default: m.Services })));
-const JobsPage = React.lazy(() => import('./pages/Jobs').then((m) => ({ default: m.JobsPage })));
-const MenuPage = React.lazy(() => import('./pages/Menu').then((m) => ({ default: m.MenuPage })));
-const PrivacyPolicy = React.lazy(() =>
+const Policy = isServer ? PolicySync : React.lazy(() => import('./pages/Policy').then((m) => ({ default: m.Policy })));
+const Services = isServer ? ServicesSync : React.lazy(() => import('./pages/Services').then((m) => ({ default: m.Services })));
+const JobsPage = isServer ? JobsPageSync : React.lazy(() => import('./pages/Jobs').then((m) => ({ default: m.JobsPage })));
+const MenuPage = isServer ? MenuPageSync : React.lazy(() => import('./pages/Menu').then((m) => ({ default: m.MenuPage })));
+const PrivacyPolicy = isServer ? PrivacyPolicySync : React.lazy(() =>
   import('./pages/PrivacyPolicy').then((m) => ({ default: m.PrivacyPolicy }))
 );
-const CookiePolicy = React.lazy(() =>
+const CookiePolicy = isServer ? CookiePolicySync : React.lazy(() =>
   import('./pages/CookiePolicy').then((m) => ({ default: m.CookiePolicy }))
 );
-const BlogPage = React.lazy(() => import('./pages/Blog').then((m) => ({ default: m.BlogPage })));
-const BlogArticlePage = React.lazy(() =>
+const BlogPage = isServer ? BlogPageSync : React.lazy(() => import('./pages/Blog').then((m) => ({ default: m.BlogPage })));
+const BlogArticlePage = isServer ? BlogArticlePageSync : React.lazy(() =>
   import('./pages/BlogArticle').then((m) => ({ default: m.BlogArticlePage }))
 );
-const AuthPage = React.lazy(() => import('./pages/Auth').then((m) => ({ default: m.AuthPage })));
-const AdminPanel = React.lazy(() =>
+const AuthPage = isServer ? AuthPageSync : React.lazy(() => import('./pages/Auth').then((m) => ({ default: m.AuthPage })));
+const AdminPanel = isServer ? AdminPanelSync : React.lazy(() =>
   import('./pages/AdminPanel').then((m) => ({ default: m.AdminPanel }))
 );
-const SeoLandingPage = React.lazy(() =>
+const SeoLandingPage = isServer ? SeoLandingPageSync : React.lazy(() =>
   import('./pages/SeoLandingPage').then((m) => ({ default: m.SeoLandingPage }))
 );
-const AboutPage = React.lazy(() =>
+const AboutPage = isServer ? AboutPageSync : React.lazy(() =>
   import('./pages/About').then((m) => ({ default: m.AboutPage }))
 );
 import { CookieBanner } from './components/CookieBanner.jsx';

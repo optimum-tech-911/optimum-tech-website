@@ -136,10 +136,10 @@ export const Navbar = () => {
     {
       title: 'Pages services',
       links: [
-        { to: '/services', label: 'Tous les services', description: 'Vue d ensemble des offres Optimum Tech.' },
+        { to: '/services', label: 'Tous les services', description: 'Vue d’ensemble des offres Optimum Tech.' },
         { to: '/creation-site-web', label: 'Création de site web', description: 'Sites vitrines, refontes et pages orientées conversion.' },
         { to: '/referencement-seo', label: 'Référencement SEO', description: 'SEO local, architecture et visibilité Google.' },
-        { to: '/automatisation-ia', label: 'Automatisation IA', description: 'Workflows, leads et gains de temps utiles.' },
+        { to: '/automatisation-ia', label: 'Automatisation IA', description: 'Automatisations utiles, workflows et intégrations métier.' },
       ],
     },
     {
@@ -162,26 +162,26 @@ export const Navbar = () => {
 
   const blogMenu = [
     {
-      title: 'Blog',
+      title: 'Guides piliers',
       links: [
         { to: '/blog', label: 'Tous les articles', description: 'Voir toute la bibliothèque de contenus.' },
-        { to: '/blog/comment-choisir-son-agence-web-beziers-pieges', label: 'Choisir son agence web à Béziers' },
-        { to: '/blog/combien-coute-creation-site-internet-beziers-2026', label: 'Prix d un site internet à Béziers' },
+        { to: '/blog/site-vitrine-ou-web-app-que-choisir-pour-son-activite', label: 'Site vitrine ou web app' },
+        { to: '/blog/seo-local-entreprise-ce-qu-il-faut-vraiment-comprendre', label: 'Comprendre le SEO local' },
       ],
     },
     {
-      title: 'Béziers & Hérault',
+      title: 'Visibilité locale',
       links: [
-        { to: '/blog/artisans-site-web-fiche-google-indispensables-herault', label: 'Artisans : site web + fiche Google' },
-        { to: '/blog/vignerons-site-ecommerce-vendre-sans-intermediaire', label: 'Vignerons : vendre sans intermédiaire' },
-        { to: '/blog/pourquoi-maintenance-wordpress-cruciale-tpe', label: 'Maintenance WordPress pour TPE' },
+        { to: '/blog/google-business-profile-et-site-web-comment-les-deux-travaillent-ensemble', label: 'Google Business Profile + site web' },
+        { to: '/blog/comment-une-entreprise-locale-transforme-son-site-en-demandes-de-contact', label: 'Transformer son site en demandes' },
+        { to: '/blog/etre-trouve-google-entreprise-locale-france', label: 'Être trouvé sur Google' },
       ],
     },
     {
-      title: 'Pages utiles',
+      title: 'Décider avant d’acheter',
       links: [
-        { to: '/creation-site-web', label: 'Service création de site web' },
-        { to: '/referencement-seo', label: 'Service référencement SEO' },
+        { to: '/blog/erreurs-qui-font-perdre-des-clients-sur-un-site-professionnel', label: 'Erreurs qui font perdre des clients' },
+        { to: '/blog/combien-coute-creation-site-web-professionnel-france', label: 'Budget d’un site professionnel' },
         { to: '/contact', label: 'Contact', description: 'Parler de votre projet.' },
       ],
     },

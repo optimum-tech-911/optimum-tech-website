@@ -1,12 +1,19 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Clock3, Target } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Target } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO.jsx';
 import { useTheme } from '../context/ThemeContext';
-import { blogPosts, getBlogPostBySlug } from '../data/blogPosts';
+import { getBlogPostBySlug, indexableBlogPosts } from '../data/blogPosts';
+import { editorialTeam, resourceTopics, siteMeta } from '../data/siteMeta';
+
+const formatDate = (date) =>
+  new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(date));
 
 export const BlogArticlePage = () => {
   const { theme } = useTheme();
@@ -17,27 +24,33 @@ export const BlogArticlePage = () => {
     return <Navigate to="/blog" replace />;
   }
 
-  const relatedPosts = blogPosts
+  const relatedPosts = indexableBlogPosts
     .filter((item) => item.slug !== post.slug && item.category === post.category)
     .slice(0, 3);
+  const articleLinks = resourceTopics
+    .flatMap((topic) => topic.links)
+    .filter((href) => href !== `/blog/${post.slug}`)
+    .slice(0, 4)
+    .map((href) => indexableBlogPosts.find((item) => `/blog/${item.slug}` === href))
+    .filter(Boolean);
 
   const articleSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
     datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    dateModified: post.updatedAt || post.publishedAt,
     inLanguage: 'fr-FR',
     mainEntityOfPage: `https://optimutech.fr/blog/${post.slug}`,
     author: {
       '@type': 'Organization',
-      name: 'Optimum Tech',
+      name: editorialTeam.name,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Optimum Tech',
-      url: 'https://optimutech.fr',
+      name: siteMeta.name,
+      url: siteMeta.url,
     },
     keywords: [post.targetKeyword, post.category, 'Optimum Tech'],
   };
@@ -52,10 +65,10 @@ export const BlogArticlePage = () => {
         path={`/blog/${post.slug}`}
         title={`${post.title} | Optimum Tech`}
         description={post.description}
+        robots={post.noindex ? 'noindex, follow' : 'index, follow'}
+        type="article"
+        schema={articleSchema}
       />
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
-      </Helmet>
       <Navbar />
 
       <main className="flex-1 px-4 py-28 md:px-6">
@@ -92,19 +105,22 @@ export const BlogArticlePage = () => {
             <div className={`bg-gradient-to-br ${post.heroTheme} px-6 py-10 md:px-10 md:py-14`}>
               <div className="mb-4 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
                 <span>{post.category}</span>
-                <span
-                  className={`inline-flex items-center gap-2 ${
-                    theme === 'dark' ? 'text-white/60' : 'text-black/60'
-                  }`}
-                >
-                  <Clock3 className="h-4 w-4" />
-                  {post.readTime}
-                </span>
               </div>
               <h1 className="max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">{post.title}</h1>
               <p className="mt-5 max-w-3xl text-base leading-8 text-black/70 md:text-xl">
                 {post.description}
               </p>
+              <div className={`mt-6 flex flex-wrap gap-5 text-sm ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
+                <span className="inline-flex items-center gap-2">
+                  <CalendarDays className="h-4 w-4" />
+                  Mis à jour le {formatDate(post.updatedAt || post.publishedAt)}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <Clock3 className="h-4 w-4" />
+                  {post.readTime}
+                </span>
+                <span>Par {editorialTeam.name}</span>
+              </div>
             </div>
 
             <div
@@ -132,15 +148,45 @@ export const BlogArticlePage = () => {
                   {post.audience}
                 </p>
                 <div className={`mt-5 text-xs uppercase tracking-[0.16em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
-                  Mot-cle principal
+                  Mot-clé principal
                 </div>
                 <p className="mt-2 text-sm font-medium">{post.targetKeyword}</p>
+                <div className={`mt-5 text-xs uppercase tracking-[0.16em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
+                  Contact
+                </div>
+                <a href={siteMeta.phoneHref} className="mt-2 block text-sm font-medium text-[#007BFF]">
+                  {siteMeta.phone}
+                </a>
               </aside>
             </div>
           </div>
 
           <div className="mx-auto mt-10 grid max-w-5xl gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
             <div className="space-y-10">
+              <section
+                className={`rounded-[2rem] border p-6 md:p-8 ${
+                  theme === 'dark'
+                    ? 'border-white/10 bg-white/5'
+                    : 'border-black/10 bg-white/80 shadow-lg'
+                }`}
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+                  Ce que vous allez comprendre
+                </p>
+                <div className={`mt-5 grid gap-4 md:grid-cols-2 ${theme === 'dark' ? 'text-white/76' : 'text-black/76'}`}>
+                  {post.sections.slice(0, 4).map((section) => (
+                    <div
+                      key={section.heading}
+                      className={`rounded-[1.5rem] border p-4 ${
+                        theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
+                      }`}
+                    >
+                      <p className="text-sm font-medium leading-7">{section.heading}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
               {post.sections.map((section) => (
                 <section
                   key={section.heading}
@@ -167,10 +213,10 @@ export const BlogArticlePage = () => {
                 }`}
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
-                  Passer a l action
+                  Passer à l’action
                 </p>
                 <h2 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl">
-                  Le bon outil digital doit vous rapporter plus qu il ne vous coute
+                  Le bon dispositif digital doit être utile avant d’être impressionnant
                 </h2>
                 <p className={`mt-4 max-w-3xl text-base leading-8 ${theme === 'dark' ? 'text-white/78' : 'text-black/78'}`}>
                   {post.cta}
@@ -185,7 +231,7 @@ export const BlogArticlePage = () => {
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                     <a
-                      href="tel:+33745305113"
+                      href={siteMeta.phoneHref}
                       className={`inline-flex items-center gap-3 rounded-full border px-6 py-3 text-sm font-semibold transition ${
                         theme === 'dark'
                           ? 'border-white/10 bg-white/5 text-white hover:bg-white/10'
@@ -208,7 +254,7 @@ export const BlogArticlePage = () => {
                 }`}
               >
                 <p className={`text-sm uppercase tracking-[0.18em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
-                  Articles lies
+                  Articles liés
                 </p>
                 <div className="mt-4 space-y-4">
                   {relatedPosts.map((item) => (
@@ -225,6 +271,33 @@ export const BlogArticlePage = () => {
                         {item.category}
                       </p>
                       <h3 className="mt-2 text-lg font-semibold leading-7">{item.title}</h3>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div
+                className={`rounded-[2rem] border p-5 ${
+                  theme === 'dark'
+                    ? 'border-white/10 bg-white/5'
+                    : 'border-black/10 bg-white/80 shadow-lg'
+                }`}
+              >
+                <p className={`text-sm uppercase tracking-[0.18em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
+                  À lire ensuite
+                </p>
+                <div className="mt-4 space-y-3">
+                  {articleLinks.map((item) => (
+                    <Link
+                      key={item.slug}
+                      to={`/blog/${item.slug}`}
+                      className={`block rounded-[1.4rem] border px-4 py-4 transition ${
+                        theme === 'dark'
+                          ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
+                          : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                      }`}
+                    >
+                      <span className="font-medium">{item.title}</span>
                     </Link>
                   ))}
                 </div>

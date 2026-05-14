@@ -26,16 +26,16 @@ const contentByLang = {
   fr: {
     seoTitle: 'Jobs | Optimum Tech',
     seoDescription:
-      "Profitez des opportunites chez Optimum Tech comme agent commercial, agent telephonique, apporteur d'affaires ou developpeur specialise.",
+      "Profitez des opportunités chez Optimum Tech comme agent commercial, agent téléphonique, apporteur d'affaires ou développeur spécialisé.",
     badge: 'Business development',
-    title: 'Profitez de nos opportunites.',
+    title: 'Profitez de nos opportunités.',
     subtitle:
-      "Nous ouvrons plusieurs opportunites pour des profils commerciaux, reseau et techniques qui veulent evoluer avec Optimum Tech autour de nos services, applications, solutions web, developpement backend et cybersecurite.",
+      "Nous ouvrons plusieurs opportunités pour des profils commerciaux, réseau et techniques qui veulent évoluer avec Optimum Tech autour de nos services, applications, solutions web, développement backend et cybersécurité.",
     primaryCta: 'Postuler via la page contact',
     secondaryCta: 'Discuter sur WhatsApp',
-    introTitle: 'Des opportunites concretes',
+    introTitle: 'Des opportunités concrètes',
     introBody:
-      "Nous recherchons des personnes capables de vendre, prospecter, ouvrir leur reseau ou renforcer notre execution technique. Certaines missions sont basees sur la performance, d autres peuvent evoluer vers une collaboration plus structuree.",
+      "Nous recherchons des personnes capables de vendre, prospecter, ouvrir leur réseau ou renforcer notre exécution technique. Certaines missions sont basées sur la performance, d’autres peuvent évoluer vers une collaboration plus structurée.",
     highlights: [
       'Missions commerciales et techniques',
       'Collaboration flexible selon le profil',
@@ -48,12 +48,12 @@ const contentByLang = {
         title: 'Agent commercial',
         tag: 'Prospection terrain et digitale',
         description:
-          "Vous prospectez nos services et nos applications aupres de clients potentiels, creez des opportunites et nous aidez a transformer les besoins en contrats.",
+          "Vous prospectez nos services et nos applications auprès de clients potentiels, créez des opportunités et nous aidez à transformer les besoins en contrats.",
         responsibilities: [
           'Prospecter entreprises, commercants et porteurs de projet',
           'Presenter nos services web, logiciels, IA et applications',
           'Qualifier les besoins et generer des rendez-vous utiles',
-          'Suivre les opportunites commerciales avec serieux',
+          'Suivre les opportunités commerciales avec sérieux',
         ],
         profile: [
           'Aisance commerciale et gout du resultat',
@@ -63,8 +63,8 @@ const contentByLang = {
       },
       {
         icon: PhoneCall,
-        title: 'Agent telephonique',
-        tag: 'Telephone, email, relance',
+        title: 'Agent téléphonique',
+        tag: 'Téléphone, e-mail, relance',
         description:
           "Vous prospectez principalement par telephone, email et suivi commercial afin de generer des rendez-vous et faire avancer les discussions avec les prospects.",
         responsibilities: [
@@ -76,7 +76,7 @@ const contentByLang = {
         profile: [
           'Bonne diction et aisance au telephone',
           'Patience, rigueur et constance',
-          'Capacite a convaincre sans etre agressif',
+          'Capacité à convaincre sans être agressif',
         ],
       },
       {
@@ -102,7 +102,7 @@ const contentByLang = {
         title: 'Developpeur backend',
         tag: 'Execution technique',
         description:
-          "Vous participez a la conception et au developpement de la partie serveur de nos projets, API, logiques metier et integrations techniques.",
+          "Vous participez à la conception et au développement de la partie serveur de nos projets, API, logiques métier et intégrations techniques.",
         responsibilities: [
           'Developper des APIs et logiques backend propres',
           'Travailler sur les bases de donnees et integrations',
@@ -137,8 +137,8 @@ const contentByLang = {
     fitTitle: 'Ce que nous recherchons',
     fitItems: [
       'Des profils serieux, autonomes et utiles',
-      'Des personnes capables de creer une vraie valeur',
-      'Des commerciaux orientes opportunites et conversion',
+      'Des personnes capables de créer une vraie valeur',
+      'Des commerciaux orientés opportunités et conversion',
       'Des profils techniques solides et fiables',
     ],
     processTitle: 'Comment postuler',
@@ -150,7 +150,7 @@ const contentByLang = {
     ],
     finalTitle: 'Une approche plus forte pour recruter',
     finalBody:
-      "Cette page fonctionne mieux si elle vend une opportunite plutot qu une demande d aide. Elle positionne Optimum Tech comme un endroit ou des profils commerciaux et techniques peuvent gagner, evoluer et profiter d un vrai potentiel.",
+      "Cette page fonctionne mieux si elle vend une opportunité plutôt qu’une demande d’aide. Elle positionne Optimum Tech comme un endroit où des profils commerciaux et techniques peuvent gagner, évoluer et profiter d’un vrai potentiel.",
     finalPoints: [
       'Affichez un systeme de reward ou commission tres simple',
       'Mettez en avant vos services les plus faciles a vendre',
@@ -307,7 +307,7 @@ export const JobsPage = () => {
         theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
       }`}
     >
-      <SEO path="/jobs" title={copy.seoTitle} description={copy.seoDescription} />
+      <SEO path="/jobs" title={copy.seoTitle} description={copy.seoDescription} robots="noindex, follow" />
       <Navbar />
 
       <main className="flex-grow relative z-10">

@@ -8,9 +8,9 @@ export const supabase =
   supabaseUrl && supabaseAnonKey
     ? createClient(supabaseUrl, supabaseAnonKey, {
         auth: {
-          autoRefreshToken: true,
-          persistSession: true,
-          detectSessionInUrl: true,
+          autoRefreshToken: typeof window !== 'undefined',
+          persistSession: typeof window !== 'undefined',
+          detectSessionInUrl: typeof window !== 'undefined',
           storageKey: 'optimum-tech-auth',
         },
       })

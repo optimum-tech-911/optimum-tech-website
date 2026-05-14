@@ -24,6 +24,7 @@ import softwareImg from '../assets/images/optimum tech software dev.png';
 import aiImg from '../assets/images/optimum tech digital shop.webp';
 import gamingImg from '../assets/images/optimum tech gaming.webp';
 import consultationImg from '../assets/images/optimum tech online meeting.webp';
+import { resourceTopics } from '../data/siteMeta';
 
 const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) => {
   const { theme } = useTheme();
@@ -152,9 +153,9 @@ export const Services = () => {
     }`}>
       <SEO
         path="/services"
-        title="Services web, SEO et automatisation IA | Optimum Tech"
-        description="Découvrez les services d’Optimum Tech: création de site web, référencement SEO, automatisation IA, logiciels et accompagnement digital pour entreprises à Sète, dans l’Hérault et en France."
-        keywords="services Optimum Tech, création site web, référencement SEO, automatisation IA, agence digitale hérault, développeur web sète"
+        title="Sites web, applications et solutions digitales sur mesure | Optimum Tech"
+        description="Découvrez les services d’Optimum Tech : création de sites web, web apps, logiciels sur mesure, outils internes, automatisations utiles et visibilité digitale pour entreprises à Sète, dans l’Hérault et en France."
+        keywords="services Optimum Tech, création site web, web app sur mesure, logiciel sur mesure, automatisation IA, agence digitale hérault, développeur web sète"
         schema={[
           {
             '@context': 'https://schema.org',
@@ -203,7 +204,12 @@ export const Services = () => {
             {
               to: '/creation-site-web',
               title: 'Création de site web',
-              desc: 'Page service dédiée pour les requêtes site web, site vitrine et refonte.',
+              desc: 'Page service dédiée aux besoins de site web, site vitrine et refonte.',
+            },
+            {
+              to: '/services',
+              title: 'Applications et outils sur mesure',
+              desc: 'Web apps, logiciels et interfaces utiles pour structurer un besoin métier réel.',
             },
             {
               to: '/referencement-seo',
@@ -213,7 +219,7 @@ export const Services = () => {
             {
               to: '/automatisation-ia',
               title: 'Automatisation IA',
-              desc: 'Page service dédiée aux entreprises qui veulent automatiser intelligemment.',
+              desc: 'Page service dédiée aux entreprises qui veulent automatiser avec méthode.',
             },
           ].map((item) => (
             <Link
@@ -237,11 +243,11 @@ export const Services = () => {
           theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
         }`}>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Services prioritaires pour le SEO local dans le Sud de la France
+            Comment la structure du site reflète les offres les plus utiles
           </h2>
           <div className={`mt-5 max-w-4xl space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/74' : 'text-black/74'}`}>
-            <p>Pour améliorer la visibilité locale d’Optimum Tech, nous concentrons l’architecture sur les intentions commerciales les plus fortes: création de site web, agence web, développeur web, référencement SEO et automatisation IA.</p>
-            <p>Le hub services relaie ces pages afin d’aider Google à comprendre les thématiques principales du site et à mieux identifier les sous-pages qui méritent d’apparaître dans les résultats.</p>
+            <p>Pour améliorer la lisibilité de l’offre et la visibilité locale d’Optimum Tech, nous concentrons l’architecture sur les intentions commerciales les plus fortes : création de site web, agence web, développeur web, référencement SEO, automatisation et pages de solutions digitales utiles.</p>
+            <p>Le hub services relaie ces pages afin d’aider Google à comprendre les grandes thématiques du site tout en montrant aux visiteurs que l’offre couvre aussi les applications, outils sur mesure et besoins opérationnels.</p>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {[
@@ -261,6 +267,63 @@ export const Services = () => {
               >
                 {label}
               </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className={`mt-20 rounded-[2.5rem] border p-8 md:p-12 ${
+          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+        }`}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            Ce que nous faisons avant de proposer une solution
+          </h2>
+          <div className={`mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4 ${theme === 'dark' ? 'text-white/74' : 'text-black/74'}`}>
+            {[
+              ['Clarifier le besoin', 'Objectif commercial, maturité digitale, type de clients et contraintes internes.'],
+              ['Choisir le bon niveau d’outil', 'Site vitrine, refonte, web app, logiciel métier, SEO local ou automatisation ciblée.'],
+              ['Éviter le superflu', 'Pas de complexité ajoutée si une structure plus simple suffit déjà à mieux convertir.'],
+              ['Relier contenu et conversion', 'Pages, appels à l’action, contact et maillage sont pensés ensemble.'],
+            ].map(([title, desc]) => (
+              <div
+                key={title}
+                className={`rounded-[1.6rem] border p-5 ${
+                  theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
+                }`}
+              >
+                <h3 className="text-lg font-semibold">{title}</h3>
+                <p className="mt-3 text-sm leading-7">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className={`mt-20 rounded-[2.5rem] border p-8 md:p-12 ${
+          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+        }`}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            Ressources utiles avant de choisir une prestation
+          </h2>
+          <p className={`mt-5 max-w-4xl text-base leading-8 ${theme === 'dark' ? 'text-white/74' : 'text-black/74'}`}>
+            Si vous comparez plusieurs options ou plusieurs prestataires, ces guides vous
+            aideront à mieux comprendre ce qui a de la valeur pour votre entreprise avant de
+            demander un devis.
+          </p>
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            {resourceTopics.map((topic) => (
+              <div
+                key={topic.title}
+                className={`rounded-[1.6rem] border p-5 ${
+                  theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
+                }`}
+              >
+                <h3 className="text-xl font-semibold">{topic.title}</h3>
+                <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
+                  {topic.description}
+                </p>
+                <Link to={topic.links[0]} className="mt-5 inline-flex text-sm font-semibold text-[#007BFF]">
+                  Lire le guide correspondant
+                </Link>
+              </div>
             ))}
           </div>
         </section>

@@ -1,11 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Clock3, Sparkles } from 'lucide-react';
+import { ArrowRight, CalendarDays, Clock3, Sparkles } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO.jsx';
 import { useTheme } from '../context/ThemeContext';
-import { blogCategories, blogPosts, featuredBlogPosts } from '../data/blogPosts';
+import { blogCategories, featuredBlogPosts, indexableBlogPosts } from '../data/blogPosts';
+import { editorialTeam, resourceTopics } from '../data/siteMeta';
+
+const formatDate = (date) =>
+  new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(date));
 
 export const BlogPage = () => {
   const { theme } = useTheme();
@@ -18,8 +26,8 @@ export const BlogPage = () => {
     >
       <SEO
         path="/blog"
-        title="Blog création de site, SEO local et automatisation | Optimum Tech"
-        description="Conseils en français sur la création de site web, le SEO local, l’automatisation IA et la croissance digitale pour entreprises en France."
+        title="Blog sites, applications et visibilité digitale | Optimum Tech"
+        description="Conseils en français sur les sites web, web apps, outils métier, automatisations utiles, SEO local et décisions digitales pour entreprises en France."
       />
       <Navbar />
 
@@ -38,13 +46,13 @@ export const BlogPage = () => {
                 Blog croissance digitale France
               </div>
               <h1 className="max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">
-                Des contenus pensés pour attirer plus de clients en France
+                Des ressources utiles pour mieux décider avant d’investir dans un site, une application, un outil métier ou une stratégie de visibilité digitale
               </h1>
               <p className={`mt-5 max-w-3xl text-base leading-8 md:text-xl ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
-                Nous publions des articles en francais sur les sites web, les applications,
-                les logiciels sur mesure, l IA et les automatisations qui aident les
-                entreprises a gagner du temps, inspirer confiance et generer plus de chiffre
-                d affaires.
+                Le blog Optimum Tech s’adresse aux entreprises locales, commerces, cabinets,
+                indépendants et PME qui veulent mieux cadrer une décision autour d’un site,
+                d’une web app, d’un outil métier, d’une automatisation utile ou de leur
+                visibilité digitale.
               </p>
             </div>
 
@@ -62,6 +70,25 @@ export const BlogPage = () => {
                 </div>
               ))}
             </div>
+
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              {[
+                'Articles axés sur des décisions concrètes, pas sur du remplissage SEO',
+                'Contenus signés par l’équipe Optimum Tech et reliés aux services du site',
+                'Navigation pensée pour passer d’un guide à une page utile sans impasse',
+              ].map((item) => (
+                <div
+                  key={item}
+                  className={`rounded-2xl border px-4 py-4 text-sm leading-7 ${
+                    theme === 'dark'
+                      ? 'border-white/10 bg-black/20 text-white/75'
+                      : 'border-black/10 bg-black/5 text-black/75'
+                  }`}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -69,7 +96,7 @@ export const BlogPage = () => {
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>
               <p className={`text-sm uppercase tracking-[0.18em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
-                A la une
+                À la une
               </p>
               <h2 className="text-3xl font-bold tracking-tight">Articles piliers</h2>
             </div>
@@ -118,13 +145,22 @@ export const BlogPage = () => {
                   <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
                     {post.excerpt}
                   </p>
+                  <p className={`mt-4 text-sm ${theme === 'dark' ? 'text-white/52' : 'text-black/52'}`}>
+                    Par {editorialTeam.name}
+                  </p>
                   <div className={`mt-5 flex items-center justify-between text-sm ${theme === 'dark' ? 'text-white/55' : 'text-black/55'}`}>
-                    <span className="inline-flex items-center gap-2">
-                      <Clock3 className="h-4 w-4" />
-                      {post.readTime}
-                    </span>
+                    <div className="flex flex-col gap-2">
+                      <span className="inline-flex items-center gap-2">
+                        <Clock3 className="h-4 w-4" />
+                        {post.readTime}
+                      </span>
+                      <span className="inline-flex items-center gap-2">
+                        <CalendarDays className="h-4 w-4" />
+                        {formatDate(post.updatedAt || post.publishedAt)}
+                      </span>
+                    </div>
                     <span className="inline-flex items-center gap-2 font-semibold text-[#007BFF]">
-                      Lire l article
+                      Lire l’article
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
@@ -137,13 +173,18 @@ export const BlogPage = () => {
         <section className="mx-auto mt-16 max-w-6xl">
           <div className="mb-6">
             <p className={`text-sm uppercase tracking-[0.18em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
-              Bibliotheque
+              Bibliothèque
             </p>
-            <h2 className="text-3xl font-bold tracking-tight">Tous les articles</h2>
+            <h2 className="text-3xl font-bold tracking-tight">Guides consultables</h2>
+            <p className={`mt-3 max-w-3xl text-base leading-8 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
+              Chaque article ci-dessous est accessible depuis le site, lié à des pages utiles
+              et conçu pour aider un dirigeant à comprendre une décision web, applicative,
+              opérationnelle ou SEO avant d’acheter une prestation.
+            </p>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {blogPosts.map((post) => (
+            {indexableBlogPosts.map((post) => (
               <Link
                 key={post.slug}
                 to={`/blog/${post.slug}`}
@@ -182,12 +223,65 @@ export const BlogPage = () => {
                   <p className={`mt-3 flex-1 text-sm leading-7 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
                     {post.excerpt}
                   </p>
+                  <p className={`mt-4 text-sm ${theme === 'dark' ? 'text-white/52' : 'text-black/52'}`}>
+                    Par {editorialTeam.name}
+                  </p>
                   <div className={`mt-5 flex items-center justify-between text-sm ${theme === 'dark' ? 'text-white/55' : 'text-black/55'}`}>
-                    <span>{post.readTime}</span>
-                    <span className="font-semibold text-[#007BFF]">Voir</span>
+                    <span className="inline-flex items-center gap-2">
+                      <CalendarDays className="h-4 w-4" />
+                      {formatDate(post.updatedAt || post.publishedAt)}
+                    </span>
+                    <span className="font-semibold text-[#007BFF]">{post.readTime}</span>
                   </div>
                 </div>
               </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto mt-16 max-w-6xl">
+          <div className="mb-6">
+            <p className={`text-sm uppercase tracking-[0.18em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
+              Parcours de lecture
+            </p>
+            <h2 className="text-3xl font-bold tracking-tight">Explorer par sujet</h2>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-3">
+            {resourceTopics.map((topic) => (
+              <div
+                key={topic.title}
+                className={`rounded-[2rem] border p-6 ${
+                  theme === 'dark'
+                    ? 'border-white/10 bg-white/5'
+                    : 'border-black/10 bg-white/80 shadow-lg'
+                }`}
+              >
+                <h3 className="text-2xl font-semibold tracking-tight">{topic.title}</h3>
+                <p className={`mt-4 text-sm leading-7 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
+                  {topic.description}
+                </p>
+                <div className="mt-5 space-y-3">
+                  {topic.links.map((to) => {
+                    const linkedPost = indexableBlogPosts.find((post) => `/blog/${post.slug}` === to);
+                    if (!linkedPost) return null;
+
+                    return (
+                      <Link
+                        key={to}
+                        to={to}
+                        className={`block rounded-[1.4rem] border px-4 py-4 text-sm transition ${
+                          theme === 'dark'
+                            ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
+                            : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                        }`}
+                      >
+                        {linkedPost.title}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
             ))}
           </div>
         </section>

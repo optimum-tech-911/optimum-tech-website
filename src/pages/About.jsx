@@ -6,6 +6,7 @@ import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useTheme } from '../context/ThemeContext';
+import { siteMeta, trustHighlights } from '../data/siteMeta';
 
 export const AboutPage = () => {
   const { theme } = useTheme();
@@ -22,8 +23,8 @@ export const AboutPage = () => {
     >
       <SEO
         path="/a-propos"
-        title="À propos d’Optimum Tech | Web, SEO et automatisation IA"
-        description="Découvrez Optimum Tech, spécialiste de la création de site web, du SEO local et de l’automatisation IA pour les entreprises à Sète, dans l’Hérault, en Occitanie et en France."
+        title="À propos d’Optimum Tech | Sites, applications et solutions digitales"
+        description="Découvrez Optimum Tech, studio de création de sites web, web apps, logiciels sur mesure, automatisations utiles et visibilité digitale pour les entreprises à Sète, dans l’Hérault, en Occitanie et en France."
         schema={[
           {
             '@context': 'https://schema.org',
@@ -58,21 +59,19 @@ export const AboutPage = () => {
           >
             <Breadcrumbs items={breadcrumbs} />
             <h1 className="max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">
-              Optimum Tech aide les entreprises à transformer leur présence digitale en levier commercial
+              Optimum Tech aide les entreprises à transformer une présence digitale floue en outil plus clair, plus utile et mieux structuré
             </h1>
             <p className={`mt-5 max-w-3xl text-lg leading-8 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
-              Nous intervenons sur la création de site web, le référencement SEO, l’automatisation IA et les solutions digitales utiles aux entreprises qui veulent plus de clarté, plus de visibilité et plus de demandes qualifiées.
+              Le positionnement est simple : concevoir des sites web, des applications et
+              des outils digitaux sur mesure, renforcer la visibilité quand elle compte et
+              ajouter des automatisations seulement quand elles ont un vrai intérêt pour
+              l’activité.
             </p>
           </div>
         </section>
 
         <section className="mx-auto mt-12 max-w-5xl grid gap-6 md:grid-cols-2">
-          {[
-            'Positionnement clair autour de la génération de leads',
-            'Approche white-hat compatible avec les recommandations Google',
-            'Travail possible sur Sète, l’Hérault, l’Occitanie et la France',
-            'Structure pensée pour relier branding, visibilité et conversion',
-          ].map((item) => (
+          {trustHighlights.map((item) => (
             <div
               key={item}
               className={`rounded-[2rem] border p-6 ${
@@ -89,12 +88,75 @@ export const AboutPage = () => {
           ))}
         </section>
 
-        <section className="mx-auto mt-12 max-w-5xl rounded-[2rem] border p-6 md:p-8">
-          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Ce que nous cherchons à améliorer pour vous</h2>
+        <section className={`mx-auto mt-12 max-w-5xl rounded-[2rem] border p-6 md:p-8 ${
+          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-lg'
+        }`}>
+          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Ce que nous cherchons à améliorer chez nos clients</h2>
           <div className={`mt-5 space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/76' : 'text-black/76'}`}>
-            <p>Un site plus compréhensible, des snippets plus convaincants, des pages plus ciblées, un maillage plus utile et une meilleure cohérence entre votre marque et vos services.</p>
-            <p>En pratique, cela veut dire des pages pensées pour les intentions de recherche réelles, une structure technique plus propre et un parcours qui pousse naturellement vers la prise de contact.</p>
+            <p>
+              La clarté de l’offre, la compréhension des services, la confiance perçue, la
+              facilité de contact et la cohérence entre ce que l’entreprise promet et ce que
+              le site montre réellement.
+            </p>
+            <p>
+              Cela implique souvent moins d’effets et plus de structure : de meilleures pages
+              services, une page contact plus complète, une base SEO locale propre, un blog
+              qui répond à de vraies questions, ou parfois un outil métier mieux adapté à la
+              manière dont l’entreprise fonctionne.
+            </p>
           </div>
+        </section>
+
+        <section className="mx-auto mt-12 max-w-5xl grid gap-6 lg:grid-cols-2">
+          <div className={`rounded-[2rem] border p-6 md:p-8 ${
+            theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-lg'
+          }`}>
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Notre manière de travailler</h2>
+            <div className={`mt-5 space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/76' : 'text-black/76'}`}>
+              <p>
+                Nous essayons d’abord de comprendre ce qui bloque : site trop léger, offre
+                peu lisible, absence de pages utiles, besoin d’un outil interne plus clair,
+                mauvais relais entre visibilité digitale et conversion, ou encore processus
+                répétitifs qui prennent trop de temps.
+              </p>
+              <p>
+                Ensuite, nous priorisons. Toutes les entreprises n’ont pas besoin d’une web
+                app ou d’automatisations avancées. Parfois, la meilleure amélioration est une
+                architecture plus simple, un contenu plus fort et un meilleur chemin de
+                contact.
+              </p>
+            </div>
+          </div>
+
+          <div className={`rounded-[2rem] border p-6 md:p-8 ${
+            theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-lg'
+          }`}>
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Ce que cette page affirme sans exagérer</h2>
+            <div className={`mt-5 space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/76' : 'text-black/76'}`}>
+              <p>
+                Optimum Tech intervient sur des sujets de création de site web, web apps,
+                outils métier sur mesure, SEO local, visibilité digitale et automatisation
+                utile pour des entreprises en France, avec un ancrage mis en avant autour de
+                Sète, de l’Hérault et de l’Occitanie.
+              </p>
+              <p>
+                Nous ne revendiquons pas de classement garanti, de statistiques fabriquées ou
+                de distinctions non vérifiables. L’enjeu est de rester crédible, lisible et
+                joignable.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className={`mx-auto mt-12 max-w-5xl rounded-[2rem] border p-6 md:p-8 ${
+          theme === 'dark' ? 'border-[#007BFF]/20 bg-[#007BFF]/10' : 'border-[#007BFF]/15 bg-[#007BFF]/8 shadow-lg'
+        }`}>
+          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Parler à une personne, pas à une interface opaque</h2>
+          <p className={`mt-4 max-w-3xl text-base leading-8 ${theme === 'dark' ? 'text-white/78' : 'text-black/78'}`}>
+            Pour un besoin de site, d’application, d’outil interne, de visibilité locale ou
+            d’automatisation, le plus simple reste de décrire votre contexte. Vous pouvez joindre Optimum Tech par téléphone au
+            {` ${siteMeta.phone} `}ou par e-mail à {siteMeta.email}.
+          </p>
           <Link
             to="/contact"
             className="mt-6 inline-flex items-center gap-3 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#007BFF]/90"

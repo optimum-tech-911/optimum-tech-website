@@ -2,10 +2,17 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
-export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+const getInitialTheme = (initialTheme) => {
+  if (initialTheme) return initialTheme;
+  if (typeof window === 'undefined') return 'dark';
+  return localStorage.getItem('theme') || 'dark';
+};
+
+export const ThemeProvider = ({ children, initialTheme }) => {
+  const [theme, setTheme] = useState(() => getInitialTheme(initialTheme));
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);

@@ -51,6 +51,7 @@ export const Footer = () => {
                 { to: '/referencement-seo', label: 'Référencement SEO' },
                 { to: '/automatisation-ia', label: 'Automatisation IA' },
                 { to: '/projects', label: t('footer.links.projects') },
+                { to: '/blog', label: 'Ressources & blog' },
                 { to: '/a-propos', label: 'À propos' },
                 { to: '/contact', label: t('footer.links.contact') },
               ].map((link) => (
@@ -179,9 +180,9 @@ export const Footer = () => {
         }`}>
           <p>© {currentYear} Optimum Tech. {t('footer.rights') || 'All rights reserved.'}</p>
           <div className="flex gap-8">
-            <Link to="/privacy-policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Privacy Policy</Link>
-            <Link to="/cookie-policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Cookie Policy</Link>
-            <Link to="/policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Mentions</Link>
+            <Link to="/privacy-policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Confidentialité</Link>
+            <Link to="/cookie-policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Cookies</Link>
+            <Link to="/policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Mentions légales</Link>
           </div>
         </div>
       </div>

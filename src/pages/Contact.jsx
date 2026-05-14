@@ -1,135 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { useI18n } from '../i18n.jsx';
 import { useTheme } from '../context/ThemeContext';
 import { SEO } from '../components/SEO.jsx';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { supabase } from '../../supabaseClient';
-import { 
-  Rocket, 
-  ChevronLeft, 
-  Send, 
-  Smartphone, 
-  Globe, 
-  Cpu, 
-  Zap, 
-  MessageSquare,
-  ArrowRight,
-} from 'lucide-react';
+import { Rocket, Send, Smartphone, Globe, Cpu, Zap, MessageSquare } from 'lucide-react';
 
 import appImg from '../assets/images/planning application.webp';
 import webImg from '../assets/images/online commerce .png';
 import softwareImg from '../assets/images/optimum tech software dev.png';
 import aiImg from '../assets/images/optimum tech digital shop.webp';
 import consultationImg from '../assets/images/optimum tech online meeting.webp';
-
-const ContactOption = ({ icon: Icon, title, onClick, active, image, delay = 0 }) => {
-  const { theme } = useTheme();
-  const cardRef = useRef(null);
-  
-  // Motion values for 3D tilt
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = (mouseX / width) - 0.5;
-    const yPct = (mouseY / height) - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ 
-        opacity: 1, 
-        y: [0, -10, 0],
-      }}
-      transition={{
-        opacity: { duration: 0.5, delay: delay * 0.1 },
-        y: {
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: delay * 0.2
-        }
-      }}
-      style={{
-        perspective: "1200px",
-      }}
-      className="flex-shrink-0 w-[280px] sm:w-[320px]"
-    >
-      <motion.button
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: "preserve-3d",
-        }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={onClick}
-        className={`relative w-full aspect-[3/4.5] rounded-[2.5rem] overflow-hidden group transition-all duration-500 shadow-2xl ${
-          active ? 'ring-4 ring-[#007BFF]' : 'border border-white/10'
-        }`}
-      >
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-          style={{ backgroundImage: `url(${image})` }}
-        />
-        
-        {/* Overlays */}
-        <div className={`absolute inset-0 z-10 transition-opacity duration-500 ${
-          theme === 'dark' 
-            ? 'bg-black/50 group-hover:bg-black/30' 
-            : 'bg-gray-500/10 group-hover:bg-gray-500/5'
-        }`} />
-        
-        {/* Content */}
-        <div className="relative z-20 h-full w-full p-8 flex flex-col items-center justify-end text-center" style={{ transform: "translateZ(60px)" }}>
-          <div className={`mb-4 p-4 rounded-2xl backdrop-blur-xl transition-all duration-500 shadow-xl ${
-            theme === 'dark' ? 'bg-white/10 text-white' : 'bg-black/10 text-black'
-          }`}>
-            <Icon size={32} />
-          </div>
-          <h3 className={`text-2xl font-bold tracking-tighter mb-2 drop-shadow-lg ${
-            theme === 'dark' ? 'text-white' : 'text-black'
-          }`}>
-            {title}
-          </h3>
-          <div className={`flex items-center gap-2 text-sm font-bold transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 ${
-            theme === 'dark' ? 'text-[#007BFF]' : 'text-[#007BFF]'
-          }`}>
-            <span>Commencer</span>
-            <ArrowRight size={16} />
-          </div>
-        </div>
-      </motion.button>
-    </motion.div>
-  );
-};
+import { resourceTopics, siteMeta } from '../data/siteMeta';
 
 export const Contact = () => {
   const { t, lang } = useI18n();
@@ -139,7 +24,7 @@ export const Contact = () => {
   const [category, setCategory] = useState(null);
   const isRTL = lang === 'ar';
   const tapeRef = useRef(null);
-  const [isInteracting, setIsInteracting] = useState(false);
+  const [isInteracting] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [formData, setFormData] = useState({
@@ -207,9 +92,6 @@ export const Contact = () => {
     },
   ];
 
-  const tapeBase = isRTL ? [...categories].reverse() : categories;
-  const tapeItems = [...tapeBase, ...tapeBase, ...tapeBase];
-
   useEffect(() => {
     if (step !== 'selection') return;
     const el = tapeRef.current;
@@ -250,15 +132,6 @@ export const Contact = () => {
     return () => cancelAnimationFrame(raf);
   }, [step, isInteracting, isRTL]);
 
-  const handleTapeScroll = () => {
-    const el = tapeRef.current;
-    if (!el) return;
-    const segment = el.scrollWidth / 3;
-    if (!Number.isFinite(segment) || segment <= 0) return;
-    if (el.scrollLeft < segment * 0.5) el.scrollLeft += segment;
-    else if (el.scrollLeft > segment * 1.5) el.scrollLeft -= segment;
-  };
-
   const categoryLabel = categories.find((item) => item.id === category)?.title || 'Demande générale';
 
   const buildSubject = () => {
@@ -269,35 +142,35 @@ export const Contact = () => {
   const buildBody = () => {
     const lines = [
       `Nom: ${formData.fullName || '-'}`,
-      `Email: ${formData.email || '-'}`,
-      `Telephone: ${formData.phone || '-'}`,
+      `E-mail: ${formData.email || '-'}`,
+      `Téléphone: ${formData.phone || '-'}`,
       `Entreprise: ${formData.company || '-'}`,
-      `Categorie: ${categoryLabel}`,
+      `Catégorie: ${categoryLabel}`,
     ];
 
     if (category === 'app') {
       lines.push(`Secteur: ${formData.businessSector || '-'}`);
       lines.push(`Objectif principal: ${formData.objective || '-'}`);
-      lines.push(`Taille de l equipe: ${formData.teamSize || '-'}`);
-      lines.push(`Vision de l application: ${formData.appVision || '-'}`);
+      lines.push(`Taille de l’équipe: ${formData.teamSize || '-'}`);
+      lines.push(`Vision de l’application: ${formData.appVision || '-'}`);
     }
 
     if (category === 'web') {
       lines.push(`Secteur: ${formData.businessSector || '-'}`);
-      lines.push(`Nombre d employes: ${formData.employeeCount || '-'}`);
+      lines.push(`Nombre d’employés: ${formData.employeeCount || '-'}`);
       lines.push(`Type de site: ${formData.websiteType || '-'}`);
     }
 
     if (category === 'software') {
       lines.push(`Role: ${formData.role || '-'}`);
       lines.push(`Secteur: ${formData.businessSector || '-'}`);
-      lines.push(`Probleme actuel: ${formData.currentProblem || '-'}`);
+      lines.push(`Problème actuel: ${formData.currentProblem || '-'}`);
     }
 
     if (category === 'ai') {
       lines.push(`Secteur: ${formData.businessSector || '-'}`);
-      lines.push(`Problemes quotidiens: ${formData.dailyProblem || '-'}`);
-      lines.push(`Tache a automatiser: ${formData.replaceTask || '-'}`);
+      lines.push(`Problèmes quotidiens: ${formData.dailyProblem || '-'}`);
+      lines.push(`Tâche à automatiser: ${formData.replaceTask || '-'}`);
     }
 
     if (category === 'consultation') {
@@ -483,13 +356,51 @@ export const Contact = () => {
     }`}>
       <SEO
         path="/contact"
-        title="Contact Optimum Tech | Devis site web, SEO et automatisation IA"
-        description="Contactez Optimum Tech pour un devis de création de site web, de référencement SEO ou d’automatisation IA à Sète, dans l’Hérault, en Occitanie et en France."
-        keywords="contact Optimum Tech, devis site web sète, agence web hérault, SEO local sète, automatisation IA france"
+        title="Contact Optimum Tech | Devis site, application ou solution digitale"
+        description="Contactez Optimum Tech pour un devis de création de site web, web app, logiciel sur mesure, automatisation utile ou accompagnement en visibilité digitale à Sète, dans l’Hérault, en Occitanie et en France."
+        keywords="contact Optimum Tech, devis site web sète, web app sur mesure france, logiciel sur mesure entreprise, agence web hérault, SEO local sète, automatisation IA france"
       />
       <Navbar />
 
       <main className="flex-grow container mx-auto px-6 py-32 flex flex-col items-center">
+        <section className={`mb-8 w-full max-w-5xl rounded-[2.5rem] border p-6 md:p-8 ${
+          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+        }`}>
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+                Contact
+              </p>
+              <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+                Un point de contact simple pour cadrer un besoin web, applicatif ou digital
+              </h1>
+              <p className={`mt-5 max-w-3xl text-base leading-8 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
+                Cette page sert à décrire votre contexte de manière utile. Vous pouvez envoyer
+                une demande générale ou choisir un type de projet pour nous aider à préparer
+                une réponse plus précise.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                ['Téléphone', siteMeta.phone],
+                ['E-mail', siteMeta.email],
+                ['Zone couverte', siteMeta.locationLabel],
+                ['Délai de retour', 'Réponse rapide par message, e-mail ou téléphone'],
+              ].map(([title, value]) => (
+                <div
+                  key={title}
+                  className={`rounded-[1.5rem] border p-4 ${
+                    theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
+                  }`}
+                >
+                  <p className="text-xs uppercase tracking-[0.16em] text-[#007BFF]">{title}</p>
+                  <p className="mt-2 text-sm leading-7">{value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <AnimatePresence mode="wait">
           {step === 'form' && (
             <motion.div
@@ -503,17 +414,17 @@ export const Contact = () => {
               }`}
             >
               <div className="text-center mb-10">
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Parlez-nous de votre projet</h1>
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Parlez-nous de votre projet</h2>
                 <p className={`mt-4 text-base leading-8 md:text-lg ${theme === 'dark' ? 'text-white/65' : 'text-black/65'}`}>
-                  Decrivez simplement votre besoin en creation de site web, SEO local, automatisation IA ou accompagnement digital. Nous revenons vers vous rapidement avec une reponse claire.
+                  Décrivez simplement votre besoin en création de site web, web app, logiciel sur mesure, SEO local, automatisation utile ou accompagnement digital. Nous revenons vers vous rapidement avec une réponse claire.
                 </p>
               </div>
 
               <div className="mb-10 grid gap-4 md:grid-cols-3">
                 {[
-                  { label: 'Telephone', value: '+33 7 45 30 51 13', href: 'tel:+33745305113' },
-                  { label: 'Email', value: 'optimum.tech.911@gmail.com', href: 'mailto:optimum.tech.911@gmail.com' },
-                  { label: 'WhatsApp', value: 'Envoyer un message', href: 'https://wa.me/33745305113' },
+                  { label: 'Téléphone', value: siteMeta.phone, href: siteMeta.phoneHref },
+                  { label: 'E-mail', value: siteMeta.email, href: siteMeta.emailHref },
+                  { label: 'WhatsApp', value: 'Envoyer un message', href: siteMeta.socialLinks.whatsapp },
                 ].map((item) => (
                   <a
                     key={item.label}
@@ -532,9 +443,30 @@ export const Contact = () => {
                 ))}
               </div>
 
+              <div className={`mb-10 rounded-[1.8rem] border p-5 ${
+                theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
+              }`}>
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+                  Ce que nous utilisons pour vous répondre correctement
+                </p>
+                <div className={`mt-4 grid gap-4 md:grid-cols-3 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
+                  {[
+                    'Le type de besoin et le contexte de votre activité',
+                    'Les freins actuels : manque de visibilité, site peu clair, processus trop manuels',
+                    'Le meilleur chemin de réponse : appel, message, devis ou cadrage plus détaillé',
+                  ].map((item) => (
+                    <div key={item} className={`rounded-[1.4rem] border p-4 ${
+                      theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/70'
+                    }`}>
+                      <p className="text-sm leading-7">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="mb-10">
                 <p className={`text-sm font-medium mb-3 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
-                  Vous pouvez aussi preciser votre besoin principal :
+                  Vous pouvez aussi préciser votre besoin principal :
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <button
@@ -548,7 +480,7 @@ export const Contact = () => {
                           : 'border-black/10 bg-black/5 text-black/75 hover:bg-black/10'
                     }`}
                   >
-                    Demande generale
+                    Demande générale
                   </button>
                   {categories.map((item) => (
                     <button
@@ -684,6 +616,35 @@ export const Contact = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        <section className={`mt-8 w-full max-w-5xl rounded-[2.5rem] border p-6 md:p-8 ${
+          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+        }`}>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+            Avant de nous écrire
+          </p>
+          <h2 className="mt-3 text-2xl font-bold tracking-tight md:text-4xl">
+            Quelques ressources qui peuvent déjà vous aider à mieux cadrer votre besoin
+          </h2>
+          <div className="mt-6 grid gap-4 lg:grid-cols-3">
+            {resourceTopics.map((topic) => (
+              <Link
+                key={topic.title}
+                to={topic.links[0]}
+                className={`rounded-[1.6rem] border p-5 transition ${
+                  theme === 'dark'
+                    ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
+                    : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                }`}
+              >
+                <h3 className="text-lg font-semibold">{topic.title}</h3>
+                <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
+                  {topic.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
       </main>
 
       <Footer />

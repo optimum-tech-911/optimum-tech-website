@@ -6,7 +6,7 @@ import Logo2 from '../assets/Logo 2.jpeg';
 import { ScrollReveal } from './ScrollReveal';
 import { useTheme } from '../context/ThemeContext';
 
-const SoftCard = ({ children, className = "" }) => {
+const SoftCard = ({ children, className = '' }) => {
   const { theme } = useTheme();
 
   return (
@@ -28,7 +28,7 @@ export const Hero = () => {
   const proof = [
     'Devis clair et rapide',
     'Accompagnement direct',
-    'Sites, SEO et automatisation utiles',
+    'Sites, applications et automatisations utiles',
   ];
 
   return (
@@ -47,14 +47,18 @@ export const Hero = () => {
                     theme === 'dark' ? 'text-white' : 'text-black'
                   }`}
                 >
-                  Creation de sites web, SEO local et automatisation IA pour entreprises ambitieuses
+                  Création de sites web, web apps et solutions digitales sur mesure pour entreprises ambitieuses
                 </motion.h1>
                 <motion.p
                   className={`mt-6 max-w-2xl text-lg md:text-2xl font-light leading-relaxed ${
                     theme === 'dark' ? 'text-white/78' : 'text-black/75'
                   }`}
                 >
-                  Optimum Tech accompagne les entreprises a Sete, dans l Herault, en Occitanie et partout en France pour creer un site plus rentable, mieux se positionner sur Google et automatiser les taches qui freinent leur croissance.
+                  Optimum Tech accompagne les entreprises à Sète, dans l’Hérault, en
+                  Occitanie et partout en France pour concevoir des sites web, des
+                  applications, des outils métier sur mesure et des automatisations utiles
+                  qui renforcent la visibilité, fluidifient les opérations et soutiennent la
+                  croissance.
                 </motion.p>
 
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -125,7 +129,7 @@ export const Hero = () => {
                         Optimum Tech
                       </p>
                       <p className={`mt-1 text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-                        Sites web, SEO local, automatisation IA.
+                        Sites web, applications et solutions digitales utiles.
                       </p>
                     </div>
                   </div>

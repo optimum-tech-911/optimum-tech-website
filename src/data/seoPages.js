@@ -140,7 +140,7 @@ export const servicePages = [
       {
         question: 'Faut-il tout automatiser ?',
         answer:
-          'Non. Nous ciblons en priorité les tâches répétitives à faible valeur humaine pour garder un dispositif utile, clair et rentable.',
+          'Non. Nous ciblons en priorité les tâches répétitives à faible valeur humaine pour garder un dispositif utile, clair et pertinent économiquement.',
       },
     ],
   },
@@ -176,7 +176,7 @@ export const localPages = [
       {
         title: 'Pour quels profils ?',
         paragraphs: [
-          'Cette approche convient particulièrement aux artisans, restaurants, commerces, professions libérales, sociétés de services et indépendants qui veulent une vitrine plus sérieuse et plus rentable.',
+          'Cette approche convient particulièrement aux artisans, restaurants, commerces, professions libérales, sociétés de services et indépendants qui veulent une vitrine plus sérieuse et plus utile commercialement.',
           'Le site peut aussi intégrer une logique de référencement local, de réservation, de demande de devis ou de qualification de besoins.',
         ],
       },

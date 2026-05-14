@@ -320,6 +320,7 @@ export const Projects = () => {
         path="/projects"
         title="Réalisations web et digitales | Optimum Tech"
         description="Découvrez des réalisations, projets web et solutions digitales signées Optimum Tech pour illustrer notre approche en création de site, logiciel et automatisation."
+        robots="noindex, follow"
       />
       <Navbar />
       

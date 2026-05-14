@@ -30,8 +30,8 @@ const DICT = { fr, en, es, ar };
 
 const DIR = { ar: 'rtl', fr: 'ltr', en: 'ltr', es: 'ltr' };
 
-export function I18nProvider({ children }) {
-  const [lang, setLang] = useState(() => getStoredLang() || 'fr');
+export function I18nProvider({ children, initialLang = 'fr' }) {
+  const [lang, setLang] = useState(() => getStoredLang() || initialLang);
   const dir = DIR[lang] || 'ltr';
 
   useEffect(() => {
