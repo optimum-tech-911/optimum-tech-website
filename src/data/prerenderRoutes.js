@@ -6,7 +6,7 @@ export const indexableBlogSlugs = [
   'etre-trouve-google-entreprise-locale-france',
   'combien-coute-creation-site-internet-beziers-2026',
   'comment-choisir-son-agence-web-beziers-pieges',
-  'pourquoi-maintenance-wordpress-cruciale-tpe',
+  'pourquoi-maintenance-site-professionnel-cruciale-tpe',
   'site-vitrine-ou-web-app-que-choisir-pour-son-activite',
   'comment-une-entreprise-locale-transforme-son-site-en-demandes-de-contact',
   'erreurs-qui-font-perdre-des-clients-sur-un-site-professionnel',

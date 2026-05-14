@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, MapPin, Phone, Search, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, MapPin, Phone, Sparkles } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -136,7 +136,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                 }`}
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
-                  Pourquoi cette page peut ranker
+                  Ce que cette page met en avant
                 </p>
                 <ul className="mt-5 space-y-4">
                   {page.benefits.map((item) => (
@@ -154,10 +154,6 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                   <p className="inline-flex items-center gap-2">
                     <Phone className="h-4 w-4 text-[#007BFF]" />
                     +33 7 45 30 51 13
-                  </p>
-                  <p className="inline-flex items-center gap-2">
-                    <Search className="h-4 w-4 text-[#007BFF]" />
-                    Mot-clé principal: {page.primaryKeyword}
                   </p>
                 </div>
               </aside>

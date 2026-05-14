@@ -38,8 +38,9 @@ export const CookiePolicy = () => {
               Politique de cookies
             </h1>
             <p className={`mt-5 max-w-3xl text-base leading-8 md:text-lg ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
-              Cette page détaille les usages visibles dans le dépôt : préférences
-              fonctionnelles, scripts techniques et éventuelle couche publicitaire.
+              Cette page détaille les usages du site liés aux préférences fonctionnelles,
+              aux scripts techniques et à l’éventuelle couche publicitaire dans une
+              formulation claire pour les visiteurs.
             </p>
           </div>
         </section>
@@ -92,20 +93,6 @@ export const CookiePolicy = () => {
             </div>
           </section>
 
-          <section
-            className={`rounded-[2rem] border p-6 md:p-8 ${
-              theme === 'dark'
-                ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
-                : 'border-[#007BFF]/15 bg-[#007BFF]/8 shadow-lg'
-            }`}
-          >
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Point manuel à vérifier</h2>
-            <p className={`mt-4 text-base leading-8 ${theme === 'dark' ? 'text-white/78' : 'text-black/78'}`}>
-              Avant une nouvelle soumission AdSense, il reste utile de vérifier que le
-              bandeau de consentement et les catégories exposées aux visiteurs correspondent
-              exactement aux scripts réellement exécutés en production.
-            </p>
-          </section>
         </section>
       </main>
       <Footer />

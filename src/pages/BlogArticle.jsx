@@ -148,10 +148,6 @@ export const BlogArticlePage = () => {
                   {post.audience}
                 </p>
                 <div className={`mt-5 text-xs uppercase tracking-[0.16em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
-                  Mot-clé principal
-                </div>
-                <p className="mt-2 text-sm font-medium">{post.targetKeyword}</p>
-                <div className={`mt-5 text-xs uppercase tracking-[0.16em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
                   Contact
                 </div>
                 <a href={siteMeta.phoneHref} className="mt-2 block text-sm font-medium text-[#007BFF]">

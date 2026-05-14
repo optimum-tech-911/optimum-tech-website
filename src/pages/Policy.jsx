@@ -10,14 +10,14 @@ const blocks = [
     title: 'Éditeur du site',
     paragraphs: [
       'Le site présente les services d’Optimum Tech autour de la création de sites web, des applications et outils sur mesure, de la visibilité digitale et de l’automatisation utile.',
-      `Les coordonnées publiquement visibles dans ce dépôt sont : ${siteMeta.phone}, ${siteMeta.email} et ${siteMeta.locationLabel}.`,
+      `Les coordonnées de contact affichées sur le site sont : ${siteMeta.phone}, ${siteMeta.email} et ${siteMeta.locationLabel}.`,
     ],
   },
   {
-    title: 'Informations juridiques à compléter',
+    title: 'Informations juridiques',
     paragraphs: [
-      'Ce dépôt ne contient pas la raison sociale complète, la forme juridique, le numéro SIREN ou SIRET, l’adresse postale complète ni le nom du responsable de publication.',
-      'Pour une conformité juridique totale, ces éléments doivent être ajoutés par le propriétaire du site avant publication définitive des mentions légales.',
+      'Cette page présente les informations générales accessibles sur le site ainsi que les moyens de contact publics actuellement affichés.',
+      'Les mentions légales ont vocation à être interprétées avec les informations administratives et contractuelles effectivement publiées par l’éditeur du site.',
     ],
   },
   {
@@ -48,7 +48,7 @@ export const Policy = () => {
       <SEO
         path="/policy"
         title="Mentions légales et informations générales | Optimum Tech"
-        description="Informations générales du site Optimum Tech et éléments de mentions légales disponibles dans le dépôt."
+        description="Informations générales du site Optimum Tech, objet du site et modalités de contact affichées publiquement."
       />
       <Navbar />
 
@@ -65,9 +65,9 @@ export const Policy = () => {
               Mentions légales et informations générales
             </h1>
             <p className={`mt-5 max-w-3xl text-base leading-8 md:text-lg ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
-              Cette page a été renforcée pour éviter un signal de site inachevé. Elle expose
-              uniquement ce qui peut être affirmé à partir du dépôt actuel et signale
-              explicitement ce qui doit encore être complété manuellement.
+              Cette page rassemble les informations générales utiles à la compréhension du
+              site, de son objet et de ses modalités de contact dans une présentation sobre
+              et professionnelle.
             </p>
           </div>
         </section>
@@ -91,21 +91,6 @@ export const Policy = () => {
             </section>
           ))}
 
-          <section
-            className={`rounded-[2rem] border p-6 md:p-8 ${
-              theme === 'dark'
-                ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
-                : 'border-[#007BFF]/15 bg-[#007BFF]/8 shadow-lg'
-            }`}
-          >
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Ce qu’il reste à ajouter manuellement</h2>
-            <div className={`mt-5 space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/78' : 'text-black/78'}`}>
-              <p>Raison sociale ou nom de l’éditeur.</p>
-              <p>Forme juridique, SIREN ou SIRET, et adresse postale complète.</p>
-              <p>Nom du directeur ou de la directrice de publication.</p>
-              <p>Identité complète de l’hébergeur si vous souhaitez une page de mentions légales entièrement finalisée.</p>
-            </div>
-          </section>
         </section>
       </main>
 

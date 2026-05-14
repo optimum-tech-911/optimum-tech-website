@@ -38,20 +38,20 @@ const sections = [
     title: 'Durée de conservation',
     content: [
       'Les messages ne devraient être conservés que pendant la durée utile au traitement de la demande, au suivi de l’échange et à l’éventuelle relation précontractuelle qui en découle.',
-      'La durée exacte n’est pas documentée dans ce dépôt et doit être fixée puis appliquée par le responsable du site.',
+      'Les données de contact sont conservées pour le temps strictement nécessaire à la gestion de la demande et au suivi de la relation engagée par le visiteur.',
     ],
   },
   {
     title: 'Destinataires',
     content: [
       'Les données issues du formulaire sont destinées à la gestion de la relation de contact d’Optimum Tech et peuvent transiter par les outils techniques nécessaires au fonctionnement du site et du formulaire.',
-      'Cette page n affirme pas de partage commercial des données avec des tiers à des fins de revente.',
+      'Les données ne sont pas présentées sur ce site comme faisant l’objet d’une revente ou d’un partage commercial autonome avec des tiers.',
     ],
   },
   {
     title: 'Vos droits',
     content: [
-      'Conformément au RGPD, vous pouvez demander l accès, la rectification ou la suppression des informations vous concernant, ainsi que la limitation ou l opposition au traitement lorsque cela s applique.',
+      'Conformément au RGPD, vous pouvez demander l’accès, la rectification ou la suppression des informations vous concernant, ainsi que la limitation ou l’opposition au traitement lorsque cela s’applique.',
       `Pour exercer ces droits, le canal de contact affiché sur le site reste ${siteMeta.email}.`,
     ],
   },
@@ -86,8 +86,8 @@ export const PrivacyPolicy = () => {
             </h1>
             <p className={`mt-5 max-w-3xl text-base leading-8 md:text-lg ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
               Cette page explique ce que le site collecte lorsqu’un visiteur prend contact
-              avec Optimum Tech. Elle a été réécrite pour être utile immédiatement, sans
-              inventer des traitements ou des durées qui ne figurent pas dans le dépôt.
+              avec Optimum Tech. Elle présente de manière concise l’usage des données de
+              contact et les principes de traitement associés.
             </p>
           </div>
         </section>
@@ -111,21 +111,6 @@ export const PrivacyPolicy = () => {
             </section>
           ))}
 
-          <section
-            className={`rounded-[2rem] border p-6 md:p-8 ${
-              theme === 'dark'
-                ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
-                : 'border-[#007BFF]/15 bg-[#007BFF]/8 shadow-lg'
-            }`}
-          >
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Point manuel à compléter</h2>
-            <p className={`mt-4 text-base leading-8 ${theme === 'dark' ? 'text-white/78' : 'text-black/78'}`}>
-              Si vous souhaitez une conformité plus complète, il reste à documenter dans
-              l organisation réelle les durées de conservation exactes, les éventuels
-              sous-traitants utilisés pour le formulaire et l identité juridique complète de
-              l’éditeur du site.
-            </p>
-          </section>
         </section>
       </main>
       <Footer />

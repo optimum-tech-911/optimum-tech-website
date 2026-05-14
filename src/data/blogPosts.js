@@ -438,7 +438,7 @@ export const blogPosts = [
       'Le SEO local aide les entreprises françaises à apparaître sur Google quand des personnes recherchent un service dans leur ville ou leur zone d’activité.',
     excerpt:
       'Être visible sur Google localement peut aider votre site à capter des demandes plus pertinentes.',
-    category: 'Création de site web',
+    category: 'Visibilité digitale',
     targetKeyword: 'seo local entreprise france',
     audience: 'Entreprises locales, commerces, cabinets, artisans et prestataires',
     readTime: '7 min',
@@ -631,20 +631,20 @@ export const blogPosts = [
     ],
   },
   {
-    slug: 'pourquoi-maintenance-wordpress-cruciale-tpe',
-    title: 'Pourquoi la maintenance WordPress est cruciale pour votre TPE',
-    heroTitle: 'Maintenance WordPress : une base critique pour les petites entreprises',
+    slug: 'pourquoi-maintenance-site-professionnel-cruciale-tpe',
+    title: 'Pourquoi la maintenance d’un site professionnel est cruciale pour une TPE',
+    heroTitle: 'Maintenance de site : une base critique pour les petites entreprises',
     description:
-      'La maintenance WordPress protège votre TPE contre les pannes, ralentissements, bugs, pertes de leads et problèmes de sécurité qui coûtent cher à long terme.',
+      'La maintenance d’un site professionnel protège votre TPE contre les pannes, ralentissements, bugs, pertes de leads et problèmes de sécurité qui coûtent cher à long terme.',
     excerpt:
-      'Beaucoup de TPE investissent dans un site puis l’oublient. Pourtant, un WordPress non maintenu devient vite un risque commercial, technique et réputationnel.',
-    category: 'Création de site web',
-    targetKeyword: 'maintenance wordpress tpe',
-    audience: 'TPE, commerces, indépendants et petites entreprises qui utilisent WordPress',
+      'Beaucoup de TPE investissent dans un site puis l’oublient. Pourtant, un site non maintenu devient vite un risque commercial, technique et réputationnel.',
+    category: 'Visibilité digitale',
+    targetKeyword: 'maintenance site professionnel tpe',
+    audience: 'TPE, commerces, indépendants et petites entreprises qui dépendent de leur site web',
     readTime: '7 min',
     publishedAt: '2026-04-07',
     heroTheme: 'from-emerald-500/20 via-cyan-500/10 to-blue-500/20',
-    cta: 'Votre site WordPress est lent, vieillissant ou peu suivi ? Écrivez-nous via le site ou appelez-nous pour faire le point sur sa maintenance.',
+    cta: 'Votre site est lent, vieillissant ou peu suivi ? Écrivez-nous via le site ou appelez-nous pour faire le point sur sa maintenance.',
     sections: [
       {
         heading: 'Un site non maintenu peut faire perdre des leads sans prévenir',
@@ -656,7 +656,7 @@ export const blogPosts = [
       {
         heading: 'Sécurité, sauvegardes et disponibilité',
         paragraphs: [
-          'Un site WordPress doit être surveillé, sauvegardé et mis à jour correctement. Sans cela, le risque de faille, de malware ou de bug après mise à jour augmente fortement.',
+          'Un site professionnel doit être surveillé, sauvegardé et mis à jour correctement. Sans cela, le risque de faille, de malware ou de bug après une évolution technique augmente fortement.',
           'Une maintenance sérieuse inclut généralement contrôle des mises à jour, sauvegardes, vérifications de formulaires, surveillance basique et corrections rapides en cas de souci.',
         ],
       },
@@ -732,7 +732,7 @@ export const blogPosts = [
       'Méthode concrète pour améliorer clarté, confiance, SEO local et conversion afin qu’un site d’entreprise locale génère de vrais contacts.',
     excerpt:
       'Beaucoup de sites locaux existent sans vraiment aider l’entreprise. Ils sont vus, parfois visités, mais génèrent peu d’échanges utiles. Le problème vient rarement d’un seul détail.',
-    category: 'Création de site web',
+    category: 'Visibilité digitale',
     targetKeyword: 'transformer son site en demandes de contact',
     audience: 'Entreprises locales, professions libérales, artisans et commerces',
     readTime: '9 min',
@@ -942,6 +942,7 @@ export const indexableBlogPosts = blogPosts.filter((post) => !post.noindex);
 
 export const blogCategories = [
   'Création de site web',
+  'Visibilité digitale',
   'Applications et logiciels sur mesure',
   'IA et automatisation',
   'Solutions par métier',
