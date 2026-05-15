@@ -16,6 +16,8 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { buildWebPageSchema } from '../data/schema';
+import { ContactActions } from '../components/ContactActions';
 
 // Import local images
 import webImg from '../assets/images/online commerce .png';
@@ -157,6 +159,12 @@ export const Services = () => {
         description="Découvrez les services d’Optimum Tech : création de sites web, web apps, logiciels sur mesure, outils internes, automatisations utiles et visibilité digitale pour entreprises à Sète, dans l’Hérault et en France."
         keywords="services Optimum Tech, création site web, web app sur mesure, logiciel sur mesure, automatisation IA, agence digitale hérault, développeur web sète"
         schema={[
+          buildWebPageSchema({
+            path: '/services',
+            title: 'Sites web, applications et solutions digitales sur mesure | Optimum Tech',
+            description:
+              'Découvrez les services d’Optimum Tech : création de sites web, web apps, logiciels sur mesure, outils internes, automatisations utiles et visibilité digitale pour entreprises à Sète, dans l’Hérault et en France.',
+          }),
           {
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
@@ -237,6 +245,41 @@ export const Services = () => {
               </p>
             </Link>
           ))}
+        </section>
+
+        <section className={`mt-20 rounded-[2.5rem] border p-8 md:p-12 ${
+          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+        }`}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            Pages utiles selon le type de besoin
+          </h2>
+          <p className={`mt-5 max-w-4xl text-base leading-8 ${theme === 'dark' ? 'text-white/74' : 'text-black/74'}`}>
+            Certaines entreprises ont d’abord besoin d’un site plus crédible et mieux structuré.
+            D’autres ont besoin d’un outil ou d’une application plus opérationnelle. Voici les
+            pages les plus utiles pour cadrer ces situations.
+          </p>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            {[
+              ['/site-internet-dentiste', 'Site internet pour dentiste', 'Pour les cabinets dentaires qui veulent un site clair, rassurant et mobile.'],
+              ['/site-internet-medecin', 'Site internet pour médecin', 'Pour présenter un cabinet avec sobriété, clarté et accès simple à l’information.'],
+              ['/site-internet-entreprise-locale', 'Site internet pour entreprise locale', 'Pour les artisans, commerces, indépendants, services et PME.'],
+              ['/application-web-sur-mesure', 'Application web sur mesure', 'Pour les entreprises qui ont besoin d’un portail, dashboard ou espace d’usage.'],
+              ['/logiciel-sur-mesure', 'Logiciel sur mesure', 'Pour un outil métier, un flux interne ou un logiciel plus adapté au réel.'],
+            ].map(([to, title, desc]) => (
+              <Link
+                key={to}
+                to={to}
+                className={`rounded-[1.6rem] border p-5 transition ${
+                  theme === 'dark'
+                    ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
+                    : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                }`}
+              >
+                <h3 className="text-lg font-semibold">{title}</h3>
+                <p className="mt-3 text-sm leading-7">{desc}</p>
+              </Link>
+            ))}
+          </div>
         </section>
 
         <section className={`mt-20 rounded-[2.5rem] border p-8 md:p-12 ${
@@ -343,6 +386,7 @@ export const Services = () => {
               {t('contact_v2.launchProject') || 'Lancer votre projet'}
               <ArrowRight className="w-6 h-6" />
             </Link>
+            <ContactActions includeContactPage className="mt-6 justify-center" />
           </div>
         </ScrollReveal>
       </main>

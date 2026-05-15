@@ -7,6 +7,7 @@ import { SEO } from '../components/SEO.jsx';
 import { useTheme } from '../context/ThemeContext';
 import { blogCategories, featuredBlogPosts, indexableBlogPosts } from '../data/blogPosts';
 import { editorialTeam, resourceTopics } from '../data/siteMeta';
+import { buildCollectionPageSchema } from '../data/schema';
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat('fr-FR', {
@@ -28,6 +29,12 @@ export const BlogPage = () => {
         path="/blog"
         title="Blog sites, applications et visibilité digitale | Optimum Tech"
         description="Conseils en français sur les sites web, web apps, outils métier, automatisations utiles, SEO local et décisions digitales pour entreprises en France."
+        schema={buildCollectionPageSchema({
+          path: '/blog',
+          title: 'Blog sites, applications et visibilité digitale | Optimum Tech',
+          description:
+            'Conseils en français sur les sites web, web apps, outils métier, automatisations utiles, SEO local et décisions digitales pour entreprises en France.',
+        })}
       />
       <Navbar />
 

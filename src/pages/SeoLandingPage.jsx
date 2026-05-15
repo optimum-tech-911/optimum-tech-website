@@ -6,6 +6,8 @@ import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useTheme } from '../context/ThemeContext';
+import { ContactActions } from '../components/ContactActions';
+import { schemaIds } from '../data/schema';
 
 const buildBreadcrumbSchema = (items) => ({
   '@context': 'https://schema.org',
@@ -21,16 +23,13 @@ const buildBreadcrumbSchema = (items) => ({
 const buildServiceSchema = (page) => ({
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `https://optimutech.fr/${page.slug}#service`,
   name: page.h1,
   serviceType: page.navLabel,
   description: page.description,
   areaServed: ['Sète', 'Hérault', 'Occitanie', 'France'],
   provider: {
-    '@type': 'ProfessionalService',
-    name: 'Optimum Tech',
-    url: 'https://optimutech.fr',
-    telephone: '+33 7 45 30 51 13',
-    email: 'optimum.tech.911@gmail.com',
+    '@id': schemaIds.professionalService,
   },
   url: `https://optimutech.fr/${page.slug}`,
 });
@@ -57,13 +56,15 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
     { label: page.navLabel, to: `/${page.slug}` },
   ];
 
-  const relatedLinks = [
+  const defaultRelatedLinks = [
     { to: '/creation-site-web', label: 'Création de site web' },
     { to: '/referencement-seo', label: 'Référencement SEO' },
     { to: '/automatisation-ia', label: 'Automatisation IA' },
     { to: '/projects', label: 'Réalisations' },
     { to: '/contact', label: 'Contact' },
   ].filter((item) => item.to !== `/${page.slug}`);
+  const relatedLinks = (page.relatedLinks?.length ? page.relatedLinks : defaultRelatedLinks)
+    .filter((item) => item.to !== `/${page.slug}`);
 
   return (
     <div
@@ -126,6 +127,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                     Voir des réalisations
                   </Link>
                 </div>
+                <ContactActions includeContactPage className="mt-5" />
               </div>
 
               <aside
@@ -245,10 +247,10 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                 Conversion
               </p>
               <h2 className="mt-3 text-xl font-bold tracking-tight">
-                Un site utile doit générer des prises de contact qualifiées
+                {page.conversionTitle || 'Un site utile doit générer des prises de contact qualifiées'}
               </h2>
               <p className={`mt-4 text-sm leading-7 ${theme === 'dark' ? 'text-white/78' : 'text-black/78'}`}>
-                Si vous voulez un site ou une stratégie SEO orientés demandes entrantes, nous pouvons cadrer la structure, le contenu et les pages prioritaires.
+                {page.conversionBody || 'Si vous voulez un site ou une stratégie SEO orientés demandes entrantes, nous pouvons cadrer la structure, le contenu et les pages prioritaires.'}
               </p>
               <Link
                 to="/contact"
@@ -257,6 +259,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                 Parler de votre projet
                 <ArrowRight className="h-4 w-4" />
               </Link>
+              <ContactActions className="mt-4" />
             </div>
           </aside>
         </section>

@@ -7,6 +7,8 @@ import { SEO } from '../components/SEO.jsx';
 import { Link } from 'react-router-dom';
 import { indexableBlogPosts } from '../data/blogPosts';
 import { resourceTopics, siteMeta, trustHighlights } from '../data/siteMeta';
+import { buildWebPageSchema } from '../data/schema';
+import { ContactActions } from '../components/ContactActions';
 
 export const Home = () => {
   const { theme } = useTheme();
@@ -90,52 +92,12 @@ export const Home = () => {
         title="Optimum Tech | Sites web, applications et solutions digitales sur mesure"
         description="Optimum Tech accompagne les entreprises à Sète, dans l’Hérault, en Occitanie et en France pour créer des sites web, des web apps, des logiciels sur mesure, des automatisations utiles et une visibilité digitale plus solide."
         keywords="Optimum Tech, création site web sud de la france, création site web sète, agence web sète, développeur web sète, web app sur mesure france, logiciel sur mesure entreprise, agence digitale hérault, référencement SEO sète, automatisation IA entreprise france"
-        schema={[
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            '@id': 'https://optimutech.fr/#organization',
-            name: 'Optimum Tech',
-            url: 'https://optimutech.fr',
-            logo: {
-              '@type': 'ImageObject',
-              url: 'https://optimutech.fr/apple-touch-icon.png',
-            },
-            contactPoint: {
-              '@type': 'ContactPoint',
-              telephone: '+33 7 45 30 51 13',
-              contactType: 'customer service',
-              areaServed: ['FR'],
-              availableLanguage: ['fr', 'en'],
-            },
-            sameAs: [
-              'https://www.instagram.com/ot.optimum_tech/',
-              'https://www.linkedin.com/in/sid-ahmed-larabi-09b328286/',
-            ],
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'WebSite',
-            '@id': 'https://optimutech.fr/#website',
-            url: 'https://optimutech.fr',
-            name: 'Optimum Tech',
-            publisher: {
-              '@id': 'https://optimutech.fr/#organization',
-            },
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ProfessionalService',
-            '@id': 'https://optimutech.fr/#service',
-            name: 'Optimum Tech',
-            url: 'https://optimutech.fr',
-            image: 'https://optimutech.fr/apple-touch-icon.png',
-            telephone: '+33 7 45 30 51 13',
-            email: 'optimum.tech.911@gmail.com',
-            areaServed: ['Sète', 'Hérault', 'Occitanie', 'France'],
-            serviceType: ['Création de site web', 'Web apps sur mesure', 'Logiciels et outils internes', 'Automatisation utile', 'Référencement SEO local'],
-          },
-        ]}
+        schema={buildWebPageSchema({
+          path: '/',
+          title: 'Optimum Tech | Sites web, applications et solutions digitales sur mesure',
+          description:
+            'Optimum Tech accompagne les entreprises à Sète, dans l’Hérault, en Occitanie et en France pour créer des sites web, des web apps, des logiciels sur mesure, des automatisations utiles et une visibilité digitale plus solide.',
+        })}
       />
       <Navbar />
       {isMobile && theme === 'dark' && <div className="absolute inset-0 z-0 pointer-events-none mobile-ambient" />}
@@ -196,6 +158,7 @@ export const Home = () => {
                 </Link>
               ))}
             </div>
+            <ContactActions includeContactPage className="mt-8" />
           </div>
         </section>
 
@@ -277,6 +240,49 @@ export const Home = () => {
             theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
           }`}>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+              Solutions adaptées
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+              Des solutions adaptées à votre activité
+            </h2>
+            <p className={`mt-5 max-w-4xl text-base leading-8 md:text-lg ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
+              Nous créons d’abord des sites web professionnels conçus pour rassurer,
+              clarifier l’offre et faciliter la prise de contact. Quand le besoin va plus
+              loin, nous pouvons aussi cadrer une application, un outil métier ou une
+              automatisation utile.
+            </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+              {[
+                ['/site-internet-dentiste', 'Site internet pour dentiste', 'Pour présenter le cabinet, les soins et un contact clair.'],
+                ['/site-internet-medecin', 'Site internet pour médecin', 'Pour structurer un site sobre, rassurant et utile sur mobile.'],
+                ['/site-internet-entreprise-locale', 'Site internet pour entreprise locale', 'Pour les artisans, commerces, indépendants, services et PME.'],
+                ['/application-web-sur-mesure', 'Application web sur mesure', 'Pour les entreprises qui ont besoin d’un vrai outil d’usage.'],
+                ['/logiciel-sur-mesure', 'Logiciel sur mesure', 'Pour cadrer un outil métier, un flux interne ou un logiciel plus précis.'],
+              ].map(([to, title, desc]) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className={`rounded-[1.8rem] border p-5 transition ${
+                    theme === 'dark'
+                      ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
+                      : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                  }`}
+                >
+                  <h3 className="text-lg font-semibold">{title}</h3>
+                  <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
+                    {desc}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto mt-10 max-w-6xl">
+          <div className={`rounded-[2.5rem] border p-6 md:p-10 ${
+            theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+          }`}>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
               Ce que nous faisons concrètement
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
@@ -286,15 +292,14 @@ export const Home = () => {
               <div className="space-y-4 text-base leading-8">
                 <p>
                   Optimum Tech accompagne surtout des entreprises qui ont besoin d’un site
-                  professionnel, d’une application utile ou d’un outil digital sur mesure
-                  capable d’expliquer clairement leur offre, de soutenir leurs opérations et
-                  de faciliter la prise de contact.
+                  web professionnel capable d’expliquer clairement leur offre, de soutenir
+                  leur crédibilité et de faciliter la prise de contact.
                 </p>
                 <p>
                   Selon le contexte, nous travaillons aussi le SEO local, les pages
-                  services, le maillage interne, la logique de conversion, des web apps
-                  légères et des automatisations simples qui font gagner du temps sans
-                  ajouter de complexité inutile.
+                  services, le maillage interne, la logique de conversion, des web apps,
+                  des outils métiers et des automatisations simples qui font gagner du
+                  temps sans ajouter de complexité inutile.
                 </p>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -485,6 +490,31 @@ export const Home = () => {
               <h2 className="text-lg font-semibold">{label}</h2>
               <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
                 Une page locale claire pour les entreprises qui recherchent un partenaire digital proche et réactif.
+              </p>
+            </Link>
+          ))}
+        </section>
+
+        <section className="mx-auto mt-10 max-w-6xl grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {[
+            ['/site-internet-dentiste', 'Site internet pour dentiste'],
+            ['/site-internet-medecin', 'Site internet pour médecin'],
+            ['/site-internet-entreprise-locale', 'Site internet pour entreprise locale'],
+            ['/application-web-sur-mesure', 'Application web sur mesure'],
+            ['/logiciel-sur-mesure', 'Logiciel sur mesure'],
+          ].map(([to, label]) => (
+            <Link
+              key={to}
+              to={to}
+              className={`rounded-[1.8rem] border p-5 transition ${
+                theme === 'dark'
+                  ? 'border-white/10 bg-white/5 hover:border-[#007BFF]/30'
+                  : 'border-black/10 bg-white/80 hover:border-[#007BFF]/30 shadow-lg'
+              }`}
+            >
+              <h2 className="text-lg font-semibold">{label}</h2>
+              <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
+                Une page utile pour mieux cadrer un besoin fréquent avant de nous contacter.
               </p>
             </Link>
           ))}

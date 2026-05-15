@@ -15,6 +15,8 @@ import softwareImg from '../assets/images/optimum tech software dev.png';
 import aiImg from '../assets/images/optimum tech digital shop.webp';
 import consultationImg from '../assets/images/optimum tech online meeting.webp';
 import { resourceTopics, siteMeta } from '../data/siteMeta';
+import { buildContactPageSchema } from '../data/schema';
+import { ContactActions } from '../components/ContactActions';
 
 export const Contact = () => {
   const { t, lang } = useI18n();
@@ -359,6 +361,12 @@ export const Contact = () => {
         title="Contact Optimum Tech | Devis site, application ou solution digitale"
         description="Contactez Optimum Tech pour un devis de création de site web, web app, logiciel sur mesure, automatisation utile ou accompagnement en visibilité digitale à Sète, dans l’Hérault, en Occitanie et en France."
         keywords="contact Optimum Tech, devis site web sète, web app sur mesure france, logiciel sur mesure entreprise, agence web hérault, SEO local sète, automatisation IA france"
+        schema={buildContactPageSchema({
+          path: '/contact',
+          title: 'Contact Optimum Tech | Devis site, application ou solution digitale',
+          description:
+            'Contactez Optimum Tech pour un devis de création de site web, web app, logiciel sur mesure, automatisation utile ou accompagnement en visibilité digitale à Sète, dans l’Hérault, en Occitanie et en France.',
+        })}
       />
       <Navbar />
 
@@ -366,7 +374,7 @@ export const Contact = () => {
         <section className={`mb-8 w-full max-w-5xl rounded-[2.5rem] border p-6 md:p-8 ${
           theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
         }`}>
-          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
                 Contact
@@ -398,6 +406,7 @@ export const Contact = () => {
                 </div>
               ))}
             </div>
+            <ContactActions className="mt-8" />
           </div>
         </section>
 

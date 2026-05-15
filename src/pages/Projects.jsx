@@ -8,6 +8,8 @@ import { useI18n } from '../i18n.jsx';
 import { SEO } from '../components/SEO.jsx';
 import { supabase } from '../../supabaseClient';
 import { useTheme } from '../context/ThemeContext';
+import { buildCollectionPageSchema } from '../data/schema';
+import { ContactActions } from '../components/ContactActions';
 
 const ProjectCarousel = ({ title, projects }) => {
   const { t } = useI18n();
@@ -318,9 +320,15 @@ export const Projects = () => {
       {theme === 'dark' && <div className="fixed inset-0 z-[-10] bg-[#050505]" />}
       <SEO
         path="/projects"
-        title="Réalisations web et digitales | Optimum Tech"
-        description="Découvrez des réalisations, projets web et solutions digitales signées Optimum Tech pour illustrer notre approche en création de site, logiciel et automatisation."
-        robots="noindex, follow"
+        title="Réalisations web, applications et projets digitaux | Optimum Tech"
+        description="Découvrez des projets de sites web, applications, outils métier et solutions digitales réalisés par Optimum Tech pour des entreprises et organisations."
+        robots="index, follow"
+        schema={buildCollectionPageSchema({
+          path: '/projects',
+          title: 'Réalisations web, applications et projets digitaux | Optimum Tech',
+          description:
+            'Découvrez des projets de sites web, applications, outils métier et solutions digitales réalisés par Optimum Tech pour des entreprises et organisations.',
+        })}
       />
       <Navbar />
       
@@ -344,7 +352,7 @@ export const Projects = () => {
           <p className={`text-xl md:text-2xl font-light max-w-2xl mx-auto ${
             theme === 'dark' ? 'text-white/50' : 'text-black/50'
           }`}>
-            {t('hero.ctaSee')}
+            Des exemples de sites web, applications, outils métiers et solutions digitales conçus pour des usages concrets.
           </p>
         </motion.div>
         
@@ -365,7 +373,7 @@ export const Projects = () => {
                      : 'bg-black/5 border-black/10 text-black hover:bg-black/10'
                  }`}
                >
-                 <span className="font-medium text-lg">Current Progress Projects</span>
+                 <span className="font-medium text-lg">Projets en cours</span>
                  <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${showProgress ? 'rotate-180' : ''} text-blue-400`} />
                </button>
 
@@ -390,11 +398,24 @@ export const Projects = () => {
           {projects.launched.length === 0 && projects.progress.length === 0 && (
              <div className="flex flex-col items-center justify-center py-20">
                 <p className={theme === 'dark' ? 'text-white/60' : 'text-black/60'}>
-                  No projects found. Add some in the admin panel.
+                  Aucune réalisation publique n’est affichée pour le moment.
                 </p>
              </div>
           )}
         </div>
+
+        <section className={`mt-16 rounded-[2.4rem] border p-8 text-center md:p-12 ${
+          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+        }`}>
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            Vous avez un besoin similaire ou plus spécifique ?
+          </h2>
+          <p className={`mx-auto mt-5 max-w-3xl text-base leading-8 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
+            Nous pouvons échanger sur un site web professionnel, une application, un outil
+            métier ou une automatisation utile selon votre contexte.
+          </p>
+          <ContactActions includeContactPage className="mt-8 justify-center" />
+        </section>
       </main>
       <Footer />
     </div>

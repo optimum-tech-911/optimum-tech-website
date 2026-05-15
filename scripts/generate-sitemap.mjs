@@ -9,11 +9,12 @@ const rootDir = path.resolve(__dirname, '..');
 const publicDir = path.join(rootDir, 'public');
 const distDir = path.join(rootDir, 'dist');
 const baseUrl = 'https://optimutech.fr';
-const lastmod = '2026-05-14';
+const lastmod = '2026-05-15';
 
 const urls = [
   ['/', 'weekly', '1.0'],
   ['/services', 'weekly', '0.95'],
+  ['/projects', 'monthly', '0.75'],
   ['/a-propos', 'monthly', '0.8'],
   ['/contact', 'monthly', '0.85'],
   ['/blog', 'weekly', '0.95'],

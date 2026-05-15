@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { buildEntityGraph } from '../data/schema';
 
 export const SEO = ({
   path,
@@ -14,6 +15,8 @@ export const SEO = ({
   const base = 'https://optimutech.fr';
   const canonical = `${base}${path || '/'}`;
   const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
+  const entityGraph = robots.startsWith('noindex') ? [] : buildEntityGraph();
+  const allSchemaItems = [...entityGraph, ...schemaItems];
 
   return (
     <Helmet>
@@ -52,7 +55,7 @@ export const SEO = ({
       <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
       <link rel="manifest" href="/site.webmanifest" />
 
-      {schemaItems.map((item, index) => (
+      {allSchemaItems.map((item, index) => (
         <script key={`${path || 'page'}-schema-${index}`} type="application/ld+json">
           {JSON.stringify(item)}
         </script>

@@ -4,6 +4,7 @@ import { Globe } from 'lucide-react';
 import Logo from '../assets/Logo.png';
 import { useI18n, LANG_OPTIONS } from '../i18n.jsx';
 import { useTheme } from '../context/ThemeContext';
+import { ContactActions } from './ContactActions';
 
 export const Footer = () => {
   const { t, lang, setLang } = useI18n();
@@ -86,6 +87,7 @@ export const Footer = () => {
                 optimum.tech.911@gmail.com
               </a>
             </div>
+            <ContactActions className="pt-2" />
           </div>
 
           <div className="space-y-6">

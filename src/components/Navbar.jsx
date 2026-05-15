@@ -152,10 +152,11 @@ export const Navbar = () => {
       ],
     },
     {
-      title: 'Conversion',
+      title: 'Besoins fréquents',
       links: [
-        { to: '/projects', label: 'Réalisations', description: 'Voir des exemples concrets de projets.' },
-        { to: '/contact', label: 'Demander un devis', description: 'Parler de votre projet par message ou téléphone.' },
+        { to: '/site-internet-entreprise-locale', label: 'Site internet entreprise locale', description: 'Pour artisans, commerces, indépendants et PME.' },
+        { to: '/site-internet-dentiste', label: 'Site internet dentiste', description: 'Pour cabinets dentaires et activités de santé locales.' },
+        { to: '/application-web-sur-mesure', label: 'Application web sur mesure', description: 'Pour dashboards, portails et interfaces métiers utiles.' },
       ],
     },
   ];

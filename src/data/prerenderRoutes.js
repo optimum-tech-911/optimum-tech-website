@@ -17,6 +17,7 @@ export const indexableBlogSlugs = [
 export const staticPrerenderRoutes = [
   '/',
   '/services',
+  '/projects',
   '/a-propos',
   '/contact',
   '/blog',

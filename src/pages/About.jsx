@@ -7,6 +7,8 @@ import { SEO } from '../components/SEO';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useTheme } from '../context/ThemeContext';
 import { siteMeta, trustHighlights } from '../data/siteMeta';
+import { ContactActions } from '../components/ContactActions';
+import { buildWebPageSchema } from '../data/schema';
 
 export const AboutPage = () => {
   const { theme } = useTheme();
@@ -26,6 +28,12 @@ export const AboutPage = () => {
         title="À propos d’Optimum Tech | Sites, applications et solutions digitales"
         description="Découvrez Optimum Tech, studio de création de sites web, web apps, logiciels sur mesure, automatisations utiles et visibilité digitale pour les entreprises à Sète, dans l’Hérault, en Occitanie et en France."
         schema={[
+          buildWebPageSchema({
+            path: '/a-propos',
+            title: 'À propos d’Optimum Tech | Sites, applications et solutions digitales',
+            description:
+              'Découvrez Optimum Tech, studio de création de sites web, web apps, logiciels sur mesure, automatisations utiles et visibilité digitale pour les entreprises à Sète, dans l’Hérault, en Occitanie et en France.',
+          }),
           {
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
@@ -164,6 +172,7 @@ export const AboutPage = () => {
             Nous parler de votre projet
             <ArrowRight className="h-4 w-4" />
           </Link>
+          <ContactActions className="mt-6" />
         </section>
       </main>
 

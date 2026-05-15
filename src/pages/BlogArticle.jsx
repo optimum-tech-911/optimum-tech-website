@@ -33,6 +33,44 @@ export const BlogArticlePage = () => {
     .slice(0, 4)
     .map((href) => indexableBlogPosts.find((item) => `/blog/${item.slug}` === href))
     .filter(Boolean);
+  const commercialLinksBySlug = {
+    'site-vitrine-ou-web-app-que-choisir-pour-son-activite': [
+      { to: '/creation-site-web', label: 'Création de site web professionnel' },
+      { to: '/application-web-sur-mesure', label: 'Développement d’application web sur mesure' },
+      { to: '/logiciel-sur-mesure', label: 'Logiciel sur mesure et outil métier' },
+    ],
+    'application-web-sur-mesure-rentable-entreprises': [
+      { to: '/application-web-sur-mesure', label: 'Application web sur mesure pour entreprise' },
+      { to: '/logiciel-sur-mesure', label: 'Logiciel sur mesure et outil métier' },
+    ],
+    'automatisation-intelligence-artificielle-gagner-temps-chiffre-affaires': [
+      { to: '/automatisation-ia', label: 'Automatisation IA utile pour entreprise' },
+      { to: '/logiciel-sur-mesure', label: 'Outil métier et logiciel sur mesure' },
+    ],
+    'comment-une-entreprise-locale-transforme-son-site-en-demandes-de-contact': [
+      { to: '/site-internet-entreprise-locale', label: 'Site internet pour entreprise locale' },
+      { to: '/creation-site-web', label: 'Création de site web professionnel' },
+    ],
+    'etre-trouve-google-entreprise-locale-france': [
+      { to: '/site-internet-entreprise-locale', label: 'Site internet pour entreprise locale' },
+      { to: '/referencement-seo', label: 'Référencement SEO local' },
+    ],
+    'seo-local-entreprise-ce-qu-il-faut-vraiment-comprendre': [
+      { to: '/referencement-seo', label: 'Référencement SEO local' },
+      { to: '/site-internet-entreprise-locale', label: 'Site internet pour entreprise locale' },
+    ],
+    'google-business-profile-et-site-web-comment-les-deux-travaillent-ensemble': [
+      { to: '/site-internet-entreprise-locale', label: 'Site internet pour entreprise locale' },
+      { to: '/creation-site-web', label: 'Création de site web professionnel' },
+    ],
+    'cabinet-dentaire-site-moderne-attirer-plus-de-patients': [
+      { to: '/site-internet-dentiste', label: 'Site internet pour dentiste et cabinet dentaire' },
+    ],
+    'cabinet-medical-site-professionnel-inspirer-confiance': [
+      { to: '/site-internet-medecin', label: 'Site internet pour médecin et cabinet médical' },
+    ],
+  };
+  const commercialLinks = commercialLinksBySlug[post.slug] || [];
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -271,6 +309,35 @@ export const BlogArticlePage = () => {
                   ))}
                 </div>
               </div>
+
+              {commercialLinks.length ? (
+                <div
+                  className={`rounded-[2rem] border p-5 ${
+                    theme === 'dark'
+                      ? 'border-white/10 bg-white/5'
+                      : 'border-black/10 bg-white/80 shadow-lg'
+                  }`}
+                >
+                  <p className={`text-sm uppercase tracking-[0.18em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
+                    Pages utiles
+                  </p>
+                  <div className="mt-4 space-y-3">
+                    {commercialLinks.map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        className={`block rounded-[1.4rem] border px-4 py-4 transition ${
+                          theme === 'dark'
+                            ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
+                            : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                        }`}
+                      >
+                        <span className="font-medium">{item.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
 
               <div
                 className={`rounded-[2rem] border p-5 ${
