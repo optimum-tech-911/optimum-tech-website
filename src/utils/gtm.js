@@ -1,5 +1,14 @@
 let initialized = false;
 export const GA_MEASUREMENT_ID = 'G-MW97M0ZCQG';
+const CONSENT_GRANTED = 'granted';
+const CONSENT_DENIED = 'denied';
+
+const buildConsentState = (granted) => ({
+  analytics_storage: granted ? CONSENT_GRANTED : CONSENT_DENIED,
+  ad_storage: CONSENT_DENIED,
+  ad_user_data: CONSENT_DENIED,
+  ad_personalization: CONSENT_DENIED,
+});
 
 export const pushEvent = (event) => {
   window.dataLayer = window.dataLayer || [];
@@ -11,6 +20,13 @@ export const initGTM = ({ gtmId = 'GTM-XXXXXXX', gaId = 'G-XXXXXXXXXX' } = {}) =
   if (initialized) return;
   const useGtm = gtmId && !/XXXXXXX/.test(gtmId);
   window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () {
+    window.dataLayer.push(arguments);
+  };
+  window.gtag('consent', 'default', {
+    ...buildConsentState(false),
+    wait_for_update: 500,
+  });
   if (useGtm) {
     const s = document.createElement('script');
     s.async = true;
@@ -21,13 +37,16 @@ export const initGTM = ({ gtmId = 'GTM-XXXXXXX', gaId = 'G-XXXXXXXXXX' } = {}) =
     s.async = true;
     s.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
     document.head.appendChild(s);
-    window.gtag = function () {
-      window.dataLayer.push(arguments);
-    };
     window.gtag('js', new Date());
     window.gtag('config', gaId, { send_page_view: false });
   }
   initialized = true;
+};
+
+export const updateAnalyticsConsent = (granted) => {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+
+  window.gtag('consent', 'update', buildConsentState(granted));
 };
 
 export const trackPageView = ({ gaId = GA_MEASUREMENT_ID, path, title, location } = {}) => {

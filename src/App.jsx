@@ -52,7 +52,7 @@ import { ScrollToTop } from './components/ScrollToTop.jsx';
 import { ProtectedRoute } from './components/ProtectedRoute.jsx';
 import { seedProjects } from './utils/seedProjects.js';
 import { hasConsent } from './utils/cookies.js';
-import { initGTM, trackPageView, GA_MEASUREMENT_ID } from './utils/gtm.js';
+import { initGTM, trackPageView, updateAnalyticsConsent, GA_MEASUREMENT_ID } from './utils/gtm.js';
 import { localPages, servicePages } from './data/seoPages.js';
 
 const PageWrapper = ({ children }) => (
@@ -76,9 +76,16 @@ export default function App() {
   }, []);
 
   React.useEffect(() => {
+    initGTM({ gaId: GA_MEASUREMENT_ID });
+
+    if (hasConsent('analytics')) {
+      updateAnalyticsConsent(true);
+    }
+  }, []);
+
+  React.useEffect(() => {
     if (!hasConsent('analytics')) return;
 
-    initGTM({ gaId: GA_MEASUREMENT_ID });
     trackPageView({
       gaId: GA_MEASUREMENT_ID,
       path: `${location.pathname}${location.search}`,
