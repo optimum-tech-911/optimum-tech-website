@@ -1,6 +1,6 @@
 import React from 'react';
 import { setPrefs, getPrefs, hasConsent } from '../utils/cookies.js';
-import { initGTM } from '../utils/gtm.js';
+import { initGTM, trackPageView, GA_MEASUREMENT_ID } from '../utils/gtm.js';
 import '../styles/cookies.css';
 import { useI18n } from '../i18n.jsx';
 
@@ -13,7 +13,7 @@ export const CookieBanner = () => {
 
   React.useEffect(() => {
     const prefs = getPrefs();
-    if (prefs && prefs.analytics) initGTM({ gaId: 'G-81DWTXG9MZ' });
+    if (prefs && prefs.analytics) initGTM({ gaId: GA_MEASUREMENT_ID });
     if (prefs) setCanReopen(false);
   }, []);
 
@@ -27,7 +27,8 @@ export const CookieBanner = () => {
   const acceptAll = () => {
     setPrefs({ analytics: true });
     setAnalytics(true);
-    initGTM({ gaId: 'G-81DWTXG9MZ' });
+    initGTM({ gaId: GA_MEASUREMENT_ID });
+    trackPageView({ gaId: GA_MEASUREMENT_ID });
     setVisible(false);
     setCanReopen(false);
   };
@@ -41,7 +42,10 @@ export const CookieBanner = () => {
 
   const saveSettings = () => {
     setPrefs({ analytics });
-    if (analytics) initGTM({ gaId: 'G-81DWTXG9MZ' });
+    if (analytics) {
+      initGTM({ gaId: GA_MEASUREMENT_ID });
+      trackPageView({ gaId: GA_MEASUREMENT_ID });
+    }
     setOpenSettings(false);
     setVisible(false);
     setCanReopen(false);

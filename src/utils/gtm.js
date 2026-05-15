@@ -1,4 +1,5 @@
 let initialized = false;
+export const GA_MEASUREMENT_ID = 'G-MW97M0ZCQG';
 
 export const pushEvent = (event) => {
   window.dataLayer = window.dataLayer || [];
@@ -6,6 +7,7 @@ export const pushEvent = (event) => {
 };
 
 export const initGTM = ({ gtmId = 'GTM-XXXXXXX', gaId = 'G-XXXXXXXXXX' } = {}) => {
+  if (typeof window === 'undefined') return;
   if (initialized) return;
   const useGtm = gtmId && !/XXXXXXX/.test(gtmId);
   window.dataLayer = window.dataLayer || [];
@@ -23,7 +25,18 @@ export const initGTM = ({ gtmId = 'GTM-XXXXXXX', gaId = 'G-XXXXXXXXXX' } = {}) =
       window.dataLayer.push(arguments);
     };
     window.gtag('js', new Date());
-    window.gtag('config', gaId);
+    window.gtag('config', gaId, { send_page_view: false });
   }
   initialized = true;
+};
+
+export const trackPageView = ({ gaId = GA_MEASUREMENT_ID, path, title, location } = {}) => {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+
+  window.gtag('event', 'page_view', {
+    page_title: title || document.title,
+    page_path: path || window.location.pathname,
+    page_location: location || window.location.href,
+    send_to: gaId,
+  });
 };
