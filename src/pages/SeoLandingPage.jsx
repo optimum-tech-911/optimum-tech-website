@@ -65,6 +65,13 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
   ].filter((item) => item.to !== `/${page.slug}`);
   const relatedLinks = (page.relatedLinks?.length ? page.relatedLinks : defaultRelatedLinks)
     .filter((item) => item.to !== `/${page.slug}`);
+  const quickNav = page.quickNav || [];
+  const heroPrimaryLabel = page.heroPrimaryLabel || 'Demander un devis';
+  const heroPrimaryTo = page.heroPrimaryTo || '/contact';
+  const heroSecondaryLabel = page.heroSecondaryLabel || null;
+  const heroSecondaryTo = page.heroSecondaryTo || null;
+  const heroTertiaryLabel = page.heroTertiaryLabel || 'Voir des réalisations';
+  const heroTertiaryTo = page.heroTertiaryTo || '/projects';
 
   return (
     <div
@@ -110,22 +117,36 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
 
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                   <Link
-                    to="/contact"
+                    to={heroPrimaryTo}
                     className="inline-flex items-center justify-center gap-3 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#007BFF]/90"
                   >
-                    Demander un devis
+                    {heroPrimaryLabel}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link
-                    to="/projects"
-                    className={`inline-flex items-center justify-center gap-3 rounded-full border px-6 py-3 text-sm font-semibold transition ${
-                      theme === 'dark'
-                        ? 'border-white/10 bg-white/5 text-white hover:bg-white/10'
-                        : 'border-black/10 bg-black/5 text-black hover:bg-black/10'
-                    }`}
-                  >
-                    Voir des réalisations
-                  </Link>
+                  {heroSecondaryLabel && heroSecondaryTo ? (
+                    <Link
+                      to={heroSecondaryTo}
+                      className={`inline-flex items-center justify-center gap-3 rounded-full border px-6 py-3 text-sm font-semibold transition ${
+                        theme === 'dark'
+                          ? 'border-white/10 bg-white/5 text-white hover:bg-white/10'
+                          : 'border-black/10 bg-black/5 text-black hover:bg-black/10'
+                      }`}
+                    >
+                      {heroSecondaryLabel}
+                    </Link>
+                  ) : null}
+                  {heroTertiaryLabel && heroTertiaryTo ? (
+                    <Link
+                      to={heroTertiaryTo}
+                      className={`inline-flex items-center justify-center gap-3 rounded-full border px-6 py-3 text-sm font-semibold transition ${
+                        theme === 'dark'
+                          ? 'border-white/10 bg-white/5 text-white hover:bg-white/10'
+                          : 'border-black/10 bg-black/5 text-black hover:bg-black/10'
+                      }`}
+                    >
+                      {heroTertiaryLabel}
+                    </Link>
+                  ) : null}
                 </div>
                 <ContactActions includeContactPage className="mt-5" />
               </div>
@@ -163,28 +184,217 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
           </div>
         </section>
 
+        {quickNav.length ? (
+          <section className="mx-auto mt-8 max-w-6xl">
+            <div
+              className={`rounded-[2rem] border p-6 md:p-8 ${
+                theme === 'dark'
+                  ? 'border-white/10 bg-white/5'
+                  : 'border-black/10 bg-white/80 shadow-lg'
+              }`}
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+                Dans cette page
+              </p>
+              <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                {quickNav.map((item) => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className={`rounded-[1.4rem] border px-4 py-4 text-sm font-medium transition ${
+                      theme === 'dark'
+                        ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
+                        : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
         <section className="mx-auto mt-12 max-w-6xl grid gap-6 lg:grid-cols-[1fr_320px]">
           <div className="space-y-6">
             {page.sections.map((section) => (
               <section
                 key={section.title}
+                id={section.id}
                 className={`rounded-[2rem] border p-6 md:p-8 ${
                   theme === 'dark'
                     ? 'border-white/10 bg-white/5'
                     : 'border-black/10 bg-white/80 shadow-lg'
                 }`}
               >
+                {section.eyebrow ? (
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+                    {section.eyebrow}
+                  </p>
+                ) : null}
                 <h2 className="text-2xl font-bold tracking-tight md:text-3xl">{section.title}</h2>
                 <div className={`mt-5 space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/76' : 'text-black/76'}`}>
                   {section.paragraphs.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
                 </div>
+
+                {section.callout ? (
+                  <div
+                    className={`mt-6 rounded-[1.8rem] border p-5 ${
+                      theme === 'dark'
+                        ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
+                        : 'border-[#007BFF]/15 bg-[#007BFF]/8'
+                    }`}
+                  >
+                    {section.callout.title ? (
+                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+                        {section.callout.title}
+                      </p>
+                    ) : null}
+                    <p className="mt-3 text-base leading-8">{section.callout.text}</p>
+                  </div>
+                ) : null}
+
+                {section.cards?.length ? (
+                  <div className="mt-6 grid gap-4 md:grid-cols-2">
+                    {section.cards.map((card) => (
+                      <div
+                        key={card.title}
+                        className={`rounded-[1.6rem] border p-5 ${
+                          theme === 'dark'
+                            ? 'border-white/10 bg-black/20'
+                            : 'border-black/10 bg-black/5'
+                        }`}
+                      >
+                        <h3 className="text-xl font-semibold tracking-tight">{card.title}</h3>
+                        {card.paragraphs?.length ? (
+                          <div className={`mt-3 space-y-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/74' : 'text-black/74'}`}>
+                            {card.paragraphs.map((paragraph) => (
+                              <p key={paragraph}>{paragraph}</p>
+                            ))}
+                          </div>
+                        ) : null}
+                        {card.bullets?.length ? (
+                          <ul className="mt-4 space-y-3">
+                            {card.bullets.map((bullet) => (
+                              <li key={bullet} className="flex items-start gap-3 text-sm leading-7">
+                                <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-[#007BFF]" />
+                                <span>{bullet}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        {card.links?.length ? (
+                          <div className="mt-4 flex flex-wrap gap-3">
+                            {card.links.map((link) =>
+                              link.to.startsWith('/') ? (
+                                <Link
+                                  key={link.to}
+                                  to={link.to}
+                                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#007BFF]"
+                                >
+                                  {link.label}
+                                  <ArrowRight className="h-4 w-4" />
+                                </Link>
+                              ) : (
+                                <a
+                                  key={link.to}
+                                  href={link.to}
+                                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#007BFF]"
+                                >
+                                  {link.label}
+                                  <ArrowRight className="h-4 w-4" />
+                                </a>
+                              )
+                            )}
+                          </div>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+
+                {section.comparison ? (
+                  <div className="mt-6 grid gap-4 lg:grid-cols-2">
+                    {[
+                      {
+                        title: section.comparison.leftTitle,
+                        items: section.comparison.leftItems,
+                      },
+                      {
+                        title: section.comparison.rightTitle,
+                        items: section.comparison.rightItems,
+                      },
+                    ].map((column, index) => (
+                      <div
+                        key={column.title}
+                        className={`rounded-[1.6rem] border p-5 ${
+                          index === 1
+                            ? theme === 'dark'
+                              ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
+                              : 'border-[#007BFF]/15 bg-[#007BFF]/8'
+                            : theme === 'dark'
+                              ? 'border-white/10 bg-black/20'
+                              : 'border-black/10 bg-black/5'
+                        }`}
+                      >
+                        <h3 className="text-xl font-semibold tracking-tight">{column.title}</h3>
+                        <ul className="mt-4 space-y-3">
+                          {column.items.map((item) => (
+                            <li key={item} className="flex items-start gap-3 text-sm leading-7">
+                              <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-[#007BFF]" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+
+                {section.cta ? (
+                  <div
+                    className={`mt-6 rounded-[1.8rem] border p-6 ${
+                      theme === 'dark'
+                        ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
+                        : 'border-[#007BFF]/15 bg-[#007BFF]/8'
+                    }`}
+                  >
+                    <h3 className="text-2xl font-bold tracking-tight">{section.cta.title}</h3>
+                    <p className={`mt-3 text-base leading-8 ${theme === 'dark' ? 'text-white/80' : 'text-black/80'}`}>
+                      {section.cta.body}
+                    </p>
+                    <div className="mt-5 flex flex-col gap-4 sm:flex-row">
+                      <Link
+                        to={section.cta.primaryTo || '/contact'}
+                        className="inline-flex items-center justify-center gap-3 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#007BFF]/90"
+                      >
+                        {section.cta.primaryLabel || 'Demander un devis'}
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                      {section.cta.secondaryTo ? (
+                        <Link
+                          to={section.cta.secondaryTo}
+                          className={`inline-flex items-center justify-center gap-3 rounded-full border px-6 py-3 text-sm font-semibold transition ${
+                            theme === 'dark'
+                              ? 'border-white/10 bg-white/5 text-white hover:bg-white/10'
+                              : 'border-black/10 bg-white/70 text-black hover:bg-white'
+                          }`}
+                        >
+                          {section.cta.secondaryLabel}
+                        </Link>
+                      ) : null}
+                    </div>
+                    <ContactActions className="mt-4" />
+                  </div>
+                ) : null}
               </section>
             ))}
 
             {page.faq?.length ? (
               <section
+                id="faq"
                 className={`rounded-[2rem] border p-6 md:p-8 ${
                   theme === 'dark'
                     ? 'border-white/10 bg-white/5'
