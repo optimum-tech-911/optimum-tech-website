@@ -8,3 +8,6 @@ dist/
 
 # Supabase local/temp artifacts
 supabase/.temp/
+
+# macOS Finder metadata
+.DS_Store

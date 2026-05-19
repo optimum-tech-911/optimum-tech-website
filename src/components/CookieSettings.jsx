@@ -1,6 +1,12 @@
 import React from 'react';
 import { getPrefs, setPrefs } from '../utils/cookies.js';
-import { initGTM, trackPageView, updateAnalyticsConsent, GA_MEASUREMENT_ID } from '../utils/gtm.js';
+import {
+  initGTM,
+  trackPageView,
+  updateAnalyticsConsent,
+  GA_MEASUREMENT_ID,
+  GTM_CONTAINER_ID,
+} from '../utils/gtm.js';
 import { useI18n } from '../i18n.jsx';
 
 export const CookieSettings = () => {
@@ -10,7 +16,7 @@ export const CookieSettings = () => {
   const [showReopen, setShowReopen] = React.useState(() => !getPrefs());
   const save = () => {
     setPrefs({ analytics });
-    initGTM({ gaId: GA_MEASUREMENT_ID });
+    initGTM({ gtmId: GTM_CONTAINER_ID, gaId: GA_MEASUREMENT_ID });
     updateAnalyticsConsent(analytics);
     if (analytics) {
       trackPageView({ gaId: GA_MEASUREMENT_ID });

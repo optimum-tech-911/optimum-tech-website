@@ -1,6 +1,12 @@
 import React from 'react';
 import { setPrefs, getPrefs, hasConsent } from '../utils/cookies.js';
-import { initGTM, trackPageView, updateAnalyticsConsent, GA_MEASUREMENT_ID } from '../utils/gtm.js';
+import {
+  initGTM,
+  trackPageView,
+  updateAnalyticsConsent,
+  GA_MEASUREMENT_ID,
+  GTM_CONTAINER_ID,
+} from '../utils/gtm.js';
 import '../styles/cookies.css';
 import { useI18n } from '../i18n.jsx';
 
@@ -14,7 +20,7 @@ export const CookieBanner = () => {
   React.useEffect(() => {
     const prefs = getPrefs();
     if (prefs && prefs.analytics) {
-      initGTM({ gaId: GA_MEASUREMENT_ID });
+      initGTM({ gtmId: GTM_CONTAINER_ID, gaId: GA_MEASUREMENT_ID });
       updateAnalyticsConsent(true);
     }
     if (prefs) setCanReopen(false);
@@ -30,7 +36,7 @@ export const CookieBanner = () => {
   const acceptAll = () => {
     setPrefs({ analytics: true });
     setAnalytics(true);
-    initGTM({ gaId: GA_MEASUREMENT_ID });
+    initGTM({ gtmId: GTM_CONTAINER_ID, gaId: GA_MEASUREMENT_ID });
     updateAnalyticsConsent(true);
     trackPageView({ gaId: GA_MEASUREMENT_ID });
     setVisible(false);
@@ -40,7 +46,7 @@ export const CookieBanner = () => {
   const rejectAll = () => {
     setPrefs({ analytics: false });
     setAnalytics(false);
-    initGTM({ gaId: GA_MEASUREMENT_ID });
+    initGTM({ gtmId: GTM_CONTAINER_ID, gaId: GA_MEASUREMENT_ID });
     updateAnalyticsConsent(false);
     setVisible(false);
     setCanReopen(false);
@@ -48,7 +54,7 @@ export const CookieBanner = () => {
 
   const saveSettings = () => {
     setPrefs({ analytics });
-    initGTM({ gaId: GA_MEASUREMENT_ID });
+    initGTM({ gtmId: GTM_CONTAINER_ID, gaId: GA_MEASUREMENT_ID });
     updateAnalyticsConsent(analytics);
     if (analytics) {
       trackPageView({ gaId: GA_MEASUREMENT_ID });
