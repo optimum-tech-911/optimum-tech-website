@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { buildEntityGraph } from '../data/schema';
+import { buildCanonicalUrl, buildEntityGraph } from '../data/schema';
 
 export const SEO = ({
   path,
@@ -12,8 +12,7 @@ export const SEO = ({
   schema,
   keywords,
 }) => {
-  const base = 'https://optimutech.fr';
-  const canonical = `${base}${path || '/'}`;
+  const canonical = buildCanonicalUrl(path);
   const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
   const entityGraph = robots.startsWith('noindex') ? [] : buildEntityGraph();
   const allSchemaItems = [...entityGraph, ...schemaItems];

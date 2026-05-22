@@ -23,6 +23,7 @@ export const CookiePolicy = () => {
         path="/cookie-policy"
         title="Politique de cookies | Optimum Tech"
         description="Informations sur les cookies, scripts et choix de consentement sur le site Optimum Tech."
+        robots="noindex, follow"
       />
       <Navbar />
       <main className="px-4 py-28 md:px-6">

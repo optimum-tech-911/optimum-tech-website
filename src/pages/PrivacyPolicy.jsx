@@ -70,6 +70,7 @@ export const PrivacyPolicy = () => {
         path="/privacy-policy"
         title="Politique de confidentialité | Optimum Tech"
         description="Informations sur l’usage des données de contact collectées via le site Optimum Tech."
+        robots="noindex, follow"
       />
       <Navbar />
       <main className="px-4 py-28 md:px-6">

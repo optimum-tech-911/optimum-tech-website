@@ -8,7 +8,7 @@ import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useTheme } from '../context/ThemeContext';
 import { siteMeta, trustHighlights } from '../data/siteMeta';
 import { ContactActions } from '../components/ContactActions';
-import { buildWebPageSchema } from '../data/schema';
+import { buildCanonicalUrl, buildWebPageSchema } from '../data/schema';
 
 export const AboutPage = () => {
   const { theme } = useTheme();
@@ -41,14 +41,14 @@ export const AboutPage = () => {
               '@type': 'ListItem',
               position: index + 1,
               name: item.label,
-              item: `https://optimutech.fr${item.to}`,
+              item: buildCanonicalUrl(item.to),
             })),
           },
           {
             '@context': 'https://schema.org',
             '@type': 'AboutPage',
             name: 'À propos d’Optimum Tech',
-            url: 'https://optimutech.fr/a-propos',
+            url: buildCanonicalUrl('/a-propos'),
             description:
               'Présentation d’Optimum Tech, de ses services et de sa manière d’accompagner les entreprises.',
           },

@@ -6,6 +6,7 @@ import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO.jsx';
 import { useTheme } from '../context/ThemeContext';
 import { getBlogPostBySlug, indexableBlogPosts } from '../data/blogPosts';
+import { buildCanonicalUrl } from '../data/schema';
 import { editorialTeam, resourceTopics, siteMeta } from '../data/siteMeta';
 
 const formatDate = (date) =>
@@ -80,7 +81,7 @@ export const BlogArticlePage = () => {
     datePublished: post.publishedAt,
     dateModified: post.updatedAt || post.publishedAt,
     inLanguage: 'fr-FR',
-    mainEntityOfPage: `https://optimutech.fr/blog/${post.slug}`,
+    mainEntityOfPage: buildCanonicalUrl(`/blog/${post.slug}`),
     author: {
       '@type': 'Organization',
       name: editorialTeam.name,

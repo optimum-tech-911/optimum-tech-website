@@ -49,6 +49,7 @@ export const Policy = () => {
         path="/policy"
         title="Mentions légales et informations générales | Optimum Tech"
         description="Informations générales du site Optimum Tech, objet du site et modalités de contact affichées publiquement."
+        robots="noindex, follow"
       />
       <Navbar />
 

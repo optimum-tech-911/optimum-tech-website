@@ -16,7 +16,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { buildWebPageSchema } from '../data/schema';
+import { buildCanonicalUrl, buildWebPageSchema } from '../data/schema';
 import { ContactActions } from '../components/ContactActions';
 
 // Import local images
@@ -173,13 +173,13 @@ export const Services = () => {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Accueil',
-                item: 'https://optimutech.fr/',
+                item: buildCanonicalUrl('/'),
               },
               {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Services',
-                item: 'https://optimutech.fr/services',
+                item: buildCanonicalUrl('/services'),
               },
             ],
           },

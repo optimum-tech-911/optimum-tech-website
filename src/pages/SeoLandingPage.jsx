@@ -7,7 +7,7 @@ import { SEO } from '../components/SEO';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useTheme } from '../context/ThemeContext';
 import { ContactActions } from '../components/ContactActions';
-import { schemaIds } from '../data/schema';
+import { buildCanonicalUrl, schemaIds } from '../data/schema';
 
 const buildBreadcrumbSchema = (items) => ({
   '@context': 'https://schema.org',
@@ -16,14 +16,14 @@ const buildBreadcrumbSchema = (items) => ({
     '@type': 'ListItem',
     position: index + 1,
     name: item.label,
-    item: `https://optimutech.fr${item.to}`,
+    item: buildCanonicalUrl(item.to),
   })),
 });
 
 const buildServiceSchema = (page) => ({
   '@context': 'https://schema.org',
   '@type': 'Service',
-  '@id': `https://optimutech.fr/${page.slug}#service`,
+  '@id': `${buildCanonicalUrl(`/${page.slug}`)}#service`,
   name: page.h1,
   serviceType: page.navLabel,
   description: page.description,
@@ -31,7 +31,7 @@ const buildServiceSchema = (page) => ({
   provider: {
     '@id': schemaIds.professionalService,
   },
-  url: `https://optimutech.fr/${page.slug}`,
+  url: buildCanonicalUrl(`/${page.slug}`),
 });
 
 const buildFaqSchema = (faq) => ({

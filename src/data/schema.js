@@ -1,7 +1,15 @@
-import { siteMeta } from './siteMeta';
+import { siteMeta } from './siteMeta.js';
 
 const baseUrl = siteMeta.url;
 const logoUrl = `${baseUrl}/apple-touch-icon.png`;
+
+export const normalizePath = (path = '/') => {
+  if (!path || path === '/') return '/';
+
+  return path.endsWith('/') ? path : `${path}/`;
+};
+
+export const buildCanonicalUrl = (path = '/') => `${baseUrl}${normalizePath(path)}`;
 
 export const schemaIds = {
   organization: `${baseUrl}/#organization`,
@@ -60,8 +68,8 @@ export const buildEntityGraph = () => [
 export const buildWebPageSchema = ({ path, title, description }) => ({
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  '@id': `${baseUrl}${path}#webpage`,
-  url: `${baseUrl}${path}`,
+  '@id': `${buildCanonicalUrl(path)}#webpage`,
+  url: buildCanonicalUrl(path),
   name: title,
   description,
   isPartOf: {
