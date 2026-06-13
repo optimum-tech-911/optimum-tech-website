@@ -9,6 +9,7 @@ import {
 } from '../utils/gtm.js';
 import '../styles/cookies.css';
 import { useI18n } from '../i18n.jsx';
+import { trackFirstPartyPageView } from '../utils/analytics.js';
 
 export const CookieBanner = () => {
   const { t } = useI18n();
@@ -39,6 +40,7 @@ export const CookieBanner = () => {
     initGTM({ gtmId: GTM_CONTAINER_ID, gaId: GA_MEASUREMENT_ID });
     updateAnalyticsConsent(true);
     trackPageView({ gaId: GA_MEASUREMENT_ID });
+    trackFirstPartyPageView();
     setVisible(false);
     setCanReopen(false);
   };
@@ -58,6 +60,7 @@ export const CookieBanner = () => {
     updateAnalyticsConsent(analytics);
     if (analytics) {
       trackPageView({ gaId: GA_MEASUREMENT_ID });
+      trackFirstPartyPageView();
     }
     setOpenSettings(false);
     setVisible(false);

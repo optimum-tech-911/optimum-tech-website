@@ -18,6 +18,7 @@ const sections = [
     content: [
       'Selon les formulaires utilisés, le site peut recueillir le nom, l’e-mail, le téléphone, le nom de l’entreprise et les informations transmises librement dans le message.',
       'Ces données ne sont demandées que pour comprendre la demande et recontacter la personne concernée. Aucune donnée sensible n’est demandée volontairement via ce formulaire.',
+      'Après consentement analytics, le site peut aussi enregistrer les pages consultées, les boutons utilisés, les projets ouverts et un identifiant aléatoire limité à la session. Les contenus saisis dans les formulaires et les paramètres d’URL sont exclus de cette mesure.',
     ],
   },
   {
@@ -31,7 +32,7 @@ const sections = [
     title: 'Base légale',
     content: [
       'Le traitement repose principalement sur la demande volontaire de la personne qui remplit le formulaire et sur l’intérêt légitime à répondre correctement aux sollicitations reçues.',
-      'Si des mesures complémentaires de suivi sont mises en place plus tard, elles devront être alignées avec le bandeau cookies et la politique correspondante.',
+      'La mesure d’audience et des interactions repose sur le consentement donné depuis le bandeau cookies. Elle reste désactivée lorsque ce consentement est refusé.',
     ],
   },
   {

@@ -22,7 +22,7 @@ Optimum Tech accompagne les entreprises locales, indépendants, artisans, commer
 
 ## Ressources
 - [Blog](https://optimutech.fr/blog)
-- [Réalisations](https://optimutech.fr/projects)
+- [Réalisations](https://optimutech.fr/realisations)
 - [À propos](https://optimutech.fr/a-propos)
 - [Contact](https://optimutech.fr/contact)
 

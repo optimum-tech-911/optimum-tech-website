@@ -20,9 +20,9 @@ import { buildCanonicalUrl, buildWebPageSchema } from '../data/schema';
 import { ContactActions } from '../components/ContactActions';
 
 // Import local images
-import webImg from '../assets/images/online commerce .png';
+import webImg from '../assets/images/online-commerce.jpg';
 import appImg from '../assets/images/planning application.webp';
-import softwareImg from '../assets/images/optimum tech software dev.png';
+import softwareImg from '../assets/images/software-development.jpg';
 import aiImg from '../assets/images/optimum tech digital shop.webp';
 import gamingImg from '../assets/images/optimum tech gaming.webp';
 import consultationImg from '../assets/images/optimum tech online meeting.webp';
@@ -44,7 +44,11 @@ const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) =
           <img 
             src={image} 
             alt={title} 
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-90" 
+            loading="lazy"
+            decoding="async"
+            width="960"
+            height="960"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-70 group-hover:opacity-90"
           />
           <div className={`absolute inset-0 bg-gradient-to-t via-transparent to-transparent ${
             theme === 'dark' ? 'from-[#0D0D0F]' : 'from-white'
@@ -65,7 +69,7 @@ const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) =
           </h3>
           
           <p className={`font-light leading-relaxed mb-6 flex-grow ${
-            theme === 'dark' ? 'text-white/50' : 'text-black/50'
+            theme === 'dark' ? 'text-white/70' : 'text-black/70'
           }`}>
             {desc}
           </p>
@@ -200,7 +204,7 @@ export const Services = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesData.map((service, i) => (
             <ServiceCard 
-              key={i}
+              key={service.id}
               {...service}
               delay={i * 0.1}
             />
@@ -215,7 +219,7 @@ export const Services = () => {
               desc: 'Page service dédiée aux besoins de site web, site vitrine et refonte.',
             },
             {
-              to: '/services',
+              to: '/application-web-sur-mesure',
               title: 'Applications et outils sur mesure',
               desc: 'Web apps, logiciels et interfaces utiles pour structurer un besoin métier réel.',
             },

@@ -16,13 +16,6 @@ export const ProjectCard = ({ title, desc, href }) => {
         return { width: '100%', radius: 12 };
     }
   }, [device]);
-  let host = href;
-  try {
-    host = new URL(href).hostname.replace('www.', '');
-  } catch (err) {
-    /* ignore invalid URL */
-  }
-
   return (
     <motion.div
       className={`group rounded-3xl p-[1px] animate-gradient transition-shadow duration-500 ${
@@ -53,7 +46,7 @@ export const ProjectCard = ({ title, desc, href }) => {
                 ? 'text-white/70 border-white/10 bg-black/40' 
                 : 'text-black/60 border-black/20 bg-black/10'
             }`}>
-              {host}
+              Aperçu Optimum Tech · {title}
             </div>
           </div>
           {/* Device switcher: desktop-only */}
@@ -108,7 +101,7 @@ export const ProjectCard = ({ title, desc, href }) => {
                 : 'bg-black text-white hover:bg-black/90 shadow-lg shadow-black/20'
             }`}
           >
-            Visit <ExternalLink className="h-3.5 w-3.5" />
+            Voir le projet <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </div>
 
@@ -153,7 +146,7 @@ export const ProjectCard = ({ title, desc, href }) => {
           <p className={`mt-4 text-[10px] uppercase tracking-widest font-bold ${
             theme === 'dark' ? 'text-white/20' : 'text-black/20'
           }`}>
-            If the preview is blocked by the site’s security, use Open.
+            Si l’aperçu est bloqué, utilisez le bouton « Voir le projet ».
           </p>
         </div>
       </div>

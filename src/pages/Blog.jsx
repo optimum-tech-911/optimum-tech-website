@@ -126,6 +126,8 @@ export const BlogPage = () => {
                       <img
                         src={post.image}
                         alt={post.heroTitle}
+                        loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                       />
                       <div className={`absolute inset-0 bg-gradient-to-t ${post.heroTheme}`} />
@@ -206,6 +208,8 @@ export const BlogPage = () => {
                     <img
                       src={post.image}
                       alt={post.heroTitle}
+                      loading="lazy"
+                      decoding="async"
                       className="h-48 w-full object-cover transition duration-700 group-hover:scale-105"
                     />
                     <div className={`absolute inset-0 bg-gradient-to-t ${post.heroTheme}`} />

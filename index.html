@@ -38,8 +38,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <title>Optimum Tech</title>
-
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -48,7 +46,8 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#0A84FF" />
-    <link rel="stylesheet" href="/assets/css/loader.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -61,38 +60,7 @@
       ></iframe
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div id="loader" aria-hidden="true">
-      <div class="loader-inner">
-        <div class="loader-logo">
-          <img src="/apple-touch-icon.png" alt="Optimum Tech logo" />
-        </div>
-        <div class="loader-brand">Optimum Tech</div>
-      </div>
-    </div>
-    <noscript
-      ><style>
-        #loader {
-          display: none !important;
-        }
-      </style></noscript
-    >
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script src="/assets/js/loader.js" defer></script>
-    <!-- SVG filters (gooey effect) -->
-    <svg width="0" height="0" style="position: absolute">
-      <defs>
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-          <feColorMatrix
-            in="blur"
-            mode="matrix"
-            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
-            result="goo"
-          />
-          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-        </filter>
-      </defs>
-    </svg>
   </body>
 </html>

@@ -136,6 +136,7 @@ export const BlogArticlePage = () => {
                 <img
                   src={post.image}
                   alt={post.heroTitle}
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-t ${post.heroTheme}`} />

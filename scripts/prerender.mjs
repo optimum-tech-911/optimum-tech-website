@@ -38,4 +38,8 @@ for (const route of routes) {
   const targetDir = route === '/' ? distDir : path.join(distDir, route.replace(/^\//, ''));
   await fs.mkdir(targetDir, { recursive: true });
   await fs.writeFile(path.join(targetDir, 'index.html'), html, 'utf8');
+
+  if (route === '/404') {
+    await fs.writeFile(path.join(distDir, '404.html'), html, 'utf8');
+  }
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import Logo from '../assets/Logo.png';
 import { useI18n, LANG_OPTIONS } from '../i18n.jsx';
 import { ChevronDown, Globe, Menu, Sun, Moon, X } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
@@ -14,6 +13,7 @@ const NavLink = ({ to, children, onClick }) => {
   return (
     <Link
       to={to}
+      aria-current={active ? 'page' : undefined}
       onClick={(e) => {
         onClick?.(e);
       }}
@@ -40,6 +40,7 @@ const NavDropdown = ({ label, groups, openMenu, setOpenMenu }) => {
   const { theme } = useTheme();
   const isOpen = openMenu === label;
   const isBlogMenu = label === 'Blog';
+  const menuId = `nav-${label.toLowerCase()}-menu`;
 
   return (
     <div
@@ -50,6 +51,9 @@ const NavDropdown = ({ label, groups, openMenu, setOpenMenu }) => {
       <button
         type="button"
         onClick={() => setOpenMenu(isOpen ? null : label)}
+        aria-expanded={isOpen}
+        aria-controls={menuId}
+        aria-haspopup="true"
         className={`relative inline-flex items-center justify-center gap-1 whitespace-nowrap px-4 lg:px-5 py-2 rounded-full text-xs lg:text-sm font-medium transition-all duration-300 ${
           theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'
         }`}
@@ -61,6 +65,7 @@ const NavDropdown = ({ label, groups, openMenu, setOpenMenu }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id={menuId}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
@@ -123,11 +128,32 @@ export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
   const [mobileSection, setMobileSection] = useState(null);
+  const location = useLocation();
   const current = LANG_OPTIONS.find((l) => l.code === lang) || LANG_OPTIONS[0];
+
+  React.useEffect(() => {
+    setOpen(false);
+    setOpenMenu(null);
+    setMobileMenuOpen(false);
+    setMobileSection(null);
+  }, [location.pathname]);
+
+  React.useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key !== 'Escape') return;
+      setOpen(false);
+      setOpenMenu(null);
+      setMobileMenuOpen(false);
+      setMobileSection(null);
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
 
   const primaryNavItems = [
     { to: "/", label: t('nav.home') },
-    { to: "/projects", label: t('nav.projects') },
+    { to: "/realisations", label: t('nav.projects') },
     { to: "/a-propos", label: 'À propos' },
     { to: "/contact", label: t('nav.contact') },
   ];
@@ -194,11 +220,12 @@ export const Navbar = () => {
   ];
 
   return (
-    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-6">
+    <div className="fixed top-3 left-0 right-0 z-50 flex justify-center px-3 sm:top-5 sm:px-5">
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className={`flex items-center justify-between w-full max-w-7xl px-5 lg:px-6 py-3 rounded-full border backdrop-blur-2xl transition-all duration-500 ${
+        aria-label="Navigation principale"
+        className={`flex items-center justify-between w-full max-w-7xl px-4 lg:px-6 py-3 rounded-full border backdrop-blur-2xl transition-all duration-500 ${
           theme === 'dark' 
             ? 'bg-black/20 border-white/10 shadow-2xl' 
             : 'bg-gray-500/10 border-black/10 shadow-xl'
@@ -206,7 +233,7 @@ export const Navbar = () => {
       >
         <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
           <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.95 }}>
-            <img src={Logo} alt="Optimum Tech logo" className="h-8 w-8 rounded-lg shadow-lg" />
+            <img src="/android-chrome-192x192.png" alt="" width="32" height="32" className="h-8 w-8 rounded-lg shadow-lg" />
           </motion.div>
           <span className={`text-lg font-bold tracking-tighter transition-colors whitespace-nowrap ${
             theme === 'dark' ? 'text-white' : 'text-black'
@@ -216,28 +243,32 @@ export const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-0.5 lg:gap-1 min-w-0 px-4">
-          {primaryNavItems.map((item) => (
-            <NavLink key={item.to} to={item.to}>{item.label}</NavLink>
-          ))}
+        <div className="hidden xl:flex items-center gap-1 min-w-0 px-4">
+          <NavLink to="/">{t('nav.home')}</NavLink>
           <NavDropdown label="Services" groups={servicesMenu} openMenu={openMenu} setOpenMenu={setOpenMenu} />
+          <NavLink to="/realisations">{t('nav.projects')}</NavLink>
           <NavDropdown label="Blog" groups={blogMenu} openMenu={openMenu} setOpenMenu={setOpenMenu} />
+          <NavLink to="/a-propos">À propos</NavLink>
+          <NavLink to="/contact">{t('nav.contact')}</NavLink>
         </div>
 
         <div className="flex items-center gap-2 flex-shrink-0">
           {/* Login Button */}
           <Link
             to="/auth"
-            className={`hidden md:inline-flex items-center justify-center whitespace-nowrap px-4 py-2 rounded-full text-xs lg:text-sm font-medium transition-all duration-300 ${
+            className={`hidden xl:inline-flex items-center justify-center whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
               theme === 'dark' ? 'bg-white/10 text-white/80 hover:bg-white/15 hover:text-white' : 'bg-black/5 text-black/80 hover:bg-black/10 hover:text-black'
             }`}
           >
-            Log in
+            Espace client
           </Link>
 
           {/* Theme Toggle */}
           <button
+            type="button"
             onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Activer le thème clair' : 'Activer le thème sombre'}
+            title={theme === 'dark' ? 'Thème clair' : 'Thème sombre'}
             className={`p-2 rounded-full transition-all duration-300 ${
               theme === 'dark' ? 'hover:bg-white/10 text-white' : 'hover:bg-black/5 text-black'
             }`}
@@ -246,9 +277,14 @@ export const Navbar = () => {
           </button>
 
           {/* Language Selector */}
-          <div className="relative hidden md:block">
+          <div className="relative hidden xl:block">
             <button
+              type="button"
               onClick={() => setOpen(!open)}
+              aria-expanded={open}
+              aria-controls="language-menu"
+              aria-haspopup="true"
+              aria-label="Choisir la langue"
               className={`flex items-center gap-2 whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                 theme === 'dark' ? 'bg-white/5 text-white hover:bg-white/10' : 'bg-black/5 text-black hover:bg-black/10'
               }`}
@@ -259,6 +295,7 @@ export const Navbar = () => {
             <AnimatePresence>
               {open && (
                 <motion.ul
+                  id="language-menu"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -269,6 +306,7 @@ export const Navbar = () => {
                   {LANG_OPTIONS.map((opt) => (
                     <li key={opt.code}>
                       <button
+                        type="button"
                         onClick={() => { setLang(opt.code); setOpen(false); }}
                         className={`w-full text-left px-3 py-2 rounded-xl text-xs transition-colors ${
                           lang === opt.code 
@@ -287,8 +325,12 @@ export const Navbar = () => {
 
           {/* Mobile Menu Toggle */}
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden p-2 rounded-full ${
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={mobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            className={`xl:hidden p-2 rounded-full ${
               theme === 'dark' ? 'text-white hover:bg-white/10' : 'text-black hover:bg-black/5'
             }`}
           >
@@ -301,10 +343,11 @@ export const Navbar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className={`absolute top-20 left-6 right-6 p-6 rounded-[2rem] border shadow-2xl backdrop-blur-2xl md:hidden ${
+            className={`absolute top-16 left-3 right-3 max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain p-5 rounded-[2rem] border shadow-2xl backdrop-blur-2xl xl:hidden sm:left-5 sm:right-5 ${
               theme === 'dark' ? 'bg-black/90 border-white/10' : 'bg-white/95 border-black/10'
             }`}
           >
@@ -326,6 +369,8 @@ export const Navbar = () => {
                   <button
                     type="button"
                     onClick={() => setMobileSection(mobileSection === section.id ? null : section.id)}
+                    aria-expanded={mobileSection === section.id}
+                    aria-controls={`mobile-${section.id}-links`}
                     className={`flex w-full items-center justify-between text-lg font-semibold ${
                       theme === 'dark' ? 'text-white' : 'text-black'
                     }`}
@@ -334,7 +379,7 @@ export const Navbar = () => {
                     <ChevronDown className={`h-5 w-5 transition-transform ${mobileSection === section.id ? 'rotate-180' : ''}`} />
                   </button>
                   {mobileSection === section.id && (
-                    <div className="mt-4 space-y-4">
+                    <div id={`mobile-${section.id}-links`} className="mt-4 space-y-4">
                       {section.groups.map((group) => (
                         <div key={group.title} className="space-y-2">
                           <p className={`text-xs uppercase tracking-[0.16em] ${
@@ -373,12 +418,13 @@ export const Navbar = () => {
                   theme === 'dark' ? 'text-white' : 'text-black'
                 }`}
               >
-                Log in
+                Espace client
               </Link>
               <div className="flex flex-wrap gap-2">
                 {LANG_OPTIONS.map((opt) => (
                   <button
                     key={opt.code}
+                    type="button"
                     onClick={() => { setLang(opt.code); setMobileMenuOpen(false); }}
                     className={`px-4 py-2 rounded-full text-sm font-medium ${
                       lang === opt.code 

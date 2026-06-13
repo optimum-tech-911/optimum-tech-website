@@ -11,3 +11,6 @@ supabase/.temp/
 
 # macOS Finder metadata
 .DS_Store
+
+# Local portfolio audit cache
+.audit/

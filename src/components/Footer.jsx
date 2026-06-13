@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Globe } from 'lucide-react';
-import Logo from '../assets/Logo.png';
 import { useI18n, LANG_OPTIONS } from '../i18n.jsx';
 import { useTheme } from '../context/ThemeContext';
 import { ContactActions } from './ContactActions';
@@ -22,8 +21,10 @@ export const Footer = () => {
           <div className="col-span-1 md:col-span-1 space-y-6">
             <Link to="/" className="flex items-center gap-3 group">
               <img
-                src={Logo}
-                alt="Optimum Tech logo"
+                src="/android-chrome-192x192.png"
+                alt=""
+                width="40"
+                height="40"
                 className="h-10 w-10 rounded-xl transition-transform duration-500 group-hover:scale-110"
               />
               <span className={`text-xl font-bold tracking-tighter ${
@@ -51,7 +52,7 @@ export const Footer = () => {
                 { to: '/creation-site-web', label: 'Création de site web' },
                 { to: '/referencement-seo', label: 'Référencement SEO' },
                 { to: '/automatisation-ia', label: 'Automatisation IA' },
-                { to: '/projects', label: t('footer.links.projects') },
+                { to: '/realisations', label: t('footer.links.projects') },
                 { to: '/blog', label: 'Ressources & blog' },
                 { to: '/a-propos', label: 'À propos' },
                 { to: '/contact', label: t('footer.links.contact') },
@@ -101,30 +102,35 @@ export const Footer = () => {
                 { 
                   href: "https://www.instagram.com/ot.optimum_tech/", 
                   icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>,
-                  title: "Instagram"
+                  title: "Instagram",
+                  external: true
                 },
                 { 
                   href: "https://wa.me/33745305113", 
                   icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.8.9L21 3z"></path></svg>,
-                  title: "WhatsApp"
+                  title: "WhatsApp",
+                  external: true
                 },
                 { 
                   href: "https://www.linkedin.com/in/sid-ahmed-larabi-09b328286/", 
                   icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>,
-                  title: "LinkedIn"
+                  title: "LinkedIn",
+                  external: true
                 },
                 { 
                   href: "mailto:optimum.tech.911@gmail.com", 
                   icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>,
-                  title: "Email"
+                  title: "Email",
+                  external: false
                 }
               ].map((social, i) => (
                 <a
                   key={i}
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={social.external ? '_blank' : undefined}
+                  rel={social.external ? 'noopener noreferrer' : undefined}
                   title={social.title}
+                  aria-label={social.title}
                   className={`h-10 w-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
                     theme === 'dark' 
                       ? 'border-white/10 text-white/60 hover:text-white hover:bg-white/10' 
@@ -140,6 +146,9 @@ export const Footer = () => {
               <button
                 type="button"
                 onClick={() => setOpenLang((v) => !v)}
+                aria-expanded={openLang}
+                aria-controls="footer-language-menu"
+                aria-label="Choisir la langue"
                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm transition-all duration-300 ${
                   theme === 'dark' 
                     ? 'border-white/10 text-white/70 hover:text-white hover:bg-white/5' 
@@ -150,7 +159,7 @@ export const Footer = () => {
                 <span>{current.label}</span>
               </button>
               {openLang && (
-                <ul className={`absolute bottom-full left-0 mb-2 w-40 rounded-2xl border backdrop-blur-xl p-1 shadow-2xl overflow-hidden ${
+                <ul id="footer-language-menu" className={`absolute bottom-full left-0 mb-2 w-40 rounded-2xl border backdrop-blur-xl p-1 shadow-2xl overflow-hidden ${
                   theme === 'dark' ? 'border-white/10 bg-black/80' : 'border-black/10 bg-white/90'
                 }`}>
                   {LANG_OPTIONS.map((opt) => (
@@ -180,7 +189,7 @@ export const Footer = () => {
         <div className={`mt-20 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-light ${
           theme === 'dark' ? 'border-white/5 text-white/40' : 'border-black/5 text-black/40'
         }`}>
-          <p>© {currentYear} Optimum Tech. {t('footer.rights') || 'All rights reserved.'}</p>
+          <p>© {currentYear} Optimum Tech. {t('footer.rights') || 'Tous droits réservés.'}</p>
           <div className="flex gap-8">
             <Link to="/privacy-policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Confidentialité</Link>
             <Link to="/cookie-policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Cookies</Link>

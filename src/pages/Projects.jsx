@@ -1,418 +1,202 @@
-import React, { useEffect, useState } from 'react';
-import { Navbar } from '../components/Navbar';
-import { Footer } from '../components/Footer';
-import { ProjectCard } from '../components/ProjectCard';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, ChevronDown } from 'lucide-react';
-import { useI18n } from '../i18n.jsx';
-import { SEO } from '../components/SEO.jsx';
-import { supabase } from '../../supabaseClient';
-import { useTheme } from '../context/ThemeContext';
-import { buildCollectionPageSchema } from '../data/schema';
+import React, { useMemo, useState } from 'react';
+import { ArrowDown, ArrowUpRight, Search, SlidersHorizontal, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { ContactActions } from '../components/ContactActions';
+import { Footer } from '../components/Footer';
+import { Navbar } from '../components/Navbar';
+import { PortfolioProjectCard } from '../components/PortfolioProjectCard';
+import { SEO } from '../components/SEO';
+import { useTheme } from '../context/ThemeContext';
+import { publicProjects } from '../data/projects';
+import { buildCollectionPageSchema } from '../data/schema';
 
-const ProjectCarousel = ({ title, projects }) => {
-  const { t } = useI18n();
-  const { theme } = useTheme();
-  const [activeIndex, setActiveIndex] = useState(0);
+const filters = [
+  { key: 'all', label: 'Tous les projets' },
+  { key: 'health', label: 'Santé & Dentaire' },
+  { key: 'food', label: 'Restaurants & Food' },
+  { key: 'beauty', label: 'Beauté & Bien-être' },
+  { key: 'services', label: 'Artisans & Services' },
+  { key: 'auto', label: 'Auto & Garage' },
+  { key: 'apps', label: 'Applications web' },
+  { key: 'international', label: 'International' },
+  { key: 'demo', label: 'Démos' },
+];
 
-  const goNext = () => setActiveIndex((i) => (i + 1) % projects.length);
-  const goPrev = () => setActiveIndex((i) => (i - 1 + projects.length) % projects.length);
+const statusOrder = { launched: 0, 'in-progress': 1, demo: 2, concept: 3 };
 
-  if (projects.length === 0) return null;
-
-  const btnClass = `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold transition active:scale-[0.98] ${
-    theme === 'dark'
-      ? 'border-white/15 bg-white/5 text-white hover:bg-white/10'
-      : 'border-black/10 bg-black/5 text-black hover:bg-black/10'
-  }`;
-
-  return (
-    <div className="mb-24 last:mb-0">
-      {title && (
-        <motion.h2
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35 }}
-          className={`text-2xl md:text-3xl font-bold mb-8 text-center ${
-            theme === 'dark' ? 'text-white' : 'text-black'
-          }`}
-        >
-          {title}
-        </motion.h2>
-      )}
-
-      {/* Mobile Carousel */}
-      <div className="md:hidden -mx-4 px-4">
-        <div className="mb-3 flex flex-col items-center gap-2">
-          <motion.div
-            key={projects[activeIndex]?.title || `Project ${activeIndex + 1}`}
-            initial={{ opacity: 0, y: 3 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.25 }}
-            className={`text-xs ${theme === 'dark' ? 'text-white' : 'text-black'}`}
-          >
-            {projects[activeIndex]?.title
-              ? projects[activeIndex].title
-              : `Project ${activeIndex + 1}`}
-          </motion.div>
-          <div className={`w-full h-1 rounded-full overflow-hidden ${
-            theme === 'dark' ? 'bg-white/10' : 'bg-black/10'
-          }`}>
-            <motion.div
-              initial={false}
-              animate={{
-                width: `${Math.round((activeIndex / Math.max(projects.length - 1, 1)) * 100)}%`,
-              }}
-              transition={{ duration: 0.3 }}
-              className="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-fuchsia-500 shadow-[0_0_6px_rgba(10,132,255,0.6)]"
-            />
-          </div>
-        </div>
-        <div className="mb-3 flex items-center justify-between">
-          <button
-            type="button"
-            aria-label={t('projects.prev')}
-            onClick={goPrev}
-            className={btnClass}
-          >
-            <ChevronLeft className="h-4 w-4" />
-            <span>{t('projects.prev')}</span>
-          </button>
-          <button
-            type="button"
-            aria-label={t('projects.next')}
-            onClick={goNext}
-            className={btnClass}
-          >
-            <span>{t('projects.next')}</span>
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
-        <AnimatePresence initial={false} mode="wait">
-          {(() => {
-            const p = projects[activeIndex];
-            if (!p) return null;
-            
-            return (
-              <motion.div
-                key={p.title}
-                initial={{ opacity: 0, x: 24 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -24 }}
-                transition={{ duration: 0.25 }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                onDragEnd={(e, info) => {
-                  if (info.offset.x < -60) goNext();
-                  else if (info.offset.x > 60) goPrev();
-                }}
-              >
-                <ProjectCard {...p} />
-              </motion.div>
-            );
-          })()}
-        </AnimatePresence>
-      </div>
-
-      {/* Desktop Carousel */}
-      <div className="hidden md:block">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-3 flex flex-col items-center gap-2">
-            <motion.div
-              key={projects[activeIndex]?.title || `Project ${activeIndex + 1}`}
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25 }}
-              className={`text-sm md:text-base ${theme === 'dark' ? 'text-white' : 'text-black'}`}
-            >
-              {projects[activeIndex]?.title
-                ? `${projects[activeIndex].title} — ${projects[activeIndex].desc || 'Project'}`
-                : `Project ${activeIndex + 1}`}
-            </motion.div>
-            <div className={`w-full max-w-3xl h-1.5 md:h-1.5 rounded-full overflow-hidden ${
-              theme === 'dark' ? 'bg-white/10' : 'bg-black/10'
-            }`}>
-              <motion.div
-                initial={false}
-                animate={{
-                  width: `${Math.round((activeIndex / Math.max(projects.length - 1, 1)) * 100)}%`,
-                }}
-                transition={{ duration: 0.3 }}
-                className="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-fuchsia-500 shadow-[0_0_8px_rgba(10,132,255,0.6)]"
-              />
-            </div>
-          </div>
-          <div className="flex items-center justify-between mb-4">
-            <button
-              type="button"
-              aria-label={t('projects.prev')}
-              onClick={goPrev}
-              className={btnClass}
-            >
-              <ChevronLeft className="h-4 w-4" />
-              <span>{t('projects.prev')}</span>
-            </button>
-            <button
-              type="button"
-              aria-label={t('projects.next')}
-              onClick={goNext}
-              className={btnClass}
-            >
-              <span>{t('projects.next')}</span>
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-          <AnimatePresence initial={false} mode="wait">
-            {(() => {
-              const p = projects[activeIndex];
-              if (!p) return null;
-
-              return (
-                <motion.div
-                  key={p.title}
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -40 }}
-                  transition={{ duration: 0.25 }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  onDragEnd={(e, info) => {
-                    if (info.offset.x < -80) goNext();
-                    else if (info.offset.x > 80) goPrev();
-                  }}
-                >
-                  <ProjectCard {...p} />
-                </motion.div>
-              );
-            })()}
-          </AnimatePresence>
-        </div>
-      </div>
-    </div>
-  );
+const matchesFilter = (project, filter) => {
+  if (filter === 'all') return true;
+  if (filter === 'international') return project.source === 'international';
+  if (filter === 'demo') return project.source === 'demo' || project.status === 'demo';
+  return project.category === filter;
 };
 
 export const Projects = () => {
-  const { t } = useI18n();
   const { theme } = useTheme();
-  const [projects, setProjects] = useState({ launched: [], progress: [] });
-  const [loading, setLoading] = useState(true);
-  const [showProgress, setShowProgress] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [query, setQuery] = useState('');
 
-  const BlueMatrix = () => {
-    const canvasRef = React.useRef(null);
-    React.useEffect(() => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-      let raf = 0;
-      let resizeRaf = 0;
-      let width = 0;
-      let height = 0;
-      let fontSize = 16;
-      let columns = 0;
-      let drops = [];
-      let lastWidth = 0;
-      const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-      const resize = () => {
-        const bounds = canvas.parentElement?.getBoundingClientRect();
-        const newWidth = Math.max(1, Math.floor(bounds?.width || window.innerWidth));
-        const newHeight = Math.max(1, Math.floor(bounds?.height || window.innerHeight));
-        if (Math.abs(newWidth - lastWidth) < 2) return;
-        lastWidth = newWidth;
-        width = newWidth;
-        height = newHeight;
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        fontSize = Math.max(18, Math.floor(width / 90));
-        columns = Math.max(10, Math.floor(width / fontSize));
-        drops = new Array(columns).fill(0);
-      };
-      const handleResize = () => {
-        cancelAnimationFrame(resizeRaf);
-        resizeRaf = requestAnimationFrame(resize);
-      };
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      const draw = () => {
-        ctx.fillStyle = 'rgba(0,0,0,0.05)';
-        ctx.fillRect(0, 0, width, height);
-        ctx.font = fontSize + 'px monospace';
-        for (let i = 0; i < drops.length; i++) {
-          const text = chars[Math.floor(Math.random() * chars.length)];
-          const x = i * fontSize;
-          const y = drops[i] * fontSize;
-          const head = Math.random() < 0.12;
-          ctx.fillStyle = head ? 'rgba(10,132,255,0.95)' : 'rgba(10,132,255,0.65)';
-          ctx.fillText(text, x, y);
-          if (y > height && Math.random() > 0.975) drops[i] = 0;
-          else drops[i]++;
-        }
-        raf = requestAnimationFrame(draw);
-      };
-      raf = requestAnimationFrame(draw);
-      return () => {
-        cancelAnimationFrame(raf);
-        cancelAnimationFrame(resizeRaf);
-        window.removeEventListener('resize', handleResize);
-      };
-    }, []);
-    return <canvas ref={canvasRef} className="absolute inset-0" />;
-  };
+  const visibleProjects = useMemo(() => {
+    const normalizedQuery = query.trim().toLocaleLowerCase('fr');
 
-  useEffect(() => {
-    const fetchProjects = async () => {
-      if (!supabase) {
-        console.warn('Supabase not configured. Using empty project list.');
-        setLoading(false);
-        return;
-      }
-      try {
-        const { data, error } = await supabase
-          .from('projects')
-          .select('*')
-          .order('sort_order', { ascending: true }); // Use sort_order
-        
-        if (error) throw error;
-        
-        const mappedData = (data || []).map(p => ({
-          ...p,
-          desc: p.description || p.status,
-          href: p.url || '#'
-        }));
-
-        setProjects({
-          launched: mappedData.filter(p => p.status !== 'In progress'),
-          progress: mappedData.filter(p => p.status === 'In progress')
-        });
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className={`min-h-screen flex items-center justify-center ${
-        theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
-      }`}>
-        <div className={`animate-spin rounded-full h-8 w-8 border-b-2 ${
-          theme === 'dark' ? 'border-white' : 'border-black'
-        }`}></div>
-      </div>
-    );
-  }
+    return publicProjects
+      .filter((project) => matchesFilter(project, activeFilter))
+      .filter((project) => {
+        if (!normalizedQuery) return true;
+        return [project.title, project.sector, project.type, project.description, ...project.tags, ...project.capabilities]
+          .join(' ')
+          .toLocaleLowerCase('fr')
+          .includes(normalizedQuery);
+      })
+      .sort((a, b) => {
+        if (a.featured !== b.featured) return a.featured ? -1 : 1;
+        const statusDifference = statusOrder[a.status] - statusOrder[b.status];
+        return statusDifference || a.title.localeCompare(b.title, 'fr');
+      });
+  }, [activeFilter, query]);
 
   return (
-    <div className={`min-h-screen flex flex-col relative transition-colors duration-500 ${
-      theme === 'dark' ? 'text-white' : 'bg-[#F5F5F7] text-black'
-    }`}>
-      {theme === 'dark' && <div className="fixed inset-0 z-[-10] bg-[#050505]" />}
+    <div className={`min-h-screen ${theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'}`}>
       <SEO
-        path="/projects"
+        path="/realisations"
         title="Réalisations web, applications et projets digitaux | Optimum Tech"
-        description="Découvrez des projets de sites web, applications, outils métier et solutions digitales réalisés par Optimum Tech pour des entreprises et organisations."
-        robots="index, follow"
+        description="Explorez les sites web, applications métier, dashboards et expériences digitales conçus par Optimum Tech pour des activités concrètes."
+        keywords="réalisations agence web, portfolio développeur web Sète, création site dentaire, site restaurant, application web sur mesure"
         schema={buildCollectionPageSchema({
-          path: '/projects',
+          path: '/realisations',
           title: 'Réalisations web, applications et projets digitaux | Optimum Tech',
-          description:
-            'Découvrez des projets de sites web, applications, outils métier et solutions digitales réalisés par Optimum Tech pour des entreprises et organisations.',
+          description: 'Sites web, applications métier, dashboards et expériences digitales conçus par Optimum Tech.',
         })}
       />
       <Navbar />
-      
-      {theme === 'dark' && (
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <BlueMatrix />
-        </div>
-      )}
 
-      <main className="container mx-auto w-full max-w-6xl pt-32 pb-16 relative z-10 min-h-[80vh]">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-24"
-        >
-          <h1 className={`text-5xl md:text-7xl font-bold tracking-tighter mb-6 ${
-            theme === 'dark' ? 'text-white' : 'text-black'
+      <main className="relative overflow-hidden px-4 pb-20 pt-32 md:px-6 md:pt-40">
+        <div className="pointer-events-none absolute left-1/2 top-20 h-[32rem] w-[52rem] -translate-x-1/2 rounded-full bg-[#007BFF]/10 blur-[120px]" />
+
+        <section className="relative mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#1688ff]">Réalisations Optimum Tech</p>
+            <h1 className="mt-4 max-w-4xl text-4xl font-bold tracking-[-0.045em] sm:text-5xl md:text-6xl">
+              Des produits digitaux conçus pour fonctionner au quotidien.
+            </h1>
+            <p className={`mt-6 max-w-3xl text-base leading-8 md:text-xl ${theme === 'dark' ? 'text-white/65' : 'text-black/65'}`}>
+              Réservation, commandes, livraison, CRM, espaces clients, dashboards et outils métier : voici les interfaces que nous avons réellement conçues et déployées.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href="#portfolio-grid" className="inline-flex items-center gap-2 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1688ff]">
+                Explorer les projets
+                <ArrowDown className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <Link to="/contact" className={`inline-flex items-center gap-2 rounded-full border px-6 py-3 text-sm font-bold transition ${
+                theme === 'dark' ? 'border-white/15 bg-white/5 hover:bg-white/10' : 'border-black/10 bg-white hover:bg-black/5'
+              }`}>
+                Parler de votre projet
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+
+          <div className={`grid gap-3 rounded-[2rem] border p-4 sm:grid-cols-2 ${
+            theme === 'dark' ? 'border-white/10 bg-white/[0.04]' : 'border-black/10 bg-white shadow-xl'
           }`}>
-            {t('projects.title')}
-          </h1>
-          <p className={`text-xl md:text-2xl font-light max-w-2xl mx-auto ${
-            theme === 'dark' ? 'text-white/50' : 'text-black/50'
+            {[
+              ['Réserver', 'Planning, rendez-vous et espaces clients'],
+              ['Vendre', 'Catalogue, panier, paiement et livraison'],
+              ['Piloter', 'CRM, tableaux de bord et suivi métier'],
+              ['Automatiser', 'Documents, notifications et workflows'],
+            ].map(([title, description]) => (
+              <div key={title} className={`rounded-[1.4rem] p-5 ${theme === 'dark' ? 'bg-black/25' : 'bg-black/[0.035]'}`}>
+                <p className="text-lg font-bold">{title}</p>
+                <p className={`mt-2 text-sm leading-6 ${theme === 'dark' ? 'text-white/55' : 'text-black/55'}`}>{description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="portfolio-grid" className="relative mx-auto mt-14 max-w-7xl scroll-mt-28" aria-labelledby="projects-grid-title">
+          <div className={`sticky top-20 z-20 rounded-[1.7rem] border p-3 backdrop-blur-xl md:p-4 ${
+            theme === 'dark' ? 'border-white/10 bg-[#0a0a0d]/90' : 'border-black/10 bg-white/90 shadow-lg'
           }`}>
-            Des exemples de sites web, applications, outils métiers et solutions digitales conçus pour des usages concrets.
-          </p>
-        </motion.div>
-        
-        <div className="space-y-12">
-          {projects.launched.length > 0 && (
-             <ProjectCarousel title="" projects={projects.launched} />
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
+              <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
+                {filters.map((filter) => (
+                  <button
+                    key={filter.key}
+                    type="button"
+                    onClick={() => setActiveFilter(filter.key)}
+                    aria-pressed={activeFilter === filter.key}
+                    className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-semibold transition ${
+                      activeFilter === filter.key
+                        ? 'bg-[#007BFF] text-white shadow-lg shadow-blue-500/20'
+                        : theme === 'dark'
+                          ? 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
+                          : 'bg-black/5 text-black/60 hover:bg-black/10 hover:text-black'
+                    }`}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
+
+              <label className={`flex min-w-0 items-center gap-3 rounded-full border px-4 py-2.5 lg:w-72 ${
+                theme === 'dark' ? 'border-white/10 bg-black/30' : 'border-black/10 bg-black/[0.03]'
+              }`}>
+                <Search className="h-4 w-4 shrink-0 text-[#1688ff]" aria-hidden="true" />
+                <span className="sr-only">Rechercher un projet</span>
+                <input
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder="Rechercher un projet"
+                  className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-current placeholder:opacity-40"
+                />
+                {query ? (
+                  <button type="button" onClick={() => setQuery('')} aria-label="Effacer la recherche">
+                    <X className="h-4 w-4 opacity-50" aria-hidden="true" />
+                  </button>
+                ) : null}
+              </label>
+            </div>
+          </div>
+
+          <div className="mb-6 mt-10 flex items-end justify-between gap-4">
+            <div>
+              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#1688ff]">
+                <SlidersHorizontal className="h-4 w-4" aria-hidden="true" />
+                Sélection filtrée
+              </p>
+              <h2 id="projects-grid-title" className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
+                {filters.find((filter) => filter.key === activeFilter)?.label}
+              </h2>
+            </div>
+            <p className={`shrink-0 text-sm ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
+              {visibleProjects.length} projet{visibleProjects.length > 1 ? 's' : ''}
+            </p>
+          </div>
+
+          {visibleProjects.length ? (
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {visibleProjects.map((project) => (
+                <PortfolioProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          ) : (
+            <div className={`rounded-[2rem] border px-6 py-16 text-center ${
+              theme === 'dark' ? 'border-white/10 bg-white/5 text-white/60' : 'border-black/10 bg-white text-black/60'
+            }`}>
+              Aucun projet ne correspond à cette recherche.
+            </div>
           )}
+        </section>
 
-          {projects.progress.length > 0 && (
-             <div className={`flex flex-col items-center border-t pt-12 mt-12 w-full ${
-               theme === 'dark' ? 'border-white/10' : 'border-black/10'
-             }`}>
-               <button
-                 onClick={() => setShowProgress(!showProgress)}
-                 className={`flex items-center gap-3 px-8 py-3 rounded-2xl border transition-all group ${
-                   theme === 'dark' 
-                     ? 'bg-white/5 border-white/10 text-white hover:bg-white/10' 
-                     : 'bg-black/5 border-black/10 text-black hover:bg-black/10'
-                 }`}
-               >
-                 <span className="font-medium text-lg">Projets en cours</span>
-                 <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${showProgress ? 'rotate-180' : ''} text-blue-400`} />
-               </button>
-
-               <AnimatePresence>
-                 {showProgress && (
-                   <motion.div
-                     initial={{ height: 0, opacity: 0 }}
-                     animate={{ height: 'auto', opacity: 1 }}
-                     exit={{ height: 0, opacity: 0 }}
-                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                     className="w-full overflow-hidden"
-                   >
-                     <div className="pt-12">
-                       <ProjectCarousel title="" projects={projects.progress} />
-                     </div>
-                   </motion.div>
-                 )}
-               </AnimatePresence>
-             </div>
-          )}
-
-          {projects.launched.length === 0 && projects.progress.length === 0 && (
-             <div className="flex flex-col items-center justify-center py-20">
-                <p className={theme === 'dark' ? 'text-white/60' : 'text-black/60'}>
-                  Aucune réalisation publique n’est affichée pour le moment.
-                </p>
-             </div>
-          )}
-        </div>
-
-        <section className={`mt-16 rounded-[2.4rem] border p-8 text-center md:p-12 ${
-          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+        <section className={`relative mx-auto mt-20 max-w-6xl rounded-[2.5rem] border p-7 text-center md:p-12 ${
+          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white shadow-xl'
         }`}>
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Vous avez un besoin similaire ou plus spécifique ?
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#1688ff]">Votre projet</p>
+          <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-bold tracking-tight md:text-5xl">
+            Besoin d’un site ou d’un outil qui répond à un vrai usage ?
           </h2>
-          <p className={`mx-auto mt-5 max-w-3xl text-base leading-8 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
-            Nous pouvons échanger sur un site web professionnel, une application, un outil
-            métier ou une automatisation utile selon votre contexte.
+          <p className={`mx-auto mt-5 max-w-2xl leading-8 ${theme === 'dark' ? 'text-white/65' : 'text-black/65'}`}>
+            Parlons du besoin, du parcours utilisateur et de la solution la plus simple à faire évoluer.
           </p>
           <ContactActions includeContactPage className="mt-8 justify-center" />
         </section>

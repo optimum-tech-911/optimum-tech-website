@@ -1,3 +1,5 @@
+import { caseStudyProjects, sectorPages } from './projects.js';
+
 export const indexableBlogSlugs = [
   'site-internet-professionnel-entreprise-france-2026',
   'combien-coute-creation-site-web-professionnel-france',
@@ -17,10 +19,17 @@ export const indexableBlogSlugs = [
 export const staticPrerenderRoutes = [
   '/',
   '/services',
-  '/projects',
+  '/realisations',
+  ...caseStudyProjects.map((project) => `/realisations/${project.slug}`),
+  ...Object.keys(sectorPages).map((slug) => `/secteurs/${slug}`),
   '/a-propos',
   '/contact',
   '/blog',
+  '/jobs',
+  '/menu',
+  '/auth',
+  '/admin',
+  '/404',
   '/policy',
   '/privacy-policy',
   '/cookie-policy',

@@ -6,7 +6,8 @@ import { useTheme } from '../context/ThemeContext';
 
 const cookieRows = [
   ['Cookies fonctionnels', 'Maintien de préférences utiles au fonctionnement du site, comme le thème ou certains choix utilisateur.'],
-  ['Mesure et scripts techniques', 'Chargement de scripts nécessaires à certains services du site lorsque ceux-ci sont activés.'],
+  ['Mesure d’audience', 'Après consentement, mesure des pages consultées, boutons utilisés et projets ouverts afin de comprendre les parcours les plus utiles. Un identifiant aléatoire limité à la session est utilisé, sans enregistrer le contenu des formulaires.'],
+  ['Scripts techniques', 'Chargement de scripts nécessaires à certains services du site lorsque ceux-ci sont activés.'],
   ['Publicité', 'La présence d’un compte AdSense est déclarée dans le code source, mais l’affichage publicitaire dépend de l’approbation et de la configuration effectives du site.'],
 ];
 
@@ -82,14 +83,15 @@ export const CookiePolicy = () => {
             <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Gestion du consentement</h2>
             <div className={`mt-5 space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/76' : 'text-black/76'}`}>
               <p>
-                Le site intègre un bandeau cookies et un centre de préférences. Cette
-                politique a été renforcée pour expliquer le rôle de ces éléments au lieu de
-                laisser une page vide.
+                Le suivi comportemental reste désactivé tant que le visiteur n’a pas accepté
+                la catégorie analytics. Le choix peut être modifié depuis le centre de
+                préférences.
               </p>
               <p>
-                Si de nouveaux cookies ou outils de mesure sont ajoutés plus tard, cette page
-                devra être mise à jour avec leurs finalités précises et les choix proposés aux
-                visiteurs.
+                Les événements enregistrés contiennent le type d’action, un libellé court, le
+                chemin de la page et, lorsqu’il s’agit du portfolio, l’identifiant du projet.
+                Les paramètres d’URL, adresses IP et contenus saisis dans les formulaires ne
+                sont pas stockés dans cette mesure first-party.
               </p>
             </div>
           </section>

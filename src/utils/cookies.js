@@ -12,6 +12,7 @@ export const getPrefs = () => {
 export const setPrefs = (prefs) => {
   try {
     localStorage.setItem(KEY, JSON.stringify(prefs));
+    window.dispatchEvent(new CustomEvent('ot-consent-change', { detail: prefs }));
   } catch (err) {
     /* ignore localStorage write errors */
   }

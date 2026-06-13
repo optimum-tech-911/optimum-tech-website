@@ -24,12 +24,8 @@ export const SEO = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       {keywords ? <meta name="keywords" content={keywords} /> : null}
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta charSet="UTF-8" />
       <meta name="robots" content={robots} />
       <meta name="author" content="Optimum Tech" />
-      <meta name="msvalidate.01" content="F5677BF31E95B5616D068583AC27DC63" />
-      <meta name="theme-color" content="#0A84FF" />
       <meta property="og:locale" content="fr_FR" />
       <meta property="og:site_name" content="Optimum Tech" />
 
@@ -39,20 +35,14 @@ export const SEO = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:alt" content="Optimum Tech" />
 
       {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary" />
       <meta name="twitter:url" content={canonical} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
-      <link rel="icon" href="/favicon.ico" sizes="any" />
-      <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-      <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
-      <link rel="manifest" href="/site.webmanifest" />
 
       {allSchemaItems.map((item, index) => (
         <script key={`${path || 'page'}-schema-${index}`} type="application/ld+json">

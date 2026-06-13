@@ -1,5 +1,46 @@
 {
   "buildCommand": "chmod +x node_modules/.bin/vite && npm run build",
   "outputDirectory": "dist",
-  "framework": "vite"
+  "framework": "vite",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "www.optimutech.fr" }],
+      "status": 308,
+      "headers": { "Location": "https://optimutech.fr/$1" }
+    },
+    {
+      "src": "/projects/?",
+      "status": 308,
+      "headers": { "Location": "https://optimutech.fr/realisations" }
+    },
+    {
+      "src": "/(.*)",
+      "continue": true,
+      "headers": {
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+      }
+    },
+    {
+      "src": "/assets/(.*)",
+      "continue": true,
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    { "handle": "filesystem" },
+    {
+      "src": "/.*",
+      "dest": "/404.html",
+      "status": 404,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "X-Robots-Tag": "noindex"
+      }
+    }
+  ]
 }

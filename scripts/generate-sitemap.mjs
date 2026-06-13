@@ -4,18 +4,21 @@ import { fileURLToPath } from 'node:url';
 import { localPages, servicePages } from '../src/data/seoPages.js';
 import { indexableBlogSlugs } from '../src/data/prerenderRoutes.js';
 import { buildCanonicalUrl } from '../src/data/schema.js';
+import { caseStudyProjects, sectorPages } from '../src/data/projects.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 const publicDir = path.join(rootDir, 'public');
 const distDir = path.join(rootDir, 'dist');
 const baseUrl = 'https://optimutech.fr';
-const lastmod = '2026-05-15';
+const lastmod = '2026-06-13';
 
 const urls = [
   ['/', 'weekly', '1.0'],
   ['/services', 'weekly', '0.95'],
-  ['/projects', 'monthly', '0.75'],
+  ['/realisations', 'weekly', '0.9'],
+  ...caseStudyProjects.map((project) => [`/realisations/${project.slug}`, 'monthly', '0.8']),
+  ...Object.keys(sectorPages).map((slug) => [`/secteurs/${slug}`, 'monthly', '0.85']),
   ['/a-propos', 'monthly', '0.8'],
   ['/contact', 'monthly', '0.85'],
   ['/blog', 'weekly', '0.95'],

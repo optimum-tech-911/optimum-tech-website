@@ -2,187 +2,277 @@
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://optimutech.fr/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/services/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://optimutech.fr/projects/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <loc>https://optimutech.fr/realisations/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/realisations/ufsbd34/</loc>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/realisations/cabinet-dentaire-sete/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/realisations/dentalpole-implantologie-parodontologie/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/realisations/le-petit-bougiote/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/realisations/chez-redouane-coiffeur/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/realisations/kabamana/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/realisations/facturation-optimum/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/realisations/treasury-optimum/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/realisations/happy-sharing-events/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/realisations/maison-de-saney/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/secteurs/cabinets-dentaires/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/secteurs/restaurants-food/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/secteurs/salons-beaute/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/secteurs/artisans-services/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://optimutech.fr/secteurs/applications-metier/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/a-propos/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/contact/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/creation-site-web/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/referencement-seo/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/automatisation-ia/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/site-internet-dentiste/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/site-internet-medecin/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/site-internet-entreprise-locale/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/application-web-sur-mesure/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/logiciel-sur-mesure/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/creation-site-web-sete/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/agence-web-herault/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/referencement-seo-sete/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/automatisation-ia-occitanie/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/site-internet-professionnel-entreprise-france-2026/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/combien-coute-creation-site-web-professionnel-france/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/application-web-sur-mesure-rentable-entreprises/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/automatisation-intelligence-artificielle-gagner-temps-chiffre-affaires/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/etre-trouve-google-entreprise-locale-france/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/combien-coute-creation-site-internet-beziers-2026/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/comment-choisir-son-agence-web-beziers-pieges/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/pourquoi-maintenance-site-professionnel-cruciale-tpe/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/site-vitrine-ou-web-app-que-choisir-pour-son-activite/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/comment-une-entreprise-locale-transforme-son-site-en-demandes-de-contact/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/erreurs-qui-font-perdre-des-clients-sur-un-site-professionnel/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/seo-local-entreprise-ce-qu-il-faut-vraiment-comprendre/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/google-business-profile-et-site-web-comment-les-deux-travaillent-ensemble/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

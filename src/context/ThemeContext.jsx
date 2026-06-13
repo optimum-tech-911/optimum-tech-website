@@ -5,7 +5,11 @@ const ThemeContext = createContext();
 const getInitialTheme = (initialTheme) => {
   if (initialTheme) return initialTheme;
   if (typeof window === 'undefined') return 'dark';
-  return localStorage.getItem('theme') || 'dark';
+  try {
+    return localStorage.getItem('theme') || 'dark';
+  } catch {
+    return 'dark';
+  }
 };
 
 export const ThemeProvider = ({ children, initialTheme }) => {
@@ -16,7 +20,12 @@ export const ThemeProvider = ({ children, initialTheme }) => {
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
-    localStorage.setItem('theme', theme);
+    root.style.colorScheme = theme;
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      // Storage can be unavailable in private browsing contexts.
+    }
   }, [theme]);
 
   const toggleTheme = () => {

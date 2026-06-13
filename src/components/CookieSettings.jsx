@@ -8,6 +8,7 @@ import {
   GTM_CONTAINER_ID,
 } from '../utils/gtm.js';
 import { useI18n } from '../i18n.jsx';
+import { trackFirstPartyPageView } from '../utils/analytics.js';
 
 export const CookieSettings = () => {
   const { t } = useI18n();
@@ -20,6 +21,7 @@ export const CookieSettings = () => {
     updateAnalyticsConsent(analytics);
     if (analytics) {
       trackPageView({ gaId: GA_MEASUREMENT_ID });
+      trackFirstPartyPageView();
     }
     setOpen(false);
     setShowReopen(false);

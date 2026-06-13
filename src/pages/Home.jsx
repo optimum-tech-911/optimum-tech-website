@@ -9,6 +9,8 @@ import { indexableBlogPosts } from '../data/blogPosts';
 import { resourceTopics, siteMeta, trustHighlights } from '../data/siteMeta';
 import { buildWebPageSchema } from '../data/schema';
 import { ContactActions } from '../components/ContactActions';
+import { PortfolioProjectCard } from '../components/PortfolioProjectCard';
+import { featuredProjects } from '../data/projects';
 
 export const Home = () => {
   const { theme } = useTheme();
@@ -108,8 +110,39 @@ export const Home = () => {
       )}
       <Hero />
       <main className="relative z-10 px-4 pb-8 md:px-6">
+        <section className="mx-auto max-w-7xl">
+          <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+                Réalisations sélectionnées
+              </p>
+              <h2 className="mt-3 max-w-4xl text-3xl font-bold tracking-tight md:text-5xl">
+                Des projets concrets, du site professionnel à l’outil métier
+              </h2>
+              <p className={`mt-4 max-w-3xl text-base leading-8 ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
+                Une sélection de réalisations en ligne et de projets en cours, présentés selon leur usage, leur secteur et leur niveau d’avancement.
+              </p>
+            </div>
+            <Link
+              to="/realisations"
+              className={`inline-flex shrink-0 items-center justify-center rounded-full border px-5 py-3 text-sm font-semibold transition ${
+                theme === 'dark'
+                  ? 'border-white/15 bg-white/5 hover:border-[#007BFF]/40 hover:bg-[#007BFF]/10'
+                  : 'border-black/10 bg-white hover:border-[#007BFF]/40 hover:bg-[#007BFF]/5'
+              }`}
+            >
+              Voir toutes les réalisations
+            </Link>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {featuredProjects.map((project) => (
+              <PortfolioProjectCard key={project.id} project={project} compact />
+            ))}
+          </div>
+        </section>
+
         <section className="mx-auto max-w-6xl">
-          <div className={`rounded-[2.5rem] border p-6 md:p-10 ${
+          <div className={`mt-10 rounded-[2.5rem] border p-6 md:p-10 ${
             theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
           }`}>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
@@ -132,7 +165,7 @@ export const Home = () => {
                   desc: 'Sites web professionnels, applications sur mesure, outils métier, visibilité digitale et automatisations utiles.',
                 },
                 {
-                  to: '/projects',
+                  to: '/realisations',
                   title: 'Voir les réalisations',
                   desc: 'Consultez des projets et des exemples de prestations utiles pour les entreprises.',
                 },

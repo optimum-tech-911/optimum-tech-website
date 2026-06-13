@@ -60,7 +60,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
     { to: '/creation-site-web', label: 'Création de site web' },
     { to: '/referencement-seo', label: 'Référencement SEO' },
     { to: '/automatisation-ia', label: 'Automatisation IA' },
-    { to: '/projects', label: 'Réalisations' },
+    { to: '/realisations', label: 'Réalisations' },
     { to: '/contact', label: 'Contact' },
   ].filter((item) => item.to !== `/${page.slug}`);
   const relatedLinks = (page.relatedLinks?.length ? page.relatedLinks : defaultRelatedLinks)
@@ -71,7 +71,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
   const heroSecondaryLabel = page.heroSecondaryLabel || null;
   const heroSecondaryTo = page.heroSecondaryTo || null;
   const heroTertiaryLabel = page.heroTertiaryLabel || 'Voir des réalisations';
-  const heroTertiaryTo = page.heroTertiaryTo || '/projects';
+  const heroTertiaryTo = page.heroTertiaryTo || '/realisations';
 
   return (
     <div

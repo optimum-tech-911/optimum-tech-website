@@ -1,8 +1,7 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, PhoneCall } from 'lucide-react';
-import Logo2 from '../assets/Logo 2.jpeg';
+import { ArrowRight, CheckCircle2, PhoneCall } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { useTheme } from '../context/ThemeContext';
 
@@ -26,14 +25,14 @@ export const Hero = () => {
   const containerRef = useRef(null);
   const { theme } = useTheme();
   const proof = [
-    'Devis clair et rapide',
-    'Accompagnement direct',
-    'Sites, applications et automatisations utiles',
+    'Cadrage et devis transparents',
+    'Échange direct avec le développeur',
+    'Conception, mise en ligne et suivi',
   ];
 
   return (
     <div ref={containerRef} className="relative w-full overflow-hidden">
-      <section className="min-h-[92vh] flex items-center justify-center pt-28 pb-12 md:pt-36 md:pb-20">
+      <section className="flex min-h-[82vh] items-center justify-center pb-12 pt-28 md:pb-16 md:pt-36">
         <ScrollReveal className="w-full max-w-6xl px-6">
           <SoftCard className="rounded-[2.5rem] md:rounded-[4rem] border p-8 md:p-16 shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/8 via-transparent to-transparent opacity-80" />
@@ -47,18 +46,17 @@ export const Hero = () => {
                     theme === 'dark' ? 'text-white' : 'text-black'
                   }`}
                 >
-                  Création de sites web, web apps et solutions digitales sur mesure pour entreprises ambitieuses
+                  Sites web et applications sur mesure pour faire avancer votre entreprise
                 </motion.h1>
                 <motion.p
                   className={`mt-6 max-w-2xl text-lg md:text-2xl font-light leading-relaxed ${
                     theme === 'dark' ? 'text-white/78' : 'text-black/75'
                   }`}
                 >
-                  Optimum Tech accompagne les entreprises à Sète, dans l’Hérault, en
-                  Occitanie et partout en France pour concevoir des sites web, des
-                  applications, des outils métier sur mesure et des automatisations utiles
-                  qui renforcent la visibilité, fluidifient les opérations et soutiennent la
-                  croissance.
+                  Depuis Sète, Optimum Tech conçoit des sites professionnels, des applications
+                  web, des outils métier et des automatisations utiles. Chaque projet vise un
+                  résultat concret : mieux présenter votre offre, obtenir plus de demandes ou
+                  simplifier vos opérations.
                 </motion.p>
 
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -77,19 +75,9 @@ export const Hero = () => {
                         : 'bg-white/70 border-black/10 text-black hover:bg-white shadow-lg'
                     }`}
                   >
-                    Voir nos services
+                    Explorer nos solutions
                   </Link>
                 </div>
-
-                <Link
-                  to="/contact"
-                  className={`mt-5 inline-flex items-center gap-2 text-sm md:text-base transition-colors ${
-                    theme === 'dark' ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
-                  }`}
-                >
-                  Parler de votre projet
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
               </div>
 
               <div className="grid gap-4">
@@ -104,7 +92,7 @@ export const Hero = () => {
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#007BFF]/15">
-                        <ArrowRight className="h-5 w-5 text-[#007BFF]" />
+                        <CheckCircle2 className="h-5 w-5 text-[#007BFF]" aria-hidden="true" />
                       </div>
                       <p className={`text-sm md:text-base font-medium ${theme === 'dark' ? 'text-white/85' : 'text-black/85'}`}>
                         {item}
@@ -122,7 +110,7 @@ export const Hero = () => {
                 >
                   <div className="flex items-center gap-4">
                     <span className="flex h-12 w-12 rounded-2xl overflow-hidden border border-[#007BFF]/20">
-                      <img src={Logo2} alt="Optimum Tech logo" className="h-full w-full object-cover" />
+                      <img src="/apple-touch-icon.png" alt="" width="48" height="48" className="h-full w-full object-cover" />
                     </span>
                     <div>
                       <p className={`text-sm uppercase tracking-[0.22em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
@@ -154,7 +142,7 @@ export const Hero = () => {
             +33 7 45 30 51 13
           </a>
           <Link
-            to="/projects"
+            to="/realisations"
             className={`inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition ${
               theme === 'dark'
                 ? 'border-white/10 bg-white/5 text-white/80 hover:bg-white/10'

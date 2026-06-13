@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
@@ -7,26 +7,18 @@ import { useTheme } from '../context/ThemeContext';
 import { SEO } from '../components/SEO.jsx';
 import { Link, useLocation } from 'react-router-dom';
 import { supabase } from '../../supabaseClient';
-import { Rocket, Send, Smartphone, Globe, Cpu, Zap, MessageSquare } from 'lucide-react';
+import { Rocket, Send } from 'lucide-react';
 
-import appImg from '../assets/images/planning application.webp';
-import webImg from '../assets/images/online commerce .png';
-import softwareImg from '../assets/images/optimum tech software dev.png';
-import aiImg from '../assets/images/optimum tech digital shop.webp';
-import consultationImg from '../assets/images/optimum tech online meeting.webp';
 import { resourceTopics, siteMeta } from '../data/siteMeta';
 import { buildContactPageSchema } from '../data/schema';
 import { ContactActions } from '../components/ContactActions';
 
 export const Contact = () => {
-  const { t, lang } = useI18n();
+  const { t } = useI18n();
   const { theme } = useTheme();
   const location = useLocation();
   const [step, setStep] = useState('form');
   const [category, setCategory] = useState(null);
-  const isRTL = lang === 'ar';
-  const tapeRef = useRef(null);
-  const [isInteracting] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [formData, setFormData] = useState({
@@ -64,75 +56,25 @@ export const Contact = () => {
   const categories = [
     { 
       id: 'app', 
-      icon: Smartphone, 
       title: t('contact_v2.questions.app.title'),
-      image: appImg
     },
     { 
       id: 'web', 
-      icon: Globe, 
       title: t('contact_v2.questions.web.title'),
-      image: webImg
     },
     { 
       id: 'software', 
-      icon: Cpu, 
       title: t('contact_v2.questions.software.title'),
-      image: softwareImg
     },
     { 
       id: 'ai', 
-      icon: Zap, 
       title: t('contact_v2.questions.ai.title'),
-      image: aiImg
     },
     { 
       id: 'consultation', 
-      icon: MessageSquare, 
       title: t('contact_v2.questions.consultation.title'),
-      image: consultationImg
     },
   ];
-
-  useEffect(() => {
-    if (step !== 'selection') return;
-    const el = tapeRef.current;
-    if (!el) return;
-    const raf = requestAnimationFrame(() => {
-      const segment = el.scrollWidth / 3;
-      if (Number.isFinite(segment) && segment > 0) el.scrollLeft = segment;
-    });
-    return () => cancelAnimationFrame(raf);
-  }, [step, isRTL]);
-
-  useEffect(() => {
-    if (step !== 'selection') return;
-    const el = tapeRef.current;
-    if (!el) return;
-    let raf = 0;
-    let last = performance.now();
-    const speed = 0.9;
-
-    const tick = (now) => {
-      const dt = now - last;
-      last = now;
-      if (!isInteracting) {
-        const segment = el.scrollWidth / 3;
-        const dir = isRTL ? -1 : 1;
-        const delta = (dt / 16.67) * speed * dir;
-        el.scrollLeft += delta;
-
-        if (Number.isFinite(segment) && segment > 0) {
-          if (el.scrollLeft < segment * 0.5) el.scrollLeft += segment;
-          else if (el.scrollLeft > segment * 1.5) el.scrollLeft -= segment;
-        }
-      }
-      raf = requestAnimationFrame(tick);
-    };
-
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [step, isInteracting, isRTL]);
 
   const categoryLabel = categories.find((item) => item.id === category)?.title || 'Demande générale';
 
@@ -215,7 +157,7 @@ export const Contact = () => {
     setSubmitError('');
 
     if (!supabase) {
-      setSubmitError('Supabase is not configured.');
+      setSubmitError('Le formulaire est temporairement indisponible. Contactez-nous par téléphone ou par e-mail.');
       return;
     }
 
@@ -235,7 +177,7 @@ export const Contact = () => {
       setStep('success');
     } catch (error) {
       console.error('Error sending contact request:', error);
-      setSubmitError(error.message || 'Unable to send your request right now.');
+      setSubmitError('Votre demande n’a pas pu être envoyée. Réessayez ou contactez-nous directement.');
     } finally {
       setIsSubmitting(false);
     }
@@ -254,20 +196,20 @@ export const Contact = () => {
         return (
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
             <div>
-              <label className={labelClass}>Quel est votre domaine d’activité ?</label>
-              <input required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Ex: E-commerce, Sport, Éducation..." />
+              <label htmlFor="app-business-sector" className={labelClass}>Quel est votre domaine d’activité ?</label>
+              <input id="app-business-sector" name="businessSector" required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Ex: E-commerce, Sport, Éducation..." />
             </div>
             <div>
-              <label className={labelClass}>Quel est votre objectif principal ?</label>
-              <input required type="text" value={formData.objective} onChange={setField('objective')} className={inputClass} placeholder="Ex: Gagner des utilisateurs, automatiser les ventes..." />
+              <label htmlFor="app-objective" className={labelClass}>Quel est votre objectif principal ?</label>
+              <input id="app-objective" name="objective" required type="text" value={formData.objective} onChange={setField('objective')} className={inputClass} placeholder="Ex: Gagner des utilisateurs, automatiser les ventes..." />
             </div>
             <div>
-              <label className={labelClass}>Combien de personnes êtes-vous ?</label>
-              <input required type="text" value={formData.teamSize} onChange={setField('teamSize')} className={inputClass} placeholder="Ex: 1-5, 10+, Juste moi..." />
+              <label htmlFor="app-team-size" className={labelClass}>Combien de personnes êtes-vous ?</label>
+              <input id="app-team-size" name="teamSize" required type="text" value={formData.teamSize} onChange={setField('teamSize')} className={inputClass} placeholder="Ex: 1-5, 10+, Juste moi..." />
             </div>
             <div>
-              <label className={labelClass}>Décrivez brièvement l’application parfaite que vous imaginez :</label>
-              <textarea required value={formData.appVision} onChange={setField('appVision')} className={inputClass} rows={4} placeholder="Votre vision..." />
+              <label htmlFor="app-vision" className={labelClass}>Décrivez brièvement l’application parfaite que vous imaginez :</label>
+              <textarea id="app-vision" name="appVision" required value={formData.appVision} onChange={setField('appVision')} className={inputClass} rows={4} placeholder="Votre vision..." />
             </div>
           </motion.div>
         );
@@ -275,16 +217,16 @@ export const Contact = () => {
         return (
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
             <div>
-              <label className={labelClass}>Quel est votre domaine d’activité ?</label>
-              <input required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Ex: Immobilier, Restaurant, Portfolio..." />
+              <label htmlFor="web-business-sector" className={labelClass}>Quel est votre domaine d’activité ?</label>
+              <input id="web-business-sector" name="businessSector" required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Ex: Immobilier, Restaurant, Portfolio..." />
             </div>
             <div>
-              <label className={labelClass}>Combien d’employés avez-vous ?</label>
-              <input required type="text" value={formData.employeeCount} onChange={setField('employeeCount')} className={inputClass} placeholder="Nombre de collaborateurs..." />
+              <label htmlFor="web-employee-count" className={labelClass}>Combien d’employés avez-vous ?</label>
+              <input id="web-employee-count" name="employeeCount" required type="text" value={formData.employeeCount} onChange={setField('employeeCount')} className={inputClass} placeholder="Nombre de collaborateurs..." />
             </div>
             <div>
-              <label className={labelClass}>Quel type de site souhaitez-vous ?</label>
-              <select required value={formData.websiteType} onChange={setField('websiteType')} className={inputClass}>
+              <label htmlFor="website-type" className={labelClass}>Quel type de site souhaitez-vous ?</label>
+              <select id="website-type" name="websiteType" required value={formData.websiteType} onChange={setField('websiteType')} className={inputClass}>
                 <option value="">Sélectionnez un type...</option>
                 <option value="vitrine">Site Vitrine</option>
                 <option value="ecommerce">Vente de produits (E‑commerce)</option>
@@ -299,16 +241,16 @@ export const Contact = () => {
         return (
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
             <div>
-              <label className={labelClass}>Êtes-vous propriétaire d’entreprise ou chargé de mission ?</label>
-              <input required type="text" value={formData.role} onChange={setField('role')} className={inputClass} placeholder="Votre rôle..." />
+              <label htmlFor="software-role" className={labelClass}>Êtes-vous propriétaire d’entreprise ou chargé de mission ?</label>
+              <input id="software-role" name="role" required type="text" value={formData.role} onChange={setField('role')} className={inputClass} placeholder="Votre rôle..." />
             </div>
             <div>
-              <label className={labelClass}>Quel est votre domaine d’activité ?</label>
-              <input required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Ex: Logistique, Finance, Santé..." />
+              <label htmlFor="software-business-sector" className={labelClass}>Quel est votre domaine d’activité ?</label>
+              <input id="software-business-sector" name="businessSector" required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Ex: Logistique, Finance, Santé..." />
             </div>
             <div>
-              <label className={labelClass}>Quel problème rencontrez-vous actuellement ?</label>
-              <textarea required value={formData.currentProblem} onChange={setField('currentProblem')} className={inputClass} rows={4} placeholder="Décrivez votre défi technique..." />
+              <label htmlFor="software-current-problem" className={labelClass}>Quel problème rencontrez-vous actuellement ?</label>
+              <textarea id="software-current-problem" name="currentProblem" required value={formData.currentProblem} onChange={setField('currentProblem')} className={inputClass} rows={4} placeholder="Décrivez votre défi technique..." />
             </div>
           </motion.div>
         );
@@ -317,20 +259,20 @@ export const Contact = () => {
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
             <div className={`p-6 rounded-2xl mb-8 border border-[#007BFF]/20 bg-[#007BFF]/5 ${theme === 'dark' ? 'text-white/80' : 'text-black/80'}`}>
               <p className="text-sm italic font-light">
-                “Imaginez un employé précis qui ne fait pas d’erreurs, travaille 24h/24, et que vous ne payez qu’une seule fois. C’est ce que nous construisons avec l’IA.”
+                L’objectif n’est pas d’ajouter de l’IA partout, mais d’automatiser les tâches répétitives qui ralentissent réellement votre équipe.
               </p>
             </div>
             <div>
-              <label className={labelClass}>Quel est votre domaine d’activité ?</label>
-              <input required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Votre secteur..." />
+              <label htmlFor="ai-business-sector" className={labelClass}>Quel est votre domaine d’activité ?</label>
+              <input id="ai-business-sector" name="businessSector" required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Votre secteur..." />
             </div>
             <div>
-              <label className={labelClass}>Quels sont les problèmes quotidiens pour lesquels vous seriez prêt à payer ?</label>
-              <textarea required value={formData.dailyProblem} onChange={setField('dailyProblem')} className={inputClass} rows={3} placeholder="Tâches répétitives, erreurs humaines..." />
+              <label htmlFor="ai-daily-problem" className={labelClass}>Quels sont les problèmes quotidiens pour lesquels vous seriez prêt à payer ?</label>
+              <textarea id="ai-daily-problem" name="dailyProblem" required value={formData.dailyProblem} onChange={setField('dailyProblem')} className={inputClass} rows={3} placeholder="Tâches répétitives, erreurs humaines..." />
             </div>
             <div>
-              <label className={labelClass}>Quel poste ou tâche souhaiteriez-vous remplacer par une IA précise et infatigable ?</label>
-              <textarea required value={formData.replaceTask} onChange={setField('replaceTask')} className={inputClass} rows={4} placeholder="Décrivez le besoin..." />
+              <label htmlFor="ai-replace-task" className={labelClass}>Quelle tâche souhaiteriez-vous automatiser avec une IA précise et fiable ?</label>
+              <textarea id="ai-replace-task" name="replaceTask" required value={formData.replaceTask} onChange={setField('replaceTask')} className={inputClass} rows={4} placeholder="Décrivez le besoin..." />
             </div>
           </motion.div>
         );
@@ -338,12 +280,12 @@ export const Contact = () => {
         return (
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
             <div>
-              <label className={labelClass}>Quel est votre domaine d’activité ?</label>
-              <input required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Votre secteur..." />
+              <label htmlFor="consultation-business-sector" className={labelClass}>Quel est votre domaine d’activité ?</label>
+              <input id="consultation-business-sector" name="businessSector" required type="text" value={formData.businessSector} onChange={setField('businessSector')} className={inputClass} placeholder="Votre secteur..." />
             </div>
             <div>
-              <label className={labelClass}>Décrivez brièvement votre problème ou besoin :</label>
-              <textarea required value={formData.consultationNeed} onChange={setField('consultationNeed')} className={inputClass} rows={4} placeholder="Comment pouvons-nous vous aider ?" />
+              <label htmlFor="consultation-need" className={labelClass}>Décrivez brièvement votre problème ou besoin :</label>
+              <textarea id="consultation-need" name="consultationNeed" required value={formData.consultationNeed} onChange={setField('consultationNeed')} className={inputClass} rows={4} placeholder="Comment pouvons-nous vous aider ?" />
             </div>
           </motion.div>
         );
@@ -481,6 +423,7 @@ export const Contact = () => {
                   <button
                     type="button"
                     onClick={() => setCategory(null)}
+                    aria-pressed={category === null}
                     className={`rounded-full border px-4 py-2 text-sm transition ${
                       category === null
                         ? 'border-[#007BFF]/40 bg-[#007BFF]/15 text-[#007BFF]'
@@ -496,6 +439,7 @@ export const Contact = () => {
                       key={item.id}
                       type="button"
                       onClick={() => setCategory(item.id)}
+                      aria-pressed={category === item.id}
                       className={`rounded-full border px-4 py-2 text-sm transition ${
                         category === item.id
                           ? 'border-[#007BFF]/40 bg-[#007BFF]/15 text-[#007BFF]'
@@ -520,32 +464,32 @@ export const Contact = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Nom complet</label>
-                      <input required type="text" value={formData.fullName} onChange={setField('fullName')} placeholder="Ex: Jean Dupont" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <label htmlFor="full-name" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Nom complet</label>
+                      <input id="full-name" name="fullName" autoComplete="name" required type="text" value={formData.fullName} onChange={setField('fullName')} placeholder="Ex: Jean Dupont" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
                       }`} />
                     </div>
                     <div className="space-y-2">
-                      <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Email professionnel</label>
-                      <input required type="email" value={formData.email} onChange={setField('email')} placeholder="Ex: jean@entreprise.com" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <label htmlFor="email" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Email professionnel</label>
+                      <input id="email" name="email" autoComplete="email" required type="email" value={formData.email} onChange={setField('email')} placeholder="Ex: jean@entreprise.com" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
                       }`} />
                     </div>
                     <div className="space-y-2">
-                      <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Téléphone</label>
-                      <input required type="tel" value={formData.phone} onChange={setField('phone')} placeholder="Ex: +33 6 12 34 56 78" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <label htmlFor="phone" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Téléphone</label>
+                      <input id="phone" name="phone" autoComplete="tel" inputMode="tel" required type="tel" value={formData.phone} onChange={setField('phone')} placeholder="Ex: +33 6 12 34 56 78" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
                       }`} />
                     </div>
                     <div className="space-y-2">
-                      <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Entreprise / Organisation</label>
-                      <input type="text" value={formData.company} onChange={setField('company')} placeholder="Nom de votre entreprise" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <label htmlFor="company" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Entreprise / Organisation</label>
+                      <input id="company" name="company" autoComplete="organization" type="text" value={formData.company} onChange={setField('company')} placeholder="Nom de votre entreprise" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
@@ -555,8 +499,8 @@ export const Contact = () => {
 
                   {!category && (
                     <div className="space-y-2">
-                      <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message</label>
-                      <textarea required value={formData.message} onChange={setField('message')} rows={5} placeholder="Comment pouvons-nous vous aider ?" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <label htmlFor="message" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message</label>
+                      <textarea id="message" name="message" required value={formData.message} onChange={setField('message')} rows={5} placeholder="Comment pouvons-nous vous aider ?" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
@@ -566,8 +510,8 @@ export const Contact = () => {
 
                   {category && (
                     <div className="space-y-2">
-                      <label className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message complémentaire</label>
-                      <textarea value={formData.message} onChange={setField('message')} rows={4} placeholder="Ajoutez un contexte utile, vos délais ou votre budget." className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <label htmlFor="additional-message" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message complémentaire</label>
+                      <textarea id="additional-message" name="message" value={formData.message} onChange={setField('message')} rows={4} placeholder="Ajoutez un contexte utile, vos délais ou votre budget." className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
@@ -576,7 +520,7 @@ export const Contact = () => {
                   )}
 
                   {submitError && (
-                    <div className={`rounded-2xl border px-4 py-3 text-sm ${
+                    <div role="alert" aria-live="assertive" className={`rounded-2xl border px-4 py-3 text-sm ${
                       theme === 'dark'
                         ? 'border-red-500/20 bg-red-500/10 text-red-200'
                         : 'border-red-500/30 bg-red-500/5 text-red-600'
@@ -585,7 +529,7 @@ export const Contact = () => {
                     </div>
                   )}
 
-                  <button disabled={isSubmitting} type="submit" className="w-full py-5 rounded-full bg-[#007BFF] text-white font-bold text-xl shadow-xl shadow-[#007BFF]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:hover:scale-100">
+                  <button disabled={isSubmitting} aria-busy={isSubmitting} type="submit" className="w-full py-5 rounded-full bg-[#007BFF] text-white font-bold text-xl shadow-xl shadow-[#007BFF]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:hover:scale-100">
                     <Send size={20} />
                     {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
                   </button>
