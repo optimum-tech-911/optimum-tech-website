@@ -27,7 +27,7 @@ export const Footer = () => {
                 height="40"
                 className="h-10 w-10 rounded-xl transition-transform duration-500 group-hover:scale-110"
               />
-              <span className={`text-xl font-bold tracking-tighter ${
+              <span className={`text-xl font-bold ${
                 theme === 'dark' ? 'text-white' : 'text-black'
               }`}>
                 Optimum Tech

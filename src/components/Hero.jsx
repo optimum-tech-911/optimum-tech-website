@@ -1,158 +1,210 @@
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, PhoneCall } from 'lucide-react';
-import { ScrollReveal } from './ScrollReveal';
+import { ArrowRight, CheckCircle2, MapPin, PhoneCall } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
-const SoftCard = ({ children, className = '' }) => {
-  const { theme } = useTheme();
+const proofPoints = [
+  'Cadrage clair avant design',
+  'Développement direct, sans intermédiaire opaque',
+  'Mise en ligne, suivi et améliorations après livraison',
+];
 
-  return (
-    <div
-      className={`${className} transition-colors duration-500 ${
-        theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-gray-500/10 border-black/10 backdrop-blur-2xl shadow-2xl'
-      }`}
-    >
-      <div>
-        {children}
-      </div>
-    </div>
-  );
-};
+const featuredScreens = [
+  {
+    title: 'Kabamana',
+    label: 'Plateforme logistique',
+    image: '/projects/kabamana.jpg',
+    to: '/realisations/kabamana',
+  },
+  {
+    title: 'UFSBD 34',
+    label: 'Site institutionnel',
+    image: '/projects/ufsbd34.jpg',
+    to: '/realisations/ufsbd34',
+  },
+  {
+    title: 'Facturation Optimum',
+    label: 'Outil métier',
+    image: '/projects/facturation-optimum.jpg',
+    to: '/realisations/facturation-optimum',
+  },
+];
+
+const serviceShortcuts = [
+  ['Site vitrine', '/creation-site-web'],
+  ['Web app métier', '/application-web-sur-mesure'],
+  ['SEO local', '/referencement-seo'],
+  ['Automatisation sobre', '/automatisation-ia'],
+];
 
 export const Hero = () => {
-  const containerRef = useRef(null);
   const { theme } = useTheme();
-  const proof = [
-    'Cadrage et devis transparents',
-    'Échange direct avec le développeur',
-    'Conception, mise en ligne et suivi',
-  ];
+  const isDark = theme === 'dark';
 
   return (
-    <div ref={containerRef} className="relative w-full overflow-hidden">
-      <section className="flex min-h-[82vh] items-center justify-center pb-12 pt-28 md:pb-16 md:pt-36">
-        <ScrollReveal className="w-full max-w-6xl px-6">
-          <SoftCard className="rounded-[2.5rem] md:rounded-[4rem] border p-8 md:p-16 shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/8 via-transparent to-transparent opacity-80" />
-            <div className="relative z-10 grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-              <div>
-                <div className="inline-flex rounded-full border border-[#007BFF]/20 bg-[#007BFF]/10 px-4 py-2 text-sm font-semibold text-[#007BFF]">
-                  Sète, Hérault, Occitanie, France
-                </div>
-                <motion.h1
-                  className={`mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] ${
-                    theme === 'dark' ? 'text-white' : 'text-black'
-                  }`}
-                >
-                  Sites web et applications sur mesure pour faire avancer votre entreprise
-                </motion.h1>
-                <motion.p
-                  className={`mt-6 max-w-2xl text-lg md:text-2xl font-light leading-relaxed ${
-                    theme === 'dark' ? 'text-white/78' : 'text-black/75'
-                  }`}
-                >
-                  Depuis Sète, Optimum Tech conçoit des sites professionnels, des applications
-                  web, des outils métier et des automatisations utiles. Chaque projet vise un
-                  résultat concret : mieux présenter votre offre, obtenir plus de demandes ou
-                  simplifier vos opérations.
-                </motion.p>
+    <header className={`relative overflow-hidden ${isDark ? 'bg-[#050607]' : 'bg-[#F7F8FA]'}`}>
+      <div
+        className={`absolute inset-0 ${
+          isDark
+            ? 'opacity-[0.10] [background-image:linear-gradient(rgba(255,255,255,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.16)_1px,transparent_1px)]'
+            : 'opacity-[0.45] [background-image:linear-gradient(rgba(12,18,28,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(12,18,28,0.08)_1px,transparent_1px)]'
+        } [background-size:44px_44px]`}
+        aria-hidden="true"
+      />
 
-                <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                  <Link
-                    to="/contact"
-                    className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#007BFF] px-8 py-4 text-base md:text-lg font-semibold text-white transition-all duration-300 hover:bg-[#007BFF]/90 hover:scale-[1.012] active:scale-[0.985] shadow-xl shadow-[#007BFF]/20"
-                  >
-                    Demander un devis
-                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                  <Link
-                    to="/services"
-                    className={`inline-flex items-center justify-center gap-3 rounded-full border px-8 py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:scale-[1.012] active:scale-[0.985] ${
-                      theme === 'dark'
-                        ? 'bg-white/5 border-white/10 text-white hover:bg-white/10'
-                        : 'bg-white/70 border-black/10 text-black hover:bg-white shadow-lg'
-                    }`}
-                  >
-                    Explorer nos solutions
-                  </Link>
-                </div>
+      <section className="relative mx-auto grid min-h-[92vh] w-full max-w-7xl items-center gap-12 px-4 pb-14 pt-28 md:px-6 md:pb-20 md:pt-36 lg:grid-cols-[1fr_0.92fr]">
+        <div className="max-w-3xl">
+          <div
+            className={`inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold ${
+              isDark
+                ? 'border-white/[0.12] bg-white/[0.06] text-white/75'
+                : 'border-black/10 bg-white text-black/70 shadow-sm'
+            }`}
+          >
+            <MapPin className="h-4 w-4 text-[#0A84FF]" aria-hidden="true" />
+            Optimum Tech, studio web à Sète
+          </div>
+
+          <h1
+            className={`mt-7 text-4xl font-bold leading-[1.04] sm:text-5xl md:text-6xl ${
+              isDark ? 'text-white' : 'text-[#111318]'
+            }`}
+          >
+            Création de sites web et d’applications utiles pour entreprises locales
+          </h1>
+
+          <p className={`mt-6 max-w-2xl text-lg leading-8 md:text-xl ${isDark ? 'text-white/70' : 'text-black/70'}`}>
+            Des pages plus claires, des parcours de contact plus simples et, quand le
+            besoin le mérite, des outils métier qui font gagner du temps. Chaque projet
+            part de votre offre, de vos clients et du résultat attendu.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-3 rounded-lg bg-[#0A84FF] px-6 py-4 text-base font-semibold text-white shadow-lg shadow-[#0A84FF]/20 transition hover:bg-[#0576e6] active:scale-[0.99]"
+            >
+              Demander un devis
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            </Link>
+            <Link
+              to="/realisations"
+              className={`inline-flex items-center justify-center gap-3 rounded-lg border px-6 py-4 text-base font-semibold transition active:scale-[0.99] ${
+                isDark
+                  ? 'border-white/[0.12] bg-white/[0.06] text-white hover:bg-white/[0.10]'
+                  : 'border-black/10 bg-white text-black hover:border-[#0A84FF]/40'
+              }`}
+            >
+              Voir les réalisations
+            </Link>
+          </div>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {proofPoints.map((point) => (
+              <div key={point} className="flex gap-3">
+                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#0A84FF]" aria-hidden="true" />
+                <span className={`text-sm leading-6 ${isDark ? 'text-white/70' : 'text-black/60'}`}>{point}</span>
               </div>
+            ))}
+          </div>
+        </div>
 
-              <div className="grid gap-4">
-                {proof.map((item) => (
-                  <div
-                    key={item}
-                    className={`rounded-[1.75rem] border px-5 py-5 ${
-                      theme === 'dark'
-                        ? 'border-white/10 bg-white/5'
-                        : 'border-black/10 bg-white/70 shadow-lg'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#007BFF]/15">
-                        <CheckCircle2 className="h-5 w-5 text-[#007BFF]" aria-hidden="true" />
-                      </div>
-                      <p className={`text-sm md:text-base font-medium ${theme === 'dark' ? 'text-white/85' : 'text-black/85'}`}>
-                        {item}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-
-                <div
-                  className={`rounded-[2rem] border p-6 ${
-                    theme === 'dark'
-                      ? 'border-white/10 bg-white/5'
-                      : 'border-black/10 bg-white/70 shadow-lg'
-                  }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="flex h-12 w-12 rounded-2xl overflow-hidden border border-[#007BFF]/20">
-                      <img src="/apple-touch-icon.png" alt="" width="48" height="48" className="h-full w-full object-cover" />
-                    </span>
-                    <div>
-                      <p className={`text-sm uppercase tracking-[0.22em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
-                        Optimum Tech
-                      </p>
-                      <p className={`mt-1 text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-                        Sites web, applications et solutions digitales utiles.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <div className="relative">
+          <div
+            className={`relative overflow-hidden rounded-lg border ${
+              isDark
+                ? 'border-white/[0.12] bg-[#101318] shadow-2xl shadow-black/50'
+                : 'border-black/10 bg-white shadow-2xl shadow-black/10'
+            }`}
+          >
+            <div className={`flex items-center gap-2 border-b px-4 py-3 ${isDark ? 'border-white/10' : 'border-black/10'}`}>
+              <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+              <span className={`ml-3 text-xs font-medium ${isDark ? 'text-white/50' : 'text-black/50'}`}>
+                Réalisations récentes
+              </span>
             </div>
-          </SoftCard>
-        </ScrollReveal>
-      </section>
 
-      <section className="pb-8 md:pb-12">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-3 px-6">
-          <a
-            href="tel:+33745305113"
-            className={`inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition ${
-              theme === 'dark'
-                ? 'border-white/10 bg-white/5 text-white/80 hover:bg-white/10'
-                : 'border-black/10 bg-white/70 text-black/80 hover:bg-white'
-            }`}
-          >
-            <PhoneCall className="h-4 w-4 text-[#007BFF]" />
-            +33 7 45 30 51 13
-          </a>
-          <Link
-            to="/realisations"
-            className={`inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition ${
-              theme === 'dark'
-                ? 'border-white/10 bg-white/5 text-white/80 hover:bg-white/10'
-                : 'border-black/10 bg-white/70 text-black/80 hover:bg-white'
-            }`}
-          >
-            Voir nos réalisations
-          </Link>
+            <Link to={featuredScreens[0].to} className="group block">
+              <div className="aspect-[16/10] overflow-hidden bg-black">
+                <img
+                  src={featuredScreens[0].image}
+                  alt={`Aperçu du projet ${featuredScreens[0].title}`}
+                  className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.02]"
+                  loading="eager"
+                />
+              </div>
+              <div className="flex items-center justify-between gap-4 p-5">
+                <div>
+                  <p className={`text-xs font-semibold uppercase ${isDark ? 'text-white/50' : 'text-black/50'}`}>
+                    {featuredScreens[0].label}
+                  </p>
+                  <p className={`mt-1 text-xl font-bold ${isDark ? 'text-white' : 'text-black'}`}>
+                    {featuredScreens[0].title}
+                  </p>
+                </div>
+                <ArrowRight className="h-5 w-5 text-[#0A84FF] transition group-hover:translate-x-0.5" aria-hidden="true" />
+              </div>
+            </Link>
+          </div>
+
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            {featuredScreens.slice(1).map((item) => (
+              <Link
+                key={item.title}
+                to={item.to}
+                className={`group overflow-hidden rounded-lg border transition hover:-translate-y-0.5 ${
+                  isDark ? 'border-white/10 bg-white/[0.05]' : 'border-black/10 bg-white shadow-lg shadow-black/[0.05]'
+                }`}
+              >
+                <div className="aspect-[16/10] overflow-hidden bg-black">
+                  <img
+                    src={item.image}
+                    alt={`Aperçu du projet ${item.title}`}
+                    className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.025]"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-4">
+                  <p className={`text-xs font-semibold uppercase ${isDark ? 'text-white/50' : 'text-black/50'}`}>
+                    {item.label}
+                  </p>
+                  <p className={`mt-1 font-bold ${isDark ? 'text-white' : 'text-black'}`}>{item.title}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
-    </div>
+
+      <section className={`relative border-y ${isDark ? 'border-white/[0.08] bg-white/[0.03]' : 'border-black/10 bg-white/70'}`}>
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-5 md:flex-row md:items-center md:justify-between md:px-6">
+          <div className="flex flex-wrap gap-2">
+            {serviceShortcuts.map(([label, to]) => (
+              <Link
+                key={to}
+                to={to}
+                className={`rounded-lg border px-4 py-2 text-sm font-semibold transition ${
+                  isDark
+                    ? 'border-white/10 text-white/70 hover:border-[#0A84FF]/40 hover:text-white'
+                    : 'border-black/10 text-black/70 hover:border-[#0A84FF]/40 hover:text-black'
+                }`}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+          <a
+            href="tel:+33745305113"
+            className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold ${
+              isDark ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'
+            }`}
+          >
+            <PhoneCall className="h-4 w-4 text-[#0A84FF]" aria-hidden="true" />
+            +33 7 45 30 51 13
+          </a>
+        </div>
+      </section>
+    </header>
   );
 };

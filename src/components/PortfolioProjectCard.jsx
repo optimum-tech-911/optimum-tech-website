@@ -24,10 +24,10 @@ export const PortfolioProjectCard = ({ project, compact = false }) => {
     .toUpperCase();
 
   return (
-    <article className={`group flex h-full flex-col overflow-hidden rounded-[1.8rem] border transition duration-300 hover:-translate-y-1 ${
+    <article className={`group flex h-full flex-col overflow-hidden rounded-lg border transition duration-300 hover:-translate-y-1 ${
       theme === 'dark'
-        ? 'border-white/10 bg-white/[0.045] hover:border-[#007BFF]/35'
-        : 'border-black/10 bg-white shadow-lg shadow-black/[0.04] hover:border-[#007BFF]/35 hover:shadow-xl'
+        ? 'border-white/10 bg-white/[0.045] hover:border-[#007BFF]/40'
+        : 'border-black/10 bg-white shadow-lg shadow-black/[0.04] hover:border-[#007BFF]/40 hover:shadow-xl'
     }`}>
       <div className={`relative overflow-hidden bg-black ${compact ? 'aspect-[16/9]' : 'aspect-[16/10]'}`}>
         <img
@@ -38,10 +38,10 @@ export const PortfolioProjectCard = ({ project, compact = false }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-black/20" />
         <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4">
-          <span className="max-w-[70%] rounded-full border border-white/20 bg-black/55 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md">
+          <span className="max-w-[70%] rounded-lg border border-white/20 bg-black/55 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md">
             {project.type}
           </span>
-          <span className={`rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] backdrop-blur-md ${statusStyles[status.tone]}`}>
+          <span className={`rounded-lg border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] backdrop-blur-md ${statusStyles[status.tone]}`}>
             {status.label}
           </span>
         </div>
@@ -85,7 +85,7 @@ export const PortfolioProjectCard = ({ project, compact = false }) => {
               data-analytics-category="project"
               data-analytics-project={project.id}
               data-analytics-label={project.title}
-              className="inline-flex items-center gap-2 rounded-full bg-[#007BFF] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#1688ff]"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#007BFF] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#1688ff]"
             >
               Étude de cas
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -98,17 +98,17 @@ export const PortfolioProjectCard = ({ project, compact = false }) => {
               data-analytics-label={project.title}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-bold transition ${
+              className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-bold transition ${
                 theme === 'dark'
-                  ? 'border-white/15 text-white hover:border-[#007BFF]/45 hover:bg-[#007BFF]/10'
-                  : 'border-black/15 text-black hover:border-[#007BFF]/45 hover:bg-[#007BFF]/5'
+                  ? 'border-white/20 text-white hover:border-[#007BFF]/40 hover:bg-[#007BFF]/10'
+                  : 'border-black/20 text-black hover:border-[#007BFF]/40 hover:bg-[#007BFF]/5'
               }`}
             >
               Voir le projet
               <ExternalLink className="h-4 w-4" aria-hidden="true" />
             </a>
           ) : (
-            <span className={`text-sm font-semibold ${theme === 'dark' ? 'text-white/35' : 'text-black/35'}`}>
+            <span className={`text-sm font-semibold ${theme === 'dark' ? 'text-white/40' : 'text-black/40'}`}>
               Présentation bientôt disponible
             </span>
           )}

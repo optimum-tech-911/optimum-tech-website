@@ -17,14 +17,14 @@ const NavLink = ({ to, children, onClick }) => {
       onClick={(e) => {
         onClick?.(e);
       }}
-      className={`relative inline-flex items-center justify-center whitespace-nowrap px-4 lg:px-5 py-2 rounded-full text-xs lg:text-sm font-medium transition-all duration-300 ${
+      className={`relative inline-flex items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-xs font-medium transition-all duration-300 lg:px-5 lg:text-sm ${
         theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'
       }`}
     >
       {active && (
         <motion.span
           layoutId="nav-active-bg"
-          className={`absolute inset-0 rounded-full border backdrop-blur-md ${
+          className={`absolute inset-0 rounded-lg border backdrop-blur-md ${
             theme === 'dark' ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'
           }`}
           initial={false}
@@ -54,7 +54,7 @@ const NavDropdown = ({ label, groups, openMenu, setOpenMenu }) => {
         aria-expanded={isOpen}
         aria-controls={menuId}
         aria-haspopup="true"
-        className={`relative inline-flex items-center justify-center gap-1 whitespace-nowrap px-4 lg:px-5 py-2 rounded-full text-xs lg:text-sm font-medium transition-all duration-300 ${
+        className={`relative inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-lg px-4 py-2 text-xs font-medium transition-all duration-300 lg:px-5 lg:text-sm ${
           theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'
         }`}
       >
@@ -70,7 +70,7 @@ const NavDropdown = ({ label, groups, openMenu, setOpenMenu }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className={`absolute top-full mt-4 rounded-[2rem] border p-5 lg:p-6 shadow-2xl backdrop-blur-2xl ${
+            className={`absolute top-full mt-4 rounded-lg border p-5 shadow-2xl backdrop-blur-2xl lg:p-6 ${
               isBlogMenu
                 ? 'right-0 max-w-[calc(100vw-4rem)]'
                 : 'left-1/2 -translate-x-1/2 max-w-[calc(100vw-4rem)]'
@@ -94,7 +94,7 @@ const NavDropdown = ({ label, groups, openMenu, setOpenMenu }) => {
                         key={item.to}
                         to={item.to}
                         onClick={() => setOpenMenu(null)}
-                        className={`block rounded-2xl px-3 py-3 transition ${
+                        className={`block rounded-lg px-3 py-3 transition ${
                           theme === 'dark'
                             ? 'hover:bg-white/5 text-white/80 hover:text-white'
                             : 'hover:bg-black/5 text-black/80 hover:text-black'
@@ -103,7 +103,7 @@ const NavDropdown = ({ label, groups, openMenu, setOpenMenu }) => {
                         <span className="block text-sm font-medium">{item.label}</span>
                         {item.description ? (
                           <span className={`mt-1 block text-xs leading-5 ${
-                            theme === 'dark' ? 'text-white/45' : 'text-black/45'
+                            theme === 'dark' ? 'text-white/50' : 'text-black/50'
                           }`}>
                             {item.description}
                           </span>
@@ -222,20 +222,20 @@ export const Navbar = () => {
   return (
     <div className="fixed top-3 left-0 right-0 z-50 flex justify-center px-3 sm:top-5 sm:px-5">
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
+        initial={false}
         animate={{ y: 0, opacity: 1 }}
         aria-label="Navigation principale"
-        className={`flex items-center justify-between w-full max-w-7xl px-4 lg:px-6 py-3 rounded-full border backdrop-blur-2xl transition-all duration-500 ${
+        className={`flex w-full max-w-7xl items-center justify-between rounded-2xl border px-4 py-3 backdrop-blur-2xl transition-all duration-500 lg:px-6 ${
           theme === 'dark' 
-            ? 'bg-black/20 border-white/10 shadow-2xl' 
-            : 'bg-gray-500/10 border-black/10 shadow-xl'
+            ? 'border-white/10 bg-[#050607]/90 shadow-2xl' 
+            : 'border-black/10 bg-white/90 shadow-xl'
         }`}
       >
         <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
           <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.95 }}>
             <img src="/android-chrome-192x192.png" alt="" width="32" height="32" className="h-8 w-8 rounded-lg shadow-lg" />
           </motion.div>
-          <span className={`text-lg font-bold tracking-tighter transition-colors whitespace-nowrap ${
+          <span className={`whitespace-nowrap text-lg font-bold transition-colors ${
             theme === 'dark' ? 'text-white' : 'text-black'
           }`}>
             Optimum Tech
@@ -256,8 +256,8 @@ export const Navbar = () => {
           {/* Login Button */}
           <Link
             to="/auth"
-            className={`hidden xl:inline-flex items-center justify-center whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-              theme === 'dark' ? 'bg-white/10 text-white/80 hover:bg-white/15 hover:text-white' : 'bg-black/5 text-black/80 hover:bg-black/10 hover:text-black'
+            className={`hidden items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 xl:inline-flex ${
+              theme === 'dark' ? 'bg-white/10 text-white/80 hover:bg-white/20 hover:text-white' : 'bg-black/5 text-black/80 hover:bg-black/10 hover:text-black'
             }`}
           >
             Espace client
@@ -269,7 +269,7 @@ export const Navbar = () => {
             onClick={toggleTheme}
             aria-label={theme === 'dark' ? 'Activer le thème clair' : 'Activer le thème sombre'}
             title={theme === 'dark' ? 'Thème clair' : 'Thème sombre'}
-            className={`p-2 rounded-full transition-all duration-300 ${
+            className={`rounded-lg p-2 transition-all duration-300 ${
               theme === 'dark' ? 'hover:bg-white/10 text-white' : 'hover:bg-black/5 text-black'
             }`}
           >
@@ -285,7 +285,7 @@ export const Navbar = () => {
               aria-controls="language-menu"
               aria-haspopup="true"
               aria-label="Choisir la langue"
-              className={`flex items-center gap-2 whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+              className={`flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
                 theme === 'dark' ? 'bg-white/5 text-white hover:bg-white/10' : 'bg-black/5 text-black hover:bg-black/10'
               }`}
             >
@@ -299,7 +299,7 @@ export const Navbar = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className={`absolute right-0 mt-2 w-32 rounded-2xl border p-1 shadow-2xl backdrop-blur-xl ${
+                  className={`absolute right-0 mt-2 w-32 rounded-lg border p-1 shadow-2xl backdrop-blur-xl ${
                     theme === 'dark' ? 'bg-black/80 border-white/10' : 'bg-white/90 border-black/10'
                   }`}
                 >
@@ -308,7 +308,7 @@ export const Navbar = () => {
                       <button
                         type="button"
                         onClick={() => { setLang(opt.code); setOpen(false); }}
-                        className={`w-full text-left px-3 py-2 rounded-xl text-xs transition-colors ${
+                        className={`w-full rounded-lg px-3 py-2 text-left text-xs transition-colors ${
                           lang === opt.code 
                             ? (theme === 'dark' ? 'bg-white/10 text-white' : 'bg-black/5 text-black') 
                             : (theme === 'dark' ? 'text-white/60 hover:bg-white/5' : 'text-black/60 hover:bg-black/5')
@@ -330,7 +330,7 @@ export const Navbar = () => {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
             aria-label={mobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-            className={`xl:hidden p-2 rounded-full ${
+            className={`rounded-lg p-2 xl:hidden ${
               theme === 'dark' ? 'text-white hover:bg-white/10' : 'text-black hover:bg-black/5'
             }`}
           >
@@ -347,7 +347,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className={`absolute top-16 left-3 right-3 max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain p-5 rounded-[2rem] border shadow-2xl backdrop-blur-2xl xl:hidden sm:left-5 sm:right-5 ${
+            className={`absolute left-3 right-3 top-16 max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain rounded-2xl border p-5 shadow-2xl backdrop-blur-2xl xl:hidden sm:left-5 sm:right-5 ${
               theme === 'dark' ? 'bg-black/90 border-white/10' : 'bg-white/95 border-black/10'
             }`}
           >
@@ -365,7 +365,7 @@ export const Navbar = () => {
                 </Link>
               ))}
               {mobileGroups.map((section) => (
-                <div key={section.id} className="rounded-[1.5rem] border border-current/10 p-3">
+                <div key={section.id} className="rounded-lg border border-current/10 p-3">
                   <button
                     type="button"
                     onClick={() => setMobileSection(mobileSection === section.id ? null : section.id)}
@@ -396,7 +396,7 @@ export const Navbar = () => {
                                   setMobileMenuOpen(false);
                                   setMobileSection(null);
                                 }}
-                                className={`rounded-xl px-3 py-2 text-sm ${
+                                className={`rounded-lg px-3 py-2 text-sm ${
                                   theme === 'dark' ? 'bg-white/5 text-white/80' : 'bg-black/5 text-black/80'
                                 }`}
                               >
@@ -426,7 +426,7 @@ export const Navbar = () => {
                     key={opt.code}
                     type="button"
                     onClick={() => { setLang(opt.code); setMobileMenuOpen(false); }}
-                    className={`px-4 py-2 rounded-full text-sm font-medium ${
+                    className={`rounded-lg px-4 py-2 text-sm font-medium ${
                       lang === opt.code 
                         ? (theme === 'dark' ? 'bg-white/20 text-white' : 'bg-black/10 text-black')
                         : (theme === 'dark' ? 'bg-white/5 text-white/60' : 'bg-black/5 text-black/60')
