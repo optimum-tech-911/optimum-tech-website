@@ -34,10 +34,10 @@ const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) =
     <ScrollReveal delay={delay} className="h-full">
       <div className={`h-full rounded-[2.5rem] border shadow-2xl relative overflow-hidden group transition-all duration-500 flex flex-col ${
         theme === 'dark' 
-          ? 'border-white/10 bg-[#0D0D0F] hover:border-[#007BFF]/30' 
-          : 'border-black/10 bg-gray-500/10 backdrop-blur-2xl hover:border-[#007BFF]/30 shadow-xl'
+          ? 'border-white/10 bg-[#0D0D0F] hover:border-[#0A84FF]/30' 
+          : 'border-black/10 bg-gray-500/10 backdrop-blur-2xl hover:border-[#0A84FF]/30 shadow-xl'
       }`}>
-        <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0A84FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
         
         {/* Service Image Section */}
         <div className="h-48 w-full overflow-hidden relative">
@@ -55,8 +55,8 @@ const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) =
           }`} />
           
           <div className="absolute bottom-4 left-8">
-            <div className="w-12 h-12 rounded-xl bg-[#007BFF]/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform duration-500 border border-white/10">
-              <Icon className="w-6 h-6 text-[#007BFF]" />
+            <div className="w-12 h-12 rounded-xl bg-[#0A84FF]/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform duration-500 border border-white/10">
+              <Icon className="w-6 h-6 text-[#0A84FF]" />
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@ const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) =
               <li key={i} className={`flex items-center gap-3 font-light text-sm ${
                 theme === 'dark' ? 'text-white/70' : 'text-black/70'
               }`}>
-                <CheckCircle2 className="w-4 h-4 text-[#007BFF]/50" />
+                <CheckCircle2 className="w-4 h-4 text-[#0A84FF]/50" />
                 <span>{item}</span>
               </li>
             ))}
@@ -87,7 +87,7 @@ const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) =
 
           <Link 
             to={`/contact?type=${id}`}
-            className="inline-flex items-center gap-2 text-[#007BFF] font-semibold group/link mt-auto relative z-20"
+            className="inline-flex items-center gap-2 text-[#0A84FF] font-semibold group/link mt-auto relative z-20"
           >
             <span>Demander un devis</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
@@ -239,8 +239,8 @@ export const Services = () => {
               to={item.to}
               className={`rounded-[2rem] border p-6 transition ${
                 theme === 'dark'
-                  ? 'border-white/10 bg-white/5 hover:border-[#007BFF]/30'
-                  : 'border-black/10 bg-white/75 hover:border-[#007BFF]/30 shadow-lg'
+                  ? 'border-white/10 bg-white/5 hover:border-[#0A84FF]/30'
+                  : 'border-black/10 bg-white/75 hover:border-[#0A84FF]/30 shadow-lg'
               }`}
             >
               <h2 className="text-2xl font-bold tracking-tight">{item.title}</h2>
@@ -275,8 +275,8 @@ export const Services = () => {
                 to={to}
                 className={`rounded-[1.6rem] border p-5 transition ${
                   theme === 'dark'
-                    ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
-                    : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                    ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
+                    : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
                 }`}
               >
                 <h3 className="text-lg font-semibold">{title}</h3>
@@ -308,8 +308,8 @@ export const Services = () => {
                 to={to}
                 className={`rounded-[1.5rem] border px-4 py-4 transition ${
                   theme === 'dark'
-                    ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
-                    : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                    ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
+                    : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
                 }`}
               >
                 {label}
@@ -367,7 +367,7 @@ export const Services = () => {
                 <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
                   {topic.description}
                 </p>
-                <Link to={topic.links[0]} className="mt-5 inline-flex text-sm font-semibold text-[#007BFF]">
+                <Link to={topic.links[0]} className="mt-5 inline-flex text-sm font-semibold text-[#0A84FF]">
                   Lire le guide correspondant
                 </Link>
               </div>
@@ -379,13 +379,13 @@ export const Services = () => {
           <div className={`rounded-[3rem] border p-12 md:p-20 text-center relative overflow-hidden group shadow-2xl ${
             theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-gray-500/10 border-black/10 backdrop-blur-2xl shadow-2xl'
           }`}>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#007BFF]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A84FF]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter">
               {t('contact_v2.readyTitle') || 'Prêt à transformer votre idée ?'}
             </h2>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 bg-[#007BFF] text-white px-10 py-5 rounded-full text-xl font-bold hover:bg-[#007BFF]/90 transition-all hover:scale-105 shadow-xl shadow-[#007BFF]/20"
+              className="inline-flex items-center gap-3 bg-[#0A84FF] text-white px-10 py-5 rounded-full text-xl font-bold hover:bg-[#0A84FF]/90 transition-all hover:scale-105 shadow-xl shadow-[#0A84FF]/20"
             >
               {t('contact_v2.launchProject') || 'Lancer votre projet'}
               <ArrowRight className="w-6 h-6" />

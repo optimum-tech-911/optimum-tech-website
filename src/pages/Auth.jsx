@@ -101,7 +101,7 @@ export const AuthPage = () => {
                   <span className={`inline-flex h-9 w-9 items-center justify-center rounded-full ${
                     theme === 'dark' ? 'bg-white/10' : 'bg-black/5'
                   }`}>
-                    <Lock className="h-5 w-5 text-[#007BFF]" />
+                    <Lock className="h-5 w-5 text-[#0A84FF]" />
                   </span>
                   <span className={`uppercase tracking-[0.2em] font-semibold text-xs ${
                     theme === 'dark' ? 'text-white/70' : 'text-black/70'
@@ -124,7 +124,7 @@ export const AuthPage = () => {
                         theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/5 bg-black/5'
                       }`}
                     >
-                      <span className="h-2 w-2 rounded-full bg-[#007BFF] shadow-[0_0_12px_rgba(0,123,255,0.8)]" />
+                      <span className="h-2 w-2 rounded-full bg-[#0A84FF] shadow-[0_0_12px_rgba(0,123,255,0.8)]" />
                       <span className={`text-sm ${
                         theme === 'dark' ? 'text-white/80' : 'text-black/80'
                       }`}>{item}</span>
@@ -183,8 +183,8 @@ export const AuthPage = () => {
             {error && (
               <div className={`mb-4 rounded-xl border p-3 text-sm ${
                 theme === 'dark' 
-                  ? 'border-red-500/20 bg-red-500/10 text-red-200' 
-                  : 'border-red-500/30 bg-red-500/5 text-red-600'
+                  ? 'border-[#0A84FF]/25 bg-[#0A84FF]/10 text-white' 
+                  : 'border-[#0A84FF]/30 bg-[#0A84FF]/10 text-[#0A84FF]'
               }`}>
                 {error}
               </div>
@@ -204,7 +204,7 @@ export const AuthPage = () => {
                         required
                         value={form.name}
                         onChange={onChange('name')}
-                        className={`w-full rounded-2xl border py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#007BFF]/70 ${
+                        className={`w-full rounded-2xl border py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A84FF]/70 ${
                           theme === 'dark' 
                             ? 'border-white/10 bg-white/5 text-white placeholder:text-white/40' 
                             : 'border-black/10 bg-black/5 text-black placeholder:text-black/40'
@@ -225,7 +225,7 @@ export const AuthPage = () => {
                         required
                         value={form.phone}
                         onChange={onChange('phone')}
-                        className={`w-full rounded-2xl border py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#007BFF]/70 ${
+                        className={`w-full rounded-2xl border py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A84FF]/70 ${
                           theme === 'dark' 
                             ? 'border-white/10 bg-white/5 text-white placeholder:text-white/40' 
                             : 'border-black/10 bg-black/5 text-black placeholder:text-black/40'
@@ -248,7 +248,7 @@ export const AuthPage = () => {
                     required
                     value={form.email}
                     onChange={onChange('email')}
-                    className={`w-full rounded-2xl border py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#007BFF]/70 ${
+                    className={`w-full rounded-2xl border py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A84FF]/70 ${
                       theme === 'dark' 
                         ? 'border-white/10 bg-white/5 text-white placeholder:text-white/40' 
                         : 'border-black/10 bg-black/5 text-black placeholder:text-black/40'
@@ -269,7 +269,7 @@ export const AuthPage = () => {
                     required
                     value={form.password}
                     onChange={onChange('password')}
-                    className={`w-full rounded-2xl border py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#007BFF]/70 ${
+                    className={`w-full rounded-2xl border py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A84FF]/70 ${
                       theme === 'dark' 
                         ? 'border-white/10 bg-white/5 text-white placeholder:text-white/40' 
                         : 'border-black/10 bg-black/5 text-black placeholder:text-black/40'
@@ -280,7 +280,7 @@ export const AuthPage = () => {
               </div>
               <button
                 type="submit"
-                className="w-full rounded-2xl bg-[#007BFF] py-3 text-sm font-semibold text-white shadow-lg shadow-blue-900/30 hover:scale-[1.01] transition-transform"
+                className="w-full rounded-2xl bg-[#0A84FF] py-3 text-sm font-semibold text-white shadow-lg shadow-blue-900/30 hover:scale-[1.01] transition-transform"
               >
                 {cta}
               </button>
@@ -290,7 +290,7 @@ export const AuthPage = () => {
               By continuing you agree to the terms and privacy of Optimum Tech.
             </div>
             <div className="mt-4 text-center text-xs">
-              <Link to="/" className="text-[#007BFF] hover:underline underline-offset-4">
+              <Link to="/" className="text-[#0A84FF] hover:underline underline-offset-4">
                 Back to site
               </Link>
             </div>

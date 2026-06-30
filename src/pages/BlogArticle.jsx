@@ -143,7 +143,7 @@ export const BlogArticlePage = () => {
               </div>
             )}
             <div className={`bg-gradient-to-br ${post.heroTheme} px-6 py-10 md:px-10 md:py-14`}>
-              <div className="mb-4 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+              <div className="mb-4 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
                 <span>{post.category}</span>
               </div>
               <h1 className="max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">{post.title}</h1>
@@ -180,7 +180,7 @@ export const BlogArticlePage = () => {
                     : 'border-black/10 bg-black/5'
                 }`}
               >
-                <div className="inline-flex items-center gap-2 text-sm font-semibold text-[#007BFF]">
+                <div className="inline-flex items-center gap-2 text-sm font-semibold text-[#0A84FF]">
                   <Target className="h-4 w-4" />
                   Cible
                 </div>
@@ -190,7 +190,7 @@ export const BlogArticlePage = () => {
                 <div className={`mt-5 text-xs uppercase tracking-[0.16em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
                   Contact
                 </div>
-                <a href={siteMeta.phoneHref} className="mt-2 block text-sm font-medium text-[#007BFF]">
+                <a href={siteMeta.phoneHref} className="mt-2 block text-sm font-medium text-[#0A84FF]">
                   {siteMeta.phone}
                 </a>
               </aside>
@@ -206,7 +206,7 @@ export const BlogArticlePage = () => {
                     : 'border-black/10 bg-white/80 shadow-lg'
                 }`}
               >
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0A84FF]">
                   Ce que vous allez comprendre
                 </p>
                 <div className={`mt-5 grid gap-4 md:grid-cols-2 ${theme === 'dark' ? 'text-white/76' : 'text-black/76'}`}>
@@ -244,11 +244,11 @@ export const BlogArticlePage = () => {
               <section
                 className={`rounded-[2rem] border p-6 md:p-8 ${
                   theme === 'dark'
-                    ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
-                    : 'border-[#007BFF]/15 bg-[#007BFF]/8 shadow-lg'
+                    ? 'border-[#0A84FF]/20 bg-[#0A84FF]/10'
+                    : 'border-[#0A84FF]/15 bg-[#0A84FF]/8 shadow-lg'
                 }`}
               >
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0A84FF]">
                   Passer à l’action
                 </p>
                 <h2 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl">
@@ -261,7 +261,7 @@ export const BlogArticlePage = () => {
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <Link
                       to="/contact"
-                      className="inline-flex items-center gap-3 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#007BFF]/90"
+                      className="inline-flex items-center gap-3 rounded-full bg-[#0A84FF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0A84FF]/90"
                     >
                       Envoyer un message
                       <ArrowRight className="h-4 w-4" />
@@ -299,11 +299,11 @@ export const BlogArticlePage = () => {
                       to={`/blog/${item.slug}`}
                       className={`block rounded-[1.5rem] border p-4 transition ${
                         theme === 'dark'
-                          ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
-                          : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                          ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
+                          : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
                       }`}
                     >
-                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#007BFF]">
+                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#0A84FF]">
                         {item.category}
                       </p>
                       <h3 className="mt-2 text-lg font-semibold leading-7">{item.title}</h3>
@@ -330,8 +330,8 @@ export const BlogArticlePage = () => {
                         to={item.to}
                         className={`block rounded-[1.4rem] border px-4 py-4 transition ${
                           theme === 'dark'
-                            ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
-                            : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                            ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
+                            : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
                         }`}
                       >
                         <span className="font-medium">{item.label}</span>
@@ -358,8 +358,8 @@ export const BlogArticlePage = () => {
                       to={`/blog/${item.slug}`}
                       className={`block rounded-[1.4rem] border px-4 py-4 transition ${
                         theme === 'dark'
-                          ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
-                          : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                          ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
+                          : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
                       }`}
                     >
                       <span className="font-medium">{item.title}</span>

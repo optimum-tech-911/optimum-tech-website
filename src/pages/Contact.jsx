@@ -186,8 +186,8 @@ export const Contact = () => {
   const renderFormFields = () => {
     const inputClass = `w-full p-4 rounded-2xl border transition-all duration-300 ${
       theme === 'dark' 
-        ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50 focus:bg-white/10' 
-        : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 focus:bg-black/10 shadow-sm'
+        ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50 focus:bg-white/10' 
+        : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 focus:bg-black/10 shadow-sm'
     }`;
     const labelClass = `block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`;
 
@@ -257,7 +257,7 @@ export const Contact = () => {
       case 'ai':
         return (
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-            <div className={`p-6 rounded-2xl mb-8 border border-[#007BFF]/20 bg-[#007BFF]/5 ${theme === 'dark' ? 'text-white/80' : 'text-black/80'}`}>
+            <div className={`p-6 rounded-2xl mb-8 border border-[#0A84FF]/20 bg-[#0A84FF]/5 ${theme === 'dark' ? 'text-white/80' : 'text-black/80'}`}>
               <p className="text-sm italic font-light">
                 L’objectif n’est pas d’ajouter de l’IA partout, mais d’automatiser les tâches répétitives qui ralentissent réellement votre équipe.
               </p>
@@ -318,7 +318,7 @@ export const Contact = () => {
         }`}>
             <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0A84FF]">
                 Contact
               </p>
               <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
@@ -343,7 +343,7 @@ export const Contact = () => {
                     theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
                   }`}
                 >
-                  <p className="text-xs uppercase tracking-[0.16em] text-[#007BFF]">{title}</p>
+                  <p className="text-xs uppercase tracking-[0.16em] text-[#0A84FF]">{title}</p>
                   <p className="mt-2 text-sm leading-7">{value}</p>
                 </div>
               ))}
@@ -388,7 +388,7 @@ export const Contact = () => {
                         : 'border-black/10 bg-black/5 hover:bg-black/10'
                     }`}
                   >
-                    <div className="text-xs uppercase tracking-[0.16em] text-[#007BFF]">{item.label}</div>
+                    <div className="text-xs uppercase tracking-[0.16em] text-[#0A84FF]">{item.label}</div>
                     <div className="mt-2 text-sm font-semibold md:text-base">{item.value}</div>
                   </a>
                 ))}
@@ -397,7 +397,7 @@ export const Contact = () => {
               <div className={`mb-10 rounded-[1.8rem] border p-5 ${
                 theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
               }`}>
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
                   Ce que nous utilisons pour vous répondre correctement
                 </p>
                 <div className={`mt-4 grid gap-4 md:grid-cols-3 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
@@ -426,7 +426,7 @@ export const Contact = () => {
                     aria-pressed={category === null}
                     className={`rounded-full border px-4 py-2 text-sm transition ${
                       category === null
-                        ? 'border-[#007BFF]/40 bg-[#007BFF]/15 text-[#007BFF]'
+                        ? 'border-[#0A84FF]/40 bg-[#0A84FF]/15 text-[#0A84FF]'
                         : theme === 'dark'
                           ? 'border-white/10 bg-white/5 text-white/75 hover:bg-white/10'
                           : 'border-black/10 bg-black/5 text-black/75 hover:bg-black/10'
@@ -442,7 +442,7 @@ export const Contact = () => {
                       aria-pressed={category === item.id}
                       className={`rounded-full border px-4 py-2 text-sm transition ${
                         category === item.id
-                          ? 'border-[#007BFF]/40 bg-[#007BFF]/15 text-[#007BFF]'
+                          ? 'border-[#0A84FF]/40 bg-[#0A84FF]/15 text-[#0A84FF]'
                           : theme === 'dark'
                             ? 'border-white/10 bg-white/5 text-white/75 hover:bg-white/10'
                             : 'border-black/10 bg-black/5 text-black/75 hover:bg-black/10'
@@ -467,32 +467,32 @@ export const Contact = () => {
                       <label htmlFor="full-name" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Nom complet</label>
                       <input id="full-name" name="fullName" autoComplete="name" required type="text" value={formData.fullName} onChange={setField('fullName')} placeholder="Ex: Jean Dupont" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
+                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
+                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
                       }`} />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="email" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Email professionnel</label>
                       <input id="email" name="email" autoComplete="email" required type="email" value={formData.email} onChange={setField('email')} placeholder="Ex: jean@entreprise.com" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
+                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
+                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
                       }`} />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="phone" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Téléphone</label>
                       <input id="phone" name="phone" autoComplete="tel" inputMode="tel" required type="tel" value={formData.phone} onChange={setField('phone')} placeholder="Ex: +33 6 12 34 56 78" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
+                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
+                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
                       }`} />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="company" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Entreprise / Organisation</label>
                       <input id="company" name="company" autoComplete="organization" type="text" value={formData.company} onChange={setField('company')} placeholder="Nom de votre entreprise" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
+                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
+                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
                       }`} />
                     </div>
                   </div>
@@ -502,8 +502,8 @@ export const Contact = () => {
                       <label htmlFor="message" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message</label>
                       <textarea id="message" name="message" required value={formData.message} onChange={setField('message')} rows={5} placeholder="Comment pouvons-nous vous aider ?" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
+                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
+                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
                       }`} />
                     </div>
                   )}
@@ -513,8 +513,8 @@ export const Contact = () => {
                       <label htmlFor="additional-message" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message complémentaire</label>
                       <textarea id="additional-message" name="message" value={formData.message} onChange={setField('message')} rows={4} placeholder="Ajoutez un contexte utile, vos délais ou votre budget." className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#007BFF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#007BFF]/50 shadow-sm'
+                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
+                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
                       }`} />
                     </div>
                   )}
@@ -522,14 +522,14 @@ export const Contact = () => {
                   {submitError && (
                     <div role="alert" aria-live="assertive" className={`rounded-2xl border px-4 py-3 text-sm ${
                       theme === 'dark'
-                        ? 'border-red-500/20 bg-red-500/10 text-red-200'
-                        : 'border-red-500/30 bg-red-500/5 text-red-600'
+                        ? 'border-[#0A84FF]/25 bg-[#0A84FF]/10 text-white'
+                        : 'border-[#0A84FF]/30 bg-[#0A84FF]/10 text-[#0A84FF]'
                     }`}>
                       {submitError}
                     </div>
                   )}
 
-                  <button disabled={isSubmitting} aria-busy={isSubmitting} type="submit" className="w-full py-5 rounded-full bg-[#007BFF] text-white font-bold text-xl shadow-xl shadow-[#007BFF]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:hover:scale-100">
+                  <button disabled={isSubmitting} aria-busy={isSubmitting} type="submit" className="w-full py-5 rounded-full bg-[#0A84FF] text-white font-bold text-xl shadow-xl shadow-[#0A84FF]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:hover:scale-100">
                     <Send size={20} />
                     {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
                   </button>
@@ -544,7 +544,7 @@ export const Contact = () => {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center space-y-8"
             >
-              <div className="w-24 h-24 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-500/30">
+              <div className="w-24 h-24 bg-[#0A84FF]/20 text-[#0A84FF] rounded-full flex items-center justify-center mx-auto mb-6 border border-[#0A84FF]/30">
                 <Rocket size={48} />
               </div>
               <h2 className="text-4xl font-bold">Demande envoyée !</h2>
@@ -556,7 +556,7 @@ export const Contact = () => {
                 theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-black/5 border-black/10'
               }`}>
                 <p className="text-sm font-medium mb-2">Besoin d’une réponse urgente ?</p>
-                <p className="text-[#007BFF] font-bold text-lg">Contactez-nous sur WhatsApp :</p>
+                <p className="text-[#0A84FF] font-bold text-lg">Contactez-nous sur WhatsApp :</p>
                 <a href="https://wa.me/33745305113" className="text-2xl font-mono mt-2 block hover:underline">+33 7 45 30 51 13</a>
               </div>
 
@@ -573,7 +573,7 @@ export const Contact = () => {
         <section className={`mt-8 w-full max-w-5xl rounded-[2.5rem] border p-6 md:p-8 ${
           theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
         }`}>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0A84FF]">
             Avant de nous écrire
           </p>
           <h2 className="mt-3 text-2xl font-bold tracking-tight md:text-4xl">
@@ -586,8 +586,8 @@ export const Contact = () => {
                 to={topic.links[0]}
                 className={`rounded-[1.6rem] border p-5 transition ${
                   theme === 'dark'
-                    ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
-                    : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                    ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
+                    : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
                 }`}
               >
                 <h3 className="text-lg font-semibold">{topic.title}</h3>

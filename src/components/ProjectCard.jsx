@@ -20,7 +20,7 @@ export const ProjectCard = ({ title, desc, href }) => {
     <motion.div
       className={`group rounded-3xl p-[1px] animate-gradient transition-shadow duration-500 ${
         theme === 'dark' 
-          ? 'bg-[linear-gradient(90deg,#0A84FF,#7c3aed,#00E0B8,#0A84FF)] hover:shadow-glow shadow-2xl shadow-blue-500/10' 
+          ? 'bg-[linear-gradient(90deg,#0A84FF,#FFFFFF,#0A84FF)] hover:shadow-glow shadow-2xl shadow-blue-500/10' 
           : 'bg-black/5 hover:shadow-xl'
       }`}
       initial={{ opacity: 0, scale: 0.95 }}
@@ -36,9 +36,9 @@ export const ProjectCard = ({ title, desc, href }) => {
           theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-black/10'
         }`}>
           <div className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-full bg-red-500/80 shadow-lg shadow-red-500/20" />
-            <span className="h-3 w-3 rounded-full bg-yellow-400/80 shadow-lg shadow-yellow-500/20" />
-            <span className="h-3 w-3 rounded-full bg-green-500/80 shadow-lg shadow-green-500/20" />
+            <span className="h-3 w-3 rounded-full bg-white/35" />
+            <span className="h-3 w-3 rounded-full bg-white/55" />
+            <span className="h-3 w-3 rounded-full bg-[#0A84FF] shadow-lg shadow-blue-500/20" />
           </div>
           <div className="mx-4 flex-1">
             <div className={`truncate text-xs rounded-xl border px-3 py-1.5 font-medium transition-colors duration-500 ${
@@ -58,7 +58,7 @@ export const ProjectCard = ({ title, desc, href }) => {
               onClick={() => setDevice('desktop')}
               className={`inline-flex items-center justify-center h-8 w-8 rounded-xl border transition-all ${
                 device === 'desktop'
-                  ? (theme === 'dark' ? 'border-[#007BFF]/50 bg-[#007BFF]/20 text-[#007BFF]' : 'border-[#007BFF]/50 bg-[#007BFF]/10 text-[#007BFF]')
+                  ? (theme === 'dark' ? 'border-[#0A84FF]/50 bg-[#0A84FF]/20 text-[#0A84FF]' : 'border-[#0A84FF]/50 bg-[#0A84FF]/10 text-[#0A84FF]')
                   : (theme === 'dark' ? 'border-white/10 text-white/40 hover:bg-white/10 hover:text-white' : 'border-black/10 text-black/40 hover:bg-black/5 hover:text-black')
               }`}
             >
@@ -71,7 +71,7 @@ export const ProjectCard = ({ title, desc, href }) => {
               onClick={() => setDevice('tablet')}
               className={`inline-flex items-center justify-center h-8 w-8 rounded-xl border transition-all ${
                 device === 'tablet'
-                  ? (theme === 'dark' ? 'border-[#007BFF]/50 bg-[#007BFF]/20 text-[#007BFF]' : 'border-[#007BFF]/50 bg-[#007BFF]/10 text-[#007BFF]')
+                  ? (theme === 'dark' ? 'border-[#0A84FF]/50 bg-[#0A84FF]/20 text-[#0A84FF]' : 'border-[#0A84FF]/50 bg-[#0A84FF]/10 text-[#0A84FF]')
                   : (theme === 'dark' ? 'border-white/10 text-white/40 hover:bg-white/10 hover:text-white' : 'border-black/10 text-black/40 hover:bg-black/5 hover:text-black')
               }`}
             >
@@ -84,7 +84,7 @@ export const ProjectCard = ({ title, desc, href }) => {
               onClick={() => setDevice('mobile')}
               className={`inline-flex items-center justify-center h-8 w-8 rounded-xl border transition-all ${
                 device === 'mobile'
-                  ? (theme === 'dark' ? 'border-[#007BFF]/50 bg-[#007BFF]/20 text-[#007BFF]' : 'border-[#007BFF]/50 bg-[#007BFF]/10 text-[#007BFF]')
+                  ? (theme === 'dark' ? 'border-[#0A84FF]/50 bg-[#0A84FF]/20 text-[#0A84FF]' : 'border-[#0A84FF]/50 bg-[#0A84FF]/10 text-[#0A84FF]')
                   : (theme === 'dark' ? 'border-white/10 text-white/40 hover:bg-white/10 hover:text-white' : 'border-black/10 text-black/40 hover:bg-black/5 hover:text-black')
               }`}
             >
@@ -97,7 +97,7 @@ export const ProjectCard = ({ title, desc, href }) => {
             rel="noopener noreferrer"
             className={`inline-flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-bold transition-all ${
               theme === 'dark' 
-                ? 'bg-[#007BFF] text-white hover:bg-[#007BFF]/90 shadow-lg shadow-[#007BFF]/20' 
+                ? 'bg-[#0A84FF] text-white hover:bg-[#0A84FF]/90 shadow-lg shadow-[#0A84FF]/20' 
                 : 'bg-black text-white hover:bg-black/90 shadow-lg shadow-black/20'
             }`}
           >

@@ -89,7 +89,7 @@ export const AboutPage = () => {
               }`}
             >
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="mt-1 h-5 w-5 text-[#007BFF]" />
+                <CheckCircle2 className="mt-1 h-5 w-5 text-[#0A84FF]" />
                 <p className="text-base leading-7">{item}</p>
               </div>
             </div>
@@ -157,7 +157,7 @@ export const AboutPage = () => {
         </section>
 
         <section className={`mx-auto mt-12 max-w-5xl rounded-[2rem] border p-6 md:p-8 ${
-          theme === 'dark' ? 'border-[#007BFF]/20 bg-[#007BFF]/10' : 'border-[#007BFF]/15 bg-[#007BFF]/8 shadow-lg'
+          theme === 'dark' ? 'border-[#0A84FF]/20 bg-[#0A84FF]/10' : 'border-[#0A84FF]/15 bg-[#0A84FF]/8 shadow-lg'
         }`}>
           <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Parler à une personne, pas à une interface opaque</h2>
           <p className={`mt-4 max-w-3xl text-base leading-8 ${theme === 'dark' ? 'text-white/78' : 'text-black/78'}`}>
@@ -167,7 +167,7 @@ export const AboutPage = () => {
           </p>
           <Link
             to="/contact"
-            className="mt-6 inline-flex items-center gap-3 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#007BFF]/90"
+            className="mt-6 inline-flex items-center gap-3 rounded-full bg-[#0A84FF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0A84FF]/90"
           >
             Nous parler de votre projet
             <ArrowRight className="h-4 w-4" />

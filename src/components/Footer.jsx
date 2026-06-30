@@ -13,12 +13,10 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={`relative mt-32 border-t backdrop-blur-2xl transition-colors duration-500 ${
-      theme === 'dark' ? 'border-white/5 bg-black/40' : 'border-black/10 bg-gray-500/10'
-    }`}>
-      <div className="container mx-auto px-8 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
-          <div className="col-span-1 md:col-span-1 space-y-6">
+    <footer className="brand-footer relative border-t-[3px] border-[#0A84FF] bg-[#050607] text-white">
+      <div className="container mx-auto max-w-[1200px] px-6 py-20 sm:px-8 lg:py-24">
+        <div className="grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-8">
+          <div className="space-y-6 lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 group">
               <img
                 src="/android-chrome-192x192.png"
@@ -27,20 +25,16 @@ export const Footer = () => {
                 height="40"
                 className="h-10 w-10 rounded-xl transition-transform duration-500 group-hover:scale-110"
               />
-              <span className={`text-xl font-bold ${
-                theme === 'dark' ? 'text-white' : 'text-black'
-              }`}>
+              <span className="text-xl font-bold text-white">
                 Optimum Tech
               </span>
             </Link>
-            <p className={`text-base font-light leading-relaxed max-w-xs ${
-              theme === 'dark' ? 'text-white/60' : 'text-black/60'
-            }`}>
+            <p className="max-w-xs text-base font-light leading-relaxed text-white/65">
               {t('footer.description')}
             </p>
           </div>
           
-          <div className="space-y-6">
+          <div className="space-y-6 lg:col-span-2">
             <h4 className={`text-sm font-semibold uppercase tracking-widest ${
               theme === 'dark' ? 'text-white/40' : 'text-black/40'
             }`}>
@@ -70,7 +64,7 @@ export const Footer = () => {
             </nav>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 lg:col-span-2">
             <h4 className={`text-sm font-semibold uppercase tracking-widest ${
               theme === 'dark' ? 'text-white/40' : 'text-black/40'
             }`}>
@@ -81,17 +75,17 @@ export const Footer = () => {
             }`}>
               <p>Sète, Hérault, Occitanie, France</p>
               <p>{t('footer.hours')}</p>
-              <a href="tel:+33745305113" className="hover:text-[#007BFF] transition-colors">
+              <a href="tel:+33745305113" className="hover:text-[#0A84FF] transition-colors">
                 +33 7 45 30 51 13
               </a>
-              <a href="mailto:optimum.tech.911@gmail.com" className="hover:text-[#007BFF] transition-colors">
+              <a href="mailto:optimum.tech.911@gmail.com" className="hover:text-[#0A84FF] transition-colors">
                 optimum.tech.911@gmail.com
               </a>
             </div>
             <ContactActions className="pt-2" />
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 lg:col-span-2">
             <h4 className={`text-sm font-semibold uppercase tracking-widest ${
               theme === 'dark' ? 'text-white/40' : 'text-black/40'
             }`}>

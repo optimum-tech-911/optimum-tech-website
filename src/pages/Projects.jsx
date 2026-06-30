@@ -71,11 +71,11 @@ export const Projects = () => {
       <Navbar />
 
       <main className="relative overflow-hidden px-4 pb-20 pt-32 md:px-6 md:pt-40">
-        <div className="pointer-events-none absolute left-1/2 top-20 h-[32rem] w-[52rem] -translate-x-1/2 rounded-full bg-[#007BFF]/10 blur-[120px]" />
+        <div className="pointer-events-none absolute left-1/2 top-20 h-[32rem] w-[52rem] -translate-x-1/2 rounded-full bg-[#0A84FF]/10 blur-[120px]" />
 
         <section className="relative mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#1688ff]">Réalisations Optimum Tech</p>
+            <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#0576e6]">Réalisations Optimum Tech</p>
             <h1 className="mt-4 max-w-4xl text-4xl font-bold tracking-[-0.045em] sm:text-5xl md:text-6xl">
               Des produits digitaux conçus pour fonctionner au quotidien.
             </h1>
@@ -83,7 +83,7 @@ export const Projects = () => {
               Réservation, commandes, livraison, CRM, espaces clients, dashboards et outils métier : voici les interfaces que nous avons réellement conçues et déployées.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#portfolio-grid" className="inline-flex items-center gap-2 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1688ff]">
+              <a href="#portfolio-grid" className="inline-flex items-center gap-2 rounded-full bg-[#0A84FF] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#0576e6]">
                 Explorer les projets
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
               </a>
@@ -127,7 +127,7 @@ export const Projects = () => {
                     aria-pressed={activeFilter === filter.key}
                     className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-semibold transition ${
                       activeFilter === filter.key
-                        ? 'bg-[#007BFF] text-white shadow-lg shadow-blue-500/20'
+                        ? 'bg-[#0A84FF] text-white shadow-lg shadow-blue-500/20'
                         : theme === 'dark'
                           ? 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
                           : 'bg-black/5 text-black/60 hover:bg-black/10 hover:text-black'
@@ -141,7 +141,7 @@ export const Projects = () => {
               <label className={`flex min-w-0 items-center gap-3 rounded-full border px-4 py-2.5 lg:w-72 ${
                 theme === 'dark' ? 'border-white/10 bg-black/30' : 'border-black/10 bg-black/[0.03]'
               }`}>
-                <Search className="h-4 w-4 shrink-0 text-[#1688ff]" aria-hidden="true" />
+                <Search className="h-4 w-4 shrink-0 text-[#0576e6]" aria-hidden="true" />
                 <span className="sr-only">Rechercher un projet</span>
                 <input
                   value={query}
@@ -160,7 +160,7 @@ export const Projects = () => {
 
           <div className="mb-6 mt-10 flex items-end justify-between gap-4">
             <div>
-              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#1688ff]">
+              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0576e6]">
                 <SlidersHorizontal className="h-4 w-4" aria-hidden="true" />
                 Sélection filtrée
               </p>
@@ -191,7 +191,7 @@ export const Projects = () => {
         <section className={`relative mx-auto mt-20 max-w-6xl rounded-[2.5rem] border p-7 text-center md:p-12 ${
           theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white shadow-xl'
         }`}>
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#1688ff]">Votre projet</p>
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#0576e6]">Votre projet</p>
           <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-bold tracking-tight md:text-5xl">
             Besoin d’un site ou d’un outil qui répond à un vrai usage ?
           </h2>

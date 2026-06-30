@@ -48,7 +48,7 @@ export const ProjectPreview = ({ project, height = 'h-[460px] md:h-[620px]' }) =
                 aria-pressed={device === key}
                 className={`grid h-9 w-9 place-items-center rounded-full border transition ${
                   device === key
-                    ? 'border-[#007BFF]/60 bg-[#007BFF]/15 text-[#43a1ff]'
+                    ? 'border-[#0A84FF]/60 bg-[#0A84FF]/15 text-[#43a1ff]'
                     : theme === 'dark'
                       ? 'border-white/10 text-white/45 hover:text-white'
                       : 'border-black/10 text-black/45 hover:text-black'
@@ -65,7 +65,7 @@ export const ProjectPreview = ({ project, height = 'h-[460px] md:h-[620px]' }) =
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#007BFF] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#1688ff]"
+            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#0A84FF] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#0576e6]"
           >
             Voir le projet
             <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
@@ -90,7 +90,7 @@ export const ProjectPreview = ({ project, height = 'h-[460px] md:h-[620px]' }) =
               className="h-full w-full bg-white"
             />
           ) : (
-            <div className="grid h-full place-items-center bg-gradient-to-br from-[#007BFF]/20 via-[#111827] to-[#7c3aed]/20 px-8 text-center text-white">
+            <div className="grid h-full place-items-center bg-gradient-to-br from-[#0A84FF]/25 via-black to-[#0A84FF]/10 px-8 text-center text-white">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#6bb7ff]">Optimum Tech</p>
                 <p className="mt-3 text-3xl font-bold">{project.title}</p>

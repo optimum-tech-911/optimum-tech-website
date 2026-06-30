@@ -104,7 +104,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
             <Breadcrumbs items={breadcrumbs} />
             <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#007BFF]/20 bg-[#007BFF]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#0A84FF]/20 bg-[#0A84FF]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
                   <Sparkles className="h-4 w-4" />
                   {page.heroEyebrow}
                 </div>
@@ -118,7 +118,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                   <Link
                     to={heroPrimaryTo}
-                    className="inline-flex items-center justify-center gap-3 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#007BFF]/90"
+                    className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0A84FF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0A84FF]/90"
                   >
                     {heroPrimaryLabel}
                     <ArrowRight className="h-4 w-4" />
@@ -158,24 +158,24 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                     : 'border-black/10 bg-black/5'
                 }`}
               >
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
                   Ce que cette page met en avant
                 </p>
                 <ul className="mt-5 space-y-4">
                   {page.benefits.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm leading-7">
-                      <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-[#007BFF]" />
+                      <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-[#0A84FF]" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
                 <div className={`mt-8 space-y-3 text-sm ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
                   <p className="inline-flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-[#007BFF]" />
+                    <MapPin className="h-4 w-4 text-[#0A84FF]" />
                     Sète, Hérault, Occitanie, France
                   </p>
                   <p className="inline-flex items-center gap-2">
-                    <Phone className="h-4 w-4 text-[#007BFF]" />
+                    <Phone className="h-4 w-4 text-[#0A84FF]" />
                     +33 7 45 30 51 13
                   </p>
                 </div>
@@ -193,7 +193,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                   : 'border-black/10 bg-white/80 shadow-lg'
               }`}
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
                 Dans cette page
               </p>
               <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -203,8 +203,8 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                     href={`#${item.id}`}
                     className={`rounded-[1.4rem] border px-4 py-4 text-sm font-medium transition ${
                       theme === 'dark'
-                        ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
-                        : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                        ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
+                        : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
                     }`}
                   >
                     {item.label}
@@ -228,7 +228,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                 }`}
               >
                 {section.eyebrow ? (
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
                     {section.eyebrow}
                   </p>
                 ) : null}
@@ -243,12 +243,12 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                   <div
                     className={`mt-6 rounded-[1.8rem] border p-5 ${
                       theme === 'dark'
-                        ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
-                        : 'border-[#007BFF]/15 bg-[#007BFF]/8'
+                        ? 'border-[#0A84FF]/20 bg-[#0A84FF]/10'
+                        : 'border-[#0A84FF]/15 bg-[#0A84FF]/8'
                     }`}
                   >
                     {section.callout.title ? (
-                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#007BFF]">
+                      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
                         {section.callout.title}
                       </p>
                     ) : null}
@@ -279,7 +279,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                           <ul className="mt-4 space-y-3">
                             {card.bullets.map((bullet) => (
                               <li key={bullet} className="flex items-start gap-3 text-sm leading-7">
-                                <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-[#007BFF]" />
+                                <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-[#0A84FF]" />
                                 <span>{bullet}</span>
                               </li>
                             ))}
@@ -292,7 +292,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                                 <Link
                                   key={link.to}
                                   to={link.to}
-                                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#007BFF]"
+                                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#0A84FF]"
                                 >
                                   {link.label}
                                   <ArrowRight className="h-4 w-4" />
@@ -301,7 +301,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                                 <a
                                   key={link.to}
                                   href={link.to}
-                                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#007BFF]"
+                                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#0A84FF]"
                                 >
                                   {link.label}
                                   <ArrowRight className="h-4 w-4" />
@@ -332,8 +332,8 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                         className={`rounded-[1.6rem] border p-5 ${
                           index === 1
                             ? theme === 'dark'
-                              ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
-                              : 'border-[#007BFF]/15 bg-[#007BFF]/8'
+                              ? 'border-[#0A84FF]/20 bg-[#0A84FF]/10'
+                              : 'border-[#0A84FF]/15 bg-[#0A84FF]/8'
                             : theme === 'dark'
                               ? 'border-white/10 bg-black/20'
                               : 'border-black/10 bg-black/5'
@@ -343,7 +343,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                         <ul className="mt-4 space-y-3">
                           {column.items.map((item) => (
                             <li key={item} className="flex items-start gap-3 text-sm leading-7">
-                              <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-[#007BFF]" />
+                              <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-[#0A84FF]" />
                               <span>{item}</span>
                             </li>
                           ))}
@@ -357,8 +357,8 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                   <div
                     className={`mt-6 rounded-[1.8rem] border p-6 ${
                       theme === 'dark'
-                        ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
-                        : 'border-[#007BFF]/15 bg-[#007BFF]/8'
+                        ? 'border-[#0A84FF]/20 bg-[#0A84FF]/10'
+                        : 'border-[#0A84FF]/15 bg-[#0A84FF]/8'
                     }`}
                   >
                     <h3 className="text-2xl font-bold tracking-tight">{section.cta.title}</h3>
@@ -368,7 +368,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                     <div className="mt-5 flex flex-col gap-4 sm:flex-row">
                       <Link
                         to={section.cta.primaryTo || '/contact'}
-                        className="inline-flex items-center justify-center gap-3 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#007BFF]/90"
+                        className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0A84FF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0A84FF]/90"
                       >
                         {section.cta.primaryLabel || 'Demander un devis'}
                         <ArrowRight className="h-4 w-4" />
@@ -436,8 +436,8 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                     to={item.to}
                     className={`block rounded-[1.4rem] border px-4 py-4 transition ${
                       theme === 'dark'
-                        ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
-                        : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                        ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
+                        : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
                     }`}
                   >
                     <span className="font-medium">{item.label}</span>
@@ -449,11 +449,11 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
             <div
               className={`rounded-[2rem] border p-5 ${
                 theme === 'dark'
-                  ? 'border-[#007BFF]/20 bg-[#007BFF]/10'
-                  : 'border-[#007BFF]/15 bg-[#007BFF]/8 shadow-lg'
+                  ? 'border-[#0A84FF]/20 bg-[#0A84FF]/10'
+                  : 'border-[#0A84FF]/15 bg-[#0A84FF]/8 shadow-lg'
               }`}
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0A84FF]">
                 Conversion
               </p>
               <h2 className="mt-3 text-xl font-bold tracking-tight">
@@ -464,7 +464,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
               </p>
               <Link
                 to="/contact"
-                className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#007BFF] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#007BFF]/90"
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#0A84FF] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#0A84FF]/90"
               >
                 Parler de votre projet
                 <ArrowRight className="h-4 w-4" />

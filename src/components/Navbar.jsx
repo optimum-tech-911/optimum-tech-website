@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n, LANG_OPTIONS } from '../i18n.jsx';
 import { ChevronDown, Globe, Menu, Sun, Moon, X } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { PROJECT_CATEGORIES, publicProjects } from '../data/projects';
 
 const NavLink = ({ to, children, onClick }) => {
   const location = useLocation();
@@ -17,7 +18,7 @@ const NavLink = ({ to, children, onClick }) => {
       onClick={(e) => {
         onClick?.(e);
       }}
-      className={`relative inline-flex items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-xs font-medium transition-all duration-300 lg:px-5 lg:text-sm ${
+        className={`relative inline-flex items-center justify-center whitespace-nowrap rounded-lg px-5 py-3 text-sm font-semibold transition-all duration-300 lg:px-6 lg:text-base ${
         theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'
       }`}
     >
@@ -36,10 +37,10 @@ const NavLink = ({ to, children, onClick }) => {
   );
 };
 
-const NavDropdown = ({ label, groups, openMenu, setOpenMenu }) => {
+const NavDropdown = ({ label, overviewTo, groups, openMenu, setOpenMenu, variant }) => {
   const { theme } = useTheme();
   const isOpen = openMenu === label;
-  const isBlogMenu = label === 'Blog';
+  const isProjectsMenu = variant === 'projects';
   const menuId = `nav-${label.toLowerCase()}-menu`;
 
   return (
@@ -48,19 +49,20 @@ const NavDropdown = ({ label, groups, openMenu, setOpenMenu }) => {
       onMouseEnter={() => setOpenMenu(label)}
       onMouseLeave={() => setOpenMenu(null)}
     >
-      <button
-        type="button"
-        onClick={() => setOpenMenu(isOpen ? null : label)}
+      <Link
+        to={overviewTo}
+        onFocus={() => setOpenMenu(label)}
+        onClick={() => setOpenMenu(null)}
         aria-expanded={isOpen}
         aria-controls={menuId}
         aria-haspopup="true"
-        className={`relative inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-lg px-4 py-2 text-xs font-medium transition-all duration-300 lg:px-5 lg:text-sm ${
+        className={`relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg px-5 py-3 text-sm font-semibold transition-all duration-300 lg:px-6 lg:text-base ${isOpen ? 'bg-black/5 !text-black' : ''} ${
           theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'
         }`}
       >
         <span>{label}</span>
         <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
+      </Link>
 
       <AnimatePresence>
         {isOpen && (
@@ -70,46 +72,49 @@ const NavDropdown = ({ label, groups, openMenu, setOpenMenu }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className={`absolute top-full mt-4 rounded-lg border p-5 shadow-2xl backdrop-blur-2xl lg:p-6 ${
-              isBlogMenu
-                ? 'right-0 max-w-[calc(100vw-4rem)]'
-                : 'left-1/2 -translate-x-1/2 max-w-[calc(100vw-4rem)]'
-            } ${
-              theme === 'dark' ? 'border-white/10 bg-black/90' : 'border-black/10 bg-white/95'
-            }`}
+            className={`fixed inset-x-0 top-[6.5rem] z-50 border-y border-black/10 bg-white text-black shadow-2xl ${isProjectsMenu ? 'max-h-[calc(100vh-6.5rem)] overflow-y-auto' : ''}`}
+            onMouseEnter={() => setOpenMenu(label)}
           >
-            <div className={`grid gap-6 lg:gap-8 ${
-              isBlogMenu
-                ? 'w-[min(820px,calc(100vw-5rem))] grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
-                : 'w-[min(720px,calc(100vw-5rem))] grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
-            }`}>
+            <div className="mx-auto grid w-full max-w-[1200px] grid-cols-3 gap-8 px-8 py-8">
               {groups.map((group) => (
                 <div key={group.title} className="space-y-3">
-                  <p className={theme === 'dark' ? 'text-xs uppercase tracking-[0.16em] text-white/40' : 'text-xs uppercase tracking-[0.16em] text-black/40'}>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-black/45">
                     {group.title}
                   </p>
                   <div className="space-y-2">
-                    {group.links.map((item) => (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        onClick={() => setOpenMenu(null)}
-                        className={`block rounded-lg px-3 py-3 transition ${
-                          theme === 'dark'
-                            ? 'hover:bg-white/5 text-white/80 hover:text-white'
-                            : 'hover:bg-black/5 text-black/80 hover:text-black'
-                        }`}
-                      >
-                        <span className="block text-sm font-medium">{item.label}</span>
-                        {item.description ? (
-                          <span className={`mt-1 block text-xs leading-5 ${
-                            theme === 'dark' ? 'text-white/50' : 'text-black/50'
-                          }`}>
-                            {item.description}
-                          </span>
-                        ) : null}
-                      </Link>
-                    ))}
+                    {group.links.map((item) => {
+                      const content = (
+                        <>
+                          <span className="block text-sm font-semibold">{item.label}</span>
+                          {item.description ? (
+                            <span className="mt-1 block text-xs leading-5 text-black/50">{item.description}</span>
+                          ) : null}
+                        </>
+                      );
+                      const className = `block rounded-lg px-3 ${isProjectsMenu ? 'py-2' : 'py-3'} text-black/80 transition hover:bg-black/5 hover:text-black`;
+
+                      return item.href ? (
+                        <a
+                          key={`${group.title}-${item.label}`}
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setOpenMenu(null)}
+                          className={className}
+                        >
+                          {content}
+                        </a>
+                      ) : (
+                        <Link
+                          key={`${group.title}-${item.label}`}
+                          to={item.to}
+                          onClick={() => setOpenMenu(null)}
+                          className={className}
+                        >
+                          {content}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
               ))}
@@ -128,8 +133,11 @@ export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
   const [mobileSection, setMobileSection] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const location = useLocation();
   const current = LANG_OPTIONS.find((l) => l.code === lang) || LANG_OPTIONS[0];
+  const overlayHeader = location.pathname === '/' && !scrolled && !openMenu && !mobileMenuOpen;
 
   React.useEffect(() => {
     setOpen(false);
@@ -151,9 +159,25 @@ export const Navbar = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
+  React.useEffect(() => {
+    let previousY = window.scrollY;
+    const handleScroll = () => {
+      const nextY = window.scrollY;
+      setScrolled(nextY > 24);
+      setHidden(nextY > previousY && nextY > 180 && !mobileMenuOpen && !openMenu);
+      previousY = nextY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [mobileMenuOpen, openMenu]);
+
+  React.useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
+
   const primaryNavItems = [
     { to: "/", label: t('nav.home') },
-    { to: "/realisations", label: t('nav.projects') },
     { to: "/a-propos", label: 'À propos' },
     { to: "/contact", label: t('nav.contact') },
   ];
@@ -214,29 +238,50 @@ export const Navbar = () => {
     },
   ];
 
+  const projectsMenu = Object.entries(PROJECT_CATEGORIES)
+    .map(([category, title]) => ({
+      title,
+      links: publicProjects
+        .filter((item) => item.category === category)
+        .map((item) => ({
+          label: item.title,
+          description: item.type,
+          ...(item.caseStudy
+            ? { to: `/realisations/${item.slug}` }
+            : item.url
+              ? { href: item.url }
+              : { to: '/realisations' }),
+        })),
+    }))
+    .filter((group) => group.links.length > 0);
+
   const mobileGroups = [
-    { id: 'services', label: 'Services', groups: servicesMenu },
-    { id: 'blog', label: 'Blog', groups: blogMenu },
+    { id: 'services', label: 'Services', overviewTo: '/services', groups: servicesMenu },
+    { id: 'projects', label: t('nav.projects'), overviewTo: '/realisations', groups: projectsMenu },
+    { id: 'blog', label: 'Blog', overviewTo: '/blog', groups: blogMenu },
   ];
 
   return (
-    <div className="fixed top-3 left-0 right-0 z-50 flex justify-center px-3 sm:top-5 sm:px-5">
+    <div
+      className={`fixed left-0 right-0 top-0 z-50 flex justify-center transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'}`}
+      onMouseEnter={() => setHidden(false)}
+    >
       <motion.nav
         initial={false}
         animate={{ y: 0, opacity: 1 }}
         aria-label="Navigation principale"
-        className={`flex w-full max-w-7xl items-center justify-between rounded-2xl border px-4 py-3 backdrop-blur-2xl transition-all duration-500 lg:px-6 ${
-          theme === 'dark' 
-            ? 'border-white/10 bg-[#050607]/90 shadow-2xl' 
-            : 'border-black/10 bg-white/90 shadow-xl'
+        className={`flex min-h-[6.5rem] w-full items-center justify-between px-5 py-3 backdrop-blur-xl transition-all duration-500 sm:px-8 lg:px-12 ${openMenu ? 'nav-menu-open bg-white shadow-xl' : overlayHeader ? 'home-nav-transparent shadow-none' :
+          theme === 'dark'
+            ? 'border-white/10 bg-[#050607]/95 shadow-xl'
+            : `${scrolled ? 'border-[#050607]/10 bg-[#FFFFFF]/95 shadow-md' : 'border-[#050607]/10 bg-[#FFFFFF]/90'}`
         }`}
       >
         <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
-          <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.95 }}>
-            <img src="/android-chrome-192x192.png" alt="" width="32" height="32" className="h-8 w-8 rounded-lg shadow-lg" />
+          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
+            <img src="/android-chrome-192x192.png" alt="" width="48" height="48" className="h-12 w-12 rounded-full shadow-sm" />
           </motion.div>
-          <span className={`whitespace-nowrap text-lg font-bold transition-colors ${
-            theme === 'dark' ? 'text-white' : 'text-black'
+          <span className={`whitespace-nowrap text-xl font-bold transition-colors sm:text-2xl ${
+            theme === 'dark' ? 'text-white' : 'text-[#050607]'
           }`}>
             Optimum Tech
           </span>
@@ -245,9 +290,9 @@ export const Navbar = () => {
         {/* Desktop Links */}
         <div className="hidden xl:flex items-center gap-1 min-w-0 px-4">
           <NavLink to="/">{t('nav.home')}</NavLink>
-          <NavDropdown label="Services" groups={servicesMenu} openMenu={openMenu} setOpenMenu={setOpenMenu} />
-          <NavLink to="/realisations">{t('nav.projects')}</NavLink>
-          <NavDropdown label="Blog" groups={blogMenu} openMenu={openMenu} setOpenMenu={setOpenMenu} />
+          <NavDropdown label="Services" overviewTo="/services" groups={servicesMenu} openMenu={openMenu} setOpenMenu={setOpenMenu} />
+          <NavDropdown label={t('nav.projects')} overviewTo="/realisations" groups={projectsMenu} openMenu={openMenu} setOpenMenu={setOpenMenu} variant="projects" />
+          <NavDropdown label="Blog" overviewTo="/blog" groups={blogMenu} openMenu={openMenu} setOpenMenu={setOpenMenu} />
           <NavLink to="/a-propos">À propos</NavLink>
           <NavLink to="/contact">{t('nav.contact')}</NavLink>
         </div>
@@ -256,8 +301,8 @@ export const Navbar = () => {
           {/* Login Button */}
           <Link
             to="/auth"
-            className={`hidden items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 xl:inline-flex ${
-              theme === 'dark' ? 'bg-white/10 text-white/80 hover:bg-white/20 hover:text-white' : 'bg-black/5 text-black/80 hover:bg-black/10 hover:text-black'
+            className={`hidden items-center justify-center whitespace-nowrap rounded-lg px-6 py-3 text-base font-bold transition-all duration-300 xl:inline-flex ${
+              theme === 'dark' ? 'border border-[#0A84FF] bg-[#0A84FF] text-[#050607]' : 'border border-[#050607] bg-[#050607] text-white hover:border-[#0A84FF]'
             }`}
           >
             Espace client
@@ -269,7 +314,7 @@ export const Navbar = () => {
             onClick={toggleTheme}
             aria-label={theme === 'dark' ? 'Activer le thème clair' : 'Activer le thème sombre'}
             title={theme === 'dark' ? 'Thème clair' : 'Thème sombre'}
-            className={`rounded-lg p-2 transition-all duration-300 ${
+            className={`rounded-lg p-3 transition-all duration-300 ${
               theme === 'dark' ? 'hover:bg-white/10 text-white' : 'hover:bg-black/5 text-black'
             }`}
           >
@@ -285,7 +330,7 @@ export const Navbar = () => {
               aria-controls="language-menu"
               aria-haspopup="true"
               aria-label="Choisir la langue"
-              className={`flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+              className={`flex items-center gap-2 whitespace-nowrap rounded-lg px-4 py-3 text-sm font-semibold transition-all ${
                 theme === 'dark' ? 'bg-white/5 text-white hover:bg-white/10' : 'bg-black/5 text-black hover:bg-black/10'
               }`}
             >
@@ -347,8 +392,8 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className={`absolute left-3 right-3 top-16 max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain rounded-2xl border p-5 shadow-2xl backdrop-blur-2xl xl:hidden sm:left-5 sm:right-5 ${
-              theme === 'dark' ? 'bg-black/90 border-white/10' : 'bg-white/95 border-black/10'
+            className={`fixed inset-x-0 top-[6.5rem] max-h-[calc(100vh-6.5rem)] overflow-y-auto overscroll-contain border-t p-6 shadow-2xl backdrop-blur-2xl xl:hidden ${
+              theme === 'dark' ? 'border-white/10 bg-[#050607]/98' : 'border-[#0A84FF]/40 bg-[#050607]/98 text-white'
             }`}
           >
             <div className="flex flex-col gap-4">
@@ -366,18 +411,28 @@ export const Navbar = () => {
               ))}
               {mobileGroups.map((section) => (
                 <div key={section.id} className="rounded-lg border border-current/10 p-3">
-                  <button
-                    type="button"
-                    onClick={() => setMobileSection(mobileSection === section.id ? null : section.id)}
-                    aria-expanded={mobileSection === section.id}
-                    aria-controls={`mobile-${section.id}-links`}
-                    className={`flex w-full items-center justify-between text-lg font-semibold ${
-                      theme === 'dark' ? 'text-white' : 'text-black'
-                    }`}
-                  >
-                    <span>{section.label}</span>
-                    <ChevronDown className={`h-5 w-5 transition-transform ${mobileSection === section.id ? 'rotate-180' : ''}`} />
-                  </button>
+                  <div className="flex items-center justify-between gap-3">
+                    <Link
+                      to={section.overviewTo}
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        setMobileSection(null);
+                      }}
+                      className={`flex-1 py-2 text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}
+                    >
+                      {section.label}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setMobileSection(mobileSection === section.id ? null : section.id)}
+                      aria-expanded={mobileSection === section.id}
+                      aria-controls={`mobile-${section.id}-links`}
+                      aria-label={`${mobileSection === section.id ? 'Fermer' : 'Ouvrir'} le menu ${section.label}`}
+                      className={`grid h-11 w-11 shrink-0 place-items-center rounded-full ${theme === 'dark' ? 'text-white hover:bg-white/10' : 'text-black hover:bg-black/5'}`}
+                    >
+                      <ChevronDown className={`h-5 w-5 transition-transform ${mobileSection === section.id ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
                   {mobileSection === section.id && (
                     <div id={`mobile-${section.id}-links`} className="mt-4 space-y-4">
                       {section.groups.map((group) => (
@@ -388,21 +443,37 @@ export const Navbar = () => {
                             {group.title}
                           </p>
                           <div className="flex flex-col gap-2">
-                            {group.links.map((item) => (
-                              <Link
-                                key={item.to}
-                                to={item.to}
-                                onClick={() => {
-                                  setMobileMenuOpen(false);
-                                  setMobileSection(null);
-                                }}
-                                className={`rounded-lg px-3 py-2 text-sm ${
-                                  theme === 'dark' ? 'bg-white/5 text-white/80' : 'bg-black/5 text-black/80'
-                                }`}
-                              >
-                                {item.label}
-                              </Link>
-                            ))}
+                            {group.links.map((item) => {
+                              const closeMobileMenu = () => {
+                                setMobileMenuOpen(false);
+                                setMobileSection(null);
+                              };
+                              const className = `rounded-lg px-3 py-2 text-sm ${
+                                theme === 'dark' ? 'bg-white/5 text-white/80' : 'bg-black/5 text-black/80'
+                              }`;
+
+                              return item.href ? (
+                                <a
+                                  key={`${group.title}-${item.label}`}
+                                  href={item.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={closeMobileMenu}
+                                  className={className}
+                                >
+                                  {item.label}
+                                </a>
+                              ) : (
+                                <Link
+                                  key={`${group.title}-${item.label}`}
+                                  to={item.to}
+                                  onClick={closeMobileMenu}
+                                  className={className}
+                                >
+                                  {item.label}
+                                </Link>
+                              );
+                            })}
                           </div>
                         </div>
                       ))}

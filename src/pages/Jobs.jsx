@@ -322,7 +322,7 @@ export const JobsPage = () => {
             />
             <div className="relative grid gap-10 lg:grid-cols-[1.4fr_0.9fr] lg:items-end">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-[#007BFF]/20 bg-[#007BFF]/10 px-4 py-2 text-sm font-semibold text-[#007BFF]">
+                <span className="inline-flex items-center gap-2 rounded-full border border-[#0A84FF]/20 bg-[#0A84FF]/10 px-4 py-2 text-sm font-semibold text-[#0A84FF]">
                   <Target className="h-4 w-4" />
                   {copy.badge}
                 </span>
@@ -339,7 +339,7 @@ export const JobsPage = () => {
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center justify-center gap-3 rounded-full bg-[#007BFF] px-8 py-4 text-base font-bold text-white transition-all hover:scale-[1.02] hover:bg-[#007BFF]/90"
+                    className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0A84FF] px-8 py-4 text-base font-bold text-white transition-all hover:scale-[1.02] hover:bg-[#0A84FF]/90"
                   >
                     <Mail className="h-5 w-5" />
                     {copy.primaryCta}
@@ -385,7 +385,7 @@ export const JobsPage = () => {
                           : 'border-black/10 bg-black/[0.03]'
                       }`}
                     >
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#007BFF]" />
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#0A84FF]" />
                       <p className={theme === 'dark' ? 'text-white/75' : 'text-black/70'}>{item}</p>
                     </div>
                   ))}
@@ -398,7 +398,7 @@ export const JobsPage = () => {
         <section className="container mx-auto px-6 py-8">
           <ScrollReveal className="mb-10">
             <div className="flex items-center gap-3">
-              <Users className="h-6 w-6 text-[#007BFF]" />
+              <Users className="h-6 w-6 text-[#0A84FF]" />
               <h2 className="text-3xl font-bold tracking-tight md:text-5xl">{copy.rolesTitle}</h2>
             </div>
           </ScrollReveal>
@@ -414,21 +414,21 @@ export const JobsPage = () => {
                         : 'border-black/10 bg-white/70 shadow-xl'
                     }`}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#007BFF]/10 via-transparent to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0A84FF]/10 via-transparent to-transparent opacity-80" />
                     <div className="relative">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-4">
-                          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#007BFF]/15 text-[#007BFF]">
+                          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0A84FF]/15 text-[#0A84FF]">
                             <Icon className="h-7 w-7" />
                           </div>
                           <div>
-                            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#007BFF]">
+                            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#0A84FF]">
                               {role.tag}
                             </p>
                             <h3 className="mt-1 text-2xl font-bold tracking-tight">{role.title}</h3>
                           </div>
                         </div>
-                        <BadgeEuro className="h-6 w-6 flex-shrink-0 text-[#007BFF]/70" />
+                        <BadgeEuro className="h-6 w-6 flex-shrink-0 text-[#0A84FF]/70" />
                       </div>
                       <p
                         className={`mt-6 text-base leading-relaxed ${
@@ -440,7 +440,7 @@ export const JobsPage = () => {
 
                       <div className="mt-8 grid gap-6 md:grid-cols-2">
                         <div>
-                          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#007BFF]">
+                          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0A84FF]">
                             Responsibilities
                           </h4>
                           <ul className="mt-4 space-y-3">
@@ -451,14 +451,14 @@ export const JobsPage = () => {
                                   theme === 'dark' ? 'text-white/72' : 'text-black/70'
                                 }`}
                               >
-                                <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#007BFF]" />
+                                <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#0A84FF]" />
                                 <span>{item}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#007BFF]">
+                          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0A84FF]">
                             Ideal profile
                           </h4>
                           <ul className="mt-4 space-y-3">
@@ -469,7 +469,7 @@ export const JobsPage = () => {
                                   theme === 'dark' ? 'text-white/72' : 'text-black/70'
                                 }`}
                               >
-                                <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#007BFF]" />
+                                <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#0A84FF]" />
                                 <span>{item}</span>
                               </li>
                             ))}
@@ -497,7 +497,7 @@ export const JobsPage = () => {
               <div className="mt-6 space-y-4">
                 {copy.fitItems.map((item) => (
                   <div key={item} className="flex gap-3">
-                    <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-[#007BFF]" />
+                    <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-[#0A84FF]" />
                     <p className={theme === 'dark' ? 'text-white/72' : 'text-black/70'}>{item}</p>
                   </div>
                 ))}
@@ -517,7 +517,7 @@ export const JobsPage = () => {
               <div className="mt-6 space-y-4">
                 {copy.processItems.map((item) => (
                   <div key={item} className="flex gap-3">
-                    <ArrowRight className="mt-1 h-5 w-5 flex-shrink-0 text-[#007BFF]" />
+                    <ArrowRight className="mt-1 h-5 w-5 flex-shrink-0 text-[#0A84FF]" />
                     <p className={theme === 'dark' ? 'text-white/72' : 'text-black/70'}>{item}</p>
                   </div>
                 ))}

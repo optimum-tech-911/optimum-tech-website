@@ -16,7 +16,7 @@ export const MenuPage = () => {
       <main className="container mx-auto w-full max-w-4xl py-10 relative overflow-hidden">
         <div className="absolute inset-0 -z-10 pointer-events-none">
           <FloatingLines
-            linesGradient={['#0A84FF', '#7c3aed', '#00E0B8']}
+            linesGradient={['#0A84FF', '#FFFFFF', '#0A84FF']}
             enabledWaves={['top', 'middle', 'bottom']}
             lineCount={[6, 8, 5]}
             lineDistance={[5, 6, 4]}

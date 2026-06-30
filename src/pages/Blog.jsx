@@ -48,7 +48,7 @@ export const BlogPage = () => {
             }`}
           >
             <div className="max-w-4xl">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#007BFF]/20 bg-[#007BFF]/10 px-4 py-2 text-xs font-semibold text-[#007BFF]">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#0A84FF]/20 bg-[#0A84FF]/10 px-4 py-2 text-xs font-semibold text-[#0A84FF]">
                 <Sparkles className="h-4 w-4" />
                 Blog croissance digitale France
               </div>
@@ -116,8 +116,8 @@ export const BlogPage = () => {
                 to={`/blog/${post.slug}`}
                 className={`group overflow-hidden rounded-[2rem] border p-6 transition ${
                   theme === 'dark'
-                    ? 'border-white/10 bg-white/5 hover:border-[#007BFF]/30'
-                    : 'border-black/10 bg-white/70 hover:border-[#007BFF]/30 hover:shadow-xl'
+                    ? 'border-white/10 bg-white/5 hover:border-[#0A84FF]/30'
+                    : 'border-black/10 bg-white/70 hover:border-[#0A84FF]/30 hover:shadow-xl'
                 }`}
               >
                 <div className="overflow-hidden rounded-[1.5rem]">
@@ -132,7 +132,7 @@ export const BlogPage = () => {
                       />
                       <div className={`absolute inset-0 bg-gradient-to-t ${post.heroTheme}`} />
                       <div className="absolute inset-x-0 bottom-0 p-6">
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0A84FF]">
                           {post.category}
                         </p>
                         <h3 className="mt-3 text-2xl font-bold tracking-tight text-white">
@@ -142,7 +142,7 @@ export const BlogPage = () => {
                     </div>
                   ) : (
                     <div className={`rounded-[1.5rem] bg-gradient-to-br ${post.heroTheme} p-6`}>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#007BFF]">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0A84FF]">
                         {post.category}
                       </p>
                       <h3 className="mt-3 text-2xl font-bold tracking-tight">{post.heroTitle}</h3>
@@ -168,7 +168,7 @@ export const BlogPage = () => {
                         {formatDate(post.updatedAt || post.publishedAt)}
                       </span>
                     </div>
-                    <span className="inline-flex items-center gap-2 font-semibold text-[#007BFF]">
+                    <span className="inline-flex items-center gap-2 font-semibold text-[#0A84FF]">
                       Lire l’article
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
@@ -199,8 +199,8 @@ export const BlogPage = () => {
                 to={`/blog/${post.slug}`}
                 className={`group flex h-full flex-col rounded-[1.8rem] border p-5 transition ${
                   theme === 'dark'
-                    ? 'border-white/10 bg-white/5 hover:border-[#007BFF]/30'
-                    : 'border-black/10 bg-white/75 hover:border-[#007BFF]/30 hover:shadow-xl'
+                    ? 'border-white/10 bg-white/5 hover:border-[#0A84FF]/30'
+                    : 'border-black/10 bg-white/75 hover:border-[#0A84FF]/30 hover:shadow-xl'
                 }`}
               >
                 {post.image ? (
@@ -222,7 +222,7 @@ export const BlogPage = () => {
                   </div>
                 ) : (
                   <div className={`rounded-[1.4rem] bg-gradient-to-br ${post.heroTheme} px-4 py-5`}>
-                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#007BFF]">
+                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#0A84FF]">
                       {post.category}
                     </p>
                     <h3 className="mt-3 text-xl font-semibold tracking-tight">{post.heroTitle}</h3>
@@ -242,7 +242,7 @@ export const BlogPage = () => {
                       <CalendarDays className="h-4 w-4" />
                       {formatDate(post.updatedAt || post.publishedAt)}
                     </span>
-                    <span className="font-semibold text-[#007BFF]">{post.readTime}</span>
+                    <span className="font-semibold text-[#0A84FF]">{post.readTime}</span>
                   </div>
                 </div>
               </Link>
@@ -283,8 +283,8 @@ export const BlogPage = () => {
                         to={to}
                         className={`block rounded-[1.4rem] border px-4 py-4 text-sm transition ${
                           theme === 'dark'
-                            ? 'border-white/10 bg-black/20 hover:border-[#007BFF]/30'
-                            : 'border-black/10 bg-black/5 hover:border-[#007BFF]/30'
+                            ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
+                            : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
                         }`}
                       >
                         {linkedPost.title}

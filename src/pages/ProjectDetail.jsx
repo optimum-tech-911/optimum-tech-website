@@ -51,12 +51,12 @@ export const ProjectDetailPage = () => {
 
           <header className="grid gap-8 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
             <div>
-              <Link to="/realisations" className="inline-flex items-center gap-2 text-sm font-semibold text-[#1688ff] hover:text-[#55aaff]">
+              <Link to="/realisations" className="inline-flex items-center gap-2 text-sm font-semibold text-[#0576e6] hover:text-[#0A84FF]">
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 Toutes les réalisations
               </Link>
               <div className="mt-6 flex flex-wrap gap-2">
-                <span className="rounded-full border border-[#007BFF]/30 bg-[#007BFF]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[#55aaff]">
+                <span className="rounded-full border border-[#0A84FF]/30 bg-[#0A84FF]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[#0A84FF]">
                   {project.sector}
                 </span>
                 <span className={`rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] ${
@@ -76,7 +76,7 @@ export const ProjectDetailPage = () => {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#007BFF] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1688ff]"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0A84FF] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#0576e6]"
                 >
                   Voir le projet
                   <ExternalLink className="h-4 w-4" aria-hidden="true" />
@@ -94,7 +94,7 @@ export const ProjectDetailPage = () => {
               <div key={key} className={`rounded-[2rem] border p-7 md:p-8 ${
                 theme === 'dark' ? 'border-white/10 bg-white/[0.045]' : 'border-black/10 bg-white shadow-lg shadow-black/[0.03]'
               }`}>
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#1688ff]">{label}</p>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0576e6]">{label}</p>
                 <p className={`mt-4 text-base leading-8 md:text-lg ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
                   {caseStudy[key]}
                 </p>
@@ -106,12 +106,12 @@ export const ProjectDetailPage = () => {
             <div className={`rounded-[2rem] border p-7 md:p-9 ${
               theme === 'dark' ? 'border-white/10 bg-white/[0.045]' : 'border-black/10 bg-white shadow-lg shadow-black/[0.03]'
             }`}>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#1688ff]">Fonctionnalités clés</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0576e6]">Fonctionnalités clés</p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight">Une expérience pensée autour de l’usage</h2>
               <ul className="mt-7 grid gap-4 sm:grid-cols-2">
                 {caseStudy.features.map((feature) => (
                   <li key={feature} className={`flex items-start gap-3 rounded-2xl p-4 ${theme === 'dark' ? 'bg-black/25' : 'bg-black/[0.035]'}`}>
-                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#007BFF]/15 text-[#1688ff]">
+                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#0A84FF]/15 text-[#0576e6]">
                       <Check className="h-3.5 w-3.5" aria-hidden="true" />
                     </span>
                     <span className="text-sm font-semibold leading-6">{feature}</span>
@@ -123,7 +123,7 @@ export const ProjectDetailPage = () => {
             <aside className={`rounded-[2rem] border p-7 md:p-9 ${
               theme === 'dark' ? 'border-white/10 bg-[#0d1524]' : 'border-blue-200 bg-blue-50'
             }`}>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#1688ff]">Socle technique</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0576e6]">Socle technique</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {caseStudy.technologies.map((technology) => (
                   <span key={technology} className={`rounded-full border px-4 py-2 text-sm font-semibold ${
@@ -142,7 +142,7 @@ export const ProjectDetailPage = () => {
           <section className={`mt-20 rounded-[2.5rem] border p-8 text-center md:p-12 ${
             theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white shadow-xl'
           }`}>
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#1688ff]">Un besoin similaire ?</p>
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#0576e6]">Un besoin similaire ?</p>
             <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-bold tracking-tight md:text-5xl">
               Construisons une solution adaptée à votre activité.
             </h2>

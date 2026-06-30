@@ -5,10 +5,10 @@ import { useTheme } from '../context/ThemeContext';
 import { PROJECT_STATUS } from '../data/projects';
 
 const statusStyles = {
-  green: 'border-emerald-400/25 bg-emerald-400/10 text-emerald-300',
-  blue: 'border-blue-400/25 bg-blue-400/10 text-blue-300',
-  violet: 'border-violet-400/25 bg-violet-400/10 text-violet-300',
-  slate: 'border-slate-400/25 bg-slate-400/10 text-slate-300',
+  green: 'border-[#0A84FF]/30 bg-[#0A84FF]/15 text-white',
+  blue: 'border-[#0A84FF]/30 bg-[#0A84FF]/15 text-white',
+  violet: 'border-[#0A84FF]/30 bg-[#0A84FF]/15 text-white',
+  slate: 'border-white/25 bg-black/40 text-white',
 };
 
 export const PortfolioProjectCard = ({ project, compact = false }) => {
@@ -26,8 +26,8 @@ export const PortfolioProjectCard = ({ project, compact = false }) => {
   return (
     <article className={`group flex h-full flex-col overflow-hidden rounded-lg border transition duration-300 hover:-translate-y-1 ${
       theme === 'dark'
-        ? 'border-white/10 bg-white/[0.045] hover:border-[#007BFF]/40'
-        : 'border-black/10 bg-white shadow-lg shadow-black/[0.04] hover:border-[#007BFF]/40 hover:shadow-xl'
+        ? 'border-white/10 bg-white/[0.045] hover:border-[#0A84FF]/40'
+        : 'border-black/10 bg-white shadow-lg shadow-black/[0.04] hover:border-[#0A84FF]/40 hover:shadow-xl'
     }`}>
       <div className={`relative overflow-hidden bg-black ${compact ? 'aspect-[16/9]' : 'aspect-[16/10]'}`}>
         <img
@@ -85,7 +85,7 @@ export const PortfolioProjectCard = ({ project, compact = false }) => {
               data-analytics-category="project"
               data-analytics-project={project.id}
               data-analytics-label={project.title}
-              className="inline-flex items-center gap-2 rounded-lg bg-[#007BFF] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#1688ff]"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#0A84FF] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#0576e6]"
             >
               Étude de cas
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -100,8 +100,8 @@ export const PortfolioProjectCard = ({ project, compact = false }) => {
               rel="noopener noreferrer"
               className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-bold transition ${
                 theme === 'dark'
-                  ? 'border-white/20 text-white hover:border-[#007BFF]/40 hover:bg-[#007BFF]/10'
-                  : 'border-black/20 text-black hover:border-[#007BFF]/40 hover:bg-[#007BFF]/5'
+                  ? 'border-white/20 text-white hover:border-[#0A84FF]/40 hover:bg-[#0A84FF]/10'
+                  : 'border-black/20 text-black hover:border-[#0A84FF]/40 hover:bg-[#0A84FF]/5'
               }`}
             >
               Voir le projet
