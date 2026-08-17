@@ -56,7 +56,7 @@ export const Projects = () => {
   }, [activeFilter, query]);
 
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'}`}>
+    <div className={`ux-page min-h-screen ${theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'}`}>
       <SEO
         path="/realisations"
         title="Réalisations web, applications et projets digitaux | Optimum Tech"
@@ -70,7 +70,7 @@ export const Projects = () => {
       />
       <Navbar />
 
-      <main className="relative overflow-hidden px-4 pb-20 pt-32 md:px-6 md:pt-40">
+      <main className="relative overflow-hidden px-5 pb-20 pt-28 sm:px-6 md:pt-36">
         <div className="pointer-events-none absolute left-1/2 top-20 h-[32rem] w-[52rem] -translate-x-1/2 rounded-full bg-[#0A84FF]/10 blur-[120px]" />
 
         <section className="relative mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
@@ -118,14 +118,14 @@ export const Projects = () => {
             theme === 'dark' ? 'border-white/10 bg-[#0a0a0d]/90' : 'border-black/10 bg-white/90 shadow-lg'
           }`}>
             <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-              <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
+              <div className="mobile-card-scroll no-scrollbar flex min-w-0 flex-1 gap-2 overflow-x-auto pb-1">
                 {filters.map((filter) => (
                   <button
                     key={filter.key}
                     type="button"
                     onClick={() => setActiveFilter(filter.key)}
                     aria-pressed={activeFilter === filter.key}
-                    className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-semibold transition ${
+                    className={`min-h-11 shrink-0 rounded-full px-4 py-2.5 text-sm font-semibold transition ${
                       activeFilter === filter.key
                         ? 'bg-[#0A84FF] text-white shadow-lg shadow-blue-500/20'
                         : theme === 'dark'
@@ -138,7 +138,7 @@ export const Projects = () => {
                 ))}
               </div>
 
-              <label className={`flex min-w-0 items-center gap-3 rounded-full border px-4 py-2.5 lg:w-72 ${
+              <label className={`flex min-h-12 min-w-0 items-center gap-3 rounded-xl border px-4 py-2.5 lg:w-72 ${
                 theme === 'dark' ? 'border-white/10 bg-black/30' : 'border-black/10 bg-black/[0.03]'
               }`}>
                 <Search className="h-4 w-4 shrink-0 text-[#0576e6]" aria-hidden="true" />

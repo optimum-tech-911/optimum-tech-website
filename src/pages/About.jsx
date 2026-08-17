@@ -19,7 +19,7 @@ export const AboutPage = () => {
 
   return (
     <div
-      className={`min-h-screen flex flex-col transition-colors duration-500 ${
+      className={`ux-page flex min-h-screen flex-col transition-colors duration-500 ${
         theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
       }`}
     >
@@ -56,17 +56,17 @@ export const AboutPage = () => {
       />
       <Navbar />
 
-      <main className="flex-1 px-4 py-28 md:px-6">
+      <main className="flex-1 px-5 pb-20 pt-28 sm:px-6 md:pt-32">
         <section className="mx-auto max-w-5xl">
           <div
-            className={`rounded-[2.8rem] border px-6 py-10 md:px-10 md:py-14 ${
+            className={`rounded-[1.75rem] border px-5 py-8 sm:px-6 md:rounded-[2.8rem] md:px-10 md:py-14 ${
               theme === 'dark'
                 ? 'border-white/10 bg-white/5'
                 : 'border-black/10 bg-white/75 shadow-xl'
             }`}
           >
             <Breadcrumbs items={breadcrumbs} />
-            <h1 className="max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">
+            <h1 className="max-w-4xl text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl md:text-6xl">
               Optimum Tech aide les entreprises à transformer une présence digitale floue en outil plus clair, plus utile et mieux structuré
             </h1>
             <p className={`mt-5 max-w-3xl text-lg leading-8 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>

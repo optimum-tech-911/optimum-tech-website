@@ -7,10 +7,13 @@ export const SEO = ({
   title = '',
   description = '',
   image = 'https://optimutech.fr/apple-touch-icon.png',
-  robots = 'index, follow',
+  imageAlt,
+  robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   type = 'website',
   schema,
   keywords,
+  publishedTime,
+  modifiedTime,
 }) => {
   const canonical = buildCanonicalUrl(path);
   const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
@@ -35,10 +38,12 @@ export const SEO = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:image:alt" content="Optimum Tech" />
+      <meta property="og:image:alt" content={imageAlt || title || 'Optimum Tech'} />
+      {publishedTime ? <meta property="article:published_time" content={publishedTime} /> : null}
+      {modifiedTime ? <meta property="article:modified_time" content={modifiedTime} /> : null}
 
       {/* Twitter */}
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content={type === 'article' ? 'summary_large_image' : 'summary'} />
       <meta name="twitter:url" content={canonical} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

@@ -5,31 +5,59 @@
     "contact": "Contact",
     "services": "Services",
     "policy": "Policy",
-    "login": "Log in"
+    "login": "Client Portal"
   },
   "hero": {
-    "build": "Build",
-    "faster": "faster",
-    "grow": "Grow",
-    "smarter": "smarter",
-    "automate": "Automate",
-    "everything": "everything",
-    "blurb": "We make your ideas real through coding, software development, and high-performance applications. From custom web apps and software to smart automations, we take you from 0 to the latest technologies.",
-    "growthTitle": "Our Results",
-    "growth1": "Increased Sales",
-    "growth2": "More Visibility",
-    "growth3": "More Control",
-    "growth4": "Scalability",
-    "ctaStart": "Start Your Project",
-    "ctaSee": "See Our Work",
-    "missionTitle": "Mission",
-    "mission1": "Our mission is to make technology simple, fast, and accessible for every business.",
-    "mission2": "At Optimum Tech, we build high-performance websites, smart automations, and AI tools that truly improve your day-to-day.",
-    "mission3": "Our goal: save you time, increase efficiency, and help you reach your ambitions faster.",
-    "visionTitle": "Vision",
-    "vision1": "We imagine a future where AI and automation serve everyone — even the smallest teams.",
-    "vision2": "Our vision is a world where every entrepreneur can grow faster, without technical complexity or wasted time, through modern, reliable solutions built to last.",
-    "vision3": "At Optimum Tech, we build this future, one project at a time."
+    "eyebrow": "Optimum Tech, Software Engineering",
+    "title": "Digital engineering serving your vision",
+    "desc": "More than just an online presence, we forge true digital platforms. From complex software architecture to immersive interfaces, we transform your business challenges into high-performance digital ecosystems built for the future.",
+    "cta_contact": "Discuss my project",
+    "cta_projects": "View our work",
+    "signals": {
+      "scalable": "Scalable Architecture",
+      "immersive": "Immersive Experiences",
+      "performance": "High Performance"
+    },
+    "proofs": {
+      "architecture": "Design of scalable architectures",
+      "development": "High-precision custom development",
+      "deployment": "Deployment and operational maintenance"
+    },
+    "shortcuts": {
+      "web": "Web Platforms",
+      "software": "Business Software",
+      "seo": "Digital Growth",
+      "ai": "Artificial Intelligence"
+    }
+  },
+  "home": {
+    "vision_eyebrow": "Our Vision",
+    "vision_title": "Creators of custom digital ecosystems for ambitious companies",
+    "vision_desc": "We don't just design websites; we architect integrated software platforms. From a digital storefront to a complex management tool, our engineering transforms technical complexity into a seamless and high-performing user experience.",
+    "services_eyebrow": "Selected Projects",
+    "services_title": "Visible projects, from professional sites to business tools",
+    "services_desc": "A few references to show the expected level of finish: patient journey, logistics platform, local commerce, administrative tool, and service presence.",
+    "services_cta": "See all projects",
+    "method_eyebrow": "Methodology",
+    "method_title": "A short, clear, and decision-oriented method",
+    "method_desc": "The goal is to quickly know what is worth building, in what order, and with what level of finish. You maintain a clear vision of the budget, content, and next steps.",
+    "method_cta": "Request a consultation",
+    "needs_eyebrow": "Frequent Needs",
+    "needs_title": "Useful pages to better frame your request",
+    "needs_desc": "The needs are not the same for a clinic, a shop, an SME, or a business application. These pages help clarify the right project level before the first exchange.",
+    "trust_eyebrow": "Trust",
+    "trust_title": "Direct, local support without vague promises",
+    "local_eyebrow": "Local Landmarks",
+    "resources_eyebrow": "Resources",
+    "resources_title": "Guides to decide before investing",
+    "resources_desc": "Content to understand web, application, editorial, and SEO choices before committing a budget.",
+    "resources_cta": "Explore the blog",
+    "contact_eyebrow": "Direct Contact",
+    "contact_title": "Let's talk about what your system really needs to change",
+    "contact_desc": "Send us the context, even briefly: activity, goal, desired pages or features, ideal timeframe. The response can start with a simple framing before any quote.",
+    "contact_phone": "Phone",
+    "contact_email": "Email",
+    "contact_zone": "Area"
   },
   "contact_v2": {
     "title": "Let's talk about your project",
@@ -42,47 +70,47 @@
     "questions": {
       "main": "What are you looking for?",
       "app": {
-        "title": "Create an Application",
-        "field": "What is your field of activity?",
+        "title": "Build a Platform",
+        "field": "What is your industry?",
         "goal": "What is your main goal?",
-        "team": "How many people are you?",
-        "desc": "Describe the perfect app you imagine:"
+        "team": "How large is your team?",
+        "desc": "Describe the platform you envision:"
       },
       "web": {
-        "title": "Create a Website",
+        "title": "Digital Ecosystem",
         "field": "What is your field?",
-        "workers": "How many workers do you have?",
-        "type": "What type of site?",
+        "workers": "How many employees do you have?",
+        "type": "What type of ecosystem?",
         "types": {
-          "vitrine": "Showcase Site",
-          "ecom": "Product Sales (E-commerce)",
-          "service": "Service Sales",
-          "booking": "Booking",
-          "multi": "Multi-services"
+          "vitrine": "Corporate Presence",
+          "ecom": "E-commerce Platform",
+          "service": "Service Delivery",
+          "booking": "Booking System",
+          "multi": "Multi-service Platform"
         }
       },
       "software": {
-        "title": "Create a Software",
+        "title": "Custom Software",
         "role": "Are you a business owner or project manager?",
         "field": "What is your field?",
-        "problem": "What problem are you facing?"
+        "problem": "What operational problem are you facing?"
       },
       "ai": {
-        "title": "AI Integrations",
+        "title": "AI & Automation",
         "field": "What is your field?",
-        "dailyProblem": "What are your daily problems?",
-        "replace": "What repetitive job would you like to replace with a precise AI that doesn't make mistakes, works 24/7, and you only pay once?"
+        "dailyProblem": "What are your core inefficiencies?",
+        "replace": "What repetitive workflow would you like to replace with intelligent automation?"
       },
       "consultation": {
         "title": "Consultation",
         "field": "What is your field?",
-        "problem": "What is your problem briefly?"
+        "problem": "Briefly describe your challenge:"
       }
     },
     "success": {
-      "title": "Form received!",
-      "message": "We will get back to you as soon as possible.",
-      "urgent": "If your case is urgent, contact us by phone or WhatsApp: +33 7 45 30 51 13"
+      "title": "Request received!",
+      "message": "Our engineering team will get back to you shortly.",
+      "urgent": "If your case is urgent, contact us directly via phone or WhatsApp: +33 7 45 30 51 13"
     }
   },
   "intro": { "title": "Optimum Tech", "subtitle": "Welcome to your site" },
@@ -122,64 +150,64 @@
   "policy": { "title": "General Policy" },
   "footer": {
     "rights": "All rights reserved.",
-    "description": "We build websites, web apps, custom tools, and useful automations to support your business.",
+    "description": "We engineer high-performance platforms, custom software, and intelligent automations to scale your business.",
     "menuTitle": "Explore",
     "contactTitle": "Contact",
     "location": "France • EU",
-    "hours": "Available 24/7 – we're here anytime.",
-    "made": "Made with care – performance & accessibility first",
+    "hours": "Available 24/7",
+    "made": "Engineered with precision",
     "links": {
-      "home": "Back to Home",
-      "services": "Our Services",
-      "projects": "Discover Projects",
-      "policy": "Read Policies",
-      "contact": "Get in Touch"
+      "home": "Home",
+      "services": "Capabilities",
+      "projects": "Case Studies",
+      "policy": "Legal",
+      "contact": "Contact"
     }
   },
   "services": {
-    "title": "Our Services",
-    "subtitle": "Bespoke technological solutions to propel your business.",
+    "title": "Our Capabilities",
+    "subtitle": "Bespoke engineering solutions to propel your business.",
     "web": {
-      "title": "Web Development",
-      "desc": "Showcase sites, E-commerce, and high-performance Web Apps.",
-      "items": ["React / Next.js", "E-commerce (Shopify/Woo)", "Premium Portfolios"]
+      "title": "Web Platforms",
+      "desc": "High-performance digital presence built for scale and conversion.",
+      "items": ["React / Next.js", "Enterprise E-commerce", "Corporate Portals"]
     },
     "mobile": {
-      "title": "Mobile Applications",
-      "desc": "iOS and Android with a smooth user experience.",
-      "items": ["React Native", "Native Apps", "Desktop Apps"]
+      "title": "Mobile Ecosystems",
+      "desc": "Native-feeling applications with flawless user experience.",
+      "items": ["React Native", "Cross-platform", "Progressive Web Apps"]
     },
     "software": {
-      "title": "Software & SaaS",
+      "title": "Software Engineering",
       "desc": "Complex business solutions and scalable SaaS platforms.",
-      "items": ["Cloud Architecture", "Dashboards", "Scalable SaaS"]
+      "items": ["Cloud Architecture", "Internal Tools", "Scalable SaaS"]
     },
     "automation": {
-      "title": "AI & Automation",
-      "desc": "Save time through intelligent automation.",
-      "items": ["AI Workflows", "Bots & Scripts", "Process Optimization"]
+      "title": "Intelligence & Automation",
+      "desc": "Optimize operations through intelligent algorithms and workflows.",
+      "items": ["AI Integration", "Process Automation", "Data Pipelines"]
     },
     "games": {
-      "title": "Games & Interactive",
-      "desc": "Immersive experiences and digital entertainment.",
-      "items": ["Unity / Unreal", "Web Games", "Interactive 3D"]
+      "title": "Interactive Experiences",
+      "desc": "Immersive environments and digital entertainment.",
+      "items": ["WebGL", "3D Interfaces", "Gamification"]
     },
     "infra": {
-      "title": "Tech Partnership",
-      "desc": "From 0 to the cutting edge of technology.",
-      "items": ["Tech Audit", "Cloud Migration", "24/7 Maintenance"]
+      "title": "Technical Partnership",
+      "desc": "From foundation to the cutting edge of technology.",
+      "items": ["Architecture Audit", "Cloud Migration", "DevOps"]
     }
   },
   "cookies": {
-    "bannerTitle": "Cookies",
-    "bannerText": "We use cookies to improve your experience. You can accept, refuse, or manage your preferences.",
+    "bannerTitle": "Privacy & Cookies",
+    "bannerText": "We use cookies to optimize the performance and security of our platform.",
     "acceptAll": "Accept all",
     "rejectAll": "Reject all",
     "settings": "Settings",
     "settingsTitle": "Cookie settings",
-    "analyticsTitle": "Analytics (GTM/GA)",
-    "analyticsDesc": "Enable analytics cookies for anonymized measurement.",
-    "save": "Save",
+    "analyticsTitle": "Analytics",
+    "analyticsDesc": "Enable analytics cookies to help us improve the platform.",
+    "save": "Save preferences",
     "cancel": "Cancel",
     "reopen": "Settings"
   }

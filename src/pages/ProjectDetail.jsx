@@ -32,7 +32,7 @@ export const ProjectDetailPage = () => {
   const title = `${project.title} : étude de cas | Optimum Tech`;
 
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'}`}>
+    <div className={`ux-page min-h-screen ${theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'}`}>
       <SEO
         path={path}
         title={title}
@@ -41,7 +41,7 @@ export const ProjectDetailPage = () => {
       />
       <Navbar />
 
-      <main className="px-4 pb-20 pt-32 md:px-6 md:pt-40">
+      <main className="px-5 pb-20 pt-28 sm:px-6 md:pt-36">
         <article className="mx-auto max-w-7xl">
           <Breadcrumbs items={[
             { label: 'Accueil', to: '/' },
@@ -65,7 +65,7 @@ export const ProjectDetailPage = () => {
                   {status.label}
                 </span>
               </div>
-              <h1 className="mt-5 text-5xl font-bold tracking-[-0.05em] md:text-7xl">{project.title}</h1>
+              <h1 className="mt-5 text-4xl font-bold tracking-[-0.05em] sm:text-5xl md:text-7xl">{project.title}</h1>
             </div>
             <div>
               <p className={`text-lg leading-8 md:text-xl ${theme === 'dark' ? 'text-white/65' : 'text-black/65'}`}>

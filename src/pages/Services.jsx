@@ -32,7 +32,7 @@ const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) =
   const { theme } = useTheme();
   return (
     <ScrollReveal delay={delay} className="h-full">
-      <div className={`h-full rounded-[2.5rem] border shadow-2xl relative overflow-hidden group transition-all duration-500 flex flex-col ${
+      <div className={`group relative flex h-full flex-col overflow-hidden rounded-[1.6rem] border shadow-2xl transition-all duration-500 hover:-translate-y-1 ${
         theme === 'dark' 
           ? 'border-white/10 bg-[#0D0D0F] hover:border-[#0A84FF]/30' 
           : 'border-black/10 bg-gray-500/10 backdrop-blur-2xl hover:border-[#0A84FF]/30 shadow-xl'
@@ -40,7 +40,7 @@ const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) =
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A84FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
         
         {/* Service Image Section */}
-        <div className="h-48 w-full overflow-hidden relative">
+        <div className="relative h-44 w-full overflow-hidden sm:h-48">
           <img 
             src={image} 
             alt={title} 
@@ -54,14 +54,14 @@ const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) =
             theme === 'dark' ? 'from-[#0D0D0F]' : 'from-white'
           }`} />
           
-          <div className="absolute bottom-4 left-8">
+          <div className="absolute bottom-4 left-6 sm:left-8">
             <div className="w-12 h-12 rounded-xl bg-[#0A84FF]/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform duration-500 border border-white/10">
               <Icon className="w-6 h-6 text-[#0A84FF]" />
             </div>
           </div>
         </div>
 
-        <div className="p-8 md:p-10 pt-4 flex flex-col flex-grow">
+        <div className="flex flex-grow flex-col p-6 pt-4 sm:p-8 sm:pt-4">
           <h3 className={`text-2xl md:text-3xl font-bold mb-4 tracking-tight ${
             theme === 'dark' ? 'text-white' : 'text-black'
           }`}>
@@ -87,7 +87,7 @@ const ServiceCard = ({ id, icon: Icon, title, desc, items, image, delay = 0 }) =
 
           <Link 
             to={`/contact?type=${id}`}
-            className="inline-flex items-center gap-2 text-[#0A84FF] font-semibold group/link mt-auto relative z-20"
+            className="group/link relative z-20 mt-auto inline-flex min-h-11 items-center gap-2 font-semibold text-[#0A84FF]"
           >
             <span>Demander un devis</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
@@ -154,7 +154,7 @@ export const Services = () => {
   ];
 
   return (
-    <div className={`min-h-screen transition-colors duration-500 flex flex-col relative overflow-x-hidden ${
+    <div className={`ux-page relative flex min-h-screen flex-col overflow-x-hidden transition-colors duration-500 ${
       theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
     }`}>
       <SEO
@@ -191,17 +191,18 @@ export const Services = () => {
       />
       <Navbar />
 
-      <main className="flex-grow container mx-auto px-6 py-32 relative z-10">
-        <ScrollReveal className="text-center mb-24">
-          <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8">
+      <main className="service-main container relative z-10 mx-auto flex-grow px-5 pb-20 pt-28 sm:px-6 sm:pt-32">
+        <ScrollReveal className="mb-14 text-center md:mb-20">
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-[#0A84FF]">Expertises Optimum Tech</p>
+          <h1 className="mb-6 text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl md:text-7xl">
             {t('services.title')}
           </h1>
-          <p className="text-xl md:text-2xl opacity-50 font-light max-w-3xl mx-auto leading-relaxed">
+          <p className="mx-auto max-w-3xl text-base font-light leading-8 opacity-60 sm:text-lg md:text-xl">
             {t('services.subtitle')}
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
           {servicesData.map((service, i) => (
             <ServiceCard 
               key={service.id}
@@ -375,17 +376,17 @@ export const Services = () => {
           </div>
         </section>
 
-        <ScrollReveal className="mt-32">
-          <div className={`rounded-[3rem] border p-12 md:p-20 text-center relative overflow-hidden group shadow-2xl ${
+        <ScrollReveal className="mt-20 md:mt-28">
+          <div className={`group relative overflow-hidden rounded-[2rem] border p-7 text-center shadow-2xl sm:p-10 md:p-16 ${
             theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-gray-500/10 border-black/10 backdrop-blur-2xl shadow-2xl'
           }`}>
             <div className="absolute inset-0 bg-gradient-to-r from-[#0A84FF]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter">
+            <h2 className="mb-7 text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-6xl">
               {t('contact_v2.readyTitle') || 'Prêt à transformer votre idée ?'}
             </h2>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 bg-[#0A84FF] text-white px-10 py-5 rounded-full text-xl font-bold hover:bg-[#0A84FF]/90 transition-all hover:scale-105 shadow-xl shadow-[#0A84FF]/20"
+              className="inline-flex min-h-12 items-center gap-3 rounded-xl bg-[#0A84FF] px-7 py-3.5 text-base font-bold text-white shadow-xl shadow-[#0A84FF]/20 transition-all hover:-translate-y-0.5 hover:bg-[#0576e6] sm:text-lg"
             >
               {t('contact_v2.launchProject') || 'Lancer votre projet'}
               <ArrowRight className="w-6 h-6" />

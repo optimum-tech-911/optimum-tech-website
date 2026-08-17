@@ -26,7 +26,7 @@ export const SectorPage = () => {
   const seoTitle = `${sector.title} | Optimum Tech`;
 
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'}`}>
+    <div className={`ux-page min-h-screen ${theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'}`}>
       <SEO
         path={path}
         title={seoTitle}
@@ -35,7 +35,7 @@ export const SectorPage = () => {
       />
       <Navbar />
 
-      <main className="relative overflow-hidden px-4 pb-20 pt-32 md:px-6 md:pt-40">
+      <main className="relative overflow-hidden px-5 pb-20 pt-28 sm:px-6 md:pt-36">
         <div className="pointer-events-none absolute right-[-10rem] top-20 h-[34rem] w-[34rem] rounded-full bg-[#0A84FF]/12 blur-[120px]" />
         <div className="relative mx-auto max-w-7xl">
           <Breadcrumbs items={[

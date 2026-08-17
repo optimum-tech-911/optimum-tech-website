@@ -1,0 +1,214 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "projects": "Projekte",
+    "contact": "Kontakt",
+    "services": "Leistungen",
+    "policy": "Richtlinien",
+    "login": "Kundenportal"
+  },
+  "hero": {
+    "eyebrow": "Optimum Tech, Software-Engineering",
+    "title": "Digitale Ingenieurskunst für Ihre Vision",
+    "desc": "Mehr als nur eine Online-Präsenz – wir schmieden echte digitale Plattformen. Von komplexer Software-Architektur bis zu immersiven Schnittstellen verwandeln wir Ihre geschäftlichen Herausforderungen in leistungsstarke, zukunftssichere digitale Ökosysteme.",
+    "cta_contact": "Mein Projekt besprechen",
+    "cta_projects": "Unsere Arbeit ansehen",
+    "signals": {
+      "scalable": "Skalierbare Architektur",
+      "immersive": "Immersive Erlebnisse",
+      "performance": "Hohe Leistung"
+    },
+    "proofs": {
+      "architecture": "Entwurf skalierbarer Architekturen",
+      "development": "Hochpräzise maßgeschneiderte Entwicklung",
+      "deployment": "Bereitstellung und operative Wartung"
+    },
+    "shortcuts": {
+      "web": "Web-Plattformen",
+      "software": "Business-Software",
+      "seo": "Digitales Wachstum",
+      "ai": "Künstliche Intelligenz"
+    }
+  },
+  "home": {
+    "vision_eyebrow": "Unsere Vision",
+    "vision_title": "Schöpfer maßgeschneiderter digitaler Ökosysteme für ambitionierte Unternehmen",
+    "vision_desc": "Wir entwerfen nicht nur Websites; wir konzipieren integrierte Softwareplattformen. Vom digitalen Schaufenster bis zum komplexen Management-Tool – unser Engineering verwandelt technische Komplexität in ein nahtloses und leistungsstarkes Nutzererlebnis.",
+    "services_eyebrow": "Ausgewählte Projekte",
+    "services_title": "Sichtbare Projekte, von professionellen Websites bis zu Geschäftsanwendungen",
+    "services_desc": "Einige Referenzen, um den erwarteten Qualitätsstandard zu zeigen: Patientenreise, Logistikplattform, lokaler Handel, Verwaltungstool und Dienstleistungspräsenz.",
+    "services_cta": "Alle Projekte ansehen",
+    "method_eyebrow": "Methodik",
+    "method_title": "Eine kurze, klare und entscheidungsorientierte Methode",
+    "method_desc": "Das Ziel ist es, schnell zu wissen, was sich zu bauen lohnt, in welcher Reihenfolge und mit welchem Qualitätsgrad. Sie behalten eine klare Sicht auf Budget, Inhalte und nächste Schritte.",
+    "method_cta": "Beratung anfordern",
+    "needs_eyebrow": "Häufige Bedürfnisse",
+    "needs_title": "Nützliche Seiten zur besseren Eingrenzung Ihrer Anfrage",
+    "needs_desc": "Die Anforderungen sind für eine Klinik, ein Geschäft, ein KMU oder eine Unternehmensanwendung nicht die gleichen. Diese Seiten helfen, die richtige Projektebene vor dem ersten Gespräch zu klären.",
+    "trust_eyebrow": "Vertrauen",
+    "trust_title": "Direkte, lokale Begleitung ohne vage Versprechungen",
+    "local_eyebrow": "Lokale Orientierungspunkte",
+    "resources_eyebrow": "Ressourcen",
+    "resources_title": "Leitfäden für Entscheidungen vor der Investition",
+    "resources_desc": "Inhalte zum Verständnis von Web-, Anwendungs-, redaktionellen und SEO-Entscheidungen vor der Festlegung eines Budgets.",
+    "resources_cta": "Zum Blog",
+    "contact_eyebrow": "Direktkontakt",
+    "contact_title": "Lassen Sie uns darüber sprechen, was Ihr System wirklich ändern muss",
+    "contact_desc": "Senden Sie uns den Kontext, auch wenn nur kurz: Aktivität, Ziel, gewünschte Seiten oder Funktionen, idealer Zeitrahmen. Die Antwort kann mit einer einfachen Eingrenzung vor jedem Angebot beginnen.",
+    "contact_phone": "Telefon",
+    "contact_email": "E-Mail",
+    "contact_zone": "Gebiet"
+  },
+  "contact_v2": {
+    "title": "Lassen Sie uns über Ihr Projekt sprechen",
+    "subtitle": "Wählen Sie eine Kategorie, um zu beginnen.",
+    "back": "Zurück",
+    "close": "Schließen",
+    "fillForm": "Kontaktformular ausfüllen",
+    "readyTitle": "Bereit, Ihre Idee umzusetzen?",
+    "launchProject": "Projekt starten",
+    "questions": {
+      "main": "Wonach suchen Sie?",
+      "app": {
+        "title": "Eine Plattform aufbauen",
+        "field": "In welcher Branche sind Sie tätig?",
+        "goal": "Was ist Ihr Hauptziel?",
+        "team": "Wie groß ist Ihr Team?",
+        "desc": "Beschreiben Sie die Plattform, die Sie sich vorstellen:"
+      },
+      "web": {
+        "title": "Digitales Ökosystem",
+        "field": "In welchem Bereich sind Sie tätig?",
+        "workers": "Wie viele Mitarbeiter haben Sie?",
+        "type": "Welche Art von Ökosystem?",
+        "types": {
+          "vitrine": "Unternehmenspräsenz",
+          "ecom": "E-Commerce-Plattform",
+          "service": "Dienstleistung",
+          "booking": "Buchungssystem",
+          "multi": "Multi-Service-Plattform"
+        }
+      },
+      "software": {
+        "title": "Individuelle Software",
+        "role": "Sind Sie Unternehmensinhaber oder Projektmanager?",
+        "field": "In welchem Bereich sind Sie tätig?",
+        "problem": "Vor welchem betrieblichen Problem stehen Sie?"
+      },
+      "ai": {
+        "title": "KI & Automatisierung",
+        "field": "In welchem Bereich sind Sie tätig?",
+        "dailyProblem": "Was sind Ihre größten Ineffizienzen?",
+        "replace": "Welchen repetitiven Arbeitsablauf möchten Sie durch intelligente Automatisierung ersetzen?"
+      },
+      "consultation": {
+        "title": "Beratung",
+        "field": "In welcher Branche sind Sie tätig?",
+        "problem": "Beschreiben Sie kurz Ihre Herausforderung:"
+      }
+    },
+    "success": {
+      "title": "Anfrage erhalten!",
+      "message": "Unser Engineering-Team wird sich in Kürze bei Ihnen melden.",
+      "urgent": "Wenn Ihr Anliegen dringend ist, kontaktieren Sie uns direkt per Telefon oder WhatsApp: +33 7 45 30 51 13"
+    }
+  },
+  "intro": { "title": "Optimum Tech", "subtitle": "Willkommen auf Ihrer Plattform" },
+  "projects": {
+    "title": "Projekte",
+    "swipeMore": "Wischen, um mehr zu sehen",
+    "swipeNext": "Nächstes ansehen",
+    "prev": "Vorheriges Projekt",
+    "next": "Nächstes Projekt"
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Ihr Name",
+      "phoneLabel": "Telefon",
+      "phonePlaceholder": "(+33) 6 12 34 56 78",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "sie@beispiel.com",
+      "messageLabel": "Nachricht",
+      "messagePlaceholder": "Beschreiben Sie Ihr Projekt, Budget und den Zeitplan.",
+      "attachLabel": "Datei hochladen",
+      "uploading": "Wird hochgeladen…",
+      "uploadSuccess": "Datei erfolgreich hochgeladen",
+      "uploadFailure": "Fehler beim Hochladen",
+      "sendButton": "Nachricht senden",
+      "success": "Danke! Ihre Nachricht wurde gesendet.",
+      "failure": "Senden fehlgeschlagen. Bitte versuchen Sie es erneut.",
+      "genericError": "Wir konnten diese Nachricht nicht senden. Schreiben Sie uns an optimum.tech.911@gmail.com, während wir das Problem beheben."
+    },
+    "confirm": {
+      "message": "Vielen Dank für Ihre Kontaktaufnahme! Wir werden uns so schnell wie möglich bei Ihnen melden.",
+      "writeAnother": "Weitere Nachricht schreiben",
+      "exploreMore": "Mehr entdecken"
+    }
+  },
+  "policy": { "title": "Allgemeine Richtlinien" },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "description": "Wir entwickeln hochleistungsfähige Plattformen, maßgeschneiderte Software und intelligente Automatisierungen, um Ihr Unternehmen zu skalieren.",
+    "menuTitle": "Entdecken",
+    "contactTitle": "Kontakt",
+    "location": "Frankreich • EU",
+    "hours": "Rund um die Uhr verfügbar",
+    "made": "Mit Präzision entwickelt",
+    "links": {
+      "home": "Startseite",
+      "services": "Leistungen",
+      "projects": "Fallstudien",
+      "policy": "Rechtliches",
+      "contact": "Kontakt"
+    }
+  },
+  "services": {
+    "title": "Unsere Leistungen",
+    "subtitle": "Maßgeschneiderte Engineering-Lösungen zur Förderung Ihres Unternehmens.",
+    "web": {
+      "title": "Web-Plattformen",
+      "desc": "Hochleistungsfähige digitale Präsenz, entwickelt für Skalierbarkeit und Konversion.",
+      "items": ["React / Next.js", "Enterprise E-Commerce", "Unternehmensportale"]
+    },
+    "mobile": {
+      "title": "Mobile Ökosysteme",
+      "desc": "Anwendungen mit nativem Feeling und makellosem Nutzererlebnis.",
+      "items": ["React Native", "Cross-Platform", "Progressive Web Apps"]
+    },
+    "software": {
+      "title": "Software-Engineering",
+      "desc": "Komplexe Geschäftslösungen und skalierbare SaaS-Plattformen.",
+      "items": ["Cloud-Architektur", "Interne Tools", "Skalierbare SaaS"]
+    },
+    "automation": {
+      "title": "Intelligenz & Automatisierung",
+      "desc": "Optimieren Sie Abläufe durch intelligente Algorithmen und Workflows.",
+      "items": ["KI-Integration", "Prozessautomatisierung", "Data Pipelines"]
+    },
+    "games": {
+      "title": "Interaktive Erlebnisse",
+      "desc": "Immersive Umgebungen und digitale Unterhaltung.",
+      "items": ["WebGL", "3D-Schnittstellen", "Gamification"]
+    },
+    "infra": {
+      "title": "Technische Partnerschaft",
+      "desc": "Vom Fundament bis zur neuesten Technologie.",
+      "items": ["Architektur-Audit", "Cloud-Migration", "DevOps"]
+    }
+  },
+  "cookies": {
+    "bannerTitle": "Datenschutz & Cookies",
+    "bannerText": "Wir verwenden Cookies, um die Leistung und Sicherheit unserer Plattform zu optimieren.",
+    "acceptAll": "Alle akzeptieren",
+    "rejectAll": "Alle ablehnen",
+    "settings": "Einstellungen",
+    "settingsTitle": "Cookie-Einstellungen",
+    "analyticsTitle": "Analytik",
+    "analyticsDesc": "Aktivieren Sie Analyse-Cookies, damit wir die Plattform verbessern können.",
+    "save": "Einstellungen speichern",
+    "cancel": "Abbrechen",
+    "reopen": "Einstellungen"
+  }
+}

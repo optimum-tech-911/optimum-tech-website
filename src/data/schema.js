@@ -20,6 +20,31 @@ export const schemaIds = {
 const businessDescription =
   'Optimum Tech crée des sites web professionnels, améliore la visibilité SEO locale, développe des applications web et des outils sur mesure, et met en place des automatisations utiles pour les entreprises.';
 
+const areasServed = [
+  { '@type': 'City', name: 'Sète' },
+  { '@type': 'AdministrativeArea', name: 'Hérault' },
+  { '@type': 'AdministrativeArea', name: 'Occitanie' },
+  { '@type': 'Country', name: 'France' },
+];
+
+const serviceCatalog = {
+  '@type': 'OfferCatalog',
+  name: 'Services digitaux Optimum Tech',
+  itemListElement: [
+    'Création de site web professionnel',
+    'Application web sur mesure',
+    'Logiciel et outil métier sur mesure',
+    'Référencement SEO local',
+    'Automatisation IA utile',
+  ].map((name) => ({
+    '@type': 'Offer',
+    itemOffered: {
+      '@type': 'Service',
+      name,
+    },
+  })),
+};
+
 export const buildEntityGraph = () => [
   {
     '@context': 'https://schema.org',
@@ -35,6 +60,22 @@ export const buildEntityGraph = () => [
     telephone: siteMeta.phone,
     email: siteMeta.email,
     sameAs: [siteMeta.socialLinks.instagram, siteMeta.socialLinks.linkedin],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: siteMeta.phone,
+      email: siteMeta.email,
+      contactType: 'customer service',
+      areaServed: 'FR',
+      availableLanguage: ['fr', 'en', 'es', 'ar'],
+    },
+    knowsAbout: [
+      'Création de site web',
+      'Design UX et UI',
+      'Application web sur mesure',
+      'Logiciel métier',
+      'Référencement SEO local',
+      'Automatisation par intelligence artificielle',
+    ],
   },
   {
     '@context': 'https://schema.org',
@@ -58,7 +99,14 @@ export const buildEntityGraph = () => [
     image: logoUrl,
     telephone: siteMeta.phone,
     email: siteMeta.email,
-    areaServed: ['Sète', 'Hérault', 'Occitanie', 'France'],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Sète',
+      addressRegion: 'Occitanie',
+      addressCountry: 'FR',
+    },
+    areaServed: areasServed,
+    hasOfferCatalog: serviceCatalog,
     provider: {
       '@id': schemaIds.organization,
     },

@@ -5,31 +5,59 @@
     "contact": "Contact",
     "services": "Services",
     "policy": "Politique",
-    "login": "Connexion"
+    "login": "Espace Client"
   },
   "hero": {
-    "build": "Construisez",
-    "faster": "plus vite",
-    "grow": "Développez-vous",
-    "smarter": "plus intelligemment",
-    "automate": "Automatisez",
-    "everything": "tout",
-    "blurb": "Nous concrétisons vos idées par le code, le développement logiciel et des applications haute performance. Des web apps sur mesure aux automatisations intelligentes, nous vous accompagnons de 0 jusqu'aux technologies les plus avancées.",
-    "growthTitle": "Nos Résultats",
-    "growth1": "Augmentation des ventes",
-    "growth2": "Plus de visibilité",
-    "growth3": "Plus de contrôle",
-    "growth4": "Scalability",
-    "ctaStart": "Commencer votre projet",
-    "ctaSee": "Voir nos réalisations",
-    "missionTitle": "Mission",
-    "mission1": "Notre mission est de rendre la technologie simple, rapide et accessible pour chaque entreprise.",
-    "mission2": "Chez Optimum Tech, nous créons des sites web performants, des automatisations intelligentes et des outils IA qui améliorent réellement votre quotidien.",
-    "mission3": "Notre objectif : vous faire gagner du temps, augmenter votre efficacité et vous aider à atteindre vos ambitions plus rapidement.",
-    "visionTitle": "Vision",
-    "vision1": "Nous imaginons un futur où l’IA et l’automatisation sont au service de tous — même des plus petites structures.",
-    "vision2": "Notre vision est un monde où chaque entrepreneur peut se développer plus vite, sans complexité technique et sans perte de temps, grâce à des solutions modernes, fiables et conçues pour durer.",
-    "vision3": "Chez Optimum Tech, nous construisons ce futur, un projet après l’autre."
+    "eyebrow": "Optimum Tech, Ingénierie Logicielle",
+    "title": "L'ingénierie numérique au service de votre vision",
+    "desc": "Plus qu'une simple présence en ligne, nous forgeons de véritables plateformes numériques. De l'architecture logicielle complexe aux interfaces immersives, nous transformons vos défis métiers en écosystèmes digitaux performants, pensés pour l'avenir.",
+    "cta_contact": "Parler de mon projet",
+    "cta_projects": "Voir les réalisations",
+    "signals": {
+      "scalable": "Architecture Évolutive",
+      "immersive": "Expériences Immersives",
+      "performance": "Haute Performance"
+    },
+    "proofs": {
+      "architecture": "Conception d'architectures scalables",
+      "development": "Développement sur mesure de haute précision",
+      "deployment": "Déploiement et maintien opérationnel"
+    },
+    "shortcuts": {
+      "web": "Plateformes Web",
+      "software": "Logiciels Métiers",
+      "seo": "Croissance Digitale",
+      "ai": "Intelligence Artificielle"
+    }
+  },
+  "home": {
+    "vision_eyebrow": "Notre vision",
+    "vision_title": "Créateurs d'écosystèmes numériques sur mesure pour les entreprises ambitieuses",
+    "vision_desc": "Nous ne nous contentons pas de concevoir des sites web ; nous architecturons des plateformes logicielles intégrées. De la vitrine digitale à l'outil de gestion complexe, notre ingénierie transforme la complexité technique en une expérience utilisateur fluide et performante.",
+    "services_eyebrow": "Réalisations sélectionnées",
+    "services_title": "Des projets visibles, du site professionnel à l’outil métier",
+    "services_desc": "Quelques références pour montrer le niveau de finition attendu : parcours patient, plateforme logistique, commerce local, outil administratif et présence de service.",
+    "services_cta": "Voir toutes les réalisations",
+    "method_eyebrow": "Méthode",
+    "method_title": "Une méthode courte, claire et orientée décision",
+    "method_desc": "L’objectif est de savoir vite ce qui mérite d’être construit, dans quel ordre et avec quel niveau de finition. Vous gardez une vision claire du budget, du contenu et des prochaines étapes.",
+    "method_cta": "Demander un échange",
+    "needs_eyebrow": "Besoins fréquents",
+    "needs_title": "Des pages utiles pour mieux cadrer votre demande",
+    "needs_desc": "Les besoins ne sont pas les mêmes pour un cabinet, un commerce, une PME ou une application métier. Ces pages aident à clarifier le bon niveau de projet avant le premier échange.",
+    "trust_eyebrow": "Confiance",
+    "trust_title": "Un accompagnement direct, local et sans promesse floue",
+    "local_eyebrow": "Repères locaux",
+    "resources_eyebrow": "Ressources",
+    "resources_title": "Des guides pour décider avant d’investir",
+    "resources_desc": "Des contenus en français pour comprendre les choix web, applicatifs, éditoriaux et SEO avant de lancer un budget.",
+    "resources_cta": "Explorer le blog",
+    "contact_eyebrow": "Contact direct",
+    "contact_title": "Parlons de ce que votre site doit vraiment changer",
+    "contact_desc": "Envoyez le contexte, même brièvement : activité, objectif, pages ou fonctionnalités souhaitées, délai idéal. La réponse peut commencer par un cadrage simple avant tout devis.",
+    "contact_phone": "Téléphone",
+    "contact_email": "E-mail",
+    "contact_zone": "Zone"
   },
   "contact_v2": {
     "title": "Parlons de votre projet",
@@ -49,13 +77,13 @@
         "desc": "Décrivez l'application parfaite que vous imaginez :"
       },
       "web": {
-        "title": "Créer un Site Web",
+        "title": "Écosystème Digital",
         "field": "Quel est votre domaine ?",
         "workers": "Combien d'employés avez-vous ?",
         "type": "Quel type de site ?",
         "types": {
           "vitrine": "Site Vitrine",
-          "ecom": "Vente de produits (E-commerce)",
+          "ecom": "E-commerce",
           "service": "Vente de services",
           "booking": "Réservation",
           "multi": "Multi-services"
@@ -81,15 +109,15 @@
     },
     "success": {
       "title": "Formulaire reçu !",
-      "message": "Nous reviendrons vers vous dans les plus brefs délais.",
+      "message": "Notre équipe d'ingénierie reviendra vers vous dans les plus brefs délais.",
       "urgent": "Si votre cas est urgent, contactez-nous par téléphone ou WhatsApp : +33 7 45 30 51 13"
     }
   },
-  "intro": { "title": "Optimum Tech", "subtitle": "Bienvenue sur votre site" },
+  "intro": { "title": "Optimum Tech", "subtitle": "Bienvenue sur votre plateforme" },
   "projects": {
     "title": "Projets",
     "swipeMore": "Glisser pour voir plus",
-    "swipeNext": "Voir suivant",
+    "swipeNext": "Projet suivant",
     "prev": "Projet précédent",
     "next": "Projet suivant"
   },
@@ -122,63 +150,63 @@
   "policy": { "title": "Politique générale" },
   "footer": {
     "rights": "Tous droits réservés.",
-    "description": "Nous créons des sites web, des web apps, des outils sur mesure et des automatisations utiles pour soutenir votre activité.",
+    "description": "Nous concevons des plateformes haute performance, des logiciels sur mesure et des automatisations intelligentes pour propulser votre activité.",
     "menuTitle": "Explorer",
     "contactTitle": "Contact",
     "location": "France • UE",
-    "hours": "Disponible 24/7 – nous sommes là à tout moment.",
-    "made": "Conçu avec soin – performance et accessibilité avant tout",
+    "hours": "Disponible 24/7",
+    "made": "Conçu avec précision",
     "links": {
       "home": "Retour à l'accueil",
       "services": "Nos Services",
       "projects": "Découvrir nos projets",
-      "policy": "Lire nos politiques",
-      "contact": "Entrer en contact"
+      "policy": "Mentions Légales",
+      "contact": "Contact"
     }
   },
   "services": {
-    "title": "Nos Services",
-    "subtitle": "Solutions technologiques sur mesure pour propulser votre activité.",
+    "title": "Nos Capacités",
+    "subtitle": "Solutions d'ingénierie sur mesure pour propulser votre activité.",
     "web": {
-      "title": "Développement Web",
-      "desc": "Sites vitrines, E-commerce, et Web Apps performantes.",
-      "items": ["React / Next.js", "E-commerce (Shopify/Woo)", "Portfolios Premium"]
+      "title": "Plateformes Web",
+      "desc": "Présence digitale haute performance, conçue pour la scalabilité et la conversion.",
+      "items": ["React / Next.js", "E-commerce Enterprise", "Portails Corporatifs"]
     },
     "mobile": {
-      "title": "Applications Mobiles",
-      "desc": "iOS et Android avec une expérience utilisateur fluide.",
-      "items": ["React Native", "Apps Natives", "Desktop Apps"]
+      "title": "Écosystèmes Mobiles",
+      "desc": "Applications avec une expérience utilisateur fluide et irréprochable.",
+      "items": ["React Native", "Multiplateforme", "Progressive Web Apps"]
     },
     "software": {
-      "title": "Logiciels & SaaS",
+      "title": "Ingénierie Logicielle",
       "desc": "Solutions métiers complexes et plateformes SaaS.",
-      "items": ["Architecture Cloud", "Dashboards", "SaaS Scalables"]
+      "items": ["Architecture Cloud", "Outils Internes", "SaaS Scalables"]
     },
     "automation": {
       "title": "IA & Automatisation",
-      "desc": "Gagnez du temps grâce à l'automatisation intelligente.",
-      "items": ["Workflows IA", "Bots & Scripts", "Optimisation Processus"]
+      "desc": "Optimisez vos opérations grâce aux algorithmes et workflows intelligents.",
+      "items": ["Intégration IA", "Automatisation Processus", "Data Pipelines"]
     },
     "games": {
-      "title": "Jeux & Interactif",
-      "desc": "Expériences immersives et divertissement numérique.",
-      "items": ["Unity / Unreal", "Jeux Web", "3D Interactive"]
+      "title": "Expériences Interactives",
+      "desc": "Environnements immersifs et divertissement numérique.",
+      "items": ["WebGL", "Interfaces 3D", "Gamification"]
     },
     "infra": {
-      "title": "Accompagnement Tech",
-      "desc": "De 0 à la pointe de la technologie.",
-      "items": ["Audit Tech", "Migration Cloud", "Maintenance 24/7"]
+      "title": "Partenaire Technologique",
+      "desc": "Des fondations à la pointe de la technologie.",
+      "items": ["Audit Architecture", "Migration Cloud", "DevOps"]
     }
   },
   "cookies": {
-    "bannerTitle": "Cookies",
-    "bannerText": "Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez accepter, refuser ou gérer vos préférences.",
+    "bannerTitle": "Confidentialité & Cookies",
+    "bannerText": "Nous utilisons des cookies pour optimiser la performance et la sécurité de notre plateforme.",
     "acceptAll": "Accepter tout",
     "rejectAll": "Refuser tout",
     "settings": "Paramètres",
     "settingsTitle": "Paramètres des cookies",
-    "analyticsTitle": "Statistiques (GTM/GA)",
-    "analyticsDesc": "Activez les cookies analytiques pour des mesures anonymisées.",
+    "analyticsTitle": "Statistiques",
+    "analyticsDesc": "Activez les cookies analytiques pour nous aider à améliorer la plateforme.",
     "save": "Enregistrer",
     "cancel": "Annuler",
     "reopen": "Paramètres"

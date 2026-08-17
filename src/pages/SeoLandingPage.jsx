@@ -6,7 +6,6 @@ import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useTheme } from '../context/ThemeContext';
-import { ContactActions } from '../components/ContactActions';
 import { buildCanonicalUrl, schemaIds } from '../data/schema';
 
 const buildBreadcrumbSchema = (items) => ({
@@ -66,7 +65,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
   const relatedLinks = (page.relatedLinks?.length ? page.relatedLinks : defaultRelatedLinks)
     .filter((item) => item.to !== `/${page.slug}`);
   const quickNav = page.quickNav || [];
-  const heroPrimaryLabel = page.heroPrimaryLabel || 'Demander un devis';
+  const heroPrimaryLabel = page.heroPrimaryLabel || 'Parler de votre projet';
   const heroPrimaryTo = page.heroPrimaryTo || '/contact';
   const heroSecondaryLabel = page.heroSecondaryLabel || null;
   const heroSecondaryTo = page.heroSecondaryTo || null;
@@ -75,7 +74,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
 
   return (
     <div
-      className={`min-h-screen flex flex-col transition-colors duration-500 ${
+      className={`ux-page flex min-h-screen flex-col transition-colors duration-500 ${
         theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
       }`}
     >
@@ -92,10 +91,10 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
       />
       <Navbar />
 
-      <main className="flex-1 px-4 py-28 md:px-6">
+      <main className="flex-1 px-5 pb-20 pt-28 sm:px-6 md:pt-32">
         <section className="mx-auto max-w-6xl">
           <div
-            className={`overflow-hidden rounded-[2.8rem] border px-6 py-10 md:px-10 md:py-14 ${
+            className={`overflow-hidden rounded-[1.75rem] border px-5 py-8 sm:px-6 md:rounded-[2.5rem] md:px-10 md:py-14 ${
               theme === 'dark'
                 ? 'border-white/10 bg-white/5'
                 : 'border-black/10 bg-white/75 shadow-xl'
@@ -108,17 +107,17 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                   <Sparkles className="h-4 w-4" />
                   {page.heroEyebrow}
                 </div>
-                <h1 className="mt-5 max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">
+                <h1 className="mt-5 max-w-4xl text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-6xl">
                   {page.h1}
                 </h1>
-                <p className={`mt-5 max-w-3xl text-lg leading-8 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
+                <p className={`mt-5 max-w-3xl text-base leading-8 sm:text-lg ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
                   {page.intro}
                 </p>
 
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                   <Link
                     to={heroPrimaryTo}
-                    className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0A84FF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0A84FF]/90"
+                    className="inline-flex min-h-12 items-center justify-center gap-3 rounded-xl bg-[#0A84FF] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 hover:bg-[#0576e6]"
                   >
                     {heroPrimaryLabel}
                     <ArrowRight className="h-4 w-4" />
@@ -126,7 +125,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                   {heroSecondaryLabel && heroSecondaryTo ? (
                     <Link
                       to={heroSecondaryTo}
-                      className={`inline-flex items-center justify-center gap-3 rounded-full border px-6 py-3 text-sm font-semibold transition ${
+                      className={`inline-flex min-h-12 items-center justify-center gap-3 rounded-xl border px-6 py-3 text-sm font-semibold transition ${
                         theme === 'dark'
                           ? 'border-white/10 bg-white/5 text-white hover:bg-white/10'
                           : 'border-black/10 bg-black/5 text-black hover:bg-black/10'
@@ -138,7 +137,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                   {heroTertiaryLabel && heroTertiaryTo ? (
                     <Link
                       to={heroTertiaryTo}
-                      className={`inline-flex items-center justify-center gap-3 rounded-full border px-6 py-3 text-sm font-semibold transition ${
+                      className={`inline-flex min-h-12 items-center justify-center gap-3 rounded-xl border px-6 py-3 text-sm font-semibold transition ${
                         theme === 'dark'
                           ? 'border-white/10 bg-white/5 text-white hover:bg-white/10'
                           : 'border-black/10 bg-black/5 text-black hover:bg-black/10'
@@ -148,7 +147,6 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                     </Link>
                   ) : null}
                 </div>
-                <ContactActions includeContactPage className="mt-5" />
               </div>
 
               <aside
@@ -187,7 +185,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
         {quickNav.length ? (
           <section className="mx-auto mt-8 max-w-6xl">
             <div
-              className={`rounded-[2rem] border p-6 md:p-8 ${
+              className={`rounded-[1.5rem] border p-5 md:rounded-[2rem] md:p-8 ${
                 theme === 'dark'
                   ? 'border-white/10 bg-white/5'
                   : 'border-black/10 bg-white/80 shadow-lg'
@@ -196,12 +194,12 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
                 Dans cette page
               </p>
-              <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              <div className="mobile-card-scroll no-scrollbar -mx-5 mt-5 flex snap-x gap-3 overflow-x-auto px-5 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 xl:grid-cols-3">
                 {quickNav.map((item) => (
                   <a
                     key={item.id}
                     href={`#${item.id}`}
-                    className={`rounded-[1.4rem] border px-4 py-4 text-sm font-medium transition ${
+                    className={`min-h-12 w-[78vw] max-w-sm shrink-0 snap-start rounded-xl border px-4 py-4 text-sm font-medium transition md:w-auto md:max-w-none ${
                       theme === 'dark'
                         ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
                         : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
@@ -215,7 +213,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
           </section>
         ) : null}
 
-        <section className="mx-auto mt-12 max-w-6xl grid gap-6 lg:grid-cols-[1fr_320px]">
+        <section className="mx-auto mt-10 grid max-w-6xl gap-6 lg:mt-12 lg:grid-cols-[1fr_320px]">
           <div className="space-y-6">
             {page.sections.map((section) => (
               <section
@@ -386,7 +384,6 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                         </Link>
                       ) : null}
                     </div>
-                    <ContactActions className="mt-4" />
                   </div>
                 ) : null}
               </section>
@@ -402,23 +399,26 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                 }`}
               >
                 <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Questions fréquentes</h2>
-                <div className="mt-6 space-y-5">
-                  {page.faq.map((item) => (
-                    <div key={item.question} className={`rounded-[1.5rem] border p-5 ${
+                <div className="mt-6 space-y-3">
+                  {page.faq.map((item, index) => (
+                    <details key={item.question} open={index === 0} className={`group rounded-[1.25rem] border p-5 ${
                       theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
                     }`}>
-                      <h3 className="text-lg font-semibold">{item.question}</h3>
+                      <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-lg font-semibold">
+                        <span>{item.question}</span>
+                        <span aria-hidden="true" className="text-2xl font-light leading-none text-[#0A84FF] transition group-open:rotate-45">+</span>
+                      </summary>
                       <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
                         {item.answer}
                       </p>
-                    </div>
+                    </details>
                   ))}
                 </div>
               </section>
             ) : null}
           </div>
 
-          <aside className="space-y-5">
+          <aside className="space-y-5 lg:sticky lg:top-24 lg:self-start">
             <div
               className={`rounded-[2rem] border p-5 ${
                 theme === 'dark'
@@ -469,7 +469,6 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                 Parler de votre projet
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <ContactActions className="mt-4" />
             </div>
           </aside>
         </section>

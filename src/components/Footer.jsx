@@ -14,8 +14,8 @@ export const Footer = () => {
 
   return (
     <footer className="brand-footer relative border-t-[3px] border-[#0A84FF] bg-[#050607] text-white">
-      <div className="container mx-auto max-w-[1200px] px-6 py-20 sm:px-8 lg:py-24">
-        <div className="grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-8">
+      <div className="container mx-auto max-w-[1200px] px-5 py-16 sm:px-8 lg:py-24">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-8 lg:gap-10">
           <div className="space-y-6 lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 group">
               <img
@@ -23,7 +23,7 @@ export const Footer = () => {
                 alt=""
                 width="40"
                 height="40"
-                className="h-10 w-10 rounded-xl transition-transform duration-500 group-hover:scale-110"
+                className="h-10 w-10 rounded-xl transition-transform duration-500 group-hover:scale-105"
               />
               <span className="text-xl font-bold text-white">
                 Optimum Tech
@@ -78,7 +78,7 @@ export const Footer = () => {
               <a href="tel:+33745305113" className="hover:text-[#0A84FF] transition-colors">
                 +33 7 45 30 51 13
               </a>
-              <a href="mailto:optimum.tech.911@gmail.com" className="hover:text-[#0A84FF] transition-colors">
+              <a href="mailto:optimum.tech.911@gmail.com" className="break-all transition-colors hover:text-[#0A84FF]">
                 optimum.tech.911@gmail.com
               </a>
             </div>
@@ -125,7 +125,7 @@ export const Footer = () => {
                   rel={social.external ? 'noopener noreferrer' : undefined}
                   title={social.title}
                   aria-label={social.title}
-                  className={`h-10 w-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
+                  className={`flex h-11 w-11 items-center justify-center rounded-xl border transition-all duration-300 ${
                     theme === 'dark' 
                       ? 'border-white/10 text-white/60 hover:text-white hover:bg-white/10' 
                       : 'border-black/10 text-black/60 hover:text-black hover:bg-black/10'
@@ -180,11 +180,11 @@ export const Footer = () => {
           </div>
         </div>
         
-        <div className={`mt-20 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-light ${
+        <div className={`mt-14 flex flex-col items-center justify-between gap-5 border-t pt-8 text-center text-sm font-light md:mt-20 md:flex-row md:text-left ${
           theme === 'dark' ? 'border-white/5 text-white/40' : 'border-black/5 text-black/40'
         }`}>
           <p>© {currentYear} Optimum Tech. {t('footer.rights') || 'Tous droits réservés.'}</p>
-          <div className="flex gap-8">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 md:justify-end">
             <Link to="/privacy-policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Confidentialité</Link>
             <Link to="/cookie-policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Cookies</Link>
             <Link to="/policy" className={`transition-colors ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>Mentions légales</Link>

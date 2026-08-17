@@ -295,7 +295,7 @@ export const Contact = () => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col transition-colors duration-500 ${
+    <div className={`ux-page flex min-h-screen flex-col transition-colors duration-500 ${
       theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
     }`}>
       <SEO
@@ -312,8 +312,8 @@ export const Contact = () => {
       />
       <Navbar />
 
-      <main className="flex-grow container mx-auto px-6 py-32 flex flex-col items-center">
-        <section className={`mb-8 w-full max-w-5xl rounded-[2.5rem] border p-6 md:p-8 ${
+      <main className="container mx-auto flex flex-grow flex-col items-center px-5 pb-20 pt-28 sm:px-6 md:pt-32">
+        <section className={`mb-8 w-full max-w-5xl rounded-[1.75rem] border p-5 sm:p-6 md:rounded-[2.5rem] md:p-8 ${
           theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
         }`}>
             <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -348,7 +348,7 @@ export const Contact = () => {
                 </div>
               ))}
             </div>
-            <ContactActions className="mt-8" />
+            <ContactActions className="mt-2 lg:col-span-2" />
           </div>
         </section>
 
@@ -360,12 +360,12 @@ export const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.25 }}
-              className={`w-full max-w-3xl p-8 md:p-12 rounded-[3rem] border shadow-2xl relative ${
+              className={`relative w-full max-w-3xl rounded-[1.75rem] border p-5 shadow-2xl sm:p-8 md:rounded-[3rem] md:p-12 ${
                 theme === 'dark' ? 'bg-black/40 border-white/10' : 'bg-gray-500/10 border-black/10 backdrop-blur-2xl shadow-2xl'
               }`}
             >
               <div className="text-center mb-10">
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Parlez-nous de votre projet</h2>
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Parlez-nous de votre projet</h2>
                 <p className={`mt-4 text-base leading-8 md:text-lg ${theme === 'dark' ? 'text-white/65' : 'text-black/65'}`}>
                   Décrivez simplement votre besoin en création de site web, web app, logiciel sur mesure, SEO local, automatisation utile ou accompagnement digital. Nous revenons vers vous rapidement avec une réponse claire.
                 </p>
@@ -424,7 +424,7 @@ export const Contact = () => {
                     type="button"
                     onClick={() => setCategory(null)}
                     aria-pressed={category === null}
-                    className={`rounded-full border px-4 py-2 text-sm transition ${
+                    className={`min-h-11 rounded-full border px-4 py-2 text-sm transition ${
                       category === null
                         ? 'border-[#0A84FF]/40 bg-[#0A84FF]/15 text-[#0A84FF]'
                         : theme === 'dark'
@@ -440,7 +440,7 @@ export const Contact = () => {
                       type="button"
                       onClick={() => setCategory(item.id)}
                       aria-pressed={category === item.id}
-                      className={`rounded-full border px-4 py-2 text-sm transition ${
+                      className={`min-h-11 rounded-full border px-4 py-2 text-sm transition ${
                         category === item.id
                           ? 'border-[#0A84FF]/40 bg-[#0A84FF]/15 text-[#0A84FF]'
                           : theme === 'dark'
@@ -480,8 +480,8 @@ export const Contact = () => {
                       }`} />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="phone" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Téléphone</label>
-                      <input id="phone" name="phone" autoComplete="tel" inputMode="tel" required type="tel" value={formData.phone} onChange={setField('phone')} placeholder="Ex: +33 6 12 34 56 78" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
+                      <label htmlFor="phone" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Téléphone <span className="font-normal opacity-60">(optionnel)</span></label>
+                      <input id="phone" name="phone" autoComplete="tel" inputMode="tel" type="tel" value={formData.phone} onChange={setField('phone')} placeholder="Ex: +33 6 12 34 56 78" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
                         theme === 'dark' 
                           ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
                           : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
@@ -529,7 +529,12 @@ export const Contact = () => {
                     </div>
                   )}
 
-                  <button disabled={isSubmitting} aria-busy={isSubmitting} type="submit" className="w-full py-5 rounded-full bg-[#0A84FF] text-white font-bold text-xl shadow-xl shadow-[#0A84FF]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:hover:scale-100">
+                  <p className={`text-sm leading-6 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}>
+                    En envoyant ce formulaire, vous acceptez que nous utilisions ces informations uniquement pour répondre à votre demande.{' '}
+                    <Link to="/privacy-policy" className="font-medium text-[#0A84FF]">Confidentialité</Link>
+                  </p>
+
+                  <button disabled={isSubmitting} aria-busy={isSubmitting} type="submit" className="flex min-h-14 w-full items-center justify-center gap-3 rounded-xl bg-[#0A84FF] px-6 py-4 text-base font-bold text-white shadow-xl shadow-[#0A84FF]/20 transition-all hover:-translate-y-0.5 hover:bg-[#0576e6] active:translate-y-0 disabled:opacity-70 disabled:hover:translate-y-0">
                     <Send size={20} />
                     {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
                   </button>
@@ -555,9 +560,9 @@ export const Contact = () => {
               <div className={`p-6 rounded-2xl border ${
                 theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-black/5 border-black/10'
               }`}>
-                <p className="text-sm font-medium mb-2">Besoin d’une réponse urgente ?</p>
-                <p className="text-[#0A84FF] font-bold text-lg">Contactez-nous sur WhatsApp :</p>
-                <a href="https://wa.me/33745305113" className="text-2xl font-mono mt-2 block hover:underline">+33 7 45 30 51 13</a>
+                <p className="mb-2 text-sm font-medium">Vous préférez échanger directement ?</p>
+                <p className="text-lg font-bold text-[#0A84FF]">Retrouvez-nous aussi sur WhatsApp</p>
+                <a href="https://api.whatsapp.com/send?phone=33745305113" className="mt-2 block text-xl font-mono hover:underline sm:text-2xl">+33 7 45 30 51 13</a>
               </div>
 
               <button

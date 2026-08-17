@@ -72,10 +72,10 @@ const NavDropdown = ({ label, overviewTo, groups, openMenu, setOpenMenu, variant
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className={`fixed inset-x-0 top-[6.5rem] z-50 border-y border-black/10 bg-white text-black shadow-2xl ${isProjectsMenu ? 'max-h-[calc(100vh-6.5rem)] overflow-y-auto' : ''}`}
+            className={`fixed inset-x-0 top-20 z-50 border-y border-black/10 bg-white text-black shadow-2xl ${isProjectsMenu ? 'max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain' : ''}`}
             onMouseEnter={() => setOpenMenu(label)}
           >
-            <div className="mx-auto grid w-full max-w-[1200px] grid-cols-3 gap-8 px-8 py-8">
+            <div className="mx-auto grid w-full max-w-[1200px] grid-cols-3 gap-8 px-8 py-7">
               {groups.map((group) => (
                 <div key={group.title} className="space-y-3">
                   <p className="text-xs font-bold uppercase tracking-[0.16em] text-black/45">
@@ -135,6 +135,7 @@ export const Navbar = () => {
   const [mobileSection, setMobileSection] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const location = useLocation();
   const current = LANG_OPTIONS.find((l) => l.code === lang) || LANG_OPTIONS[0];
   const overlayHeader = location.pathname === '/' && !scrolled && !openMenu && !mobileMenuOpen;
@@ -163,10 +164,19 @@ export const Navbar = () => {
     let previousY = window.scrollY;
     const handleScroll = () => {
       const nextY = window.scrollY;
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
       setScrolled(nextY > 24);
-      setHidden(nextY > previousY && nextY > 180 && !mobileMenuOpen && !openMenu);
+      setScrollProgress(scrollableHeight > 0 ? Math.min(nextY / scrollableHeight, 1) : 0);
+      setHidden(
+        window.innerWidth >= 1280 &&
+        nextY > previousY &&
+        nextY > 180 &&
+        !mobileMenuOpen &&
+        !openMenu
+      );
       previousY = nextY;
     };
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [mobileMenuOpen, openMenu]);
@@ -257,7 +267,12 @@ export const Navbar = () => {
 
   const mobileGroups = [
     { id: 'services', label: 'Services', overviewTo: '/services', groups: servicesMenu },
-    { id: 'projects', label: t('nav.projects'), overviewTo: '/realisations', groups: projectsMenu },
+    {
+      id: 'projects',
+      label: t('nav.projects'),
+      overviewTo: '/realisations',
+      groups: projectsMenu.map((group) => ({ ...group, links: group.links.slice(0, 3) })),
+    },
     { id: 'blog', label: 'Blog', overviewTo: '/blog', groups: blogMenu },
   ];
 
@@ -270,17 +285,17 @@ export const Navbar = () => {
         initial={false}
         animate={{ y: 0, opacity: 1 }}
         aria-label="Navigation principale"
-        className={`flex min-h-[6.5rem] w-full items-center justify-between px-5 py-3 backdrop-blur-xl transition-all duration-500 sm:px-8 lg:px-12 ${openMenu ? 'nav-menu-open bg-white shadow-xl' : overlayHeader ? 'home-nav-transparent shadow-none' :
+        className={`relative flex min-h-20 w-full items-center justify-between border-b px-5 py-3 backdrop-blur-xl transition-all duration-500 sm:px-8 lg:px-12 ${openMenu ? 'nav-menu-open bg-white shadow-xl' : overlayHeader ? 'home-nav-transparent shadow-none' :
           theme === 'dark'
             ? 'border-white/10 bg-[#050607]/95 shadow-xl'
             : `${scrolled ? 'border-[#050607]/10 bg-[#FFFFFF]/95 shadow-md' : 'border-[#050607]/10 bg-[#FFFFFF]/90'}`
         }`}
       >
-        <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
+        <Link to="/" aria-label="Optimum Tech — Accueil" className="group flex flex-shrink-0 items-center gap-3">
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
-            <img src="/android-chrome-192x192.png" alt="" width="48" height="48" className="h-12 w-12 rounded-full shadow-sm" />
+            <img src="/android-chrome-192x192.png" alt="" width="42" height="42" className="h-10 w-10 rounded-xl shadow-sm sm:h-[42px] sm:w-[42px]" />
           </motion.div>
-          <span className={`whitespace-nowrap text-xl font-bold transition-colors sm:text-2xl ${
+          <span className={`whitespace-nowrap text-lg font-bold transition-colors sm:text-xl ${
             theme === 'dark' ? 'text-white' : 'text-[#050607]'
           }`}>
             Optimum Tech
@@ -314,7 +329,7 @@ export const Navbar = () => {
             onClick={toggleTheme}
             aria-label={theme === 'dark' ? 'Activer le thème clair' : 'Activer le thème sombre'}
             title={theme === 'dark' ? 'Thème clair' : 'Thème sombre'}
-            className={`rounded-lg p-3 transition-all duration-300 ${
+            className={`grid h-11 w-11 place-items-center rounded-xl p-0 transition-all duration-300 ${
               theme === 'dark' ? 'hover:bg-white/10 text-white' : 'hover:bg-black/5 text-black'
             }`}
           >
@@ -375,13 +390,18 @@ export const Navbar = () => {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
             aria-label={mobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-            className={`rounded-lg p-2 xl:hidden ${
+            className={`grid h-11 w-11 place-items-center rounded-xl p-0 xl:hidden ${
               theme === 'dark' ? 'text-white hover:bg-white/10' : 'text-black hover:bg-black/5'
             }`}
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
+        <span
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-[#0A84FF] transition-transform duration-150"
+          style={{ transform: `scaleX(${scrollProgress})` }}
+        />
       </motion.nav>
 
       {/* Mobile Menu */}
@@ -392,25 +412,22 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className={`fixed inset-x-0 top-[6.5rem] max-h-[calc(100vh-6.5rem)] overflow-y-auto overscroll-contain border-t p-6 shadow-2xl backdrop-blur-2xl xl:hidden ${
-              theme === 'dark' ? 'border-white/10 bg-[#050607]/98' : 'border-[#0A84FF]/40 bg-[#050607]/98 text-white'
-            }`}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed inset-x-0 top-20 h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#050607]/[0.98] px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-5 text-white shadow-2xl backdrop-blur-2xl xl:hidden"
           >
-            <div className="flex flex-col gap-4">
+            <div className="mx-auto flex max-w-2xl flex-col gap-3">
               {primaryNavItems.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-lg font-semibold ${
-                    theme === 'dark' ? 'text-white' : 'text-black'
-                  }`}
+                  className="flex min-h-12 items-center rounded-xl px-3 text-base font-semibold text-white transition hover:bg-white/10"
                 >
                   {item.label}
                 </Link>
               ))}
               {mobileGroups.map((section) => (
-                <div key={section.id} className="rounded-lg border border-current/10 p-3">
+                <div key={section.id} className="rounded-2xl border border-white/10 bg-white/[0.035] p-2">
                   <div className="flex items-center justify-between gap-3">
                     <Link
                       to={section.overviewTo}
@@ -418,7 +435,7 @@ export const Navbar = () => {
                         setMobileMenuOpen(false);
                         setMobileSection(null);
                       }}
-                      className={`flex-1 py-2 text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}
+                      className="flex min-h-12 flex-1 items-center rounded-xl px-2 text-base font-semibold text-white transition hover:bg-white/5"
                     >
                       {section.label}
                     </Link>
@@ -428,7 +445,7 @@ export const Navbar = () => {
                       aria-expanded={mobileSection === section.id}
                       aria-controls={`mobile-${section.id}-links`}
                       aria-label={`${mobileSection === section.id ? 'Fermer' : 'Ouvrir'} le menu ${section.label}`}
-                      className={`grid h-11 w-11 shrink-0 place-items-center rounded-full ${theme === 'dark' ? 'text-white hover:bg-white/10' : 'text-black hover:bg-black/5'}`}
+                      className="grid h-11 w-11 shrink-0 place-items-center rounded-xl text-white transition hover:bg-white/10"
                     >
                       <ChevronDown className={`h-5 w-5 transition-transform ${mobileSection === section.id ? 'rotate-180' : ''}`} />
                     </button>
@@ -437,9 +454,7 @@ export const Navbar = () => {
                     <div id={`mobile-${section.id}-links`} className="mt-4 space-y-4">
                       {section.groups.map((group) => (
                         <div key={group.title} className="space-y-2">
-                          <p className={`text-xs uppercase tracking-[0.16em] ${
-                            theme === 'dark' ? 'text-white/40' : 'text-black/40'
-                          }`}>
+                          <p className="px-2 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-white/45">
                             {group.title}
                           </p>
                           <div className="flex flex-col gap-2">
@@ -448,9 +463,7 @@ export const Navbar = () => {
                                 setMobileMenuOpen(false);
                                 setMobileSection(null);
                               };
-                              const className = `rounded-lg px-3 py-2 text-sm ${
-                                theme === 'dark' ? 'bg-white/5 text-white/80' : 'bg-black/5 text-black/80'
-                              }`;
+                              const className = 'flex min-h-11 items-center rounded-xl bg-white/5 px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white';
 
                               return item.href ? (
                                 <a
@@ -485,9 +498,7 @@ export const Navbar = () => {
               <Link
                 to="/auth"
                 onClick={() => setMobileMenuOpen(false)}
-                className={`text-lg font-semibold ${
-                  theme === 'dark' ? 'text-white' : 'text-black'
-                }`}
+                className="flex min-h-12 items-center rounded-xl bg-[#0A84FF] px-4 text-base font-bold text-white"
               >
                 Espace client
               </Link>
@@ -497,10 +508,10 @@ export const Navbar = () => {
                     key={opt.code}
                     type="button"
                     onClick={() => { setLang(opt.code); setMobileMenuOpen(false); }}
-                    className={`rounded-lg px-4 py-2 text-sm font-medium ${
+                    className={`min-h-11 rounded-xl px-4 py-2 text-sm font-medium ${
                       lang === opt.code 
-                        ? (theme === 'dark' ? 'bg-white/20 text-white' : 'bg-black/10 text-black')
-                        : (theme === 'dark' ? 'bg-white/5 text-white/60' : 'bg-black/5 text-black/60')
+                        ? 'bg-white/20 text-white'
+                        : 'bg-white/5 text-white/60'
                     }`}
                   >
                     {opt.label}

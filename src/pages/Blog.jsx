@@ -21,7 +21,7 @@ export const BlogPage = () => {
 
   return (
     <div
-      className={`min-h-screen flex flex-col transition-colors duration-500 ${
+      className={`ux-page flex min-h-screen flex-col transition-colors duration-500 ${
         theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
       }`}
     >
@@ -38,10 +38,10 @@ export const BlogPage = () => {
       />
       <Navbar />
 
-      <main className="flex-1 px-4 py-28 md:px-6">
+      <main className="flex-1 px-5 pb-20 pt-28 sm:px-6 md:pt-32">
         <section className="mx-auto max-w-6xl">
           <div
-            className={`overflow-hidden rounded-[2.5rem] border px-6 py-10 md:px-10 md:py-14 ${
+            className={`overflow-hidden rounded-[1.75rem] border px-5 py-8 sm:px-6 md:rounded-[2.5rem] md:px-10 md:py-14 ${
               theme === 'dark'
                 ? 'border-white/10 bg-white/5'
                 : 'border-black/10 bg-white/70 shadow-xl'
@@ -52,7 +52,7 @@ export const BlogPage = () => {
                 <Sparkles className="h-4 w-4" />
                 Blog croissance digitale France
               </div>
-              <h1 className="max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">
+              <h1 className="max-w-4xl text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl md:text-6xl">
                 Des ressources utiles pour mieux décider avant d’investir dans un site, une application, un outil métier ou une stratégie de visibilité digitale
               </h1>
               <p className={`mt-5 max-w-3xl text-base leading-8 md:text-xl ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>

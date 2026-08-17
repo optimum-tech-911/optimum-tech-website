@@ -5,91 +5,119 @@
     "contact": "Contacto",
     "services": "Servicios",
     "policy": "Política",
-    "login": "Iniciar sesión"
+    "login": "Portal de Clientes"
   },
   "hero": {
-    "build": "Construye",
-    "faster": "más rápido",
-    "grow": "Crece",
-    "smarter": "más inteligente",
-    "automate": "Automatiza",
-    "everything": "todo",
-    "blurb": "Hacemos realidad tus ideas mediante el código, el desarrollo de software y aplicaciones de alto rendimiento. Desde aplicaciones web personalizadas hasta automatizaciones inteligentes, te acompañamos desde 0 hasta las últimas tecnologías.",
-    "growthTitle": "Nuestros Resultados",
-    "growth1": "Aumento de Ventas",
-    "growth2": "Más Visibilidad",
-    "growth3": "Más Control",
-    "growth4": "Escalabilidad",
-    "ctaStart": "Comienza tu proyecto",
-    "ctaSee": "Ver nuestro trabajo",
-    "missionTitle": "Misión",
-    "mission1": "Nuestra misión es hacer la tecnología simple, rápida y accesible para cada empresa.",
-    "mission2": "En Optimum Tech creamos sitios web de alto rendimiento, automatizaciones inteligentes y herramientas de IA que mejoran tu día a día.",
-    "mission3": "Nuestro objetivo: ahorrarte tiempo, aumentar tu eficiencia y ayudarte a alcanzar tus metas más rápido.",
-    "visionTitle": "Visión",
-    "vision1": "Imaginamos un futuro donde la IA y la automatización estén al servicio de todos — incluso de las estructuras más pequeñas.",
-    "vision2": "Nuestra visión es un mundo donde cada emprendedor pueda crecer más rápido, sin complejidad técnica ni pérdida de tiempo, gracias a soluciones modernas, fiables y duraderas.",
-    "vision3": "En Optimum Tech construimos ese futuro, un proyecto tras otro."
+    "eyebrow": "Optimum Tech, Ingeniería de Software",
+    "title": "Ingeniería digital al servicio de su visión",
+    "desc": "Más que una simple presencia en línea, forjamos verdaderas plataformas digitales. Desde la arquitectura de software compleja hasta interfaces inmersivas, transformamos sus desafíos comerciales en ecosistemas digitales de alto rendimiento, diseñados para el futuro.",
+    "cta_contact": "Hablar de mi proyecto",
+    "cta_projects": "Ver nuestro trabajo",
+    "signals": {
+      "scalable": "Arquitectura Escalable",
+      "immersive": "Experiencias Inmersivas",
+      "performance": "Alto Rendimiento"
+    },
+    "proofs": {
+      "architecture": "Diseño de arquitecturas escalables",
+      "development": "Desarrollo a medida de alta precisión",
+      "deployment": "Despliegue y mantenimiento operativo"
+    },
+    "shortcuts": {
+      "web": "Plataformas Web",
+      "software": "Software Empresarial",
+      "seo": "Crecimiento Digital",
+      "ai": "Inteligencia Artificial"
+    }
+  },
+  "home": {
+    "vision_eyebrow": "Nuestra Visión",
+    "vision_title": "Creadores de ecosistemas digitales a medida para empresas ambiciosas",
+    "vision_desc": "No nos limitamos a diseñar sitios web; arquitectamos plataformas de software integradas. Desde un escaparate digital hasta una herramienta de gestión compleja, nuestra ingeniería transforma la complejidad técnica en una experiencia de usuario fluida y de alto rendimiento.",
+    "services_eyebrow": "Proyectos Seleccionados",
+    "services_title": "Proyectos visibles, desde sitios profesionales hasta herramientas empresariales",
+    "services_desc": "Algunas referencias para mostrar el nivel de acabado esperado: recorrido del paciente, plataforma logística, comercio local, herramienta administrativa y presencia de servicio.",
+    "services_cta": "Ver todos los proyectos",
+    "method_eyebrow": "Metodología",
+    "method_title": "Un método breve, claro y orientado a la decisión",
+    "method_desc": "El objetivo es saber rápidamente qué vale la pena construir, en qué orden y con qué nivel de acabado. Usted mantiene una visión clara del presupuesto, el contenido y los siguientes pasos.",
+    "method_cta": "Solicitar una consulta",
+    "needs_eyebrow": "Necesidades Frecuentes",
+    "needs_title": "Páginas útiles para enmarcar mejor su solicitud",
+    "needs_desc": "Las necesidades no son las mismas para una clínica, una tienda, una pyme o una aplicación empresarial. Estas páginas ayudan a aclarar el nivel de proyecto adecuado antes del primer intercambio.",
+    "trust_eyebrow": "Confianza",
+    "trust_title": "Acompañamiento directo y local, sin promesas vagas",
+    "local_eyebrow": "Puntos de Referencia",
+    "resources_eyebrow": "Recursos",
+    "resources_title": "Guías para decidir antes de invertir",
+    "resources_desc": "Contenidos para comprender las opciones web, aplicativas, editoriales y de SEO antes de comprometer un presupuesto.",
+    "resources_cta": "Explorar el blog",
+    "contact_eyebrow": "Contacto Directo",
+    "contact_title": "Hablemos de lo que su sistema realmente necesita cambiar",
+    "contact_desc": "Envíenos el contexto, aunque sea brevemente: actividad, objetivo, páginas o funcionalidades deseadas, plazo ideal. La respuesta puede comenzar con un encuadre simple antes de cualquier presupuesto.",
+    "contact_phone": "Teléfono",
+    "contact_email": "Correo",
+    "contact_zone": "Zona"
   },
   "contact_v2": {
     "title": "Hablemos de tu proyecto",
     "subtitle": "Elige una categoría para comenzar la experiencia.",
     "back": "Atrás",
     "close": "Cerrar",
-    "fillForm": "Completar formulario de contacto",
+    "fillForm": "Completar formulario",
     "readyTitle": "¿Listo para transformar tu idea?",
-    "launchProject": "Lanzar tu proyecto",
+    "launchProject": "Lanzar proyecto",
     "questions": {
       "main": "¿Qué estás buscando?",
       "app": {
-        "title": "Crear una Aplicación",
-        "field": "¿Cuál es tu campo de actividad?",
+        "title": "Construir una Plataforma",
+        "field": "¿Cuál es tu industria?",
         "goal": "¿Cuál es tu objetivo principal?",
-        "team": "¿Cuántas personas sois?",
-        "desc": "Describe la aplicación perfecta que imaginas:"
+        "team": "¿De qué tamaño es tu equipo?",
+        "desc": "Describe la plataforma que imaginas:"
       },
       "web": {
-        "title": "Crear un Sitio Web",
-        "field": "¿Cuál es tu sector?",
+        "title": "Ecosistema Digital",
+        "field": "¿Cuál es tu campo?",
         "workers": "¿Cuántos empleados tienes?",
-        "type": "¿Qué tipo de sitio?",
+        "type": "¿Qué tipo de ecosistema?",
         "types": {
-          "vitrine": "Sitio Vitrina",
-          "ecom": "Venta de productos (E-commerce)",
-          "service": "Venta de servicios",
-          "booking": "Reservas",
-          "multi": "Multi-servicios"
+          "vitrine": "Presencia Corporativa",
+          "ecom": "Plataforma E-commerce",
+          "service": "Prestación de Servicios",
+          "booking": "Sistema de Reservas",
+          "multi": "Plataforma Multiservicios"
         }
       },
       "software": {
-        "title": "Crear un Software",
-        "role": "¿Eres dueño de la empresa o responsable de proyecto?",
+        "title": "Software a Medida",
+        "role": "¿Eres el propietario de la empresa o el gerente de proyecto?",
         "field": "¿Cuál es tu campo?",
-        "problem": "¿Qué problema estás enfrentando?"
+        "problem": "¿Qué problema operativo enfrentas?"
       },
       "ai": {
-        "title": "Integraciones de IA",
-        "field": "¿Cuál es tu dominio?",
-        "dailyProblem": "¿Cuáles son tus problemas diarios?",
-        "replace": "¿Qué puesto repetitivo te gustaría reemplazar con una IA precisa, sin errores, disponible 24/7 y pagada una sola vez?"
+        "title": "IA & Automatización",
+        "field": "¿Cuál es tu campo?",
+        "dailyProblem": "¿Cuáles son tus principales ineficiencias?",
+        "replace": "¿Qué flujo de trabajo repetitivo te gustaría reemplazar con automatización inteligente?"
       },
       "consultation": {
         "title": "Consultoría",
-        "field": "¿Cuál es tu campo?",
-        "problem": "¿Cuál es tu problema brevemente?"
+        "field": "¿Cuál es tu industria?",
+        "problem": "Describe brevemente tu desafío:"
       }
     },
     "success": {
-      "title": "¡Formulario recibido!",
-      "message": "Nos pondremos en contacto contigo lo antes posible.",
-      "urgent": "Si tu caso es urgente, contáctanos por teléfono o WhatsApp: +33 7 45 30 51 13"
+      "title": "¡Solicitud recibida!",
+      "message": "Nuestro equipo de ingeniería se pondrá en contacto contigo en breve.",
+      "urgent": "Si tu caso es urgente, contáctanos directamente por teléfono o WhatsApp: +33 7 45 30 51 13"
     }
   },
-  "intro": { "title": "Optimum Tech", "subtitle": "Bienvenido a tu sitio web" },
+  "intro": { "title": "Optimum Tech", "subtitle": "Bienvenido a tu plataforma" },
   "projects": {
     "title": "Proyectos",
     "swipeMore": "Desliza para ver más",
-    "swipeNext": "Ver siguiente",
+    "swipeNext": "Siguiente proyecto",
     "prev": "Proyecto anterior",
     "next": "Proyecto siguiente"
   },
@@ -100,86 +128,86 @@
       "namePlaceholder": "Tu nombre",
       "phoneLabel": "Teléfono",
       "phonePlaceholder": "(+33) 6 12 34 56 78",
-      "emailLabel": "Correo",
+      "emailLabel": "Correo electrónico",
       "emailPlaceholder": "tu@ejemplo.com",
       "messageLabel": "Mensaje",
-      "messagePlaceholder": "Describe tu proyecto, presupuesto y plazo.",
-      "attachLabel": "Subir archivo",
+      "messagePlaceholder": "Describe tu proyecto, presupuesto y plazos.",
+      "attachLabel": "Adjuntar Archivo",
       "uploading": "Subiendo…",
-      "uploadSuccess": "Archivo subido",
+      "uploadSuccess": "Archivo subido exitosamente",
       "uploadFailure": "Error al subir",
       "sendButton": "Enviar mensaje",
       "success": "¡Gracias! Tu mensaje ha sido enviado.",
       "failure": "Error al enviar. Inténtalo de nuevo.",
-      "genericError": "No pudimos enviar tu mensaje. Escríbenos a optimum.tech.911@gmail.com mientras lo solucionamos."
+      "genericError": "No pudimos enviar este mensaje. Escríbenos a optimum.tech.911@gmail.com mientras lo solucionamos."
     },
     "confirm": {
-      "message": "¡Gracias por contactarnos! Te responderemos lo antes posible",
-      "writeAnother": "Escribir otro mensaje",
-      "exploreMore": "Explorar más"
+      "message": "¡Gracias por contactarnos! Responderemos lo antes posible.",
+      "writeAnother": "Escribir Otro Mensaje",
+      "exploreMore": "Explorar Más"
     }
   },
-  "policy": { "title": "Política general" },
+  "policy": { "title": "Política General" },
   "footer": {
     "rights": "Todos los derechos reservados.",
-    "description": "Creamos sitios web, aplicaciones, herramientas a medida y automatizaciones útiles para apoyar tu actividad.",
+    "description": "Diseñamos plataformas de alto rendimiento, software a medida y automatizaciones inteligentes para escalar su negocio.",
     "menuTitle": "Explorar",
     "contactTitle": "Contacto",
     "location": "Francia • UE",
-    "hours": "Disponibles 24/7 – siempre atentos a tu mensaje.",
-    "made": "Hecho con cuidado – rendimiento y accesibilidad primero",
+    "hours": "Disponibles 24/7",
+    "made": "Diseñado con precisión",
     "links": {
-      "home": "Volver al inicio",
-      "services": "Nuestros Servicios",
-      "projects": "Explora nuestros proyectos",
-      "policy": "Lee nuestras políticas",
-      "contact": "Ponerse en contacto"
+      "home": "Inicio",
+      "services": "Capacidades",
+      "projects": "Casos de Estudio",
+      "policy": "Términos Legales",
+      "contact": "Contacto"
     }
   },
   "services": {
-    "title": "Nuestros Servicios",
-    "subtitle": "Soluciones tecnológicas a medida para impulsar tu negocio.",
+    "title": "Nuestras Capacidades",
+    "subtitle": "Soluciones de ingeniería a medida para impulsar su negocio.",
     "web": {
-      "title": "Desarrollo Web",
-      "desc": "Sitios vitrina, E-commerce y Web Apps de alto rendimiento.",
-      "items": ["React / Next.js", "E-commerce (Shopify/Woo)", "Portafolios Premium"]
+      "title": "Plataformas Web",
+      "desc": "Presencia digital de alto rendimiento, diseñada para la escalabilidad y conversión.",
+      "items": ["React / Next.js", "E-commerce Enterprise", "Portales Corporativos"]
     },
     "mobile": {
-      "title": "Aplicaciones Móviles",
-      "desc": "iOS y Android con una experiencia de usuario fluida.",
-      "items": ["React Native", "Apps Nativas", "Apps de Escritorio"]
+      "title": "Ecosistemas Móviles",
+      "desc": "Aplicaciones nativas con una experiencia de usuario impecable.",
+      "items": ["React Native", "Multiplataforma", "Progressive Web Apps"]
     },
     "software": {
-      "title": "Software & SaaS",
+      "title": "Ingeniería de Software",
       "desc": "Soluciones empresariales complejas y plataformas SaaS escalables.",
-      "items": ["Arquitectura Cloud", "Dashboards", "SaaS Escalable"]
+      "items": ["Arquitectura Cloud", "Herramientas Internas", "SaaS Escalable"]
     },
     "automation": {
-      "title": "IA & Automatización",
-      "desc": "Ahorra tiempo mediante la automatización inteligente.",
-      "items": ["Workflows de IA", "Bots & Scripts", "Optimización de Procesos"]
+      "title": "Inteligencia & Automatización",
+      "desc": "Optimice sus operaciones mediante algoritmos y flujos de trabajo inteligentes.",
+      "items": ["Integración de IA", "Automatización de Procesos", "Data Pipelines"]
     },
     "games": {
-      "title": "Juegos & Interactividad",
-      "desc": "Experiencias inmersivas y entretenimiento digital.",
-      "items": ["Unity / Unreal", "Juegos Web", "3D Interactivo"]
+      "title": "Experiencias Interactivas",
+      "desc": "Entornos inmersivos y entretenimiento digital.",
+      "items": ["WebGL", "Interfaces 3D", "Gamificación"]
     },
     "infra": {
-      "title": "Asesoramiento Tech",
-      "desc": "De 0 a la vanguardia tecnológica.",
-      "items": ["Auditoría Tech", "Migración Cloud", "Mantenimiento 24/7"]
+      "title": "Socio Tecnológico",
+      "desc": "Desde la base hasta la vanguardia de la tecnología.",
+      "items": ["Auditoría de Arquitectura", "Migración a la Nube", "DevOps"]
     }
   },
   "cookies": {
-    "bannerTitle": "Cookies",
-    "bannerText": "Usamos cookies para mejorar tu experiencia. Puedes aceptar, rechazar o gestionar tus preferencias.",
+    "bannerTitle": "Privacidad y Cookies",
+    "bannerText": "Utilizamos cookies para optimizar el rendimiento y la seguridad de nuestra plataforma.",
     "acceptAll": "Aceptar todo",
     "rejectAll": "Rechazar todo",
     "settings": "Configuración",
     "settingsTitle": "Configuración de cookies",
-    "analyticsTitle": "Estadísticas (GTM/GA)",
-    "analyticsDesc": "Activa las cookies analíticas para mediciones anonimizadas.",
-    "save": "Guardar",
+    "analyticsTitle": "Analítica",
+    "analyticsDesc": "Habilite las cookies analíticas para ayudarnos a mejorar la plataforma.",
+    "save": "Guardar preferencias",
     "cancel": "Cancelar",
     "reopen": "Configuración"
   }

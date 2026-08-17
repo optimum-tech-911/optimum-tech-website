@@ -82,21 +82,21 @@ export const BlogArticlePage = () => {
     dateModified: post.updatedAt || post.publishedAt,
     inLanguage: 'fr-FR',
     mainEntityOfPage: buildCanonicalUrl(`/blog/${post.slug}`),
+    image: post.image ? `${siteMeta.url}${post.image}` : `${siteMeta.url}/apple-touch-icon.png`,
     author: {
       '@type': 'Organization',
       name: editorialTeam.name,
+      url: buildCanonicalUrl('/a-propos'),
     },
     publisher: {
-      '@type': 'Organization',
-      name: siteMeta.name,
-      url: siteMeta.url,
+      '@id': `${siteMeta.url}/#organization`,
     },
     keywords: [post.targetKeyword, post.category, 'Optimum Tech'],
   };
 
   return (
     <div
-      className={`min-h-screen flex flex-col transition-colors duration-500 ${
+      className={`ux-page flex min-h-screen flex-col transition-colors duration-500 ${
         theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
       }`}
     >
@@ -104,13 +104,17 @@ export const BlogArticlePage = () => {
         path={`/blog/${post.slug}`}
         title={`${post.title} | Optimum Tech`}
         description={post.description}
+        image={post.image ? `${siteMeta.url}${post.image}` : undefined}
+        imageAlt={post.heroTitle}
         robots={post.noindex ? 'noindex, follow' : 'index, follow'}
         type="article"
         schema={articleSchema}
+        publishedTime={post.publishedAt}
+        modifiedTime={post.updatedAt || post.publishedAt}
       />
       <Navbar />
 
-      <main className="flex-1 px-4 py-28 md:px-6">
+      <main className="flex-1 px-5 pb-20 pt-28 sm:px-6 md:pt-32">
         <article className="mx-auto max-w-5xl">
           <Link
             to="/blog"
@@ -125,7 +129,7 @@ export const BlogArticlePage = () => {
           </Link>
 
           <div
-            className={`mt-6 overflow-hidden rounded-[2.5rem] border ${
+            className={`mt-6 overflow-hidden rounded-[1.75rem] border md:rounded-[2.5rem] ${
               theme === 'dark'
                 ? 'border-white/10 bg-white/5'
                 : 'border-black/10 bg-white/80 shadow-xl'
@@ -146,7 +150,7 @@ export const BlogArticlePage = () => {
               <div className="mb-4 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
                 <span>{post.category}</span>
               </div>
-              <h1 className="max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">{post.title}</h1>
+              <h1 className="max-w-4xl text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl md:text-6xl">{post.title}</h1>
               <p className="mt-5 max-w-3xl text-base leading-8 text-black/70 md:text-xl">
                 {post.description}
               </p>

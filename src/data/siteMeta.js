@@ -9,7 +9,7 @@ export const siteMeta = {
   socialLinks: {
     instagram: 'https://www.instagram.com/ot.optimum_tech/',
     linkedin: 'https://www.linkedin.com/in/sid-ahmed-larabi-09b328286/',
-    whatsapp: 'https://wa.me/33745305113',
+    whatsapp: 'https://api.whatsapp.com/send?phone=33745305113',
   },
 };
 

@@ -3,6 +3,7 @@ import fr from './locales/fr.json';
 import en from './locales/en.json';
 import es from './locales/es.json';
 import ar from './locales/ar.json';
+import de from './locales/de.json';
 
 const I18nContext = createContext({ lang: 'fr', dir: 'ltr', t: (k) => k, setLang: () => {} });
 
@@ -26,9 +27,9 @@ const setStoredLang = (value) => {
   }
 };
 
-const DICT = { fr, en, es, ar };
+const DICT = { fr, en, es, ar, de };
 
-const DIR = { ar: 'rtl', fr: 'ltr', en: 'ltr', es: 'ltr' };
+const DIR = { ar: 'rtl', fr: 'ltr', en: 'ltr', es: 'ltr', de: 'ltr' };
 
 export function I18nProvider({ children, initialLang = 'fr' }) {
   const [lang, setLang] = useState(() => getStoredLang() || initialLang);
@@ -61,5 +62,6 @@ export const LANG_OPTIONS = [
   { code: 'fr', label: 'Français' },
   { code: 'en', label: 'English' },
   { code: 'es', label: 'Español' },
+  { code: 'de', label: 'Deutsch' },
   { code: 'ar', label: 'العربية' },
 ];
