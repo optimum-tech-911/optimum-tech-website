@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, MapPin, Pause, PhoneCall, Play } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Pause, PhoneCall, Play } from 'lucide-react';
 import { useI18n } from '../i18n.jsx';
 import heroMeeting from '../assets/images/optimum tech online meeting.webp';
 
@@ -70,7 +70,7 @@ export const Hero = () => {
           onPlay={() => setVideoPaused(false)}
           onPause={() => setVideoPaused(true)}
         >
-          <source media="(min-width: 768px)" src="/ot-hero-intro.mp4" type="video/mp4" />
+          <source src="/ot-hero-intro.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(5,6,7,0.96)_0%,rgba(5,6,7,0.82)_48%,rgba(5,6,7,0.3)_100%)]" />
         <div className="absolute inset-0 z-10 bg-[linear-gradient(0deg,rgba(5,6,7,0.9)_0%,transparent_62%)]" />

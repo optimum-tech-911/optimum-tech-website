@@ -54,24 +54,24 @@ export const Contact = () => {
   }, [location]);
 
   const categories = [
-    { 
-      id: 'app', 
+    {
+      id: 'app',
       title: t('contact_v2.questions.app.title'),
     },
-    { 
-      id: 'web', 
+    {
+      id: 'web',
       title: t('contact_v2.questions.web.title'),
     },
-    { 
-      id: 'software', 
+    {
+      id: 'software',
       title: t('contact_v2.questions.software.title'),
     },
-    { 
-      id: 'ai', 
+    {
+      id: 'ai',
       title: t('contact_v2.questions.ai.title'),
     },
-    { 
-      id: 'consultation', 
+    {
+      id: 'consultation',
       title: t('contact_v2.questions.consultation.title'),
     },
   ];
@@ -184,14 +184,13 @@ export const Contact = () => {
   };
 
   const renderFormFields = () => {
-    const inputClass = `w-full p-4 rounded-2xl border transition-all duration-300 ${
-      theme === 'dark' 
-        ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50 focus:bg-white/10' 
+    const inputClass = `w-full p-4 rounded-2xl border transition-all duration-300 ${theme === 'dark'
+        ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50 focus:bg-white/10'
         : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 focus:bg-black/10 shadow-sm'
-    }`;
+      }`;
     const labelClass = `block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`;
 
-    switch(category) {
+    switch (category) {
       case 'app':
         return (
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
@@ -295,9 +294,8 @@ export const Contact = () => {
   };
 
   return (
-    <div className={`ux-page flex min-h-screen flex-col transition-colors duration-500 ${
-      theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
-    }`}>
+    <div className={`ux-page flex min-h-screen flex-col transition-colors duration-500 ${theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'
+      }`}>
       <SEO
         path="/contact"
         title="Contact Optimum Tech | Devis site, application ou solution digitale"
@@ -313,10 +311,9 @@ export const Contact = () => {
       <Navbar />
 
       <main className="container mx-auto flex flex-grow flex-col items-center px-5 pb-20 pt-28 sm:px-6 md:pt-32">
-        <section className={`mb-8 w-full max-w-5xl rounded-[1.75rem] border p-5 sm:p-6 md:rounded-[2.5rem] md:p-8 ${
-          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
-        }`}>
-            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <section className={`mb-8 w-full max-w-5xl rounded-[1.75rem] border p-5 sm:p-6 md:rounded-[2.5rem] md:p-8 ${theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+          }`}>
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0A84FF]">
                 Contact
@@ -339,9 +336,8 @@ export const Contact = () => {
               ].map(([title, value]) => (
                 <div
                   key={title}
-                  className={`rounded-[1.5rem] border p-4 ${
-                    theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
-                  }`}
+                  className={`rounded-[1.5rem] border p-4 ${theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
+                    }`}
                 >
                   <p className="text-xs uppercase tracking-[0.16em] text-[#0A84FF]">{title}</p>
                   <p className="mt-2 text-sm leading-7">{value}</p>
@@ -360,9 +356,8 @@ export const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.25 }}
-              className={`relative w-full max-w-3xl rounded-[1.75rem] border p-5 shadow-2xl sm:p-8 md:rounded-[3rem] md:p-12 ${
-                theme === 'dark' ? 'bg-black/40 border-white/10' : 'bg-gray-500/10 border-black/10 backdrop-blur-2xl shadow-2xl'
-              }`}
+              className={`relative w-full max-w-3xl rounded-[1.75rem] border p-5 shadow-2xl sm:p-8 md:rounded-[3rem] md:p-12 ${theme === 'dark' ? 'bg-black/40 border-white/10' : 'bg-gray-500/10 border-black/10 backdrop-blur-2xl shadow-2xl'
+                }`}
             >
               <div className="text-center mb-10">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Parlez-nous de votre projet</h2>
@@ -382,11 +377,10 @@ export const Contact = () => {
                     href={item.href}
                     target={item.label === 'WhatsApp' ? '_blank' : undefined}
                     rel={item.label === 'WhatsApp' ? 'noopener noreferrer' : undefined}
-                    className={`rounded-[1.6rem] border p-4 transition ${
-                      theme === 'dark'
+                    className={`rounded-[1.6rem] border p-4 transition ${theme === 'dark'
                         ? 'border-white/10 bg-white/5 hover:bg-white/10'
                         : 'border-black/10 bg-black/5 hover:bg-black/10'
-                    }`}
+                      }`}
                   >
                     <div className="text-xs uppercase tracking-[0.16em] text-[#0A84FF]">{item.label}</div>
                     <div className="mt-2 text-sm font-semibold md:text-base">{item.value}</div>
@@ -394,9 +388,8 @@ export const Contact = () => {
                 ))}
               </div>
 
-              <div className={`mb-10 rounded-[1.8rem] border p-5 ${
-                theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
-              }`}>
+              <div className={`mb-10 rounded-[1.8rem] border p-5 ${theme === 'dark' ? 'border-white/10 bg-black/20' : 'border-black/10 bg-black/5'
+                }`}>
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
                   Ce que nous utilisons pour vous répondre correctement
                 </p>
@@ -406,9 +399,8 @@ export const Contact = () => {
                     'Les freins actuels : manque de visibilité, site peu clair, processus trop manuels',
                     'Le meilleur chemin de réponse : appel, message, devis ou cadrage plus détaillé',
                   ].map((item) => (
-                    <div key={item} className={`rounded-[1.4rem] border p-4 ${
-                      theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/70'
-                    }`}>
+                    <div key={item} className={`rounded-[1.4rem] border p-4 ${theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/70'
+                      }`}>
                       <p className="text-sm leading-7">{item}</p>
                     </div>
                   ))}
@@ -424,13 +416,12 @@ export const Contact = () => {
                     type="button"
                     onClick={() => setCategory(null)}
                     aria-pressed={category === null}
-                    className={`min-h-11 rounded-full border px-4 py-2 text-sm transition ${
-                      category === null
+                    className={`min-h-11 rounded-full border px-4 py-2 text-sm transition ${category === null
                         ? 'border-[#0A84FF]/40 bg-[#0A84FF]/15 text-[#0A84FF]'
                         : theme === 'dark'
                           ? 'border-white/10 bg-white/5 text-white/75 hover:bg-white/10'
                           : 'border-black/10 bg-black/5 text-black/75 hover:bg-black/10'
-                    }`}
+                      }`}
                   >
                     Demande générale
                   </button>
@@ -440,13 +431,12 @@ export const Contact = () => {
                       type="button"
                       onClick={() => setCategory(item.id)}
                       aria-pressed={category === item.id}
-                      className={`min-h-11 rounded-full border px-4 py-2 text-sm transition ${
-                        category === item.id
+                      className={`min-h-11 rounded-full border px-4 py-2 text-sm transition ${category === item.id
                           ? 'border-[#0A84FF]/40 bg-[#0A84FF]/15 text-[#0A84FF]'
                           : theme === 'dark'
                             ? 'border-white/10 bg-white/5 text-white/75 hover:bg-white/10'
                             : 'border-black/10 bg-black/5 text-black/75 hover:bg-black/10'
-                      }`}
+                        }`}
                     >
                       {item.title}
                     </button>
@@ -455,90 +445,83 @@ export const Contact = () => {
               </div>
 
               <form className="space-y-8" onSubmit={handleSubmit}>
-                  {category && (
-                    <>
-                      {renderFormFields()}
-                      <div className="pt-8 border-t border-current opacity-10" />
-                    </>
-                  )}
+                {category && (
+                  <>
+                    {renderFormFields()}
+                    <div className="pt-8 border-t border-current opacity-10" />
+                  </>
+                )}
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label htmlFor="full-name" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Nom complet</label>
-                      <input id="full-name" name="fullName" autoComplete="name" required type="text" value={formData.fullName} onChange={setField('fullName')} placeholder="Ex: Jean Dupont" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
-                        theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="full-name" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Nom complet</label>
+                    <input id="full-name" name="fullName" autoComplete="name" required type="text" value={formData.fullName} onChange={setField('fullName')} placeholder="Ex: Jean Dupont" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${theme === 'dark'
+                        ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50'
+                        : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
                       }`} />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Email professionnel</label>
-                      <input id="email" name="email" autoComplete="email" required type="email" value={formData.email} onChange={setField('email')} placeholder="Ex: jean@entreprise.com" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
-                        theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
-                      }`} />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="phone" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Téléphone <span className="font-normal opacity-60">(optionnel)</span></label>
-                      <input id="phone" name="phone" autoComplete="tel" inputMode="tel" type="tel" value={formData.phone} onChange={setField('phone')} placeholder="Ex: +33 6 12 34 56 78" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
-                        theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
-                      }`} />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="company" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Entreprise / Organisation</label>
-                      <input id="company" name="company" autoComplete="organization" type="text" value={formData.company} onChange={setField('company')} placeholder="Nom de votre entreprise" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
-                        theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
-                      }`} />
-                    </div>
                   </div>
-
-                  {!category && (
-                    <div className="space-y-2">
-                      <label htmlFor="message" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message</label>
-                      <textarea id="message" name="message" required value={formData.message} onChange={setField('message')} rows={5} placeholder="Comment pouvons-nous vous aider ?" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
-                        theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
+                  <div className="space-y-2">
+                    <label htmlFor="email" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Email professionnel</label>
+                    <input id="email" name="email" autoComplete="email" required type="email" value={formData.email} onChange={setField('email')} placeholder="Ex: jean@entreprise.com" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${theme === 'dark'
+                        ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50'
+                        : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
                       }`} />
-                    </div>
-                  )}
-
-                  {category && (
-                    <div className="space-y-2">
-                      <label htmlFor="additional-message" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message complémentaire</label>
-                      <textarea id="additional-message" name="message" value={formData.message} onChange={setField('message')} rows={4} placeholder="Ajoutez un contexte utile, vos délais ou votre budget." className={`w-full p-4 rounded-2xl border transition-all duration-300 ${
-                        theme === 'dark' 
-                          ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50' 
-                          : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Téléphone <span className="font-normal opacity-60">(optionnel)</span></label>
+                    <input id="phone" name="phone" autoComplete="tel" inputMode="tel" type="tel" value={formData.phone} onChange={setField('phone')} placeholder="Ex: +33 6 12 34 56 78" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${theme === 'dark'
+                        ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50'
+                        : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
                       }`} />
-                    </div>
-                  )}
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="company" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Entreprise / Organisation</label>
+                    <input id="company" name="company" autoComplete="organization" type="text" value={formData.company} onChange={setField('company')} placeholder="Nom de votre entreprise" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${theme === 'dark'
+                        ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50'
+                        : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
+                      }`} />
+                  </div>
+                </div>
 
-                  {submitError && (
-                    <div role="alert" aria-live="assertive" className={`rounded-2xl border px-4 py-3 text-sm ${
-                      theme === 'dark'
-                        ? 'border-[#0A84FF]/25 bg-[#0A84FF]/10 text-white'
-                        : 'border-[#0A84FF]/30 bg-[#0A84FF]/10 text-[#0A84FF]'
+                {!category && (
+                  <div className="space-y-2">
+                    <label htmlFor="message" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message</label>
+                    <textarea id="message" name="message" required value={formData.message} onChange={setField('message')} rows={5} placeholder="Comment pouvons-nous vous aider ?" className={`w-full p-4 rounded-2xl border transition-all duration-300 ${theme === 'dark'
+                        ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50'
+                        : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
+                      }`} />
+                  </div>
+                )}
+
+                {category && (
+                  <div className="space-y-2">
+                    <label htmlFor="additional-message" className={`block text-sm font-medium ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>Message complémentaire</label>
+                    <textarea id="additional-message" name="message" value={formData.message} onChange={setField('message')} rows={4} placeholder="Ajoutez un contexte utile, vos délais ou votre budget." className={`w-full p-4 rounded-2xl border transition-all duration-300 ${theme === 'dark'
+                        ? 'bg-white/5 border-white/10 focus:border-[#0A84FF]/50'
+                        : 'bg-black/5 border-black/10 focus:border-[#0A84FF]/50 shadow-sm'
+                      }`} />
+                  </div>
+                )}
+
+                {submitError && (
+                  <div role="alert" aria-live="assertive" className={`rounded-2xl border px-4 py-3 text-sm ${theme === 'dark'
+                      ? 'border-[#0A84FF]/25 bg-[#0A84FF]/10 text-white'
+                      : 'border-[#0A84FF]/30 bg-[#0A84FF]/10 text-[#0A84FF]'
                     }`}>
-                      {submitError}
-                    </div>
-                  )}
+                    {submitError}
+                  </div>
+                )}
 
-                  <p className={`text-sm leading-6 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}>
-                    En envoyant ce formulaire, vous acceptez que nous utilisions ces informations uniquement pour répondre à votre demande.{' '}
-                    <Link to="/privacy-policy" className="font-medium text-[#0A84FF]">Confidentialité</Link>
-                  </p>
+                <p className={`text-sm leading-6 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}>
+                  En envoyant ce formulaire, vous acceptez que nous utilisions ces informations uniquement pour répondre à votre demande.{' '}
+                  <Link to="/privacy-policy" className="font-medium text-[#0A84FF]">Confidentialité</Link>
+                </p>
 
-                  <button disabled={isSubmitting} aria-busy={isSubmitting} type="submit" className="flex min-h-14 w-full items-center justify-center gap-3 rounded-xl bg-[#0A84FF] px-6 py-4 text-base font-bold text-white shadow-xl shadow-[#0A84FF]/20 transition-all hover:-translate-y-0.5 hover:bg-[#0576e6] active:translate-y-0 disabled:opacity-70 disabled:hover:translate-y-0">
-                    <Send size={20} />
-                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
-                  </button>
-                </form>
+                <button disabled={isSubmitting} aria-busy={isSubmitting} type="submit" className="flex min-h-14 w-full items-center justify-center gap-3 rounded-xl bg-[#0A84FF] px-6 py-4 text-base font-bold text-white shadow-xl shadow-[#0A84FF]/20 transition-all hover:-translate-y-0.5 hover:bg-[#0576e6] active:translate-y-0 disabled:opacity-70 disabled:hover:translate-y-0">
+                  <Send size={20} />
+                  {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
+                </button>
+              </form>
             </motion.div>
           )}
 
@@ -553,13 +536,12 @@ export const Contact = () => {
                 <Rocket size={48} />
               </div>
               <h2 className="text-4xl font-bold">Demande envoyée !</h2>
-                <p className={`text-xl max-w-md mx-auto ${theme === 'dark' ? 'text-white/60' : 'text-black/60'}`}>
+              <p className={`text-xl max-w-md mx-auto ${theme === 'dark' ? 'text-white/60' : 'text-black/60'}`}>
                 Nous avons bien reçu votre formulaire. Nous reviendrons vers vous dans les plus brefs délais.
               </p>
-              
-              <div className={`p-6 rounded-2xl border ${
-                theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-black/5 border-black/10'
-              }`}>
+
+              <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-black/5 border-black/10'
+                }`}>
                 <p className="mb-2 text-sm font-medium">Vous préférez échanger directement ?</p>
                 <p className="text-lg font-bold text-[#0A84FF]">Retrouvez-nous aussi sur WhatsApp</p>
                 <a href="https://api.whatsapp.com/send?phone=33745305113" className="mt-2 block text-xl font-mono hover:underline sm:text-2xl">+33 7 45 30 51 13</a>
@@ -575,9 +557,8 @@ export const Contact = () => {
           )}
         </AnimatePresence>
 
-        <section className={`mt-8 w-full max-w-5xl rounded-[2.5rem] border p-6 md:p-8 ${
-          theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
-        }`}>
+        <section className={`mt-8 w-full max-w-5xl rounded-[2.5rem] border p-6 md:p-8 ${theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-xl'
+          }`}>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0A84FF]">
             Avant de nous écrire
           </p>
@@ -589,11 +570,10 @@ export const Contact = () => {
               <Link
                 key={topic.title}
                 to={topic.links[0]}
-                className={`rounded-[1.6rem] border p-5 transition ${
-                  theme === 'dark'
+                className={`rounded-[1.6rem] border p-5 transition ${theme === 'dark'
                     ? 'border-white/10 bg-black/20 hover:border-[#0A84FF]/30'
                     : 'border-black/10 bg-black/5 hover:border-[#0A84FF]/30'
-                }`}
+                  }`}
               >
                 <h3 className="text-lg font-semibold">{topic.title}</h3>
                 <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>

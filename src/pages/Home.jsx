@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Mail, MapPin, PhoneCall } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
+import { SanteSection } from '../components/SanteSection';
 import { useTheme } from '../context/ThemeContext';
 import { useI18n } from '../i18n.jsx';
 import { Footer } from '../components/Footer';
@@ -101,6 +102,8 @@ export const Home = () => {
       <Hero />
 
       <main className="home-main relative z-10">
+        <SanteSection />
+
         <section className={`border-b ${sectionBorder}`}>
           <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 md:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:py-20">
             <div>
