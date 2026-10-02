@@ -23,7 +23,7 @@ These checks do not establish why Google declined to index the pages. Google-sel
 
 | Search intent | Main page |
 | --- | --- |
-| Optimum Tech, websites and platforms around Montpellier | `/` |
+| Optimum Tech, custom software, platforms and websites around Montpellier | `/` |
 | création site web Montpellier / création site internet Montpellier | `/creation-site-web-montpellier/` |
 | site internet dentiste Montpellier / site cabinet dentaire Hérault | `/site-internet-dentiste/` |
 | création plateforme web / application web sur mesure Montpellier | `/application-web-sur-mesure/` |
@@ -35,6 +35,18 @@ These checks do not establish why Google declined to index the pages. Google-sel
 
 The commercial pages use distinct examples, relevant portfolio links and practical FAQs. The website does not need separate pages for spelling variations such as “siteweb,” “site web” and “site internet.” Keep the main pages useful and avoid collections of nearly identical city pages.
 
+The homepage hero leads with **“Logiciels et plateformes sur mesure”** and describes architecture, code, integrations and delivery. Software and platform links come first. Website creation, local and dental services remain in the visible supporting content, balanced page metadata and dedicated landing pages; the website offer is not hidden or removed. This positions the business for software projects while retaining the existing search destinations. Search performance should still be monitored after a positioning change; stable rankings cannot be promised.
+
+## Sitemap coverage
+
+The sitemap contains all 54 current indexable content pages: 6 core pages, 8 service pages, 5 local pages, 17 case studies, 5 sector portfolios and 13 articles. Administrative, noindex and redirect URLs are excluded. Public portfolio cards that link to client websites are not separate pages on this domain.
+
+The sitemap now also describes 83 distinct content images through 174 page/image associations. A project screenshot can appear on its case study, a service page and the portfolio, so image references are not additional page URLs. These entries use Google's supported `image:image` extension inside the existing `sitemap.xml`; no additional sitemap submission is needed. The generator discovers local content images in the built pages, removes duplicates within each page, skips decorative images and fails if an included asset is missing. [Google image sitemap documentation](https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps).
+
+The useful way to expand coverage is to publish additional complete case studies or distinct answers to real client questions and link them from relevant pages. The shared route manifest and sitemap must include every new indexable page. Adding repeated URLs, query-string variants, external client websites or empty pages does not create useful new search results. A sitemap assists discovery and does not guarantee indexing. [Google sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview).
+
+The extra links beneath a main Google result are called **sitelinks**. Google generates them automatically from site structure and relevance; there is no sitemap setting to force their number or appearance. [Google sitelinks guidance](https://developers.google.com/search/docs/appearance/sitelinks).
+
 ## Deployment checks
 
 1. Run `npm run lint` and `npm run build`. The build generates HTML and the sitemap, then audits every indexable URL (54 with the ten selected projects). `npm run audit:seo` can rerun the audit against an existing build.
@@ -45,7 +57,9 @@ The commercial pages use distinct examples, relevant portfolio links and practic
 
 The audit checks unique titles and descriptions, one H1, canonicals, indexing directives, FAQ text matching the visible HTML, internal links, page assets, inbound links, sitemap consistency and crawler rules. No browser connection was available in this session, so visual and interactive browser QA remains a deployment check.
 
-The homepage now withholds the 18 MB hero video from mobile, reduced-motion and supported data-saving/slow-connection modes. Eligible desktop browsers load it after the window finishes loading and an idle callback; the poster is visible immediately. The About page describes the business, audience and service area directly, and project pages link to the corresponding commercial services. Structured data uses one consistent organization identity for the business, services and projects.
+The homepage now uses optimized versions of the full 20-second hero video: a 540 × 960 portrait crop on mobile (2.1 MiB) and a 1280 × 720 desktop version (3.7 MiB), replacing the original 17.8 MiB download. Both use silent H.264, 24 fps and MP4 fast-start metadata. Responsive posters are approximately 24 KiB and 41 KiB. The video loads after the window finishes loading and an idle callback, with the poster visible until playback actually starts. Reduced-motion and supported data-saving/slow-connection modes require explicit playback; a play/pause control is available on mobile and desktop. Check playback on an actual iPhone and Android phone after deployment because browser autoplay policies can differ.
+
+The About page describes the business, audience and service area directly, and project pages link to the corresponding commercial services. Structured data uses one consistent organization identity for the business, services and projects.
 
 ## Search Console after publication
 

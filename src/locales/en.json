@@ -8,9 +8,9 @@
     "login": "Client Portal"
   },
   "hero": {
-    "eyebrow": "Optimum Tech, Software Engineering",
-    "title": "Digital engineering serving your vision",
-    "desc": "More than just an online presence, we forge true digital platforms. From complex software architecture to immersive interfaces, we transform your business challenges into high-performance digital ecosystems built for the future.",
+    "eyebrow": "Optimum Tech · Montpellier and Hérault",
+    "title": "Custom software and platforms",
+    "desc": "We design and develop your business software, web applications and platforms. Architecture, code, integrations and production deployment: tailored support for businesses in Montpellier, Sète and Hérault.",
     "cta_contact": "Discuss my project",
     "cta_projects": "View our work",
     "signals": {
@@ -24,10 +24,11 @@
       "deployment": "Deployment and operational maintenance"
     },
     "shortcuts": {
-      "web": "Web Platforms",
-      "software": "Business Software",
-      "seo": "Digital Growth",
-      "ai": "Artificial Intelligence"
+      "software": "Custom software",
+      "platforms": "Web platforms",
+      "ai": "AI & automation",
+      "web": "Website creation",
+      "seo": "Local SEO"
     }
   },
   "home": {

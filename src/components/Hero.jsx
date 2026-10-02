@@ -2,14 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Pause, PhoneCall, Play } from 'lucide-react';
 import { useI18n } from '../i18n.jsx';
-import heroMeeting from '../assets/images/optimum tech online meeting.webp';
 
 export const Hero = () => {
   const { t } = useI18n();
   const [videoPaused, setVideoPaused] = React.useState(true);
-  const [videoAvailable, setVideoAvailable] = React.useState(false);
   const [videoVisible, setVideoVisible] = React.useState(false);
   const videoRef = React.useRef(null);
+  const videoControlRef = React.useRef(null);
 
   const proofPoints = [
     t('hero.proofs.architecture'),
@@ -18,10 +17,11 @@ export const Hero = () => {
   ];
 
   const serviceShortcuts = [
-    [t('hero.shortcuts.web'), '/creation-site-web'],
-    [t('hero.shortcuts.software'), '/application-web-sur-mesure'],
-    [t('hero.shortcuts.seo'), '/referencement-seo'],
+    [t('hero.shortcuts.software'), '/logiciel-sur-mesure'],
+    [t('hero.shortcuts.platforms'), '/application-web-sur-mesure'],
     [t('hero.shortcuts.ai'), '/automatisation-ia'],
+    [t('hero.shortcuts.web'), '/creation-site-web'],
+    [t('hero.shortcuts.seo'), '/referencement-seo'],
   ];
 
   const deliverySignals = [
@@ -34,47 +34,61 @@ export const Hero = () => {
     const video = videoRef.current;
     if (!video) return undefined;
 
-    const desktop = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)');
+    const mobile = window.matchMedia('(max-width: 767px)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     let idleId;
     let timerId;
     let disposed = false;
+    let pausedByUser = false;
+    let explicitPlayback = false;
+    let autoplayBlocked = false;
+    let playRequest = 0;
 
-    const canLoadVideo = () => desktop.matches && !reducedMotion.matches
+    const canAutoplay = () => !reducedMotion.matches
       && !connection?.saveData
       && !['slow-2g', '2g', '3g'].includes(connection?.effectiveType)
       && !(connection?.downlink > 0 && connection.downlink < 1.5);
+    const videoPath = () => `/ot-hero-${mobile.matches ? 'mobile' : 'desktop'}.mp4`;
 
     const clearVideo = (updateState = true) => {
+      playRequest += 1;
       video.pause();
       if (video.hasAttribute('src')) {
         video.removeAttribute('src');
         video.load();
       }
       if (updateState) {
-        setVideoAvailable(false);
         setVideoVisible(false);
         setVideoPaused(true);
       }
     };
 
-    const loadVideo = () => {
-      if (disposed || !canLoadVideo() || video.hasAttribute('src')) return;
+    const loadVideo = (explicit = false) => {
+      if (disposed || pausedByUser || (!explicit && (!canAutoplay() || autoplayBlocked))) return;
       // No video URL is emitted in HTML: the poster gets the initial bandwidth.
-      video.src = '/ot-hero-intro.mp4';
-      setVideoAvailable(true);
+      if (video.getAttribute('src') !== videoPath() || video.error) {
+        clearVideo();
+        video.src = videoPath();
+      }
+      video.muted = true;
+      const request = ++playRequest;
+      setVideoPaused(false);
       video.play().catch(() => {
-        if (!disposed) setVideoPaused(true);
+        if (!disposed && request === playRequest) {
+          autoplayBlocked = true;
+          setVideoPaused(true);
+          setVideoVisible(false);
+        }
       });
     };
 
     const queueVideo = () => {
-      if (disposed || !canLoadVideo()) return;
+      if (disposed || pausedByUser || autoplayBlocked || !canAutoplay()) return;
       if ('requestIdleCallback' in window) {
-        idleId = window.requestIdleCallback(loadVideo, { timeout: 3000 });
+        idleId = window.requestIdleCallback(() => loadVideo(), { timeout: 3000 });
       } else {
-        timerId = window.setTimeout(loadVideo, 1200);
+        timerId = window.setTimeout(() => loadVideo(), 1200);
       }
     };
 
@@ -86,57 +100,78 @@ export const Hero = () => {
       timerId = undefined;
     };
 
-    const updatePreferences = () => {
+    const updateVideo = () => {
       cancelScheduledLoad();
-      if (!canLoadVideo()) {
+      const changedSource = video.hasAttribute('src') && video.getAttribute('src') !== videoPath();
+      if (changedSource || (!canAutoplay() && !explicitPlayback)) {
         clearVideo();
-      } else if (!video.hasAttribute('src')) {
+      }
+      if (pausedByUser || autoplayBlocked || video.hasAttribute('src')) return;
+      if (explicitPlayback) {
+        loadVideo(true);
+      } else if (canAutoplay()) {
         if (document.readyState === 'complete') queueVideo();
         else window.addEventListener('load', queueVideo, { once: true });
       }
     };
 
-    desktop.addEventListener('change', updatePreferences);
+    const updatePreferences = () => {
+      // A new motion/data preference takes precedence over an earlier opt-in.
+      explicitPlayback = false;
+      updateVideo();
+    };
+
+    videoControlRef.current = () => {
+      cancelScheduledLoad();
+      if (!video.paused) {
+        pausedByUser = true;
+        explicitPlayback = false;
+        playRequest += 1;
+        video.pause();
+        setVideoPaused(true);
+      } else {
+        pausedByUser = false;
+        explicitPlayback = true;
+        autoplayBlocked = false;
+        loadVideo(true);
+      }
+    };
+
+    mobile.addEventListener('change', updateVideo);
     reducedMotion.addEventListener('change', updatePreferences);
     connection?.addEventListener?.('change', updatePreferences);
-    updatePreferences();
+    updateVideo();
 
     return () => {
       disposed = true;
       cancelScheduledLoad();
-      desktop.removeEventListener('change', updatePreferences);
+      videoControlRef.current = null;
+      mobile.removeEventListener('change', updateVideo);
       reducedMotion.removeEventListener('change', updatePreferences);
       connection?.removeEventListener?.('change', updatePreferences);
       clearVideo(false);
     };
   }, []);
 
-  const toggleVideo = () => {
-    const video = videoRef.current;
-    if (!video || !videoAvailable) return;
-    if (video.paused) {
-      video.play().then(() => setVideoPaused(false)).catch(() => setVideoPaused(true));
-    } else {
-      video.pause();
-      setVideoPaused(true);
-    }
-  };
+  const toggleVideo = () => videoControlRef.current?.();
 
   return (
     <>
       <header className="brand-hero relative min-h-[100svh] overflow-hidden bg-[#050607] text-white sm:min-h-[44rem]">
-        <img
-          src={heroMeeting}
-          alt=""
-          aria-hidden="true"
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 z-0 h-full w-full object-cover object-[72%_center] md:object-center"
-        />
+        <picture>
+          <source media="(max-width: 767px)" srcSet="/ot-hero-mobile-poster.webp" />
+          <img
+            src="/ot-hero-desktop-poster.webp"
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 z-0 h-full w-full object-cover object-center"
+          />
+        </picture>
         <video
           ref={videoRef}
-          className="brand-hero-video absolute inset-0 z-0 h-full w-full object-cover"
-          poster={heroMeeting}
+          className="brand-hero-video absolute inset-0 z-0 h-full w-full object-cover object-center"
           style={{ opacity: videoVisible ? 1 : 0 }}
           muted
           loop
@@ -145,11 +180,11 @@ export const Hero = () => {
           aria-hidden="true"
           tabIndex={-1}
           onPlay={() => setVideoPaused(false)}
-          onPlaying={() => setVideoVisible(true)}
+          onPlaying={(event) => { if (!event.currentTarget.paused) setVideoVisible(true); }}
           onPause={() => setVideoPaused(true)}
-          onError={() => { setVideoVisible(false); setVideoAvailable(false); setVideoPaused(true); }}
+          onError={() => { setVideoVisible(false); setVideoPaused(true); }}
         />
-        <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(5,6,7,0.96)_0%,rgba(5,6,7,0.82)_48%,rgba(5,6,7,0.3)_100%)]" />
+        <div className="brand-hero-shade absolute inset-0 z-10" />
         <div className="absolute inset-0 z-10 bg-[linear-gradient(0deg,rgba(5,6,7,0.9)_0%,transparent_62%)]" />
         <div className="hero-ambient-grid absolute inset-0 z-10 opacity-30" aria-hidden="true" />
 
@@ -186,14 +221,14 @@ export const Hero = () => {
               ))}
             </div>
 
-            {videoAvailable ? <button
+            <button
               type="button"
               onClick={toggleVideo}
               aria-label={videoPaused ? 'Lire la vidéo du bandeau' : 'Mettre la vidéo du bandeau en pause'}
-              className="mt-7 hidden h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-black/35 text-white/80 backdrop-blur-md transition hover:border-[#0A84FF] hover:bg-black/55 hover:text-white md:inline-flex"
+              className="mt-7 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-black/35 text-white/80 backdrop-blur-md transition hover:border-[#0A84FF] hover:bg-black/55 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#63B3FF]"
             >
               {videoPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
-            </button> : null}
+            </button>
           </div>
         </section>
       </header>

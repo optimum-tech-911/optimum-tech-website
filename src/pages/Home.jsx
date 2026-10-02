@@ -29,18 +29,18 @@ export const Home = () => {
 
   const coreServices = [
     {
-      to: '/creation-site-web',
-      title: t('services.web.title'),
-      label: t('home.vision_eyebrow'),
-      description: t('services.web.desc'),
-      points: t('services.web.items'),
-    },
-    {
-      to: '/application-web-sur-mesure',
+      to: '/logiciel-sur-mesure',
       title: t('services.software.title'),
       label: t('hero.shortcuts.software'),
       description: t('services.software.desc'),
       points: t('services.software.items'),
+    },
+    {
+      to: '/creation-site-web',
+      title: t('hero.shortcuts.web'),
+      label: t('home.vision_eyebrow'),
+      description: t('services.web.desc'),
+      points: t('services.web.items'),
     },
     {
       to: '/referencement-seo',
@@ -87,15 +87,15 @@ export const Home = () => {
     }`}>
       <SEO
         path="/"
-        title="Création de site web Montpellier et plateformes | Optimum Tech"
-        description="Sites internet, plateformes web et SEO local pour entreprises et cabinets dentaires à Montpellier, Sète et dans l’Hérault. Découvrez les projets Optimum Tech."
-        keywords="Optimum Tech, création site web Montpellier, création site internet Montpellier, site internet dentiste, création plateforme web, agence web Hérault, création site web Sète"
+        title="Logiciels, plateformes et sites web Montpellier | Optimum Tech"
+        description="Développement de logiciels sur mesure, plateformes et création de sites web pour entreprises et cabinets dentaires à Montpellier, Sète et dans l’Hérault."
+        keywords="Optimum Tech, développement logiciel Montpellier, logiciel sur mesure, application web sur mesure, création site web Montpellier, création site internet Montpellier, site internet dentiste, création plateforme web, agence web Hérault, création site web Sète"
         schema={buildWebPageSchema({
           path: '/',
           dateModified: '2026-10-02',
-          title: 'Création de site web Montpellier et plateformes | Optimum Tech',
+          title: 'Logiciels, plateformes et sites web Montpellier | Optimum Tech',
           description:
-            'Sites internet, plateformes web et SEO local pour entreprises et cabinets dentaires à Montpellier, Sète et dans l’Hérault. Découvrez les projets Optimum Tech.',
+            'Développement de logiciels sur mesure, plateformes et création de sites web pour entreprises et cabinets dentaires à Montpellier, Sète et dans l’Hérault.',
         })}
       />
 

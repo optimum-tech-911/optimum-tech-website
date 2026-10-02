@@ -9,8 +9,8 @@
   },
   "hero": {
     "eyebrow": "Optimum Tech · Montpellier et Hérault",
-    "title": "Création de sites web et plateformes à Montpellier",
-    "desc": "Nous concevons des sites internet professionnels, des plateformes web et des logiciels sur mesure pour les entreprises de Montpellier, Sète et de l’Hérault. Cabinets dentaires, artisans, commerces et PME : un parcours clair, une expérience mobile soignée et des fondations solides pour votre visibilité locale.",
+    "title": "Logiciels et plateformes sur mesure",
+    "desc": "Nous concevons et développons vos logiciels métier, applications web et plateformes. Architecture, code, intégrations et mise en production : un accompagnement sur mesure pour les entreprises de Montpellier, Sète et de l’Hérault.",
     "cta_contact": "Parler de mon projet",
     "cta_projects": "Voir les réalisations",
     "signals": {
@@ -24,16 +24,17 @@
       "deployment": "Déploiement et maintien opérationnel"
     },
     "shortcuts": {
-      "web": "Plateformes Web",
-      "software": "Logiciels Métiers",
-      "seo": "Croissance Digitale",
-      "ai": "Intelligence Artificielle"
+      "web": "Création de sites web",
+      "software": "Logiciels sur mesure",
+      "platforms": "Plateformes web",
+      "seo": "Référencement local",
+      "ai": "IA & automatisation"
     }
   },
   "home": {
     "vision_eyebrow": "Notre vision",
     "vision_title": "Créateurs d'écosystèmes numériques sur mesure pour les entreprises ambitieuses",
-    "vision_desc": "Nous ne nous contentons pas de concevoir des sites web ; nous architecturons des plateformes logicielles intégrées. De la vitrine digitale à l'outil de gestion complexe, notre ingénierie transforme la complexité technique en une expérience utilisateur fluide et performante.",
+    "vision_desc": "Logiciels métier, plateformes SaaS, espaces clients ou création de sites web professionnels : nous partons de vos usages pour définir les fonctionnalités et les parcours. Nous accompagnons les entreprises et cabinets dentaires de Montpellier, Sète et de l’Hérault, de la conception au développement et aux évolutions de leur outil.",
     "services_eyebrow": "Réalisations sélectionnées",
     "services_title": "Des projets visibles, du site professionnel à l’outil métier",
     "services_desc": "Quelques références pour montrer le niveau de finition attendu : parcours patient, plateforme logistique, commerce local, outil administratif et présence de service.",

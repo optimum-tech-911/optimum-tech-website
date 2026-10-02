@@ -658,6 +658,16 @@ main [class*='rounded'] {
   object-position: center center;
 }
 
+.brand-hero-shade {
+  background: linear-gradient(180deg, rgba(5, 6, 7, 0.35) 0%, rgba(5, 6, 7, 0.64) 36%, rgba(5, 6, 7, 0.7) 100%);
+}
+
+@media (min-width: 768px) {
+  .brand-hero-shade {
+    background: linear-gradient(90deg, rgba(5, 6, 7, 0.96) 0%, rgba(5, 6, 7, 0.82) 48%, rgba(5, 6, 7, 0.3) 100%);
+  }
+}
+
 @keyframes brandViewReveal {
   from {
     opacity: 0;
@@ -718,10 +728,6 @@ main [class*='rounded'] {
 
   .brand-hero p {
     line-height: 1.6;
-  }
-
-  .brand-hero-video {
-    object-position: 72% center;
   }
 
   #mobile-navigation {

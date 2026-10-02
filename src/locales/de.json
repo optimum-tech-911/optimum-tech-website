@@ -8,9 +8,9 @@
     "login": "Kundenportal"
   },
   "hero": {
-    "eyebrow": "Optimum Tech, Software-Engineering",
-    "title": "Digitale Ingenieurskunst für Ihre Vision",
-    "desc": "Mehr als nur eine Online-Präsenz – wir schmieden echte digitale Plattformen. Von komplexer Software-Architektur bis zu immersiven Schnittstellen verwandeln wir Ihre geschäftlichen Herausforderungen in leistungsstarke, zukunftssichere digitale Ökosysteme.",
+    "eyebrow": "Optimum Tech · Montpellier und Hérault",
+    "title": "Software und Plattformen nach Maß",
+    "desc": "Wir konzipieren und entwickeln Ihre Unternehmenssoftware, Webanwendungen und Plattformen. Architektur, Programmierung, Integrationen und Produktivbetrieb: individuelle Begleitung für Unternehmen in Montpellier, Sète und im Département Hérault.",
     "cta_contact": "Mein Projekt besprechen",
     "cta_projects": "Unsere Arbeit ansehen",
     "signals": {
@@ -24,10 +24,11 @@
       "deployment": "Bereitstellung und operative Wartung"
     },
     "shortcuts": {
-      "web": "Web-Plattformen",
-      "software": "Business-Software",
-      "seo": "Digitales Wachstum",
-      "ai": "Künstliche Intelligenz"
+      "software": "Individualsoftware",
+      "platforms": "Webplattformen",
+      "ai": "KI & Automatisierung",
+      "web": "Website-Erstellung",
+      "seo": "Lokale SEO"
     }
   },
   "home": {

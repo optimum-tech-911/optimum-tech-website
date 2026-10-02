@@ -1,98 +1,545 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://optimutech.fr/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/cabinet-dentaire-desktop-C_mhBrZF.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/imagerie-dentaire-desktop-mj-pQbZ0.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/porters.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/kabamana.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/krew.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/oree.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/struktur.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/lecrin-setois.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/nonails.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/cabinet-dentaire-sete.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/ufsbd34.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/dr-souidi.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/services/</loc>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/online-commerce-BgEW3u93.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/planning%20application-JrDTCqQm.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/software-development-CPmczL_X.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/optimum%20tech%20digital%20shop-_fdvQeJB.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/optimum%20tech%20gaming-C3CZVbuI.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/optimum%20tech%20online%20meeting-BCJHb-s8.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/porters.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/kabamana.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/krew.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/oree.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/struktur.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/lecrin-setois.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/nonails.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/cabinet-dentaire-sete.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/ufsbd34.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/dr-souidi.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/acr-nov.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/abattoire-seddik.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/abev.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/team-nkg.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/boudoir-arenes.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/b-barbara.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/bien-etre-sante.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/sweet-serve-admin.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/camasys.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/candyplanet.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/carniceria-halal.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/chafik-hamdi.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/chekroun-dental-center.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/chez-redouane.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/digital-hub.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/dentalpole.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/dr-mallek.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/easy-sms.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/facturation-optimum.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/garage-deux-freres.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/garage-jean-moulin.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/guyajeux-agde.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/halal-connect.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/happy-sharing-events.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/hb-elec.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/hernani-harvest-hub.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/isandra-coiffure.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/johan-piscines.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/boubou-digital.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/carioca-artisan-orders.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/la-touche-hakima.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/coffre-art.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/le-petit-bougiote.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/artisan-web.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/artisan-elegance.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/maison-fati-gourmet.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/maison-de-saney.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/marcellino.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/medicalpost.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/medidesk.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/mistral-coiffure.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/multi-travaux-chris.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/propret-lumineuse.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/alexine-cook.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/nesrine-atelier.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/nutrifood-keto.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/optimum-drive.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/paprasse-optimum.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/treasury-optimum.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/pharmacie-olive.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/rg-nettoyage-auto.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/roadangel.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/ronde-des-pains.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/rose-factory.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/rs-carwash.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/secrets-de-pains.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/skysnowa.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/stylook.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/sun-garage.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/sansebast-boulange.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/vopa.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/the-porters/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/porters.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/krew-media/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/krew.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/oree-entreprises/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/oree.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/struktur-grenoble/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/struktur.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/lecrin-setois/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/lecrin-setois.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/nonails/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/nonails.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/ufsbd34/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/ufsbd34.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/cabinet-dentaire-sete/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/cabinet-dentaire-sete.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/dentalpole-implantologie-parodontologie/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/dentalpole.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/dr-souidi-dental/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/dr-souidi.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/le-petit-bougiote/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/le-petit-bougiote.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/chez-redouane-coiffeur/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/chez-redouane.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/kabamana/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/kabamana.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/facturation-optimum/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/facturation-optimum.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/treasury-optimum/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/treasury-optimum.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/happy-sharing-events/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/happy-sharing-events.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/realisations/maison-de-saney/</loc>
     <lastmod>2026-10-02</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/maison-de-saney.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/secteurs/cabinets-dentaires/</loc>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/ufsbd34.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/cabinet-dentaire-sete.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/dr-souidi.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/dentalpole.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/dr-mallek.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/chekroun-dental-center.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/pharmacie-olive.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/secteurs/restaurants-food/</loc>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/le-petit-bougiote.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/maison-fati-gourmet.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/ronde-des-pains.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/secrets-de-pains.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/sansebast-boulange.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/carniceria-halal.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/abattoire-seddik.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/hernani-harvest-hub.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/alexine-cook.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/secteurs/salons-beaute/</loc>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/nonails.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/bien-etre-sante.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/chez-redouane.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/isandra-coiffure.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/mistral-coiffure.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/stylook.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/nesrine-atelier.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/boudoir-arenes.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/maison-de-saney.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/secteurs/artisans-services/</loc>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/porters.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/krew.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/struktur.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/lecrin-setois.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/la-touche-hakima.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/b-barbara.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/hb-elec.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/chafik-hamdi.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/multi-travaux-chris.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/secteurs/applications-metier/</loc>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/oree.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/kabamana.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/medicalpost.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/medidesk.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/easy-sms.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/camasys.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/vopa.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/abev.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/facturation-optimum.jpg</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/a-propos/</loc>
@@ -103,6 +550,18 @@
   </url>
   <url>
     <loc>https://optimutech.fr/blog/</loc>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/presence-en-ligne-personnalisee-Bf3dYVjj.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/application-web-genere-plus-C5PIwmsS.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/intelligence-artificielle-ventes-C59XJnxs.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/cout-site-web-rentable-w46RUkhs.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/creation-site-web/</loc>
@@ -116,26 +575,77 @@
   <url>
     <loc>https://optimutech.fr/site-internet-dentiste/</loc>
     <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/cabinet-dentaire-sete.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/dr-souidi.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/ufsbd34.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/site-internet-medecin/</loc>
     <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/ufsbd34.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/cabinet-dentaire-sete.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/site-internet-entreprise-locale/</loc>
     <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/porters.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/struktur.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/lecrin-setois.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/application-web-sur-mesure/</loc>
     <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/kabamana.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/oree.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/nonails.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/logiciel-sur-mesure/</loc>
     <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/facturation-optimum.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/oree.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/kabamana.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/creation-site-web-montpellier/</loc>
     <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/cabinet-dentaire-sete.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/kabamana.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://optimutech.fr/projects/selected/lecrin-setois.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/creation-site-web-sete/</loc>
@@ -152,18 +662,30 @@
   <url>
     <loc>https://optimutech.fr/blog/site-internet-professionnel-entreprise-france-2026/</loc>
     <lastmod>2026-03-27</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/presence-en-ligne-personnalisee-Bf3dYVjj.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/combien-coute-creation-site-web-professionnel-france/</loc>
     <lastmod>2026-03-27</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/cout-site-web-rentable-w46RUkhs.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/application-web-sur-mesure-rentable-entreprises/</loc>
     <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/application-web-genere-plus-C5PIwmsS.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/automatisation-intelligence-artificielle-gagner-temps-chiffre-affaires/</loc>
     <lastmod>2026-03-27</lastmod>
+    <image:image>
+      <image:loc>https://optimutech.fr/assets/intelligence-artificielle-ventes-C59XJnxs.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://optimutech.fr/blog/etre-trouve-google-entreprise-locale-france/</loc>

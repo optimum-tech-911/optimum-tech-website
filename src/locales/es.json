@@ -8,9 +8,9 @@
     "login": "Portal de Clientes"
   },
   "hero": {
-    "eyebrow": "Optimum Tech, Ingeniería de Software",
-    "title": "Ingeniería digital al servicio de su visión",
-    "desc": "Más que una simple presencia en línea, forjamos verdaderas plataformas digitales. Desde la arquitectura de software compleja hasta interfaces inmersivas, transformamos sus desafíos comerciales en ecosistemas digitales de alto rendimiento, diseñados para el futuro.",
+    "eyebrow": "Optimum Tech · Montpellier y Hérault",
+    "title": "Software y plataformas a medida",
+    "desc": "Diseñamos y desarrollamos su software empresarial, aplicaciones web y plataformas. Arquitectura, programación, integraciones y puesta en producción: un acompañamiento a medida para las empresas de Montpellier, Sète y Hérault.",
     "cta_contact": "Hablar de mi proyecto",
     "cta_projects": "Ver nuestro trabajo",
     "signals": {
@@ -24,10 +24,11 @@
       "deployment": "Despliegue y mantenimiento operativo"
     },
     "shortcuts": {
-      "web": "Plataformas Web",
-      "software": "Software Empresarial",
-      "seo": "Crecimiento Digital",
-      "ai": "Inteligencia Artificial"
+      "software": "Software a medida",
+      "platforms": "Plataformas web",
+      "ai": "IA y automatización",
+      "web": "Creación de sitios web",
+      "seo": "SEO local"
     }
   },
   "home": {
