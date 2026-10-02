@@ -32,8 +32,13 @@ export const PortfolioProjectCard = ({ project, compact = false }) => {
       <div className={`relative overflow-hidden bg-black ${compact ? 'aspect-[16/9]' : 'aspect-[16/10]'}`}>
         <img
           src={project.image}
+          srcSet={project.imageSrcSet}
+          sizes="(min-width: 1280px) 400px, (min-width: 768px) 50vw, 100vw"
           alt={`Aperçu du projet ${project.title}`}
           loading="lazy"
+          decoding="async"
+          width="1200"
+          height="800"
           className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-[1.025]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/5 to-black/15" />

@@ -160,14 +160,14 @@ export const Services = () => {
       <SEO
         path="/services"
         title="Sites web, applications et solutions digitales sur mesure | Optimum Tech"
-        description="Découvrez les services d’Optimum Tech : création de sites web, web apps, logiciels sur mesure, outils internes, automatisations utiles et visibilité digitale pour entreprises à Sète, dans l’Hérault et en France."
+        description="Découvrez les services d’Optimum Tech : création de sites web, web apps, logiciels sur mesure, outils internes, automatisations utiles et visibilité digitale pour entreprises à Montpellier et Sète, dans l’Hérault et en France."
         keywords="services Optimum Tech, création site web, web app sur mesure, logiciel sur mesure, automatisation IA, agence digitale hérault, développeur web sète"
         schema={[
           buildWebPageSchema({
             path: '/services',
             title: 'Sites web, applications et solutions digitales sur mesure | Optimum Tech',
             description:
-              'Découvrez les services d’Optimum Tech : création de sites web, web apps, logiciels sur mesure, outils internes, automatisations utiles et visibilité digitale pour entreprises à Sète, dans l’Hérault et en France.',
+              'Découvrez les services d’Optimum Tech : création de sites web, web apps, logiciels sur mesure, outils internes, automatisations utiles et visibilité digitale pour entreprises à Montpellier et Sète, dans l’Hérault et en France.',
           }),
           {
             '@context': 'https://schema.org',
@@ -299,6 +299,7 @@ export const Services = () => {
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {[
+              ['/creation-site-web-montpellier', 'Création de site web Montpellier'],
               ['/creation-site-web-sete', 'Création site web Sète'],
               ['/agence-web-herault', 'Agence web Hérault'],
               ['/referencement-seo-sete', 'SEO Sète'],

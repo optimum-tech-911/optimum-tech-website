@@ -1,47 +1,32 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { localPages, servicePages } from '../src/data/seoPages.js';
-import { indexableBlogSlugs } from '../src/data/prerenderRoutes.js';
+import { indexableRoutes } from '../src/data/prerenderRoutes.js';
 import { buildCanonicalUrl } from '../src/data/schema.js';
-import { caseStudyProjects, sectorPages } from '../src/data/projects.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname, '..');
-const publicDir = path.join(rootDir, 'public');
+const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(rootDir, 'dist');
-const baseUrl = 'https://optimutech.fr';
-const lastmod = '2026-06-13';
+const entries = [];
 
-const urls = [
-  ['/', 'weekly', '1.0'],
-  ['/services', 'weekly', '0.95'],
-  ['/realisations', 'weekly', '0.9'],
-  ...caseStudyProjects.map((project) => [`/realisations/${project.slug}`, 'monthly', '0.8']),
-  ...Object.keys(sectorPages).map((slug) => [`/secteurs/${slug}`, 'monthly', '0.85']),
-  ['/a-propos', 'monthly', '0.8'],
-  ['/contact', 'monthly', '0.85'],
-  ['/blog', 'weekly', '0.95'],
-  ...servicePages.map((page) => [`/${page.slug}`, 'weekly', '0.9']),
-  ...localPages.map((page) => [`/${page.slug}`, 'weekly', '0.85']),
-  ...indexableBlogSlugs.map((slug) => [`/blog/${slug}`, 'monthly', '0.8']),
-];
+for (const route of indexableRoutes) {
+  const html = await fs.readFile(path.join(distDir, route.slice(1), 'index.html'), 'utf8');
+  // Use the authored content date. Omit unknown dates instead of guessing.
+  const schemaItems = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+    .map((match) => JSON.parse(match[1]));
+  const datedPage = schemaItems.find((item) => ['WebPage', 'AboutPage', 'CollectionPage', 'ContactPage', 'BlogPosting'].includes(item['@type']) && item.dateModified);
+  const lastmod = datedPage?.dateModified;
+  if (lastmod && !/^\d{4}-\d{2}-\d{2}$/.test(lastmod)) {
+    throw new Error(`Invalid content modification date for ${route}: ${lastmod}`);
+  }
+  entries.push(`  <url>\n    <loc>${buildCanonicalUrl(route)}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''}\n  </url>`);
+}
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-  .map(
-    ([route, changefreq, priority]) => `  <url>
-    <loc>${buildCanonicalUrl(route)}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>`
-  )
-  .join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries.join('\n')}
 </urlset>
 `;
 
-await fs.writeFile(path.join(publicDir, 'sitemap.xml'), xml, 'utf8');
-await fs.mkdir(distDir, { recursive: true });
+await fs.writeFile(path.join(rootDir, 'public', 'sitemap.xml'), xml, 'utf8');
 await fs.writeFile(path.join(distDir, 'sitemap.xml'), xml, 'utf8');
+console.log(`Sitemap generated for ${entries.length} prerendered URLs.`);

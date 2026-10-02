@@ -19,6 +19,14 @@ npm run dev
 
 React + Vite + Tailwind + Framer Motion + React Router + Lucide React
 
+## SEO build and rollout
+
+`npm run build` generates prerendered HTML and a canonical sitemap, then runs the SEO audit. Use `npm run audit:seo` to check an existing build.
+
+The [SEO rollout guide](docs/SEO-ROLLOUT.md) covers Montpellier and dentist targeting, deployment checks, Search Console, Google Business Profile and AI search discovery.
+
+The [portfolio curation notes](docs/PORTFOLIO-CURATION.md) describe the ten selected projects, locally hosted previews and how to update the selection.
+
 ## Mobile Responsiveness
 
 - Viewport: `width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no`

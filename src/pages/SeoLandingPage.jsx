@@ -6,7 +6,10 @@ import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useTheme } from '../context/ThemeContext';
-import { buildCanonicalUrl, schemaIds } from '../data/schema';
+import { buildCanonicalUrl, buildWebPageSchema, schemaIds } from '../data/schema';
+import { siteMeta } from '../data/siteMeta';
+import { getProjectBySlug } from '../data/projects';
+import { PortfolioProjectCard } from '../components/PortfolioProjectCard';
 
 const buildBreadcrumbSchema = (items) => ({
   '@context': 'https://schema.org',
@@ -26,7 +29,7 @@ const buildServiceSchema = (page) => ({
   name: page.h1,
   serviceType: page.navLabel,
   description: page.description,
-  areaServed: ['Sète', 'Hérault', 'Occitanie', 'France'],
+  areaServed: siteMeta.serviceAreas,
   provider: {
     '@id': schemaIds.professionalService,
   },
@@ -65,6 +68,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
   const relatedLinks = (page.relatedLinks?.length ? page.relatedLinks : defaultRelatedLinks)
     .filter((item) => item.to !== `/${page.slug}`);
   const quickNav = page.quickNav || [];
+  const caseStudies = (page.caseStudySlugs || []).map(getProjectBySlug).filter(Boolean);
   const heroPrimaryLabel = page.heroPrimaryLabel || 'Parler de votre projet';
   const heroPrimaryTo = page.heroPrimaryTo || '/contact';
   const heroSecondaryLabel = page.heroSecondaryLabel || null;
@@ -84,6 +88,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
         description={page.description}
         keywords={[page.primaryKeyword, ...page.secondaryKeywords, 'Optimum Tech'].join(', ')}
         schema={[
+          buildWebPageSchema({ path: `/${page.slug}`, title: page.title, description: page.description, dateModified: page.updatedAt }),
           buildBreadcrumbSchema(breadcrumbs),
           buildServiceSchema(page),
           ...(page.faq?.length ? [buildFaqSchema(page.faq)] : []),
@@ -157,7 +162,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                 }`}
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0A84FF]">
-                  Ce que cette page met en avant
+                  Votre site en pratique
                 </p>
                 <ul className="mt-5 space-y-4">
                   {page.benefits.map((item) => (
@@ -170,7 +175,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
                 <div className={`mt-8 space-y-3 text-sm ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
                   <p className="inline-flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-[#0A84FF]" />
-                    Sète, Hérault, Occitanie, France
+                    {siteMeta.locationLabel}
                   </p>
                   <p className="inline-flex items-center gap-2">
                     <Phone className="h-4 w-4 text-[#0A84FF]" />
@@ -389,6 +394,19 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
               </section>
             ))}
 
+            {caseStudies.length ? (
+              <section id="realisations" aria-labelledby="case-studies-title">
+                <h2 id="case-studies-title" className="text-2xl font-bold tracking-tight md:text-3xl">
+                  {page.caseStudyTitle || 'Des réalisations à explorer'}
+                </h2>
+                <div className="mt-6 grid gap-5 md:grid-cols-2">
+                  {caseStudies.map((project) => (
+                    <PortfolioProjectCard key={project.id} project={project} compact />
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
             {page.faq?.length ? (
               <section
                 id="faq"
@@ -427,7 +445,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
               }`}
             >
               <p className={`text-sm uppercase tracking-[0.18em] ${theme === 'dark' ? 'text-white/45' : 'text-black/45'}`}>
-                Pages à relier
+                Pour aller plus loin
               </p>
               <div className="mt-4 space-y-3">
                 {relatedLinks.map((item) => (
@@ -454,7 +472,7 @@ export const SeoLandingPage = ({ page, categoryLabel }) => {
               }`}
             >
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0A84FF]">
-                Conversion
+                Votre projet
               </p>
               <h2 className="mt-3 text-xl font-bold tracking-tight">
                 {page.conversionTitle || 'Un site utile doit générer des prises de contact qualifiées'}

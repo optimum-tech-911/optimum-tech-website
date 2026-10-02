@@ -6,7 +6,9 @@ import heroMeeting from '../assets/images/optimum tech online meeting.webp';
 
 export const Hero = () => {
   const { t } = useI18n();
-  const [videoPaused, setVideoPaused] = React.useState(false);
+  const [videoPaused, setVideoPaused] = React.useState(true);
+  const [videoAvailable, setVideoAvailable] = React.useState(false);
+  const [videoVisible, setVideoVisible] = React.useState(false);
   const videoRef = React.useRef(null);
 
   const proofPoints = [
@@ -29,14 +31,89 @@ export const Hero = () => {
   ];
 
   React.useEffect(() => {
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    videoRef.current?.pause();
-    setVideoPaused(true);
+    const video = videoRef.current;
+    if (!video) return undefined;
+
+    const desktop = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    let idleId;
+    let timerId;
+    let disposed = false;
+
+    const canLoadVideo = () => desktop.matches && !reducedMotion.matches
+      && !connection?.saveData
+      && !['slow-2g', '2g', '3g'].includes(connection?.effectiveType)
+      && !(connection?.downlink > 0 && connection.downlink < 1.5);
+
+    const clearVideo = (updateState = true) => {
+      video.pause();
+      if (video.hasAttribute('src')) {
+        video.removeAttribute('src');
+        video.load();
+      }
+      if (updateState) {
+        setVideoAvailable(false);
+        setVideoVisible(false);
+        setVideoPaused(true);
+      }
+    };
+
+    const loadVideo = () => {
+      if (disposed || !canLoadVideo() || video.hasAttribute('src')) return;
+      // No video URL is emitted in HTML: the poster gets the initial bandwidth.
+      video.src = '/ot-hero-intro.mp4';
+      setVideoAvailable(true);
+      video.play().catch(() => {
+        if (!disposed) setVideoPaused(true);
+      });
+    };
+
+    const queueVideo = () => {
+      if (disposed || !canLoadVideo()) return;
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(loadVideo, { timeout: 3000 });
+      } else {
+        timerId = window.setTimeout(loadVideo, 1200);
+      }
+    };
+
+    const cancelScheduledLoad = () => {
+      window.removeEventListener('load', queueVideo);
+      if (idleId !== undefined) window.cancelIdleCallback(idleId);
+      if (timerId !== undefined) window.clearTimeout(timerId);
+      idleId = undefined;
+      timerId = undefined;
+    };
+
+    const updatePreferences = () => {
+      cancelScheduledLoad();
+      if (!canLoadVideo()) {
+        clearVideo();
+      } else if (!video.hasAttribute('src')) {
+        if (document.readyState === 'complete') queueVideo();
+        else window.addEventListener('load', queueVideo, { once: true });
+      }
+    };
+
+    desktop.addEventListener('change', updatePreferences);
+    reducedMotion.addEventListener('change', updatePreferences);
+    connection?.addEventListener?.('change', updatePreferences);
+    updatePreferences();
+
+    return () => {
+      disposed = true;
+      cancelScheduledLoad();
+      desktop.removeEventListener('change', updatePreferences);
+      reducedMotion.removeEventListener('change', updatePreferences);
+      connection?.removeEventListener?.('change', updatePreferences);
+      clearVideo(false);
+    };
   }, []);
 
   const toggleVideo = () => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || !videoAvailable) return;
     if (video.paused) {
       video.play().then(() => setVideoPaused(false)).catch(() => setVideoPaused(true));
     } else {
@@ -60,18 +137,18 @@ export const Hero = () => {
           ref={videoRef}
           className="brand-hero-video absolute inset-0 z-0 h-full w-full object-cover"
           poster={heroMeeting}
-          autoPlay
+          style={{ opacity: videoVisible ? 1 : 0 }}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           aria-hidden="true"
           tabIndex={-1}
           onPlay={() => setVideoPaused(false)}
+          onPlaying={() => setVideoVisible(true)}
           onPause={() => setVideoPaused(true)}
-        >
-          <source src="/ot-hero-intro.mp4" type="video/mp4" />
-        </video>
+          onError={() => { setVideoVisible(false); setVideoAvailable(false); setVideoPaused(true); }}
+        />
         <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(5,6,7,0.96)_0%,rgba(5,6,7,0.82)_48%,rgba(5,6,7,0.3)_100%)]" />
         <div className="absolute inset-0 z-10 bg-[linear-gradient(0deg,rgba(5,6,7,0.9)_0%,transparent_62%)]" />
         <div className="hero-ambient-grid absolute inset-0 z-10 opacity-30" aria-hidden="true" />
@@ -109,14 +186,14 @@ export const Hero = () => {
               ))}
             </div>
 
-            <button
+            {videoAvailable ? <button
               type="button"
               onClick={toggleVideo}
               aria-label={videoPaused ? 'Lire la vidéo du bandeau' : 'Mettre la vidéo du bandeau en pause'}
               className="mt-7 hidden h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-black/35 text-white/80 backdrop-blur-md transition hover:border-[#0A84FF] hover:bg-black/55 hover:text-white md:inline-flex"
             >
               {videoPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
-            </button>
+            </button> : null}
           </div>
         </section>
       </header>

@@ -3,12 +3,14 @@ import { ArrowDown, ArrowUpRight, Search, SlidersHorizontal, X } from 'lucide-re
 import { Link } from 'react-router-dom';
 import { ContactActions } from '../components/ContactActions';
 import { Footer } from '../components/Footer';
+import { FeaturedProjects } from '../components/FeaturedProjects';
 import { Navbar } from '../components/Navbar';
 import { PortfolioProjectCard } from '../components/PortfolioProjectCard';
 import { SEO } from '../components/SEO';
 import { useTheme } from '../context/ThemeContext';
-import { publicProjects } from '../data/projects';
-import { buildCollectionPageSchema } from '../data/schema';
+import { featuredProjects, homeFeaturedProjectIds, publicProjects, sectorPages } from '../data/projects';
+import { buildCanonicalUrl, buildCollectionPageSchema } from '../data/schema';
+import { siteMeta } from '../data/siteMeta';
 
 const filters = [
   { key: 'all', label: 'Tous les projets' },
@@ -50,6 +52,7 @@ export const Projects = () => {
       })
       .sort((a, b) => {
         if (a.featured !== b.featured) return a.featured ? -1 : 1;
+        if (a.featured && b.featured) return homeFeaturedProjectIds.indexOf(a.id) - homeFeaturedProjectIds.indexOf(b.id);
         const statusDifference = statusOrder[a.status] - statusOrder[b.status];
         return statusDifference || a.title.localeCompare(b.title, 'fr');
       });
@@ -61,12 +64,30 @@ export const Projects = () => {
         path="/realisations"
         title="Réalisations web, applications et projets digitaux | Optimum Tech"
         description="Explorez les sites web, applications métier, dashboards et expériences digitales conçus par Optimum Tech pour des activités concrètes."
-        keywords="réalisations agence web, portfolio développeur web Sète, création site dentaire, site restaurant, application web sur mesure"
-        schema={buildCollectionPageSchema({
+        keywords="réalisations agence web Montpellier, portfolio développeur web Sète, création site dentaire, marketplace, e-commerce, application web sur mesure"
+        schema={{ ...buildCollectionPageSchema({
           path: '/realisations',
           title: 'Réalisations web, applications et projets digitaux | Optimum Tech',
           description: 'Sites web, applications métier, dashboards et expériences digitales conçus par Optimum Tech.',
-        })}
+        }),
+        dateModified: '2026-10-02',
+        mainEntity: {
+          '@type': 'ItemList',
+          name: 'Sélection des réalisations Optimum Tech',
+          itemListElement: featuredProjects.map((project, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+              '@type': 'WebPage',
+              '@id': `${buildCanonicalUrl(`/realisations/${project.slug}`)}#webpage`,
+              url: buildCanonicalUrl(`/realisations/${project.slug}`),
+              name: project.title,
+              description: project.description,
+              image: `${siteMeta.url}${project.image}`,
+            },
+          })),
+        },
+        }}
       />
       <Navbar />
 
@@ -83,7 +104,7 @@ export const Projects = () => {
               Réservation, commandes, livraison, CRM, espaces clients, dashboards et outils métier : voici les interfaces que nous avons réellement conçues et déployées.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#portfolio-grid" className="inline-flex items-center gap-2 rounded-full bg-[#0A84FF] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#0576e6]">
+              <a href="#featured-work-title" className="inline-flex items-center gap-2 rounded-full bg-[#0A84FF] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#0576e6]">
                 Explorer les projets
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
               </a>
@@ -112,6 +133,20 @@ export const Projects = () => {
             ))}
           </div>
         </section>
+
+        <FeaturedProjects showPortfolioLink={false} />
+
+        <nav aria-label="Réalisations par activité" className="mx-auto mt-10 flex max-w-7xl flex-wrap gap-3">
+          {Object.entries(sectorPages).map(([slug, sector]) => (
+            <Link
+              key={slug}
+              to={`/secteurs/${slug}`}
+              className={`rounded-xl border px-4 py-3 text-sm font-semibold transition hover:border-[#0A84FF]/40 ${theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white'}`}
+            >
+              {sector.eyebrow}
+            </Link>
+          ))}
+        </nav>
 
         <section id="portfolio-grid" className="relative mx-auto mt-14 max-w-7xl scroll-mt-28" aria-labelledby="projects-grid-title">
           <div className={`sticky top-20 z-20 rounded-[1.7rem] border p-3 backdrop-blur-xl md:p-4 ${

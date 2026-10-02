@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# ChatGPT search discovery. Search access is separate from model training.
+User-agent: OAI-SearchBot
+Allow: /
+
 Sitemap: https://optimutech.fr/sitemap.xml

@@ -14,14 +14,18 @@ export const buildCanonicalUrl = (path = '/') => `${baseUrl}${normalizePath(path
 export const schemaIds = {
   organization: `${baseUrl}/#organization`,
   website: `${baseUrl}/#website`,
-  professionalService: `${baseUrl}/#professional-service`,
+  // Service providers and publishers refer to the same business identity.
+  professionalService: `${baseUrl}/#organization`,
 };
 
 const businessDescription =
-  'Optimum Tech crée des sites web professionnels, améliore la visibilité SEO locale, développe des applications web et des outils sur mesure, et met en place des automatisations utiles pour les entreprises.';
+  'Optimum Tech accompagne les entreprises et cabinets dentaires de Montpellier, Sète et de l’Hérault : création de sites internet, plateformes et applications web sur mesure, logiciels métier et référencement local.';
 
 const areasServed = [
+  { '@type': 'City', name: 'Montpellier' },
   { '@type': 'City', name: 'Sète' },
+  { '@type': 'City', name: 'Frontignan' },
+  { '@type': 'City', name: 'Béziers' },
   { '@type': 'AdministrativeArea', name: 'Hérault' },
   { '@type': 'AdministrativeArea', name: 'Occitanie' },
   { '@type': 'Country', name: 'France' },
@@ -31,16 +35,20 @@ const serviceCatalog = {
   '@type': 'OfferCatalog',
   name: 'Services digitaux Optimum Tech',
   itemListElement: [
-    'Création de site web professionnel',
-    'Application web sur mesure',
-    'Logiciel et outil métier sur mesure',
-    'Référencement SEO local',
-    'Automatisation IA utile',
-  ].map((name) => ({
+    ['Création de site web professionnel', '/creation-site-web'],
+    ['Création de site internet pour cabinet dentaire', '/site-internet-dentiste'],
+    ['Plateforme et application web sur mesure', '/application-web-sur-mesure'],
+    ['Logiciel et outil métier sur mesure', '/logiciel-sur-mesure'],
+    ['Référencement SEO local', '/referencement-seo'],
+    ['Automatisation IA', '/automatisation-ia'],
+  ].map(([name, path]) => ({
     '@type': 'Offer',
     itemOffered: {
       '@type': 'Service',
+      '@id': `${buildCanonicalUrl(path)}#service`,
       name,
+      url: buildCanonicalUrl(path),
+      provider: { '@id': schemaIds.organization },
     },
   })),
 };
@@ -59,7 +67,15 @@ export const buildEntityGraph = () => [
     },
     telephone: siteMeta.phone,
     email: siteMeta.email,
-    sameAs: [siteMeta.socialLinks.instagram, siteMeta.socialLinks.linkedin],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: siteMeta.addressLocality,
+      addressRegion: 'Occitanie',
+      addressCountry: 'FR',
+    },
+    areaServed: areasServed,
+    hasOfferCatalog: serviceCatalog,
+    sameAs: [siteMeta.socialLinks.instagram, siteMeta.googleBusinessProfile],
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: siteMeta.phone,
@@ -70,6 +86,8 @@ export const buildEntityGraph = () => [
     },
     knowsAbout: [
       'Création de site web',
+      'Site internet pour dentiste et cabinet dentaire',
+      'Création de plateforme web',
       'Design UX et UI',
       'Application web sur mesure',
       'Logiciel métier',
@@ -89,37 +107,16 @@ export const buildEntityGraph = () => [
     },
     inLanguage: 'fr-FR',
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    '@id': schemaIds.professionalService,
-    name: siteMeta.name,
-    url: siteMeta.url,
-    description: businessDescription,
-    image: logoUrl,
-    telephone: siteMeta.phone,
-    email: siteMeta.email,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Sète',
-      addressRegion: 'Occitanie',
-      addressCountry: 'FR',
-    },
-    areaServed: areasServed,
-    hasOfferCatalog: serviceCatalog,
-    provider: {
-      '@id': schemaIds.organization,
-    },
-  },
 ];
 
-export const buildWebPageSchema = ({ path, title, description }) => ({
+export const buildWebPageSchema = ({ path, title, description, dateModified }) => ({
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   '@id': `${buildCanonicalUrl(path)}#webpage`,
   url: buildCanonicalUrl(path),
   name: title,
   description,
+  ...(dateModified ? { dateModified } : {}),
   isPartOf: {
     '@id': schemaIds.website,
   },

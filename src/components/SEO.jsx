@@ -51,7 +51,7 @@ export const SEO = ({
 
       {allSchemaItems.map((item, index) => (
         <script key={`${path || 'page'}-schema-${index}`} type="application/ld+json">
-          {JSON.stringify(item)}
+          {JSON.stringify(item).replace(/</g, '\\u003c')}
         </script>
       ))}
     </Helmet>

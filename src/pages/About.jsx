@@ -8,7 +8,7 @@ import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useTheme } from '../context/ThemeContext';
 import { siteMeta, trustHighlights } from '../data/siteMeta';
 import { ContactActions } from '../components/ContactActions';
-import { buildCanonicalUrl, buildWebPageSchema } from '../data/schema';
+import { buildCanonicalUrl, buildWebPageSchema, schemaIds } from '../data/schema';
 
 export const AboutPage = () => {
   const { theme } = useTheme();
@@ -26,14 +26,15 @@ export const AboutPage = () => {
       <SEO
         path="/a-propos"
         title="À propos d’Optimum Tech | Sites, applications et solutions digitales"
-        description="Découvrez Optimum Tech, studio de création de sites web, web apps, logiciels sur mesure, automatisations utiles et visibilité digitale pour les entreprises à Sète, dans l’Hérault, en Occitanie et en France."
+        description="Découvrez Optimum Tech, studio de création de sites web, web apps, logiciels sur mesure, automatisations utiles et visibilité digitale pour les entreprises à Montpellier et Sète, dans l’Hérault, en Occitanie et en France."
         schema={[
-          buildWebPageSchema({
+          { ...buildWebPageSchema({
             path: '/a-propos',
+            dateModified: '2026-10-02',
             title: 'À propos d’Optimum Tech | Sites, applications et solutions digitales',
             description:
-              'Découvrez Optimum Tech, studio de création de sites web, web apps, logiciels sur mesure, automatisations utiles et visibilité digitale pour les entreprises à Sète, dans l’Hérault, en Occitanie et en France.',
-          }),
+              'Découvrez Optimum Tech, studio de création de sites web, web apps, logiciels sur mesure, automatisations utiles et visibilité digitale pour les entreprises à Montpellier et Sète, dans l’Hérault, en Occitanie et en France.',
+          }), '@type': 'AboutPage', mainEntity: { '@id': schemaIds.organization } },
           {
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
@@ -43,14 +44,6 @@ export const AboutPage = () => {
               name: item.label,
               item: buildCanonicalUrl(item.to),
             })),
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'AboutPage',
-            name: 'À propos d’Optimum Tech',
-            url: buildCanonicalUrl('/a-propos'),
-            description:
-              'Présentation d’Optimum Tech, de ses services et de sa manière d’accompagner les entreprises.',
           },
         ]}
       />
@@ -67,14 +60,20 @@ export const AboutPage = () => {
           >
             <Breadcrumbs items={breadcrumbs} />
             <h1 className="max-w-4xl text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl md:text-6xl">
-              Optimum Tech aide les entreprises à transformer une présence digitale floue en outil plus clair, plus utile et mieux structuré
+              Optimum Tech, studio web pour entreprises et cabinets dentaires
             </h1>
             <p className={`mt-5 max-w-3xl text-lg leading-8 ${theme === 'dark' ? 'text-white/72' : 'text-black/72'}`}>
-              Le positionnement est simple : concevoir des sites web, des applications et
-              des outils digitaux sur mesure, renforcer la visibilité quand elle compte et
-              ajouter des automatisations seulement quand elles ont un vrai intérêt pour
-              l’activité.
+              Optimum Tech conçoit des sites internet, des plateformes web et des logiciels
+              sur mesure pour les entreprises de Montpellier, Sète et de l’Hérault.
+              Notre travail réunit le design, le développement, le référencement local et
+              l’automatisation, avec des projets également accompagnés à distance en France.
             </p>
+            <dl className={`mt-7 grid gap-5 border-t pt-6 text-sm leading-7 sm:grid-cols-2 ${theme === 'dark' ? 'border-white/10 text-white/75' : 'border-black/10 text-black/75'}`}>
+              <div><dt className="font-bold">Pour qui ?</dt><dd>Entreprises locales, dentistes, commerces, indépendants, PME et porteurs de plateformes.</dd></div>
+              <div><dt className="font-bold">Où intervenons-nous ?</dt><dd>Montpellier, Sète, Frontignan, Béziers et l’Hérault ; accompagnement à distance en France.</dd></div>
+              <div><dt className="font-bold">Parler de votre besoin</dt><dd><a href={siteMeta.phoneHref} className="underline underline-offset-4">{siteMeta.phone}</a></dd></div>
+              <div><dt className="font-bold">Nous écrire</dt><dd><a href={siteMeta.emailHref} className="break-all underline underline-offset-4">{siteMeta.email}</a></dd></div>
+            </dl>
           </div>
         </section>
 
@@ -99,19 +98,26 @@ export const AboutPage = () => {
         <section className={`mx-auto mt-12 max-w-5xl rounded-[2rem] border p-6 md:p-8 ${
           theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-lg'
         }`}>
-          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Ce que nous cherchons à améliorer chez nos clients</h2>
+          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Du site internet à la plateforme métier</h2>
           <div className={`mt-5 space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/76' : 'text-black/76'}`}>
             <p>
-              La clarté de l’offre, la compréhension des services, la confiance perçue, la
-              facilité de contact et la cohérence entre ce que l’entreprise promet et ce que
-              le site montre réellement.
+              Un cabinet dentaire a besoin de présenter ses soins et de faciliter la préparation
+              d’un rendez-vous. Un commerce doit rendre ses produits accessibles. Une plateforme
+              doit organiser des comptes, des demandes, des documents ou des transactions.
+              Le parcours et les fonctionnalités sont conçus à partir de ces usages.
             </p>
             <p>
-              Cela implique souvent moins d’effets et plus de structure : de meilleures pages
-              services, une page contact plus complète, une base SEO locale propre, un blog
-              qui répond à de vraies questions, ou parfois un outil métier mieux adapté à la
-              manière dont l’entreprise fonctionne.
+              Nous intervenons sur la structure des contenus, l’identité visuelle, les interfaces
+              mobiles, le développement et les parcours de contact. Selon le projet, cela inclut
+              un espace client, une administration, des animations, une scène 3D ou des
+              automatisations liées à votre activité.
             </p>
+            <div className="flex flex-wrap gap-x-6 gap-y-3 font-semibold text-[#0576e6]">
+              <Link to="/creation-site-web-montpellier" className="underline underline-offset-4">Créer un site à Montpellier</Link>
+              <Link to="/site-internet-dentiste" className="underline underline-offset-4">Créer un site de cabinet dentaire</Link>
+              <Link to="/application-web-sur-mesure" className="underline underline-offset-4">Développer une plateforme</Link>
+              <Link to="/referencement-seo" className="underline underline-offset-4">Travailler le référencement local</Link>
+            </div>
           </div>
         </section>
 
@@ -122,16 +128,15 @@ export const AboutPage = () => {
             <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Notre manière de travailler</h2>
             <div className={`mt-5 space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/76' : 'text-black/76'}`}>
               <p>
-                Nous essayons d’abord de comprendre ce qui bloque : site trop léger, offre
-                peu lisible, absence de pages utiles, besoin d’un outil interne plus clair,
-                mauvais relais entre visibilité digitale et conversion, ou encore processus
-                répétitifs qui prennent trop de temps.
+                Le premier échange sert à définir votre activité, vos visiteurs, les actions
+                attendues et les outils déjà utilisés. Nous cadrons ensuite les pages, les
+                fonctionnalités, les contenus à réunir et les priorités de lancement.
               </p>
               <p>
-                Ensuite, nous priorisons. Toutes les entreprises n’ont pas besoin d’une web
-                app ou d’automatisations avancées. Parfois, la meilleure amélioration est une
-                architecture plus simple, un contenu plus fort et un meilleur chemin de
-                contact.
+                Les choix de design et de développement suivent ce périmètre. Les parcours
+                essentiels, l’affichage mobile, les moyens de contact et la présence des
+                contenus sont vérifiés avant la mise en ligne. La maintenance et les évolutions
+                se définissent selon les besoins du projet.
               </p>
             </div>
           </div>
@@ -139,18 +144,18 @@ export const AboutPage = () => {
           <div className={`rounded-[2rem] border p-6 md:p-8 ${
             theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white/80 shadow-lg'
           }`}>
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Ce que cette page affirme sans exagérer</h2>
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Des réalisations que vous pouvez explorer</h2>
             <div className={`mt-5 space-y-4 text-base leading-8 ${theme === 'dark' ? 'text-white/76' : 'text-black/76'}`}>
               <p>
-                Optimum Tech intervient sur des sujets de création de site web, web apps,
-                outils métier sur mesure, SEO local, visibilité digitale et automatisation
-                utile pour des entreprises en France, avec un ancrage mis en avant autour de
-                Sète, de l’Hérault et de l’Occitanie.
+                Le <Link to="/realisations/cabinet-dentaire-sete" className="underline underline-offset-4">Cabinet Dentaire Sète</Link> et
+                l’<Link to="/realisations/ufsbd34" className="underline underline-offset-4">UFSBD34</Link> illustrent notre travail dans la santé.
+                {' '}<Link to="/realisations/kabamana" className="underline underline-offset-4">Kabamana</Link> présente une marketplace de transport et
+                {' '}<Link to="/realisations/oree-entreprises" className="underline underline-offset-4">Orée Entreprises</Link> un parcours de création de société avec espace client.
               </p>
               <p>
-                Nous ne revendiquons pas de classement garanti, de statistiques fabriquées ou
-                de distinctions non vérifiables. L’enjeu est de rester crédible, lisible et
-                joignable.
+                Côté design, <Link to="/realisations/krew-media" className="underline underline-offset-4">Krew Media</Link> met la vidéo au centre de son univers,
+                tandis que <Link to="/realisations/nonails" className="underline underline-offset-4">Nonails</Link> propose une scène de nail art en 3D au défilement.
+                Chaque présentation donne accès au projet en ligne pour découvrir son fonctionnement.
               </p>
             </div>
           </div>

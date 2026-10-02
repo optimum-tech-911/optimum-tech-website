@@ -14,6 +14,33 @@ export const PROJECT_CATEGORIES = {
   apps: 'Applications web',
 };
 
+// This is the editorial selection used on both the home page and the portfolio.
+export const homeFeaturedProjectIds = [
+  'porters',
+  'kabamana',
+  'krew',
+  'oree',
+  'struktur',
+  'lecrin-setois',
+  'nonails',
+  'cabinet-dentaire-sete',
+  'ufsbd34',
+  'dr-souidi',
+];
+
+const showcaseDetails = {
+  porters: { group: 'design', accent: '#d9b668', label: 'Entreprise & outils interactifs' },
+  kabamana: { group: 'platforms', accent: '#55d9d0', label: 'Marketplace de transport' },
+  krew: { group: 'design', accent: '#8eddd3', label: 'Agence créative & vidéo' },
+  oree: { group: 'platforms', accent: '#70a4ff', label: 'Plateforme de création d’entreprise' },
+  struktur: { group: 'platforms', accent: '#d2bdaa', label: 'E-commerce & direction artistique' },
+  'lecrin-setois': { group: 'design', accent: '#d5bc89', label: 'Hospitalité & expérience immersive' },
+  nonails: { group: 'design', accent: '#e3adc2', label: 'Beauté & expérience 3D au défilement' },
+  'cabinet-dentaire-sete': { group: 'health', accent: '#c7d9aa', label: 'Cabinet dentaire à Sète' },
+  ufsbd34: { group: 'health', accent: '#e9d655', label: 'Prévention & plateforme institutionnelle' },
+  'dr-souidi': { group: 'health', accent: '#edaaa7', label: 'Cabinet dentaire & parcours bilingue' },
+};
+
 const logoProjectIds = new Set([
   'abev',
   'cabinet-dentaire-sete',
@@ -33,10 +60,10 @@ const logoProjectIds = new Set([
 
 const verifiedProjectDetails = {
   ufsbd34: { type: 'Plateforme institutionnelle & extranet', description: 'Plateforme institutionnelle pour la prévention bucco-dentaire, avec actualités, interventions, espace connecté et administration des contenus.', capabilities: ['Actualités & contenus', 'Espace connecté', 'Administration'] },
-  'cabinet-dentaire-sete': { type: 'Site patient & espace cabinet', description: 'Écosystème digital du cabinet avec prise de rendez-vous, espace patient, contenus SEO sur les soins et administration dédiée.', capabilities: ['Prise de rendez-vous', 'Espace patient', 'Blog & SEO local', 'Administration'] },
+  'cabinet-dentaire-sete': { type: 'Site dentaire & parcours patient', description: 'Site du cabinet dentaire à Sète avec présentation des soins, guides patients, demandes de rendez-vous, SEO local et gestion des contenus.', capabilities: ['Demandes de rendez-vous', 'Guides patients', 'Blog & SEO local', 'Gestion des contenus'] },
   dentalpole: { type: 'Parcours patient spécialisé', description: 'Expérience spécialisée en implantologie et parodontologie avec prise de rendez-vous, recherche, expertises et gestion des demandes patients.', capabilities: ['Prise de rendez-vous', 'Parcours patient', 'Recherche', 'Gestion des demandes'] },
   'dr-mallek': { type: 'Cabinet dentaire connecté', description: 'Site bilingue pour deux cabinets avec réservation, espace patient, services, témoignages et interface de gestion.', capabilities: ['Réservation en ligne', 'Espace patient', 'Multilingue', 'Administration'] },
-  'dr-souidi': { type: 'Cabinet dentaire connecté', description: 'Parcours bilingue centré sur les soins, la recherche d’informations, la réservation et la gestion des demandes patients.', capabilities: ['Prise de rendez-vous', 'Espace patient', 'Multilingue', 'Administration'] },
+  'dr-souidi': { type: 'Site dentaire bilingue', description: 'Site du cabinet Dr Souidi à Béni Saf : soins, expertises, informations pratiques et parcours de rendez-vous en français et en arabe.', capabilities: ['Soins & expertises', 'Prise de rendez-vous', 'Français & arabe', 'Informations pratiques'] },
   'chekroun-dental-center': {
     type: 'Centre dentaire, réservation & espace patient',
     description: 'Centre dentaire à Oran avec prise de rendez-vous, espace patient, contenus multilingues et interface d’administration.',
@@ -116,7 +143,6 @@ const project = (config) => ({
   url: null,
   image: `/projects/${config.id}.jpg`,
   logo: logoProjectIds.has(config.id) ? `/projects/logos/${config.id}.png` : null,
-  featured: false,
   caseStudy: false,
   tags: [],
   capabilities: [],
@@ -125,9 +151,64 @@ const project = (config) => ({
   ...config,
   ...verifiedProjectDetails[config.id],
   status: 'launched',
+  featured: homeFeaturedProjectIds.includes(config.id),
+  ...(showcaseDetails[config.id] ? {
+    showcase: showcaseDetails[config.id],
+    image: `/projects/selected/${config.id}.webp`,
+    imageSrcSet: `/projects/selected/${config.id}-600.webp 600w, /projects/selected/${config.id}.webp 1200w`,
+    updatedAt: '2026-10-02',
+  } : {}),
 });
 
 export const projects = [
+  project({
+    id: 'porters', slug: 'the-porters', title: 'The Porters',
+    sector: 'Portage salarial & conseil IT', category: 'services', type: 'Site corporate & outils interactifs',
+    description: 'Un univers éditorial pour le portage salarial IT, avec simulateur de revenus, assistant conversationnel et parcours de contact.',
+    url: 'https://porters.fr/', caseStudy: true,
+    tags: ['Portage salarial', 'Design éditorial', 'Interactivité'],
+    capabilities: ['Simulateur de revenus', 'Assistant conversationnel', 'Contenus métier', 'Parcours de contact'],
+  }),
+  project({
+    id: 'krew', slug: 'krew-media', title: 'Krew Media',
+    sector: 'Création de contenu & influence', category: 'services', type: 'Agence créative & expérience vidéo',
+    description: 'Une présence de marque portée par la vidéo pour une agence de créateurs : campagnes, expertises, méthode et demandes de collaboration.',
+    url: 'https://krew.media/fr/', caseStudy: true,
+    tags: ['Agence', 'Vidéo', 'Direction artistique'],
+    capabilities: ['Univers vidéo', 'Campagnes & créateurs', 'Français & anglais', 'Demandes de collaboration'],
+  }),
+  project({
+    id: 'oree', slug: 'oree-entreprises', title: 'Orée Entreprises',
+    sector: 'Création d’entreprise', category: 'apps', type: 'Plateforme métier & espace client',
+    description: 'Une plateforme de création d’entreprise avec diagnostic adaptatif, dossier structuré, documents et suivi des prochaines étapes.',
+    url: 'https://oree.optimutech.fr/', caseStudy: true,
+    tags: ['Plateforme métier', 'Diagnostic', 'Espace client'],
+    capabilities: ['Diagnostic adaptatif', 'Espace client', 'Dossiers & documents', 'Suivi de progression'],
+  }),
+  project({
+    id: 'struktur', slug: 'struktur-grenoble', title: 'STRUKTUR Grenoble',
+    sector: 'Mode & concept store', category: 'services', type: 'E-commerce & expérience de marque',
+    description: 'Un concept store streetwear et sneakers prolongé en ligne : collections, fiches produits, panier et direction artistique éditoriale.',
+    url: 'https://struktur-grenoble.pages.dev/', caseStudy: true,
+    tags: ['E-commerce', 'Mode', 'Direction artistique'],
+    capabilities: ['Collections & catalogue', 'Fiches produits', 'Panier', 'Animations & identité'],
+  }),
+  project({
+    id: 'lecrin-setois', slug: 'lecrin-setois', title: 'L’Écrin Sétois',
+    sector: 'Hospitalité & tourisme à Sète', category: 'services', type: 'Site immersif & réservation',
+    description: 'Une expérience visuelle pour un appartement de vacances à Sète : photographies, découverte du lieu, guide local et réservation directe.',
+    url: 'https://lecrinsetois.fr/', caseStudy: true,
+    tags: ['Hospitalité', 'Design immersif', 'Sète'],
+    capabilities: ['Galerie immersive', 'Réservation directe', 'Guide de Sète', 'Animations au défilement'],
+  }),
+  project({
+    id: 'nonails', slug: 'nonails', title: 'Nonails',
+    sector: 'Beauté & manucure', category: 'beauty', type: 'Expérience 3D & plateforme beauté',
+    description: 'Un studio de manucure mis en scène en 3D au défilement, avec prestations, galerie nail art, réservation et espace de gestion.',
+    url: 'https://nonails.click/', caseStudy: true,
+    tags: ['Beauté', '3D', 'Motion design', 'Réservation'],
+    capabilities: ['Scène 3D interactive', 'Animations au défilement', 'Réservation & gestion', 'Galerie nail art'],
+  }),
   project({
     id: 'ufsbd34',
     slug: 'ufsbd34',
@@ -171,7 +252,7 @@ export const projects = [
     tags: ['Implantologie', 'Parodontologie', 'UX patient'],
   }),
   project({ id: 'dr-mallek', slug: 'dr-mallek-dental-care', title: 'Dr Mallek Dental Care', sector: 'Santé & Dentaire', category: 'health', type: 'Site cabinet dentaire', status: 'demo', description: 'Concept premium centré sur la confiance, la lisibilité des soins et l’image professionnelle.', url: 'https://dr-mallek-dental-care.vercel.app', featured: true, source: 'demo', tags: ['Dentaire', 'Premium', 'Concept'] }),
-  project({ id: 'dr-souidi', slug: 'dr-souidi-dental', title: 'Dr Souidi Dental', sector: 'Santé & Dentaire', category: 'health', type: 'Site cabinet dentaire', status: 'demo', description: 'Site dentaire moderne avec structure claire, services, présentation du cabinet et appels à l’action.', url: 'https://dr-souidi-dental.vercel.app', source: 'demo', tags: ['Dentaire', 'Services', 'Contact'] }),
+  project({ id: 'dr-souidi', slug: 'dr-souidi-dental', title: 'Dr Souidi Dental', sector: 'Santé & Dentaire', category: 'health', type: 'Site cabinet dentaire', status: 'launched', description: 'Site dentaire moderne avec structure claire, services, présentation du cabinet et appels à l’action.', url: 'https://dr-souidi-dental.pages.dev/', source: 'international', caseStudy: true, tags: ['Dentaire', 'Bilingue', 'Parcours patient'] }),
   project({ id: 'chekroun-dental-center', slug: 'chekroun-dental-center', title: 'Chekroun Dental Center', sector: 'Santé & Dentaire', category: 'health', type: 'Centre dentaire, réservation & espace patient', status: 'launched', description: 'Centre dentaire à Oran avec prise de rendez-vous, espace patient, contenus multilingues et interface d’administration.', url: 'https://chekroundentalcenter.pages.dev', tags: ['Dentaire', 'Réservation', 'Espace patient'] }),
   project({ id: 'medicalpost', slug: 'medicalpost', title: 'MedicalPost.co.uk', sector: 'Santé internationale', category: 'health', type: 'Projet médical international', status: 'launched', description: 'Référence internationale dans l’univers des services et contenus médicaux.', url: 'https://medicalpost.co.uk', source: 'international', tags: ['Médical', 'International'] }),
   project({ id: 'medidesk', slug: 'medidesk', title: 'Medidesk.pl', sector: 'Santé internationale', category: 'health', type: 'Projet médical international', status: 'launched', description: 'Référence internationale liée à la présence digitale dans le secteur de la santé.', url: 'https://medidesk.pl', source: 'international', tags: ['Médical', 'International'] }),
@@ -245,15 +326,6 @@ export const projects = [
   project({ id: 'team-nkg', slug: 'team-nkg-reimagine', title: 'ALTCo', sector: 'Restaurants & Food', category: 'food', type: 'Marque food & e-commerce', status: 'demo', description: 'Concept e-commerce pour une marque de protéines végétales avec produits, recettes, blog, panier et paiement.', url: 'https://team-nkg-reimagine-round1.vercel.app', source: 'demo', tags: ['E-commerce', 'Food', 'Produits'] }),
 ];
 
-export const homeFeaturedProjectIds = [
-  'ufsbd34',
-  'kabamana',
-  'le-petit-bougiote',
-  'maison-de-saney',
-  'facturation-optimum',
-  'happy-sharing-events',
-];
-
 export const publicProjects = projects.filter((item) => item.visibility === 'public');
 export const featuredProjects = homeFeaturedProjectIds
   .map((id) => publicProjects.find((item) => item.id === id))
@@ -261,6 +333,70 @@ export const featuredProjects = homeFeaturedProjectIds
 export const caseStudyProjects = publicProjects.filter((item) => item.caseStudy);
 
 export const projectCaseStudies = {
+  porters: {
+    context: 'The Porters accompagne les consultants IT dans leur activité en portage salarial.',
+    problem: 'Expliquer un service métier, aider le consultant à se projeter et rendre le premier échange facile depuis un même site.',
+    solution: 'Une identité éditoriale avec outils de simulation, assistant conversationnel, contenus métier et parcours de contact.',
+    features: ['Simulateur de revenus', 'Assistant conversationnel', 'Présentation du portage salarial', 'Contact avec un conseiller'],
+    outcome: 'Donner au visiteur les repères et les outils pour préparer une demande adaptée à sa situation.',
+    technologies: ['Astro', 'Interfaces interactives', 'Gestion éditoriale'],
+  },
+  krew: {
+    context: 'Krew Media réunit des créateurs et accompagne les marques dans leurs campagnes de contenu.',
+    problem: 'Présenter les offres, les univers de création et la méthode tout en donnant une place centrale aux images et à la vidéo.',
+    solution: 'Un site d’agence immersif avec vidéo, campagnes, expertises et contenus en français et en anglais.',
+    features: ['Expérience vidéo', 'Présentation des campagnes', 'Réseau de créateurs', 'Parcours de collaboration bilingue'],
+    outcome: 'Faire découvrir l’univers de l’agence et guider les marques vers une demande de collaboration.',
+    technologies: ['React', 'Médias vidéo', 'Architecture multilingue'],
+  },
+  oree: {
+    context: 'Orée Entreprises accompagne les porteurs de projet dans la création de leur société.',
+    problem: 'Transformer des informations, documents et étapes administratives en un parcours compréhensible avec une prochaine action visible.',
+    solution: 'Une plateforme métier articulée autour du diagnostic, de l’espace client et du suivi du dossier de création.',
+    features: ['Diagnostic adaptatif', 'Espace client', 'Dossier et documents', 'Suivi des étapes et progression'],
+    outcome: 'Réunir l’orientation et le suivi du projet dans une interface qui permet de comprendre où en est le dossier.',
+    technologies: ['Application web', 'Parcours adaptatif', 'Espace client'],
+  },
+  struktur: {
+    context: 'STRUKTUR Grenoble est un concept store de vêtements streetwear, sneakers et accessoires.',
+    problem: 'Associer une identité visuelle affirmée à un catalogue facile à parcourir et à un parcours de panier clair.',
+    solution: 'Une expérience e-commerce avec collections, fiches produits et animations au service de la marque.',
+    features: ['Collections et catalogue', 'Fiches produits', 'Panier', 'Direction artistique et animations'],
+    outcome: 'Prolonger l’univers du concept store en ligne et donner accès à la sélection de produits.',
+    technologies: ['React', 'Catalogue e-commerce', 'Interfaces animées'],
+  },
+  'lecrin-setois': {
+    context: 'L’Écrin Sétois est un appartement de vacances à Sète présenté dans un univers visuel méditerranéen.',
+    problem: 'Montrer le logement, son atmosphère et son environnement tout en gardant la réservation et les informations pratiques faciles à trouver.',
+    solution: 'Un site immersif porté par les photographies, une galerie, un guide de Sète et un parcours de réservation directe.',
+    features: ['Photographies du logement', 'Galerie immersive', 'Guide local de Sète', 'Réservation directe'],
+    outcome: 'Aider les visiteurs à découvrir le lieu et à préparer leur séjour depuis une même adresse.',
+    technologies: ['React', 'Design responsive', 'Animations au défilement'],
+  },
+  nonails: {
+    context: 'Nonails présente les prestations et l’univers créatif d’un studio de manucure.',
+    problem: 'Traduire la précision et l’esthétique du studio en une expérience qui donne accès aux prestations et à la réservation.',
+    solution: 'Une expérience de marque avec une scène 3D de nail art pilotée par le défilement, galerie, prestations, réservation et espace de gestion.',
+    features: ['Scène 3D interactive', 'Animations au défilement', 'Galerie nail art', 'Réservation et administration'],
+    outcome: 'Donner une présence cohérente au studio et guider les visiteurs vers le choix d’une prestation.',
+    technologies: ['React', 'React Three Fiber', 'Three.js', 'GSAP'],
+  },
+  'dr-souidi': {
+    context: 'Le cabinet du Dr Souidi à Béni Saf présente ses soins et ses expertises à un public francophone et arabophone.',
+    problem: 'Organiser les informations dentaires et pratiques dans un parcours rassurant, accessible dans les deux langues.',
+    solution: 'Un site dentaire bilingue qui réunit les soins, la présentation du cabinet et les actions de rendez-vous.',
+    features: ['Français et arabe', 'Présentation des soins', 'Informations du cabinet', 'Prise de rendez-vous'],
+    outcome: 'Faciliter la découverte du cabinet et la préparation d’un premier contact dans la langue du visiteur.',
+    technologies: ['React', 'Interface bilingue', 'Design responsive'],
+  },
+  'chez-redouane': {
+    context: 'Un salon de coiffure présente ses services et propose un parcours de réservation et de boutique.',
+    problem: 'La présentation du salon, les horaires, les services et les actions en ligne doivent rester faciles à trouver.',
+    solution: 'Une plateforme de salon avec réservation, boutique, panier, compte client et interface multilingue.',
+    features: ['Réservation en ligne', 'Boutique et panier', 'Compte client', 'Administration'],
+    outcome: 'Faciliter la découverte du salon et l’accès aux services en ligne depuis un même site.',
+    technologies: ['Application web', 'Comptes utilisateurs', 'Interface multilingue'],
+  },
   ufsbd34: {
     context: 'Une organisation départementale de prévention bucco-dentaire avait besoin d’un point de référence public, clair et facile à mettre à jour.',
     problem: 'L’information institutionnelle, les actualités et les moyens de contact devaient être réunis sans alourdir le parcours des visiteurs.',
@@ -288,8 +424,8 @@ export const projectCaseStudies = {
   'cabinet-dentaire-sete': {
     context: 'Le cabinet avait besoin d’un site professionnel capable de présenter les soins et de rassurer les patients locaux.',
     problem: 'L’information médicale devait rester claire, sobre et accessible sans transformer le site en catalogue complexe.',
-    solution: 'Un écosystème patient réunissant contenus médicaux, prise de rendez-vous, connexion et administration du cabinet.',
-    features: ['Prise de rendez-vous', 'Espace patient', 'Contenus SEO', 'Administration du cabinet'],
+    solution: 'Un site dentaire réunissant présentation des soins, guides patients, demandes de rendez-vous et gestion des contenus.',
+    features: ['Demandes de rendez-vous', 'Guides patients', 'Contenus SEO local', 'Gestion éditoriale'],
     outcome: 'Renforcer la crédibilité du cabinet et faciliter l’accès aux informations utiles avant un contact.',
     technologies: ['React', 'SEO local', 'Design responsive'],
   },

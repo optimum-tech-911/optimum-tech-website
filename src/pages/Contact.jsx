@@ -299,13 +299,13 @@ export const Contact = () => {
       <SEO
         path="/contact"
         title="Contact Optimum Tech | Devis site, application ou solution digitale"
-        description="Contactez Optimum Tech pour un devis de création de site web, web app, logiciel sur mesure, automatisation utile ou accompagnement en visibilité digitale à Sète, dans l’Hérault, en Occitanie et en France."
+        description="Contactez Optimum Tech pour un devis de création de site web, web app, logiciel sur mesure, automatisation utile ou accompagnement en visibilité digitale à Montpellier et Sète, dans l’Hérault, en Occitanie et en France."
         keywords="contact Optimum Tech, devis site web sète, web app sur mesure france, logiciel sur mesure entreprise, agence web hérault, SEO local sète, automatisation IA france"
         schema={buildContactPageSchema({
           path: '/contact',
           title: 'Contact Optimum Tech | Devis site, application ou solution digitale',
           description:
-            'Contactez Optimum Tech pour un devis de création de site web, web app, logiciel sur mesure, automatisation utile ou accompagnement en visibilité digitale à Sète, dans l’Hérault, en Occitanie et en France.',
+            'Contactez Optimum Tech pour un devis de création de site web, web app, logiciel sur mesure, automatisation utile ou accompagnement en visibilité digitale à Montpellier et Sète, dans l’Hérault, en Occitanie et en France.',
         })}
       />
       <Navbar />

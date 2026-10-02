@@ -9,7 +9,8 @@ import { ProjectPreview } from '../components/ProjectPreview';
 import { SEO } from '../components/SEO';
 import { useTheme } from '../context/ThemeContext';
 import { getProjectBySlug, PROJECT_STATUS, projectCaseStudies } from '../data/projects';
-import { buildWebPageSchema } from '../data/schema';
+import { buildCanonicalUrl, buildWebPageSchema, schemaIds } from '../data/schema';
+import { siteMeta } from '../data/siteMeta';
 import { NotFoundPage } from './NotFound';
 
 const detailSections = [
@@ -30,6 +31,17 @@ export const ProjectDetailPage = () => {
   const status = PROJECT_STATUS[project.status];
   const path = `/realisations/${project.slug}`;
   const title = `${project.title} : étude de cas | Optimum Tech`;
+  const isPlatform = project.category === 'apps' || project.showcase?.group === 'platforms';
+  const relatedServices = project.category === 'health' ? [
+    ['/site-internet-dentiste', 'Création de site internet pour dentiste', 'Soins, informations pratiques et parcours de contact adaptés aux patients.'],
+    ['/referencement-seo', 'Référencement local du cabinet', 'Structurer les pages utiles et relier le site à votre présence locale.'],
+  ] : isPlatform ? [
+    ['/application-web-sur-mesure', 'Création de plateforme web', 'Comptes, parcours, catalogue et espaces clients selon votre activité.'],
+    ['/logiciel-sur-mesure', 'Développement de logiciel métier', 'Dossiers, tableaux de bord et outils adaptés aux utilisateurs.'],
+  ] : [
+    ['/creation-site-web', 'Création de site internet sur mesure', 'Design, contenus et parcours pour présenter votre activité et recevoir des demandes.'],
+    ['/site-internet-entreprise-locale', 'Site pour entreprise locale', 'Services, informations pratiques et prise de contact pour vos clients.'],
+  ];
 
   return (
     <div className={`ux-page min-h-screen ${theme === 'dark' ? 'bg-[#050505] text-white' : 'bg-[#F5F5F7] text-black'}`}>
@@ -37,7 +49,21 @@ export const ProjectDetailPage = () => {
         path={path}
         title={title}
         description={`${project.description} Découvrez le contexte, la solution et les fonctionnalités du projet.`}
-        schema={buildWebPageSchema({ path, title, description: project.description })}
+        image={`${siteMeta.url}${project.image}`}
+        imageAlt={`Aperçu de ${project.title}, réalisation Optimum Tech`}
+        schema={{
+          ...buildWebPageSchema({ path, title, description: project.description, dateModified: '2026-10-02' }),
+          mainEntity: {
+            '@type': 'CreativeWork',
+            '@id': `${buildCanonicalUrl(path)}#project`,
+            name: project.title,
+            description: project.description,
+            url: project.url,
+            image: `${siteMeta.url}${project.image}`,
+            creator: { '@id': schemaIds.organization },
+          },
+          relatedLink: relatedServices.map(([url]) => buildCanonicalUrl(url)),
+        }}
       />
       <Navbar />
 
@@ -139,7 +165,23 @@ export const ProjectDetailPage = () => {
             </aside>
           </section>
 
-          <section className={`mt-20 rounded-[2.5rem] border p-8 text-center md:p-12 ${
+          <section className="mt-14" aria-labelledby="project-services-title">
+            <h2 id="project-services-title" className="text-2xl font-bold tracking-tight md:text-3xl">Les services pour construire votre projet</h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {relatedServices.map(([url, label, description]) => (
+                <Link key={url} to={url} className={`rounded-2xl border p-6 transition hover:border-[#0A84FF]/50 ${theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white'}`}>
+                  <h3 className="text-lg font-bold">{label}</h3>
+                  <p className={`mt-3 text-sm leading-7 ${theme === 'dark' ? 'text-white/65' : 'text-black/65'}`}>{description}</p>
+                </Link>
+              ))}
+            </div>
+            <p className={`mt-5 text-sm leading-7 ${theme === 'dark' ? 'text-white/65' : 'text-black/65'}`}>
+              Vous préparez un projet dans l’Hérault ? Découvrez notre accompagnement pour la{' '}
+              <Link to="/creation-site-web-montpellier" className="font-semibold text-[#0576e6] underline underline-offset-4">création de site web à Montpellier</Link>.
+            </p>
+          </section>
+
+          <section className={`mt-14 rounded-[2.5rem] border p-8 text-center md:p-12 ${
             theme === 'dark' ? 'border-white/10 bg-white/5' : 'border-black/10 bg-white shadow-xl'
           }`}>
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#0576e6]">Un besoin similaire ?</p>

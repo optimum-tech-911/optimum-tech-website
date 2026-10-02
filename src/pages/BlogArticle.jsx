@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Target } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
@@ -8,6 +8,7 @@ import { useTheme } from '../context/ThemeContext';
 import { getBlogPostBySlug, indexableBlogPosts } from '../data/blogPosts';
 import { buildCanonicalUrl } from '../data/schema';
 import { editorialTeam, resourceTopics, siteMeta } from '../data/siteMeta';
+import { NotFoundPage } from './NotFound';
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat('fr-FR', {
@@ -22,7 +23,7 @@ export const BlogArticlePage = () => {
   const post = getBlogPostBySlug(slug);
 
   if (!post) {
-    return <Navigate to="/blog" replace />;
+    return <NotFoundPage />;
   }
 
   const relatedPosts = indexableBlogPosts
@@ -39,10 +40,17 @@ export const BlogArticlePage = () => {
       { to: '/creation-site-web', label: 'Création de site web professionnel' },
       { to: '/application-web-sur-mesure', label: 'Développement d’application web sur mesure' },
       { to: '/logiciel-sur-mesure', label: 'Logiciel sur mesure et outil métier' },
+      { to: '/realisations/kabamana', label: 'Exemple de plateforme : Kabamana' },
+    ],
+    'comment-choisir-son-agence-web-beziers-pieges': [
+      { to: '/agence-web-herault', label: 'Création de site internet dans l’Hérault' },
+      { to: '/creation-site-web-montpellier', label: 'Création de site web à Montpellier' },
+      { to: '/realisations', label: 'Examiner nos réalisations' },
     ],
     'application-web-sur-mesure-rentable-entreprises': [
       { to: '/application-web-sur-mesure', label: 'Application web sur mesure pour entreprise' },
       { to: '/logiciel-sur-mesure', label: 'Logiciel sur mesure et outil métier' },
+      { to: '/realisations/kabamana', label: 'Exemple de plateforme : Kabamana' },
     ],
     'automatisation-intelligence-artificielle-gagner-temps-chiffre-affaires': [
       { to: '/automatisation-ia', label: 'Automatisation IA utile pour entreprise' },
@@ -106,7 +114,7 @@ export const BlogArticlePage = () => {
         description={post.description}
         image={post.image ? `${siteMeta.url}${post.image}` : undefined}
         imageAlt={post.heroTitle}
-        robots={post.noindex ? 'noindex, follow' : 'index, follow'}
+        robots={post.noindex ? 'noindex, follow' : undefined}
         type="article"
         schema={articleSchema}
         publishedTime={post.publishedAt}
@@ -151,7 +159,7 @@ export const BlogArticlePage = () => {
                 <span>{post.category}</span>
               </div>
               <h1 className="max-w-4xl text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl md:text-6xl">{post.title}</h1>
-              <p className="mt-5 max-w-3xl text-base leading-8 text-black/70 md:text-xl">
+              <p className={`mt-5 max-w-3xl text-base leading-8 md:text-xl ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}>
                 {post.description}
               </p>
               <div className={`mt-6 flex flex-wrap gap-5 text-sm ${theme === 'dark' ? 'text-white/68' : 'text-black/68'}`}>
@@ -242,6 +250,31 @@ export const BlogArticlePage = () => {
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
+                  {section.bullets?.length ? (
+                    <ul className="mt-5 list-disc space-y-3 pl-5 text-base leading-8">
+                      {section.bullets.map((item) => <li key={item}>{item}</li>)}
+                    </ul>
+                  ) : null}
+                  {section.table ? (
+                    <div className="mt-6 overflow-x-auto rounded-xl border border-current/10">
+                      <table className="w-full text-left text-sm leading-7">
+                        <caption className="px-4 py-3 text-left font-semibold">{section.table.caption}</caption>
+                        <thead>
+                          <tr className={theme === 'dark' ? 'bg-white/5' : 'bg-black/5'}>
+                            {section.table.headers.map((header) => <th key={header} scope="col" className="px-4 py-3">{header}</th>)}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {section.table.rows.map(([label, detail]) => (
+                            <tr key={label} className="border-t border-current/10">
+                              <th scope="row" className="px-4 py-3 font-medium">{label}</th>
+                              <td className="px-4 py-3">{detail}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : null}
                 </section>
               ))}
 

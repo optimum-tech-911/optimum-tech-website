@@ -1,4 +1,5 @@
 import { caseStudyProjects, sectorPages } from './projects.js';
+import { localPages, servicePages } from './seoPages.js';
 
 export const indexableBlogSlugs = [
   'site-internet-professionnel-entreprise-france-2026',
@@ -16,7 +17,8 @@ export const indexableBlogSlugs = [
   'google-business-profile-et-site-web-comment-les-deux-travaillent-ensemble',
 ];
 
-export const staticPrerenderRoutes = [
+// The sitemap and HTML build share this list so each advertised URL has content.
+export const indexableRoutes = [
   '/',
   '/services',
   '/realisations',
@@ -25,6 +27,13 @@ export const staticPrerenderRoutes = [
   '/a-propos',
   '/contact',
   '/blog',
+  ...servicePages.map((page) => `/${page.slug}`),
+  ...localPages.map((page) => `/${page.slug}`),
+  ...indexableBlogSlugs.map((slug) => `/blog/${slug}`),
+];
+
+export const staticPrerenderRoutes = [
+  ...indexableRoutes,
   '/jobs',
   '/menu',
   '/auth',

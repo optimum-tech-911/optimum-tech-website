@@ -12,8 +12,7 @@ import { indexableBlogPosts } from '../data/blogPosts';
 import { resourceTopics, siteMeta, trustHighlights } from '../data/siteMeta';
 import { buildWebPageSchema } from '../data/schema';
 import { ContactActions } from '../components/ContactActions';
-import { PortfolioProjectCard } from '../components/PortfolioProjectCard';
-import { featuredProjects } from '../data/projects';
+import { FeaturedProjects } from '../components/FeaturedProjects';
 
 export const Home = () => {
   const { theme } = useTheme();
@@ -60,10 +59,10 @@ export const Home = () => {
   ];
 
   const processSteps = [
-    ['1. ' + t('method_title') || 'Comprendre', 'Objectifs, clients, contexte local, contraintes métier et raisons de refaire ou créer votre présence digitale.'],
-    ['2. ' + t('method_title') || 'Structurer', 'Pages, messages, preuves, parcours de contact et fonctionnalités réellement nécessaires au lancement.'],
-    ['3. ' + t('method_title') || 'Concevoir', 'Interface claire, responsive, rapide et alignée avec votre niveau de maturité digitale.'],
-    ['4. ' + t('method_title') || 'Lancer', 'Mise en ligne, vérifications, suivi et améliorations après les premiers retours.'],
+    ['1. Comprendre', 'Objectifs, clients, contexte local, contraintes métier et raisons de refaire ou créer votre présence digitale.'],
+    ['2. Structurer', 'Pages, messages, preuves, parcours de contact et fonctionnalités réellement nécessaires au lancement.'],
+    ['3. Concevoir', 'Interface claire, responsive, rapide et alignée avec votre niveau de maturité digitale.'],
+    ['4. Lancer', 'Mise en ligne, vérifications, suivi et améliorations après les premiers retours.'],
   ];
 
   const audiencePages = [
@@ -75,6 +74,7 @@ export const Home = () => {
   ];
 
   const localPages = [
+    ['/creation-site-web-montpellier', 'Création de site web Montpellier'],
     ['/creation-site-web-sete', 'Création site web Sète'],
     ['/agence-web-herault', 'Agence web Hérault'],
     ['/referencement-seo-sete', 'SEO Sète'],
@@ -87,14 +87,15 @@ export const Home = () => {
     }`}>
       <SEO
         path="/"
-        title="Création de sites web à Sète et applications sur mesure | Optimum Tech"
-        description="Optimum Tech conçoit à Sète des sites web professionnels, applications métier, outils sur mesure et stratégies SEO pour entreprises dans l’Hérault et en France."
-        keywords="Optimum Tech, création site web sud de la france, création site web sète, agence web sète, développeur web sète, web app sur mesure france, logiciel sur mesure entreprise, agence digitale hérault, référencement SEO sète, automatisation IA entreprise france"
+        title="Création de site web Montpellier et plateformes | Optimum Tech"
+        description="Sites internet, plateformes web et SEO local pour entreprises et cabinets dentaires à Montpellier, Sète et dans l’Hérault. Découvrez les projets Optimum Tech."
+        keywords="Optimum Tech, création site web Montpellier, création site internet Montpellier, site internet dentiste, création plateforme web, agence web Hérault, création site web Sète"
         schema={buildWebPageSchema({
           path: '/',
-          title: 'Création de sites web à Sète et applications sur mesure | Optimum Tech',
+          dateModified: '2026-10-02',
+          title: 'Création de site web Montpellier et plateformes | Optimum Tech',
           description:
-            'Optimum Tech conçoit à Sète des sites web professionnels, applications métier, outils sur mesure et stratégies SEO pour entreprises dans l’Hérault et en France.',
+            'Sites internet, plateformes web et SEO local pour entreprises et cabinets dentaires à Montpellier, Sète et dans l’Hérault. Découvrez les projets Optimum Tech.',
         })}
       />
 
@@ -144,31 +145,7 @@ export const Home = () => {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-16 md:px-6 lg:py-20">
-          <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
-            <div>
-              <p className="text-sm font-semibold uppercase text-[#0A84FF]">{t('home.services_eyebrow')}</p>
-              <h2 className="mt-4 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">
-                {t('home.services_title')}
-              </h2>
-              <p className={`mt-4 max-w-3xl text-base leading-8 ${mutedText}`}>
-                {t('home.services_desc')}
-              </p>
-            </div>
-            <Link
-              to="/realisations"
-              className={`inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg border px-5 py-3 text-sm font-semibold transition hover:-translate-y-0.5 hover:border-[#0A84FF]/40 ${cardClass}`}
-            >
-              {t('home.services_cta')}
-              <ArrowRight className="h-4 w-4 text-[#0A84FF]" aria-hidden="true" />
-            </Link>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {featuredProjects.map((project) => (
-              <PortfolioProjectCard key={project.id} project={project} compact />
-            ))}
-          </div>
-        </section>
+        <FeaturedProjects />
 
         <section className={`border-y ${sectionBorder} ${isDark ? 'bg-white/[0.025]' : 'bg-white'}`}>
           <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:py-20">

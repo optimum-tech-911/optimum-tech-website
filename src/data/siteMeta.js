@@ -5,7 +5,11 @@ export const siteMeta = {
   phoneHref: 'tel:+33745305113',
   email: 'optimum.tech.911@gmail.com',
   emailHref: 'mailto:optimum.tech.911@gmail.com',
-  locationLabel: 'Sète, Hérault, Occitanie, France',
+  locationLabel: 'Montpellier, Sète et Hérault, Occitanie, France',
+  // Service area and physical address are separate business facts.
+  addressLocality: 'Sète',
+  serviceAreas: ['Montpellier', 'Sète', 'Frontignan', 'Béziers', 'Hérault', 'Occitanie', 'France'],
+  googleBusinessProfile: 'https://share.google/YkCyCQ0bqeHTA2o0n',
   socialLinks: {
     instagram: 'https://www.instagram.com/ot.optimum_tech/',
     linkedin: 'https://www.linkedin.com/in/sid-ahmed-larabi-09b328286/',
@@ -19,10 +23,10 @@ export const editorialTeam = {
 };
 
 export const trustHighlights = [
-  'Positionnement clair entre sites web, outils sur mesure, visibilité digitale et automatisation utile',
-  'Accompagnement en français pour entreprises locales, indépendants et PME',
-  'Approche sobre : pas de promesses de rang garanti ni de chiffres inventés',
-  'Parcours de contact direct par téléphone, e-mail, WhatsApp ou formulaire',
+  'Sites internet, plateformes métier, marketplaces et expériences web en 3D',
+  'Accompagnement des entreprises de Montpellier, Sète et de l’Hérault',
+  'Réalisations en ligne dans le dentaire, le commerce, les services et la création d’entreprise',
+  'Échange direct par téléphone, e-mail ou WhatsApp pour cadrer votre projet',
 ];
 
 export const resourceTopics = [

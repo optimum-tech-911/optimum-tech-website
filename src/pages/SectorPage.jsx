@@ -74,6 +74,14 @@ export const SectorPage = () => {
           </section>
 
           <section className="mt-20" aria-labelledby="sector-projects-title">
+            {sectorSlug === 'cabinets-dentaires' ? (
+              <p className="mb-6 text-base leading-8">
+                Vous préparez le site de votre cabinet à Montpellier ou dans l’Hérault ?{' '}
+                <Link to="/site-internet-dentiste" className="font-semibold text-[#0A84FF]">
+                  Découvrez notre offre de création de site internet pour dentiste.
+                </Link>
+              </p>
+            ) : null}
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#0576e6]">Exemples sélectionnés</p>
             <h2 id="sector-projects-title" className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
               Projets dans ce secteur

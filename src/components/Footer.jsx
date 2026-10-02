@@ -4,6 +4,7 @@ import { Globe } from 'lucide-react';
 import { useI18n, LANG_OPTIONS } from '../i18n.jsx';
 import { useTheme } from '../context/ThemeContext';
 import { ContactActions } from './ContactActions';
+import { siteMeta } from '../data/siteMeta';
 
 export const Footer = () => {
   const { t, lang, setLang } = useI18n();
@@ -44,6 +45,9 @@ export const Footer = () => {
               {[
                 { to: '/', label: t('footer.links.home') },
                 { to: '/creation-site-web', label: 'Création de site web' },
+                { to: '/creation-site-web-montpellier', label: 'Création de site web à Montpellier' },
+                { to: '/site-internet-dentiste', label: 'Sites pour cabinets dentaires' },
+                { to: '/application-web-sur-mesure', label: 'Plateformes web sur mesure' },
                 { to: '/referencement-seo', label: 'Référencement SEO' },
                 { to: '/automatisation-ia', label: 'Automatisation IA' },
                 { to: '/realisations', label: t('footer.links.projects') },
@@ -73,7 +77,10 @@ export const Footer = () => {
             <div className={`flex flex-col gap-4 text-base font-light ${
               theme === 'dark' ? 'text-white/70' : 'text-black/70'
             }`}>
-              <p>Sète, Hérault, Occitanie, France</p>
+              <p>{siteMeta.locationLabel}</p>
+              <a href={siteMeta.googleBusinessProfile} className="hover:text-[#0A84FF] transition-colors">
+                Notre fiche Google
+              </a>
               <p>{t('footer.hours')}</p>
               <a href="tel:+33745305113" className="hover:text-[#0A84FF] transition-colors">
                 +33 7 45 30 51 13

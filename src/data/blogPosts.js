@@ -110,34 +110,85 @@ export const blogPosts = [
     category: 'Applications et logiciels sur mesure',
     targetKeyword: 'application web sur mesure entreprise',
     audience: 'PME, entreprises de services, structures avec process internes répétitifs',
-    readTime: '7 min',
+    readTime: '6 min',
     publishedAt: '2026-03-27',
+    updatedAt: '2026-10-01',
     featured: true,
     heroTheme: 'from-cyan-500/20 via-sky-500/10 to-blue-500/20',
     image: applicationImage,
     cta: 'Faisons le point sur les tâches que votre entreprise pourrait automatiser.',
     sections: [
       {
-        heading: 'Les signes qu’un outil sur mesure devient pertinent',
-        paragraphs: [
-          'Si vos équipes copient les mêmes données plusieurs fois, jonglent entre plusieurs logiciels ou font beaucoup de suivi manuel, vous perdez du temps et de la lisibilité.',
-          'Une application web sur mesure centralise les données, fluidifie les opérations et donne une vision plus claire de l’activité.',
-        ],
+        "heading": "Commencer par mesurer le processus actuel",
+        "paragraphs": [
+          "Une application web sur mesure peut devenir intéressante lorsque la même opération mobilise régulièrement plusieurs personnes ou plusieurs outils. Avant de définir des écrans, décrivez une semaine de travail réelle : demandes reçues, ressaisies, validations, relances et temps passé à retrouver les informations.",
+          "Choisissez un processus précis, par exemple le passage d’une demande de devis à son suivi. Notez le nombre de dossiers, les personnes concernées et les étapes qui provoquent des retards. Un problème mesuré permet de comparer une application, une automatisation et un logiciel existant mieux configuré.",
+          "Pour une PME de Montpellier ou de l’Hérault, cette première observation peut se faire avec l’équipe qui utilisera réellement l’outil. La taille de l’entreprise ne suffit pas à décider : la fréquence du processus et les contraintes comptent davantage."
+        ]
       },
       {
-        heading: 'Des cas très concrets',
-        paragraphs: [
-          'Gestion de devis, suivi de commandes, réservation, espace client, tableau de bord interne, CRM, relances, formulaires intelligents, workflow RH ou pilotage commercial : tout cela peut être simplifié.',
-          'L’avantage du sur mesure est de coller exactement à votre fonctionnement au lieu de vous forcer à suivre les limites d’un outil générique.',
+        "heading": "Comparer le sur mesure avec les solutions existantes",
+        "paragraphs": [
+          "Un logiciel existant peut suffire si vos besoins sont standard et si l’équipe peut travailler avec son organisation. La connexion de deux outils peut aussi supprimer une ressaisie sans créer une application complète.",
+          "Le sur mesure mérite d’être étudié quand les contournements sont nombreux, que plusieurs rôles doivent intervenir ou qu’un parcours client ne peut pas être organisé correctement avec vos outils actuels. Il faut alors vérifier que la personnalisation justifie le coût et le suivi supplémentaires."
         ],
+        "table": {
+          "caption": "Questions pour comparer les options",
+          "headers": [
+            "Option",
+            "À examiner"
+          ],
+          "rows": [
+            [
+              "Configurer un outil existant",
+              "Fonctions disponibles, adoption par l’équipe et abonnement"
+            ],
+            [
+              "Connecter les outils",
+              "API, qualité des échanges et traitement des erreurs"
+            ],
+            [
+              "Créer une application",
+              "Parcours spécifiques, développement, hébergement et maintenance"
+            ]
+          ]
+        }
       },
       {
-        heading: 'Pourquoi cela peut devenir rentable',
-        paragraphs: [
-          'Le gain se mesure en heures économisées, erreurs évitées, demandes mieux traitées et suivi plus propre des opérations. Une application bien pensée peut aussi alléger la charge administrative.',
-          'Plus les tâches concernées sont fréquentes, plus le retour sur investissement peut apparaître rapidement.',
-        ],
+        "heading": "Un calcul de retour sur investissement avec des hypothèses explicites",
+        "paragraphs": [
+          "Exemple fictif : une équipe consacre 30 heures par mois à un processus. Après simplification, elle estime pouvoir en économiser 18. En valorisant une heure à 30 €, la capacité libérée représente 540 € par mois. Si le fonctionnement de l’outil coûte 80 € par mois, l’écart théorique est de 460 €.",
+          "Avec un coût initial hypothétique de 6 000 €, le rapport 6 000 / 460 donne environ 13 mois ; il faut donc environ 14 mois complets pour dépasser ce coût dans ce scénario. Ces montants servent à expliquer le calcul et ne sont pas des tarifs Optimum Tech.",
+          "Du temps libéré n’est pas automatiquement une économie de trésorerie. Il faut savoir comment l’équipe réutilise ce temps et prendre en compte la formation, la migration, la maintenance et les éventuelles évolutions. Si l’adoption est faible ou si le gain réel est inférieur, le résultat change."
+        ]
       },
+      {
+        "heading": "Définir une première version que l’équipe peut tester",
+        "paragraphs": [
+          "La première version doit terminer une opération utile de bout en bout. Pour une demande commerciale, cela peut être la réception, la qualification, l’attribution à une personne et le suivi du statut. Un tableau de bord décoratif ne suffit pas si le travail continue dans des fichiers séparés.",
+          "Définissez les droits de chaque rôle, les données indispensables et les règles de validation. Prévoyez également les exports et les cas d’erreur : une demande incomplète, un utilisateur sans accès ou une connexion à un service tiers indisponible."
+        ],
+        "bullets": [
+          "Un parcours prioritaire terminé sans ressaisie évitable",
+          "Des droits vérifiés avec les rôles réels de l’équipe",
+          "Des données importées et contrôlées sur un échantillon",
+          "Un responsable du suivi et des corrections après le lancement"
+        ]
+      },
+      {
+        "heading": "Examiner des exemples sans transposer leurs résultats",
+        "paragraphs": [
+          "Le portfolio Optimum Tech présente Kabamana pour des parcours logistiques, Facturation Optimum pour un suivi administratif et Treasury Optimum pour la visualisation de trésorerie. Ces exemples aident à discuter des interfaces et des fonctions.",
+          "Ils ne permettent pas de déduire votre propre retour sur investissement. Votre projet doit préciser les volumes, les données, les utilisateurs et les tâches actuelles. Un outil pertinent pour une organisation peut être trop complexe ou insuffisant pour une autre."
+        ]
+      },
+      {
+        "heading": "Les éléments à réunir avant de demander un devis",
+        "paragraphs": [
+          "Préparez un schéma simple du processus, les profils utilisateurs, les outils utilisés et un exemple de fichier sans données sensibles. Indiquez ce qui doit absolument fonctionner au lancement et ce qui pourrait attendre.",
+          "Demandez un devis qui distingue le développement, l’import des données, les intégrations, l’hébergement et le suivi. Les modalités de sauvegarde, de maintenance et d’évolution doivent être compréhensibles. Vous pourrez ensuite comparer le coût total aux gains plausibles, puis mesurer les résultats après la mise en service."
+        ]
+      }
     ],
   },
   {
@@ -601,33 +652,97 @@ export const blogPosts = [
     category: 'Création de site web',
     targetKeyword: 'agence web beziers',
     audience: 'Entreprises, commerces, indépendants et dirigeants qui comparent plusieurs prestataires à Béziers',
-    readTime: '8 min',
+    readTime: '6 min',
     publishedAt: '2026-04-07',
+    updatedAt: '2026-10-01',
     featured: true,
     heroTheme: 'from-slate-500/20 via-blue-500/10 to-indigo-500/20',
     cta: 'Vous comparez plusieurs agences web à Béziers ? Envoyez-nous votre contexte ou appelez-nous pour obtenir un avis clair sur ce qu’il faut vraiment vérifier.',
     sections: [
       {
-        heading: 'Le premier piège : comparer uniquement le prix',
-        paragraphs: [
-          'À Béziers, plusieurs prestataires affichent des prix d’appel très agressifs. Cela peut convenir à certains besoins simples, mais ce n’est pas toujours comparable avec une prestation orientée conversion, SEO local et accompagnement.',
-          'Avant de signer, demandez ce qui est réellement inclus : nombre de pages utiles, personnalisation, optimisation mobile, contenus, maintenance, hébergement, suivi et propriété du site.',
-        ],
+        "heading": "Comparer le même périmètre avant de comparer les prix",
+        "paragraphs": [
+          "Pour choisir une agence web à Béziers, commencez par décrire ce que le site doit permettre : recevoir une demande de devis, présenter des services, vendre ou gérer une réservation. Deux devis ne sont comparables que s’ils couvrent des contenus et des fonctions proches.",
+          "Demandez le nombre et le rôle des pages, le niveau de personnalisation, les contenus à fournir et les vérifications prévues. Une offre qui comprend une conception graphique et un accompagnement éditorial ne représente pas le même travail qu’une installation sur un modèle existant.",
+          "Précisez aussi la zone d’intervention de votre entreprise. Pour un artisan de Béziers ou une PME de l’Hérault, le site doit expliquer où les services sont disponibles et montrer des éléments concrets de l’activité."
+        ]
       },
       {
-        heading: 'Le deuxième piège : ne pas vérifier qui possède quoi',
-        paragraphs: [
-          'Certaines offres enferment le client dans une dépendance technique ou contractuelle. Il faut clarifier dès le début la propriété du nom de domaine, de l’hébergement, du contenu et du site lui-même.',
-          'Une entreprise locale a intérêt à garder la main sur ses actifs digitaux. C’est un point de confiance très important.',
+        "heading": "Vérifier les accès et les responsabilités",
+        "paragraphs": [
+          "Avant de signer, clarifiez qui détient le nom de domaine, qui dispose des accès à l’hébergement et comment vous pourrez récupérer vos contenus. Demandez les modalités de transfert ou de reprise en cas de changement de prestataire.",
+          "Il faut également savoir qui reçoit les messages du formulaire, qui met les horaires à jour et qui intervient si un lien ou une page cesse de fonctionner. Ces questions sont plus faciles à régler dans le devis que plusieurs mois après la livraison."
         ],
+        "bullets": [
+          "Domaine enregistré au bon titulaire et accès identifiés",
+          "Modalités de récupération des contenus et des fichiers",
+          "Coûts et procédure d’un transfert de site",
+          "Responsable des mises à jour et du support"
+        ]
       },
       {
-        heading: 'Le troisième piège : oublier la visibilité locale',
-        paragraphs: [
-          'Un beau site qui ne remonte pas sur les recherches locales ou qui ne pousse pas à la prise de contact reste limité. À Béziers, l’angle local doit être pensé dès la conception.',
-          'Demandez comment le prestataire gère les titles, les pages business, le maillage, la structure mobile, la maintenance et le SEO local. Cela vous dira vite si vous avez affaire à une vraie approche métier.',
-        ],
+        "heading": "Examiner des projets et leur statut réel",
+        "paragraphs": [
+          "Consultez des sites que le prestataire peut effectivement vous présenter. Sur mobile, cherchez un service, une information pratique et un moyen de contacter l’entreprise. Vérifiez si la navigation reste compréhensible et si les liens fonctionnent.",
+          "Demandez ce qui a été réalisé : design, développement, contenus, intégrations ou maintenance. Un concept, un projet en cours et un site publié ne doivent pas être présentés comme le même type de référence. Des chiffres de trafic ou de demandes ne sont utiles que s’ils sont documentés.",
+          "Le portfolio Optimum Tech affiche les statuts des projets. Il permet de comparer des sites de cabinets dentaires, des commerces et des plateformes. L’objectif est d’examiner le travail visible avant d’évaluer si cette approche convient à votre entreprise."
+        ]
       },
+      {
+        "heading": "Demander des livrables précis pour le référencement local",
+        "paragraphs": [
+          "Le mot « SEO » dans un devis reste vague s’il ne correspond pas à des travaux identifiables. Demandez comment seront organisés les titres, les descriptions, les URL, les pages de services, les liens internes et les informations locales.",
+          "Une création ou une refonte doit aussi prévoir un sitemap, des pages accessibles aux moteurs et une vérification de l’indexabilité. Pour une refonte, les anciennes URL doivent être recensées et les changements accompagnés des redirections nécessaires.",
+          "Votre fiche Google Business Profile et votre site doivent présenter des coordonnées cohérentes. Un prestataire peut améliorer ces éléments et suivre les résultats ; une promesse de première position pour toutes les recherches ne constitue pas un critère fiable de choix."
+        ]
+      },
+      {
+        "heading": "Une grille simple pour lire les devis",
+        "paragraphs": [
+          "Utilisez la même grille avec les prestataires que vous comparez. Les réponses écrites permettent d’identifier les exclusions, les frais récurrents et les points à préciser avant de décider."
+        ],
+        "table": {
+          "caption": "Points à faire préciser dans chaque devis",
+          "headers": [
+            "Sujet",
+            "Question à poser"
+          ],
+          "rows": [
+            [
+              "Contenus",
+              "Qui écrit, fournit et valide les textes et photos ?"
+            ],
+            [
+              "Fonctions",
+              "Quels formulaires, paiements ou réservations sont inclus ?"
+            ],
+            [
+              "Refonte",
+              "Quels contenus, URL et redirections seront conservés ?"
+            ],
+            [
+              "Fonctionnement",
+              "Quels frais de domaine, hébergement et maintenance ?"
+            ],
+            [
+              "Livraison",
+              "Quels essais et quelle étape de validation ?"
+            ],
+            [
+              "Suivi",
+              "Qui corrige les problèmes et sous quelles modalités ?"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Prévoir ce qui se passe après la mise en ligne",
+        "paragraphs": [
+          "La livraison ne remplace pas l’entretien du site. Clarifiez les mises à jour, les sauvegardes, le support et les petites modifications. Selon la solution, certaines tâches peuvent être effectuées par votre équipe et d’autres nécessiter l’intervention du prestataire.",
+          "Pour mesurer l’utilité du site, définissez les actions importantes : appels, demandes, réservations ou commandes. Search Console peut aider à suivre les recherches et les pages visibles sur Google. Le suivi doit porter sur vos objectifs commerciaux et sur les éléments réellement observables.",
+          "Pour un premier échange avec Optimum Tech, envoyez votre activité, votre site actuel, votre zone de service et vos fonctions prioritaires. Nous intervenons pour les entreprises de Béziers, Montpellier, Sète et de l’Hérault avec un périmètre adapté au projet."
+        ]
+      }
     ],
   },
   {

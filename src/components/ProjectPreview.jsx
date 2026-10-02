@@ -11,6 +11,7 @@ const devices = {
 export const ProjectPreview = ({ project, height = 'h-[460px] md:h-[620px]' }) => {
   const { theme } = useTheme();
   const [device, setDevice] = useState('desktop');
+  const [interactive, setInteractive] = useState(false);
   const activeDevice = useMemo(() => devices[device], [device]);
 
   return (
@@ -43,7 +44,7 @@ export const ProjectPreview = ({ project, height = 'h-[460px] md:h-[620px]' }) =
               <button
                 key={key}
                 type="button"
-                onClick={() => setDevice(key)}
+                onClick={() => { setDevice(key); setInteractive(true); }}
                 aria-label={`Afficher en mode ${item.label.toLowerCase()}`}
                 aria-pressed={device === key}
                 className={`grid h-9 w-9 place-items-center rounded-full border transition ${
@@ -75,12 +76,12 @@ export const ProjectPreview = ({ project, height = 'h-[460px] md:h-[620px]' }) =
 
       <div className={`overflow-hidden p-3 md:p-5 ${theme === 'dark' ? 'bg-[#050505]' : 'bg-[#eef1f5]'}`}>
         <div
-          className={`mx-auto overflow-hidden border shadow-xl transition-[width,border-radius] duration-500 ${height} ${
+          className={`relative mx-auto overflow-hidden border shadow-xl transition-[width,border-radius] duration-500 ${height} ${
             theme === 'dark' ? 'border-white/10 bg-[#10131a]' : 'border-black/10 bg-white'
           }`}
           style={{ width: activeDevice.width, borderRadius: activeDevice.radius }}
         >
-          {project.url ? (
+          {project.url && interactive ? (
             <iframe
               src={project.url}
               title={`Aperçu du projet ${project.title}`}
@@ -89,6 +90,18 @@ export const ProjectPreview = ({ project, height = 'h-[460px] md:h-[620px]' }) =
               referrerPolicy="strict-origin-when-cross-origin"
               className="h-full w-full bg-white"
             />
+          ) : project.image ? (
+            <>
+              <img src={project.image} srcSet={project.imageSrcSet} sizes="(min-width: 1280px) 1200px, 100vw" alt={`Capture du projet ${project.title}`} width="1200" height="800" loading="lazy" decoding="async" className="h-full w-full object-cover object-top" />
+              {project.url && (
+                <div className="absolute inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-black/70 to-transparent px-4 pb-6 pt-14">
+                  <button type="button" onClick={() => setInteractive(true)} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#0576e6] px-6 py-3 text-sm font-bold text-white shadow-xl hover:bg-[#0469d0]">
+                    {project.id === 'nonails' ? 'Explorer l’expérience 3D' : 'Activer l’aperçu interactif'}
+                    <Monitor className="h-4 w-4" aria-hidden="true" />
+                  </button>
+                </div>
+              )}
+            </>
           ) : (
             <div className="grid h-full place-items-center bg-gradient-to-br from-[#0A84FF]/25 via-black to-[#0A84FF]/10 px-8 text-center text-white">
               <div>
