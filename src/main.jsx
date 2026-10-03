@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App, { clientPages, getPageKeyForPath, pageLoaders } from './App.jsx';
 import './index.css';
 import './components/FeaturedProjects.css';
+import './components/FloatingContact.css';
 import { I18nProvider } from './i18n.jsx';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './context/ThemeContext.jsx';

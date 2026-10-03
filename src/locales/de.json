@@ -149,6 +149,19 @@
     }
   },
   "policy": { "title": "Allgemeine Richtlinien" },
+  "floatingContact": {
+    "button": "Kontakt",
+    "open": "Kontaktmöglichkeiten öffnen",
+    "close": "Kontaktmenü schließen",
+    "eyebrow": "Direkter Kontakt",
+    "title": "Sprechen wir über Ihr Projekt",
+    "description": "Wählen Sie den passenden Kontaktweg.",
+    "call": "Optimum Tech anrufen",
+    "email": "E-Mail senden",
+    "whatsapp": "Nachricht per WhatsApp",
+    "whatsappBusiness": "WhatsApp Business",
+    "hide": "Diese Sprechblase auf dieser Seite ausblenden"
+  },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",
     "description": "Wir entwickeln hochleistungsfähige Plattformen, maßgeschneiderte Software und intelligente Automatisierungen, um Ihr Unternehmen zu skalieren.",

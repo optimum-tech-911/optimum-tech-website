@@ -149,6 +149,19 @@
     }
   },
   "policy": { "title": "Politique générale" },
+  "floatingContact": {
+    "button": "Contact",
+    "open": "Ouvrir les options de contact",
+    "close": "Fermer le menu de contact",
+    "eyebrow": "Contact direct",
+    "title": "Parlons de votre projet",
+    "description": "Choisissez le moyen qui vous convient.",
+    "call": "Appeler Optimum Tech",
+    "email": "Envoyer un e-mail",
+    "whatsapp": "Écrire sur WhatsApp",
+    "whatsappBusiness": "WhatsApp Business",
+    "hide": "Masquer cette bulle sur cette page"
+  },
   "footer": {
     "rights": "Tous droits réservés.",
     "description": "Nous concevons des plateformes haute performance, des logiciels sur mesure et des automatisations intelligentes pour propulser votre activité.",

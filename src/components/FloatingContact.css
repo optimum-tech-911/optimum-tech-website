@@ -1,0 +1,226 @@
+.floating-contact {
+  position: fixed;
+  z-index: 80;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, calc(env(safe-area-inset-bottom) + 0.5rem));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  font-family: Inter, sans-serif;
+}
+
+.floating-contact__trigger {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 9999px;
+  padding: 0 1.125rem;
+  background: #0a84ff;
+  color: #fff;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3), 0 0 24px rgba(10, 132, 255, 0.22);
+  font-size: 0.875rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.floating-contact__trigger:hover {
+  transform: translateY(-2px);
+  background: #0576e6;
+  box-shadow: 0 15px 38px rgba(0, 0, 0, 0.34), 0 0 28px rgba(10, 132, 255, 0.34);
+}
+
+.floating-contact__trigger svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  flex: 0 0 auto;
+}
+
+.floating-contact__panel {
+  width: min(21rem, calc(100vw - 2rem));
+  max-height: min(34rem, calc(100dvh - 6rem));
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.25rem;
+  padding: 1rem;
+  background: rgba(12, 16, 24, 0.97);
+  color: #fff;
+  box-shadow: 0 24px 75px rgba(0, 0, 0, 0.48);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  animation: floatingContactEnter 170ms ease-out both;
+}
+
+.floating-contact__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.floating-contact__header p {
+  margin: 0;
+  color: #63b3ff;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.floating-contact__header h2 {
+  margin: 0.25rem 0 0;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.floating-contact__close {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  cursor: pointer;
+}
+
+.floating-contact__close svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.floating-contact__description {
+  margin: 0.35rem 0 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.floating-contact__actions {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.floating-contact__actions a {
+  display: flex;
+  min-height: 3.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 0.875rem;
+  padding: 0.55rem 0.7rem;
+  color: #fff;
+  text-decoration: none;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.floating-contact__actions a:hover {
+  border-color: rgba(99, 179, 255, 0.55);
+  background: rgba(10, 132, 255, 0.12);
+}
+
+.floating-contact__actions a > svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: 0 0 auto;
+  color: #63b3ff;
+}
+
+.floating-contact__actions a > span {
+  min-width: 0;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.floating-contact__actions small {
+  display: block;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.72rem;
+  font-weight: 450;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.floating-contact__hide {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.35rem 0 0 auto;
+  border: 0;
+  padding: 0.35rem 0.2rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.57);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.floating-contact__hide:hover {
+  color: #fff;
+}
+
+.floating-contact__hide svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.floating-contact :focus-visible {
+  outline: 2px solid #8cc9ff;
+  outline-offset: 3px;
+}
+
+@keyframes floatingContactEnter {
+  from { opacity: 0; transform: translateY(0.35rem) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 480px) {
+  .floating-contact {
+    right: max(0.75rem, env(safe-area-inset-right));
+    bottom: max(0.75rem, calc(env(safe-area-inset-bottom) + 0.5rem));
+  }
+
+  .floating-contact__trigger {
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0;
+  }
+
+  .floating-contact__trigger span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  .floating-contact__panel {
+    width: min(21rem, calc(100vw - 1.5rem));
+    padding: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-contact__trigger,
+  .floating-contact__actions a {
+    transition: none;
+  }
+
+  .floating-contact__panel {
+    animation: none;
+  }
+}

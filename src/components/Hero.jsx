@@ -1,14 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Pause, PhoneCall, Play } from 'lucide-react';
+import { ArrowRight, CheckCircle2, PhoneCall } from 'lucide-react';
 import { useI18n } from '../i18n.jsx';
 
 export const Hero = () => {
   const { t } = useI18n();
-  const [videoPaused, setVideoPaused] = React.useState(true);
   const [videoVisible, setVideoVisible] = React.useState(false);
   const videoRef = React.useRef(null);
-  const videoControlRef = React.useRef(null);
 
   const proofPoints = [
     t('hero.proofs.architecture'),
@@ -40,11 +38,6 @@ export const Hero = () => {
     let idleId;
     let timerId;
     let disposed = false;
-    let pausedByUser = false;
-    let explicitPlayback = false;
-    let autoplayBlocked = false;
-    let playRequest = 0;
-
     const canAutoplay = () => !reducedMotion.matches
       && !connection?.saveData
       && !['slow-2g', '2g', '3g'].includes(connection?.effectiveType)
@@ -52,7 +45,6 @@ export const Hero = () => {
     const videoPath = () => `/ot-hero-${mobile.matches ? 'mobile' : 'desktop'}.mp4`;
 
     const clearVideo = (updateState = true) => {
-      playRequest += 1;
       video.pause();
       if (video.hasAttribute('src')) {
         video.removeAttribute('src');
@@ -60,35 +52,28 @@ export const Hero = () => {
       }
       if (updateState) {
         setVideoVisible(false);
-        setVideoPaused(true);
       }
     };
 
-    const loadVideo = (explicit = false) => {
-      if (disposed || pausedByUser || (!explicit && (!canAutoplay() || autoplayBlocked))) return;
+    const loadVideo = () => {
+      if (disposed || !canAutoplay()) return;
       // No video URL is emitted in HTML: the poster gets the initial bandwidth.
       if (video.getAttribute('src') !== videoPath() || video.error) {
         clearVideo();
         video.src = videoPath();
       }
       video.muted = true;
-      const request = ++playRequest;
-      setVideoPaused(false);
       video.play().catch(() => {
-        if (!disposed && request === playRequest) {
-          autoplayBlocked = true;
-          setVideoPaused(true);
-          setVideoVisible(false);
-        }
+        if (!disposed) setVideoVisible(false);
       });
     };
 
     const queueVideo = () => {
-      if (disposed || pausedByUser || autoplayBlocked || !canAutoplay()) return;
+      if (disposed || !canAutoplay()) return;
       if ('requestIdleCallback' in window) {
-        idleId = window.requestIdleCallback(() => loadVideo(), { timeout: 3000 });
+        idleId = window.requestIdleCallback(loadVideo, { timeout: 3000 });
       } else {
-        timerId = window.setTimeout(() => loadVideo(), 1200);
+        timerId = window.setTimeout(loadVideo, 1200);
       }
     };
 
@@ -103,57 +88,30 @@ export const Hero = () => {
     const updateVideo = () => {
       cancelScheduledLoad();
       const changedSource = video.hasAttribute('src') && video.getAttribute('src') !== videoPath();
-      if (changedSource || (!canAutoplay() && !explicitPlayback)) {
+      if (changedSource || !canAutoplay()) {
         clearVideo();
       }
-      if (pausedByUser || autoplayBlocked || video.hasAttribute('src')) return;
-      if (explicitPlayback) {
-        loadVideo(true);
-      } else if (canAutoplay()) {
+      if (video.hasAttribute('src')) return;
+      if (canAutoplay()) {
         if (document.readyState === 'complete') queueVideo();
         else window.addEventListener('load', queueVideo, { once: true });
       }
     };
 
-    const updatePreferences = () => {
-      // A new motion/data preference takes precedence over an earlier opt-in.
-      explicitPlayback = false;
-      updateVideo();
-    };
-
-    videoControlRef.current = () => {
-      cancelScheduledLoad();
-      if (!video.paused) {
-        pausedByUser = true;
-        explicitPlayback = false;
-        playRequest += 1;
-        video.pause();
-        setVideoPaused(true);
-      } else {
-        pausedByUser = false;
-        explicitPlayback = true;
-        autoplayBlocked = false;
-        loadVideo(true);
-      }
-    };
-
     mobile.addEventListener('change', updateVideo);
-    reducedMotion.addEventListener('change', updatePreferences);
-    connection?.addEventListener?.('change', updatePreferences);
+    reducedMotion.addEventListener('change', updateVideo);
+    connection?.addEventListener?.('change', updateVideo);
     updateVideo();
 
     return () => {
       disposed = true;
       cancelScheduledLoad();
-      videoControlRef.current = null;
       mobile.removeEventListener('change', updateVideo);
-      reducedMotion.removeEventListener('change', updatePreferences);
-      connection?.removeEventListener?.('change', updatePreferences);
+      reducedMotion.removeEventListener('change', updateVideo);
+      connection?.removeEventListener?.('change', updateVideo);
       clearVideo(false);
     };
   }, []);
-
-  const toggleVideo = () => videoControlRef.current?.();
 
   return (
     <>
@@ -179,10 +137,8 @@ export const Hero = () => {
           preload="none"
           aria-hidden="true"
           tabIndex={-1}
-          onPlay={() => setVideoPaused(false)}
           onPlaying={(event) => { if (!event.currentTarget.paused) setVideoVisible(true); }}
-          onPause={() => setVideoPaused(true)}
-          onError={() => { setVideoVisible(false); setVideoPaused(true); }}
+          onError={() => setVideoVisible(false)}
         />
         <div className="brand-hero-shade absolute inset-0 z-10" />
         <div className="absolute inset-0 z-10 bg-[linear-gradient(0deg,rgba(5,6,7,0.9)_0%,transparent_62%)]" />
@@ -221,14 +177,6 @@ export const Hero = () => {
               ))}
             </div>
 
-            <button
-              type="button"
-              onClick={toggleVideo}
-              aria-label={videoPaused ? 'Lire la vidéo du bandeau' : 'Mettre la vidéo du bandeau en pause'}
-              className="mt-7 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-black/35 text-white/80 backdrop-blur-md transition hover:border-[#0A84FF] hover:bg-black/55 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#63B3FF]"
-            >
-              {videoPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
-            </button>
           </div>
         </section>
       </header>

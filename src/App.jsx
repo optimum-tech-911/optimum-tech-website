@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { CookieBanner } from './components/CookieBanner.jsx';
 import { ScrollToTop } from './components/ScrollToTop.jsx';
+import { FloatingContact } from './components/FloatingContact.jsx';
 import { hasConsent } from './utils/cookies.js';
 import { installClickTracking, trackFirstPartyPageView } from './utils/analytics.js';
 import {
@@ -179,6 +180,7 @@ export default function App({ pages = clientPages }) {
             <Route path="*" element={<PageWrapper><NotFoundPage /></PageWrapper>} />
         </Routes>
       </Suspense>
+      <FloatingContact />
     </>
   );
 }

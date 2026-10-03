@@ -149,6 +149,19 @@
     }
   },
   "policy": { "title": "General Policy" },
+  "floatingContact": {
+    "button": "Contact",
+    "open": "Open contact options",
+    "close": "Close contact menu",
+    "eyebrow": "Direct contact",
+    "title": "Let’s discuss your project",
+    "description": "Choose the way that works best for you.",
+    "call": "Call Optimum Tech",
+    "email": "Send an email",
+    "whatsapp": "Message on WhatsApp",
+    "whatsappBusiness": "WhatsApp Business",
+    "hide": "Hide this bubble on this page"
+  },
   "footer": {
     "rights": "All rights reserved.",
     "description": "We engineer high-performance platforms, custom software, and intelligent automations to scale your business.",
