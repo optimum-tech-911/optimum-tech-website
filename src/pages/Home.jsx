@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Mail, MapPin, PhoneCall } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Download, Mail, MapPin, PhoneCall } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
 import { SanteSection } from '../components/SanteSection';
@@ -103,6 +103,42 @@ export const Home = () => {
       <Hero />
 
       <main className="home-main relative z-10">
+        <section aria-labelledby="monaco-rush-title" className={`border-b ${sectionBorder}`}>
+          <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 md:px-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex items-start gap-4 sm:items-center sm:gap-6">
+              <img
+                src="/monaco-rush/app-icon.png"
+                alt=""
+                width="96"
+                height="96"
+                loading="lazy"
+                className="h-20 w-20 shrink-0 rounded-2xl sm:h-24 sm:w-24"
+              />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#0A84FF]">Le jeu Optimum Tech · Bêta</p>
+                <h2 id="monaco-rush-title" className="mt-2 text-2xl font-bold sm:text-3xl">Monaco Rush</h2>
+                <p className={`mt-2 max-w-xl text-sm leading-6 ${mutedText}`}>
+                  Neuf mini-jeux, douze voitures et Monaco comme terrain de jeu. Télécharge la version adaptée à ton appareil.
+                </p>
+              </div>
+            </div>
+            <div className="shrink-0 lg:max-w-sm">
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="/monaco-rush/"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#0A84FF] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0576e6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0A84FF]"
+                >
+                  <Download className="h-4 w-4" aria-hidden="true" />
+                  Télécharger Monaco Rush
+                </a>
+              </div>
+              <p className={`mt-3 text-xs leading-5 ${mutedText}`}>
+                Android, Windows x64 et Mac · Bêta. Ouvre le fichier téléchargé pour confirmer l’installation. Version iPhone en préparation.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <SanteSection />
 
         <section className={`border-b ${sectionBorder}`}>

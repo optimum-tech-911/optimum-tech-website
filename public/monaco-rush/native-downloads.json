@@ -1,0 +1,34 @@
+{
+  "appVersion": "15.4.0",
+  "generatedAt": "2026-11-09T13:14:33.318Z",
+  "downloadBaseUrl": "https://downloads.optimumtech.fr/gmk/",
+  "artifacts": [
+    {
+      "platform": "android",
+      "file": "gmk-monaco-rush-android.apk",
+      "bytes": 49580445,
+      "sha256": "3a25447d26f1466761d54d3b183d82993da2f6f173616b96f3579b28f9710ffb",
+      "url": "https://downloads.optimumtech.fr/gmk/gmk-monaco-rush-android.apk",
+      "installationUrl": "https://downloads.optimumtech.fr/gmk/gmk-monaco-rush-android.apk"
+    },
+    {
+      "platform": "windows",
+      "file": "gmk-monaco-rush-windows.exe",
+      "bytes": 168075758,
+      "sha256": "0aaee806a9441c09311d9aac93d3cf02b364bedd9aae6b1554fbe3cc1aa1b703",
+      "url": "https://downloads.optimumtech.fr/gmk/gmk-monaco-rush-windows.exe",
+      "installationUrl": "https://downloads.optimumtech.fr/gmk/gmk-monaco-rush-windows.exe"
+    },
+    {
+      "platform": "mac",
+      "file": "gmk-monaco-rush-mac.zip",
+      "bytes": 47826070,
+      "sha256": "688d323deb19ddfeb5d6c5ef2286cac28931a5681bedcdb3650923af775d8511",
+      "url": "https://downloads.optimumtech.fr/gmk/gmk-monaco-rush-mac.zip",
+      "installationUrl": "https://downloads.optimumtech.fr/gmk/gmk-monaco-rush-mac.zip"
+    }
+  ],
+  "unavailable": [
+    "ios"
+  ]
+}
