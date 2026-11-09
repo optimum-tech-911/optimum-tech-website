@@ -29,3 +29,10 @@ Original prompt: Make Monaco Rush playable in the browser, with a version as nea
 - Larger measured thumb targets, non-overlapping directional pads, immediate control feedback, preserved held buttons across height-only browser resizes and retained mobile render budget. Same save key and stages; existing native download artifacts untouched.
 - Candidate/source tests and original failing cases reproduced; final production artifact validation/publication pending.
 - Validation complete: real-time foreground touch29/29 with no advanceTime, camera quick-tap Chromium/WebKit, control ownership22, on-foot89/driving28/finale18/runtime13, PWA70 and website54-page audit pass. New browser build70d9cdab8c includes the prior Safari canonical-navigation fix.
+
+
+2026-11-09 — Adjustable mobile controls15.6
+- User requested moderately larger mobile buttons and size selection in Réglages. New Confort default grows principal controls about12–14%; Compacts and Grands offer smaller/larger choices, including joystick size, with a live preview. Preference persists under the existing save key.
+- Portrait play areas reserve space above the measured control dock, keeping boat/parking objectives accessible. Pause/settings/resume retains the same live run.
+- Verified 581 size/settings checks over540 Chromium/WebKit layouts,22 trusted input-ownership checks,13 runtime/profile checks,70 offline/update checks, skill-client gameplay screenshots and production website build/54-page audit. New browser build a398a5de9a, version15.6.0; native download artifacts unchanged.
+- Publication and final live verification in progress.
