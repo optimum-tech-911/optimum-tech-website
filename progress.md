@@ -17,3 +17,9 @@ Original prompt: Make Monaco Rush playable in the browser, with a version as nea
 - Pending: publish via existing GitHub/Cloudflare pipeline; confirm production paths/version/assets and controls, then stop owned local preview.
 
 - WebKit rotation verified after resize settled: portrait390x844 and landscape844x390, correctly resized canvas/HUD/touch controls in both orientations. Initial screenshot captured before async resize completed; no game change required.
+
+2026-11-09 — Production Safari redirect fix
+- First live deploy578362e4 passed game/title/touch checks but exposed Cloudflare Pages .html canonical redirects. WebKit rejected cached redirected responses during installer/game navigation.
+- Fixed cached HTML navigation with a synthetic Response that clears redirect metadata and transport headers. Same fix applied to the original game's worker generator for future builds; no native binaries rebuilt.
+- Bumped web cache revision to ed3b0fe701-web-41b9f83bc3-r2. Canonical-redirect regression reproduces all3baseline failures and fixed worker passes12checks including offline cold navigation. Full70PWA checks pass again.
+- Preserved source font license verbatim; inherited trailing whitespace excluded from code whitespace check.

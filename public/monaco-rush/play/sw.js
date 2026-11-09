@@ -1,5 +1,5 @@
 // Replaced by tools/build.js. All URLs resolve inside this app's own scope.
-const VERSION='ed3b0fe701-web-41b9f83bc3';
+const VERSION='ed3b0fe701-web-41b9f83bc3-r2';
 const SHELL=["index.html","install.html","manifest.webmanifest","icon-192.png","icon-512.png","src/install.css","src/install.js","src/pwa-client.js","assets/fonts/outfit.woff2","version.json"];
 const ART=["assets/rush/car-sprites.webp","assets/rush/charles-cameo-atlas-v1.png","assets/rush/fans.webp","assets/rush/gmk-garage.jpg","assets/rush/gmk-identity-atlas-v2.png","assets/rush/gmk-photo-2.webp","assets/rush/gmk-photo.webp","assets/rush/gmk-reference-atlas.png","assets/rush/gmk-sprites.webp","assets/rush/gmk-verified-master-v5.png","assets/rush/monaco-casino-pixel-v1.png","assets/rush/monaco-casino.webp","assets/rush/monaco-corniche-pixel-v1.png","assets/rush/monaco-cover.webp","assets/rush/monaco-garage-pixel-v1.png","assets/rush/monaco-grand-prix-preview-v1.png","assets/rush/monaco-harbor.webp","assets/rush/monaco-harbour-pixel-v1.png","assets/rush/monaco-marina-map-pixel-v1.png","assets/rush/monaco-night-pixel-v1.png","assets/rush/monaco-parking-pixel-v1.png","assets/rush/monaco-rocher-pixel-v1.png","assets/rush/monaco-tunnel-pixel-v1.png","assets/rush/npc-friends-pixel-v2.png","assets/rush/npc-rivals-pixel-v2.png","assets/rush/pixel-cars/gmk-sideview-atlas-v2.png","assets/rush/pixel-cars/gmk-topdown-atlas-v1.png"];
 const BASE=self.registration.scope;
@@ -38,12 +38,19 @@ self.addEventListener('message',event=>{
  if(event.data?.type==='CLEAN_OLD')event.waitUntil((async()=>{const windows=(await self.clients.matchAll({type:'window'})).filter(client=>client.url.startsWith(BASE));if(windows.length<=1&&(await status()).offlineReady){for(const name of await caches.keys())if(name.startsWith(PREFIX)&&name!==CACHE)await caches.delete(name);}reply({type:'done'});})());
  if(event.data?.type==='OFFLINE_DOWNLOAD')event.waitUntil(download(reply).then(value=>reply({type:'done',...value})).catch(error=>reply({type:'error',error:error.message||'Téléchargement interrompu.'})));
 });
+// Pages canonicalizes .html URLs. WebKit rejects a cached navigation response
+// that keeps fetch's redirected flag, so deliver a fresh response for the page.
+function navigationResponse(response){
+ const headers=new Headers(response.headers);
+ headers.delete('Content-Encoding');headers.delete('Content-Length');
+ return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+}
 self.addEventListener('fetch',event=>{
  const request=event.request,address=new URL(request.url);if(request.method!=='GET'||address.origin!==self.location.origin||!request.url.startsWith(BASE))return;
  const clean=address.origin+address.pathname;
  if(request.mode==='navigate'){
   const file=/\/install(?:\.html)?\/?$/.test(address.pathname)?'install.html':'index.html';
-  event.respondWith(caches.open(CACHE).then(async cache=>(await cache.match(url(file)))||fetch(request)));return;
+  event.respondWith(caches.open(CACHE).then(async cache=>{const cached=await cache.match(url(file));return cached?navigationResponse(cached):fetch(request);}));return;
  }
  if(!known.has(clean))return;
  event.respondWith(caches.open(CACHE).then(async cache=>{const cached=await cache.match(clean);if(cached)return cached;const response=await fetch(request);if(response.ok){const copy=response.clone();event.waitUntil(cache.put(clean,copy).catch(()=>{}));}return response;}));
