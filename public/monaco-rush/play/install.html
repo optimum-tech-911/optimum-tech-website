@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr" data-app-build="ed3b0fe701-web-41b9f83bc3">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1288b4">
+  <meta name="description" content="Ajoute GMK Monaco Rush à ton écran d’accueil. Installation sur Android, iPhone, iPad et ordinateur, avec un pack hors ligne en option.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Installer GMK Monaco Rush</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="preload" href="./assets/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./src/install.css">
+  <script defer src="./src/pwa-client.js"></script>
+  <script defer src="./src/install.js"></script>
+</head>
+<body class="install-page">
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-play" viewBox="0 0 32 32"><path d="m12 7 14 9-14 9Z" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="3"/></symbol>
+    <symbol id="i-install" viewBox="0 0 32 32"><path d="M16 3v17m-6-6 6 6 6-6M5 21v7h22v-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></symbol>
+    <symbol id="i-share" viewBox="0 0 32 32"><path d="M10 11H5v18h22V11h-5M16 21V3m-6 6 6-6 6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/></symbol>
+    <symbol id="i-home" viewBox="0 0 32 32"><path d="m3 15 13-12 13 12M7 12v17h18V12M13 29V19h6v10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 32 32"><path d="m5 16 8 8L28 8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 32 32"><rect x="7" y="2" width="18" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M13 6h6m-4 20h2" stroke="currentColor" stroke-linecap="round" stroke-width="2.6"/></symbol>
+    <symbol id="i-desktop" viewBox="0 0 32 32"><path d="M3 4h26v18H3ZM11 29h10m-5-7v7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/></symbol>
+    <symbol id="i-offline" viewBox="0 0 32 32"><path d="M7 24H6a5 5 0 0 1-1-10 8 8 0 0 1 15-4 7 7 0 0 1 6 14h-1M16 15v15m-5-5 5 5 5-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/></symbol>
+  </defs></svg>
+  <div class="install-shell">
+    <header class="install-nav"><a class="nav-play" href="./"><span aria-hidden="true">←</span> RETOUR AU JEU</a><span class="riviera-mark"><i aria-hidden="true"></i> RIVIERA ARCADE</span></header>
+    <main>
+      <section class="install-feature" aria-labelledby="install-title">
+        <div class="install-art" aria-hidden="true"><img class="harbour-art" src="./assets/rush/monaco-harbour-pixel-v1.png" alt="" fetchpriority="high"><div class="art-shade"></div><div class="game-lockup"><span>GMK</span><b>MONACO<strong>RUSH</strong></b></div><div class="game-ticket"><b>9</b> MINI-JEUX <i>·</i> <b>12</b> VOITURES</div></div>
+        <div class="install-card">
+          <div class="app-heading"><img src="./icon-192.png" alt="Icône GMK Rush" width="72" height="72"><div><span class="eyebrow">LE GRAND FORMAT, PARTOUT</span><h1 id="install-title">Monaco Rush<br>sur ton appareil.</h1></div></div>
+          <p class="install-intro">Une icône sur ton écran d’accueil. Toute la Riviera à retrouver en un geste.</p>
+          <div class="install-state" id="install-state" role="status" aria-live="polite" aria-atomic="true"><span class="state-dot" aria-hidden="true"></span><div><b id="install-state-label">À toi de jouer</b><p id="install-status">Installe le jeu avec ton navigateur, ou lance une partie ici.</p></div></div>
+          <p class="browser-note" id="browser-note" hidden></p>
+          <div class="install-actions"><button class="action action-install" id="install-button" type="button" hidden><svg aria-hidden="true"><use href="#i-install"/></svg><span>INSTALLER LE JEU</span></button><a class="action action-guide" id="install-guide-link" href="#install-guide"><svg aria-hidden="true"><use href="#i-install"/></svg> VOIR LES ÉTAPES</a><a class="action action-play" id="play-button" href="./"><svg aria-hidden="true"><use href="#i-play"/></svg> JOUER MAINTENANT</a></div>
+          <p class="install-footnote">Le navigateur te demandera de confirmer l’ajout.</p>
+        </div>
+      </section>
+
+      <section class="offline-card" id="offline-pack" aria-labelledby="offline-title" hidden>
+        <div class="offline-icon" aria-hidden="true"><svg><use href="#i-offline"/></svg></div><div class="offline-copy"><span class="eyebrow">EN OPTION · ENV. 50 MO</span><h2 id="offline-title">Les 9 jeux, même sans réseau.</h2><p id="offline-status" role="status" aria-live="polite">Prépare les décors et le jeu sur cet appareil avant de partir.</p><div class="offline-meter" id="offline-meter" hidden><label for="offline-progress" id="offline-progress-label">Préparation du pack</label><progress id="offline-progress" max="1" value="0"></progress></div></div><button class="action action-offline" id="offline-button" type="button"><svg aria-hidden="true"><use href="#i-install"/></svg><span>PRÉPARER HORS LIGNE</span></button>
+      </section>
+
+      <section class="install-guide" id="install-guide" aria-labelledby="guide-title">
+        <header class="guide-heading"><span class="eyebrow">UN PETIT GESTE. LE GRAND JEU.</span><h2 id="guide-title">Choisis ton appareil.</h2></header>
+        <nav class="platform-tabs" id="platform-tabs" aria-label="Guide par appareil"><a href="#guide-ios" data-platform="ios"><svg aria-hidden="true"><use href="#i-phone"/></svg> iPhone / iPad</a><a href="#guide-android" data-platform="android"><svg aria-hidden="true"><use href="#i-phone"/></svg> Android</a><a href="#guide-desktop" data-platform="desktop"><svg aria-hidden="true"><use href="#i-desktop"/></svg> Ordinateur</a></nav>
+        <article class="platform-guide" id="guide-ios" data-guide="ios" aria-labelledby="ios-title"><h3 id="ios-title">Dans Safari, en trois gestes.</h3><ol class="install-steps"><li><span class="step-number">1</span><div><h4>Ouvre Partager <svg class="inline-icon" aria-label="icône de partage"><use href="#i-share"/></svg></h4><p>Dans Safari, le partage est dans la barre d’outils ou dans le menu près de l’adresse.</p></div></li><li><span class="step-number">2</span><div><h4>Choisis « Sur l’écran d’accueil »</h4><p>Si l’option manque, cherche-la dans « Modifier les actions ».</p></div></li><li><span class="step-number">3</span><div><h4>Confirme avec « Ajouter »</h4><p>Garde « Ouvrir comme app web » activé si ce choix apparaît. Lance ensuite GMK Rush depuis son icône.</p></div></li></ol></article>
+        <article class="platform-guide" id="guide-android" data-guide="android" aria-labelledby="android-title"><h3 id="android-title">Sur Android, avec ton navigateur.</h3><ol class="install-steps"><li><span class="step-number">1</span><div><h4>Ouvre la page dans Chrome</h4><p>Quand l’installation est disponible, le bouton « Installer le jeu » apparaît en haut de cette page.</p></div></li><li><span class="step-number">2</span><div><h4>Confirme l’installation</h4><p>Sans bouton, regarde dans le menu ⋮ du navigateur : « Installer l’application » ou « Ajouter à l’écran d’accueil ».</p></div></li><li><span class="step-number">3</span><div><h4>Retrouve l’icône GMK Rush</h4><p>Ouvre le jeu depuis ton écran d’accueil. Tu peux aussi jouer ici sans l’installer.</p></div></li></ol></article>
+        <article class="platform-guide" id="guide-desktop" data-guide="desktop" aria-labelledby="desktop-title"><h3 id="desktop-title">La Riviera a aussi sa fenêtre.</h3><ol class="install-steps"><li><span class="step-number">1</span><div><h4>Dans Chrome ou Edge</h4><p>Utilise le bouton d’installation de cette page lorsqu’il apparaît, ou l’option Installer du navigateur.</p></div></li><li><span class="step-number">2</span><div><h4>Sur Mac, dans Safari</h4><p>Choisis Fichier → Ajouter au Dock, puis confirme l’ajout.</p></div></li><li><span class="step-number">3</span><div><h4>Et si l’option n’existe pas ?</h4><p>Le bouton Jouer lance toujours la version navigateur. L’installation dépend de ton navigateur et de ton appareil.</p></div></li></ol></article>
+      </section>
+    </main>
+    <footer class="install-footer"><span><i aria-hidden="true"></i> MONACO RUSH · LA FAMILLE</span><a href="./">ON JOUE ? <span aria-hidden="true">↗</span></a></footer>
+  </div>
+  <noscript><p class="noscript-note">Les étapes ci-dessus restent disponibles sans JavaScript. Le bouton d’installation et le pack hors ligne ont besoin de JavaScript.</p></noscript>
+</body>
+</html>

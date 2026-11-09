@@ -1,1 +1,63 @@
-*{box-sizing:border-box}html{color-scheme:light;scroll-behavior:smooth}body{margin:0;background:#f7f1dc;color:#073347;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1160px;margin:auto;padding:28px max(20px,env(safe-area-inset-right)) 30px max(20px,env(safe-area-inset-left))}header{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-size:15px;font-weight:900;line-height:1.05;letter-spacing:.04em}.brand img{border-radius:14px}.edition{font-size:10px;font-weight:800;letter-spacing:.12em}.hero{display:flex;align-items:center;justify-content:space-between;gap:35px;padding:65px 0 44px}.eyebrow{font-size:11px;letter-spacing:.15em;font-weight:900;color:#087a94}h1{margin:14px 0 22px;font-size:clamp(52px,8vw,92px);font-weight:950;letter-spacing:-.065em;line-height:.95}em{font-style:normal;color:#ec674b}.lede{font-size:17px;line-height:1.65;color:#31596a}.hero-icon{width:clamp(170px,29vw,310px);height:auto;border-radius:23%;transform:rotate(7deg);filter:drop-shadow(12px 18px 0 #ded2b4)}.features{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}.features span{font-size:10px;font-weight:900;letter-spacing:.06em;border:1px solid #c4cebf;padding:8px 10px}.platforms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.platform{padding:23px;background:#fffdf5;border:2px solid #d6ddcf;border-radius:22px;box-shadow:0 5px 0 #e2dcc9}.platform.current{border-color:#0b7f9f;background:#effbfa}.platform-top{display:flex;align-items:center;gap:13px;margin-bottom:22px}.device{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:#073347;color:#fff3d7;font-weight:900;font-size:24px}.platform h2{margin:0;font-size:21px;letter-spacing:-.03em}.platform-top p{margin:4px 0 0;font-size:12px;color:#567482}.detected{margin-left:auto;font-size:9px;letter-spacing:.06em;font-weight:900;color:#0b7f9f}.download{min-height:56px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#ffcf63;border:2px solid #073347;border-radius:12px;box-shadow:0 4px 0 #073347;color:#073347;font:900 16px system-ui;text-decoration:none;width:100%;cursor:pointer}.download:hover{background:#ffdc88}.download:active{transform:translateY(3px);box-shadow:0 1px 0 #073347}.download:focus-visible,a:focus-visible{outline:3px solid #ec674b;outline-offset:5px}.download span{font-size:24px}.unavailable{background:#edf0e7;border-color:#c5cec2;box-shadow:none;color:#688075;cursor:default;font-size:14px}.unavailable:hover{background:#edf0e7}.instructions{min-height:56px;font-size:12px;line-height:1.7;color:#486675;margin:18px 0 0}footer{padding:33px 0 10px;font-size:12px;line-height:1.6;color:#486675}footer a{color:#087a94}footer p{margin:5px 0}@media(max-width:620px){main{padding-top:20px}.edition{max-width:120px;text-align:right;font-size:9px}.hero{display:block;position:relative;padding:45px 0 32px;gap:10px;align-items:flex-start}.hero>div{min-width:0;flex:1}.hero-icon{position:absolute;right:0;top:68px;width:88px;flex-shrink:0;margin-top:0;filter:drop-shadow(6px 9px 0 #ded2b4)}h1{font-size:clamp(42px,12vw,56px)}.eyebrow{font-size:9px;max-width:160px}.lede{font-size:14px;margin-right:0;padding-top:12px}.features{max-width:calc(100vw - 40px);margin-right:0}.features span{font-size:9px;padding:7px}.platforms{grid-template-columns:1fr}.platform{padding:20px}.instructions{min-height:0}.hero-icon{z-index:0}.platform h2{font-size:20px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+*{box-sizing:border-box}
+html{color-scheme:light;scroll-behavior:smooth}
+body{margin:0;background:#f7f1dc;color:#073347;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:1160px;margin:auto;padding:28px max(20px,env(safe-area-inset-right)) 30px max(20px,env(safe-area-inset-left))}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-size:15px;font-weight:900;line-height:1.05;letter-spacing:.04em;min-height:52px}
+.brand img{border-radius:14px}
+.edition{font-size:10px;font-weight:800;letter-spacing:.12em}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:35px;padding:65px 0 44px}
+.hero-copy{min-width:0;max-width:650px}
+.eyebrow{font-size:11px;letter-spacing:.15em;font-weight:900;color:#087a94}
+h1{margin:14px 0 22px;font-size:clamp(52px,8vw,92px);font-weight:950;letter-spacing:-.065em;line-height:.95}
+em{font-style:normal;color:#ec674b}
+.lede{font-size:17px;line-height:1.65;color:#31596a}
+.hero-icon{width:clamp(170px,29vw,310px);height:auto;border-radius:23%;transform:rotate(7deg);filter:drop-shadow(12px 18px 0 #ded2b4);flex-shrink:0}
+.hero-actions{display:flex;align-items:stretch;flex-wrap:wrap;gap:14px;margin-top:25px}
+.hero-actions .download{width:auto;min-width:220px;justify-content:center}
+.app-install{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:13px 17px;border:2px solid #0b7f9f;border-radius:12px;color:#086d87;background:#effbfa;font-size:14px;font-weight:850;line-height:1.4;text-decoration:none;text-align:center}
+.app-install:hover{background:#ddf3ed}
+.app-install>span[aria-hidden]{font-size:23px;line-height:1}
+.app-note{max-width:580px;margin:17px 0 0;font-size:12px;line-height:1.7;color:#486675}
+.features{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}
+.features span{font-size:10px;font-weight:900;letter-spacing:.06em;border:1px solid #c4cebf;padding:8px 10px}
+.platforms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.platform{padding:23px;background:#fffdf5;border:2px solid #d6ddcf;border-radius:22px;box-shadow:0 5px 0 #e2dcc9;min-width:0}
+.platform.current{border-color:#0b7f9f;background:#effbfa}
+.platform-top{display:flex;align-items:center;gap:13px;margin-bottom:22px}
+.device{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:#073347;color:#fff3d7;font-weight:900;font-size:24px;flex-shrink:0}
+.platform h2{margin:0;font-size:21px;letter-spacing:-.03em}
+.platform-top p{margin:4px 0 0;font-size:12px;line-height:1.5;color:#567482}
+.detected{margin-left:auto;font-size:9px;letter-spacing:.06em;font-weight:900;color:#0b7f9f;flex-shrink:0;max-width:65px;text-align:right}
+.download{min-height:56px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#ffcf63;border:2px solid #073347;border-radius:12px;box-shadow:0 4px 0 #073347;color:#073347;font:900 16px system-ui;text-decoration:none;width:100%;cursor:pointer}
+.download:hover{background:#ffdc88}
+.download:active{transform:translateY(3px);box-shadow:0 1px 0 #073347}
+a:focus-visible{outline:3px solid #ec674b;outline-offset:5px}
+.download span{font-size:24px}
+.card-install{margin-top:16px;min-height:48px;font-size:13px}
+.instructions{min-height:56px;font-size:12px;line-height:1.7;color:#486675;margin:18px 0 0}
+.offline-note{font-size:12px;line-height:1.7;color:#486675;margin:12px 0 0}
+footer{padding:33px 0 10px;font-size:12px;line-height:1.6;color:#486675}
+footer a{color:#087a94;display:inline-flex;align-items:center;min-height:44px}
+footer p{margin:5px 0}
+@media(max-width:900px){.hero{gap:25px}.hero-icon{width:clamp(145px,25vw,230px)}.hero-actions .download,.hero-actions .app-install{width:100%}}
+@media(max-width:620px){
+  main{padding-top:20px}
+  .edition{max-width:120px;text-align:right;font-size:9px}
+  .hero{display:block;position:relative;padding:45px 0 32px}
+  .hero-copy{position:relative;z-index:1}
+  .hero-icon{position:absolute;right:0;top:78px;width:76px;filter:drop-shadow(6px 9px 0 #ded2b4);z-index:0}
+  h1{font-size:clamp(38px,10vw,56px);max-width:calc(100% - 80px)}
+  .eyebrow{font-size:9px;max-width:180px}
+  .lede{font-size:14px;margin-right:0;padding-top:12px}
+  .hero-actions{gap:14px;margin-top:21px}
+  .hero-actions .download,.hero-actions .app-install{width:100%}
+  .app-note{font-size:12px}
+  .features{max-width:100%;margin-right:0}
+  .features span{font-size:9px;padding:7px}
+  .platforms{grid-template-columns:1fr}
+  .platform{padding:20px}
+  .instructions{min-height:0}
+  .platform h2{font-size:20px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

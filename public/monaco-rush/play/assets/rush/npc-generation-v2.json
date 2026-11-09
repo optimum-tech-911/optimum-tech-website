@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-05",
+  "method": "Built-in image_gen; genuine transparent generation and focused walking-pose edits.",
+  "prompts": [
+    "dev/art-src/pixel-npcs-v2/rivals-prompt.txt",
+    "dev/art-src/pixel-npcs-v2/friends-prompt.txt",
+    "dev/art-src/pixel-npcs-v2/walk-edit-prompts.txt"
+  ],
+  "selectedMasters": [
+    "dev/art-src/pixel-npcs-v2/rivals-walk-fixed-v2.png",
+    "dev/art-src/pixel-npcs-v2/friends-walk-fixed-v2.png"
+  ],
+  "assets": [
+    {
+      "file": "assets/rush/npc-rivals-pixel-v2.png",
+      "bytes": 1431166,
+      "sha256": "b7d4ce0a68cf605646a7c673c3a36a6e6c5f9b7cd3c8f41fdef2599b6e6b762d"
+    },
+    {
+      "file": "assets/rush/npc-friends-pixel-v2.png",
+      "bytes": 1454567,
+      "sha256": "d355d96004fd4d711374b225fa36049bad5558ec311f4554f46ba4cc8de2adc2"
+    }
+  ],
+  "roles": [
+    "photographer",
+    "courier",
+    "security/valet",
+    "Lou",
+    "Léa",
+    "Sam",
+    "mechanic/Nino"
+  ],
+  "posesPerRole": 4,
+  "measurement": {
+    "script": "dev/art-src/pixel-npcs-v2/measure-npcs.cjs",
+    "metadata": "dev/art-src/pixel-npcs-v2/npc-atlas-metadata.json",
+    "alphaThreshold": 100,
+    "method": "Largest 8-connected alpha component in individually measured pose regions; common foot baseline and per-pose pelvis anchors. Original selected PNG pixels unchanged.",
+    "irregularSecurityRowCuts": [
+      0,
+      300,
+      705,
+      1080,
+      1448
+    ]
+  },
+  "verification": {
+    "test": "dev/tests/pixel-npcs.mjs",
+    "checks": 65,
+    "errors": 0,
+    "gallery": "work/qa-pixel-npcs/npc-sprite-gallery.png",
+    "phoneScenes": [
+      "work/qa-pixel-npcs/phone-rival-gameplay.png",
+      "work/qa-pixel-npcs/phone-casino-fans.png",
+      "work/qa-pixel-npcs/phone-garage-mechanic.png",
+      "work/qa-pixel-npcs/phone-harbour-friends.png"
+    ],
+    "skillCapture": "work/qa-pixel-npcs-skill/shot-0.png"
+  },
+  "promptTexts": {
+    "rivals": "Use case: stylized-concept\nAsset type: actual production transparent pixel-art animation sprite sheet for a Monaco side-scrolling arcade game.\nPrimary request: A precise four-column by three-row sprite sheet of THREE distinct detailed male NPC rivals, four full-body poses each. This is real shaded 2D PIXEL ART built of crisp square pixel clusters, a polished 1990s arcade platformer/Metal Slug level of detailing with modern rich color shading. NOT vector art, smooth cartoons, bubble heads, tiny smiley faces, or photoreal photos. Each visible person has about 96 pixel body height at logical game resolution, a strong dark pixel outline, expressive anatomical eyes, real nose and ears, shaded hair, jackets and seams, articulated fingers, textured trouser folds, detailed shoes. Slightly big game heads, solid proportional adult bodies, about 3.5 heads high, grounded feet, three-quarter side view facing RIGHT. Warm Monaco daylight highlights from upper-left, cool dark shadows, 5-7 deliberate shade ramps per material. No blur, no anti-aliased painterly edges, no dither noise.\nComposition: STRICT uniform 4 columns x 3 rows, 12 separate complete figures total, roomy completely transparent gutters around every figure. No figure crosses its cell. Same identity, clothing and scale within each row. All shoes fully visible and foot baselines aligned within each row. NO labels, words, lines, grid, watermark, ground shadows or backdrop.\nRow 1: street photographer, olive-tan skin, short textured brown hair and stubble, rust-orange utility vest with detailed pockets over cream T-shirt, dark slate trousers, dark sneakers with cream soles, substantial detailed black camera on shoulder strap. Columns: 1 relaxed idle holding camera low; 2 walk stride left leg forward camera close to chest; 3 opposite walk stride right leg forward; 4 action lifting camera to eye with little camera lens glint.\nRow 2: energetic adult courier, medium brown skin, dark hair under backward teal cap, shaded teal zip jacket with cream sleeve stripe and zip pocket, light charcoal tapered jeans, red/white sneakers, compact tan parcel satchel strap across chest. Columns: 1 idle poised; 2 walk left leg forward; 3 walk right leg forward; 4 athletic small hop with bent knees, arms raised for balance, still fully inside its cell.\nRow 3: broad adult security/valet rival, light-tan skin, neatly combed dark hair, tiny sunglasses, dark indigo formal blazer with gold lapel pin, crisp white shirt, muted plum tie, black formal trousers, polished dark brown shoes, a large champagne hard-shell luggage case with handles and wheel details carried in front. Columns: 1 idle standing; 2 walk left leg forward pulling luggage; 3 walk right leg forward; 4 action holding case defensively in front chest. Keep his shape and luggage consistent.\nTransparency: genuine alpha outside every sprite; no checkerboard painted into pixels, no background color.\n",
+    "friends": "Use case: stylized-concept\nAsset type: actual production transparent pixel-art animation sprite sheet for a Monaco arcade game.\nPrimary request: A precise four-column by four-row sprite sheet of FOUR distinct richly shaded adult NPC friends/fans/mechanic. Real crisp square-cluster 2D PIXEL ART, polished 1990s arcade platformer detail; 96 pixel logical body height, adult chibi proportions about 3.5 heads tall, strong dark pixel outline, anatomical eyes and nose, detailed hair strands in clusters, garment seams and folds, fingers, detailed shoes. Rich purposeful 5-7 step color ramps, warm upper-left highlights/cool shadows, three-quarter right-facing full-body view. NOT smooth rounded vector cartoons, smiley bubble heads, flat colors, photographic cutouts or blur. Each pose must look like an actual game sprite, crisp and collectible.\nComposition: STRICT 4 columns x 4 rows, 16 complete figures, generous genuinely transparent gutters, same identity/clothes/scale in each row, shoes fully visible and same ground baseline in row. No figure crosses its cell. No typography, labels, grid, shadows on floor, watermark or background.\nEvery row has columns: 1 relaxed idle, 2 walk left leg forward, 3 opposite walk right leg forward, 4 lively action: wave or use the prop specified below. Keep the other arm, face, clothes and palette consistent.\nRow 1: young adult female fan Lou, light skin, wavy chestnut shoulder-length hair, detailed rose/mauve denim jacket over ivory top, dark navy jeans, white trainers with pink accent, silver wrist bracelet, smartphone held in one hand. Last pose waves with open raised hand and phone in opposite hand.\nRow 2: young adult female friend Lea, olive skin, curly dark shoulder-length hair tied partly back, golden mustard zip jacket with real seams over striped pale shirt, indigo trousers, cream low-top shoes, small teal crossbody bag. Last pose waves enthusiastically.\nRow 3: adult male friend Sam, dark brown skin, short curly black hair, shaded emerald-green bomber jacket with ribbed cuffs and metal zip over light grey shirt, dark jeans, detailed grey/cream sneakers, smartphone. Last pose raises phone for a selfie with an engaging natural facial expression.\nRow 4: adult male mechanic Nino, fair skin, short dark hair with neat beard, dusty-blue mechanic overalls with detailed pockets/creases and stitched name patch WITHOUT TEXT, rolled sleeves, ochre work boots, red shop rag in belt and steel wrench in hand. Last pose raises wrench proudly and gives thumbs-up.\nGenuine transparent alpha outside all figures, absolutely no painted checkerboard or colored background.\n",
+    "walkCorrections": "RIVALS — built-in edit, referenced rivals-generated-v1.png, genuine transparency enabled:\nEdit this production transparent pixel-art sprite sheet. Preserve the exact THREE character identities, all detailed shading, outfits, props, row order, image size, transparency, and the four-column / three-row composition. Preserve columns ONE, TWO and FOUR as closely as possible. Change ONLY the full-body walking pose in COLUMN THREE in each row so it is unmistakably the opposite animation step from column TWO. In column TWO each character's front/right leg currently reaches forward toward the right edge. In column THREE instead put that front/right leg BEHIND the body with its knee slightly bent and foot to the LEFT, and bring the other leg from behind FORWARD to the RIGHT. Swing the opposite arm forward. Keep head/torso identity and size, clear dark pixel outlines, jacket seams and camera/courier bag/luggage. Both shoes must be fully visible, feet baseline unchanged, cell gutters preserved. These must be distinct alternating walking frames for a game, not two almost identical strides. Do not add anything, no text, no background, genuine alpha transparency.\n\nFRIENDS — built-in edit, referenced friends-generated-v1.png, genuine transparency enabled:\nEdit this production transparent pixel-art sprite sheet. Preserve the exact FOUR character identities, detailed pixel shading, outfits, props, row order, image size, transparency and four-column / four-row layout. Preserve columns ONE, TWO and FOUR as closely as possible. Change ONLY the walking pose in COLUMN THREE of every row into an unmistakable passing/opposite-step animation frame. The current column TWO is a wide stride with one foot extended to the right. Column THREE must instead show the other foot planted UNDER THE HIPS, near leg bent and lifted BEHIND to the LEFT, while opposite arm swings forward. This passing pose must have a distinctly NARROWER feet silhouette than column TWO, so a game loop alternates wide-stride and passing poses visibly. Keep every head identity, torso, detailed seams, colors, phone, bag, wrench, and overall body height. Keep both shoes complete within the same cell and baseline, and keep all generous transparent gutters. Crisp square pixel clusters with deliberate dark outlines; no blur, text, grid, backdrop or additional objects. Genuine alpha transparency.\n"
+  }
+}

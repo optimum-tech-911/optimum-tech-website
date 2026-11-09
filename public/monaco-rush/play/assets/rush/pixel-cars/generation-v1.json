@@ -1,0 +1,192 @@
+{
+  "generator": "Built-in image_gen",
+  "created": "2026-11-05",
+  "models": [
+    "aventador",
+    "rs6",
+    "c63",
+    "gclass",
+    "f812",
+    "pista",
+    "urus",
+    "gt3rs",
+    "gt2rs",
+    "m3",
+    "scuderia",
+    "speciale"
+  ],
+  "layout": "3 columns by 4 rows, reading order follows models",
+  "topdown": {
+    "path": "gmk-topdown-atlas-v1.png",
+    "width": 887,
+    "height": 1774,
+    "front": "up",
+    "nativeSpriteWidth": 96,
+    "sourceBounds": [
+      {
+        "x": 49,
+        "y": 30,
+        "w": 198,
+        "h": 383
+      },
+      {
+        "x": 351,
+        "y": 16,
+        "w": 186,
+        "h": 407
+      },
+      {
+        "x": 645,
+        "y": 26,
+        "w": 189,
+        "h": 395
+      },
+      {
+        "x": 45,
+        "y": 464,
+        "w": 207,
+        "h": 400
+      },
+      {
+        "x": 345,
+        "y": 469,
+        "w": 196,
+        "h": 388
+      },
+      {
+        "x": 638,
+        "y": 474,
+        "w": 203,
+        "h": 382
+      },
+      {
+        "x": 46,
+        "y": 911,
+        "w": 205,
+        "h": 392
+      },
+      {
+        "x": 344,
+        "y": 911,
+        "w": 199,
+        "h": 396
+      },
+      {
+        "x": 642,
+        "y": 916,
+        "w": 195,
+        "h": 384
+      },
+      {
+        "x": 49,
+        "y": 1358,
+        "w": 198,
+        "h": 393
+      },
+      {
+        "x": 343,
+        "y": 1363,
+        "w": 201,
+        "h": 382
+      },
+      {
+        "x": 639,
+        "y": 1363,
+        "w": 200,
+        "h": 383
+      }
+    ]
+  },
+  "sideview": {
+    "path": "gmk-sideview-atlas-v2.png",
+    "width": 1536,
+    "height": 1024,
+    "front": "right",
+    "nativeSpriteWidth": 256,
+    "sourceBounds": [
+      {
+        "x": 13,
+        "y": 95,
+        "w": 480,
+        "h": 139
+      },
+      {
+        "x": 520,
+        "y": 69,
+        "w": 496,
+        "h": 164
+      },
+      {
+        "x": 1038,
+        "y": 74,
+        "w": 489,
+        "h": 161
+      },
+      {
+        "x": 15,
+        "y": 276,
+        "w": 483,
+        "h": 220
+      },
+      {
+        "x": 522,
+        "y": 338,
+        "w": 490,
+        "h": 150
+      },
+      {
+        "x": 1036,
+        "y": 335,
+        "w": 490,
+        "h": 152
+      },
+      {
+        "x": 14,
+        "y": 551,
+        "w": 488,
+        "h": 185
+      },
+      {
+        "x": 523,
+        "y": 568,
+        "w": 492,
+        "h": 166
+      },
+      {
+        "x": 1039,
+        "y": 575,
+        "w": 488,
+        "h": 159
+      },
+      {
+        "x": 10,
+        "y": 814,
+        "w": 493,
+        "h": 176
+      },
+      {
+        "x": 524,
+        "y": 831,
+        "w": 487,
+        "h": 157
+      },
+      {
+        "x": 1035,
+        "y": 830,
+        "w": 492,
+        "h": 155
+      }
+    ]
+  },
+  "notes": "The renderer crops the measured car bounds from the transparent generated sheets and uses nearest-neighbour sampling. No Python image editing or hand-drawn replacement car bodies.",
+  "prompts": {
+    "topdown": "Use case: stylized-concept. Asset type: production pixel-art sprite atlas for a premium Monaco arcade driving game. Create exactly TWELVE distinct detailed supercar sprites on genuine transparent alpha, organized in an EXACT 3-column by 4-row evenly spaced grid, 1536 by 2048 canvas, each of the twelve cells exactly 512 by 512. No grid lines, no labels, no text, no numbers, no logos, no shadows outside each sprite, no scene. Every sprite is a TRUE STRICT 90-degree overhead TOP VIEW, front bumper pointing straight UP at 12 o'clock, rear pointing down; no side angle and no perspective tilt. Within every cell center the car at cell center with generous transparent gutters: maximum car silhouette 208 pixels wide including mirrors by 404 pixels high. Same real-world scale across cars. Crisp intentional premium 16-bit/32-bit arcade pixel artwork; visible square pixel clusters on an approximately 100 by 190 native design, not a blurry filter, not vector art, not a photograph, no smooth anti-aliased gradients. Strong dark navy 2-pixel contour, tire tread, black wheel arches, windshield reflections in deliberate blue pixel bands, separate hood/roof/rear deck, door seams, mirrors, vents, grilles, lights and taillights, exhaust tips, metallic highlights with 5-7 stepped tones per paint color. Recognizable model-specific forms, varied widths and lengths, no generic rounded capsules. Layout exact reading order: ROW 1 LEFT yellow Lamborghini Aventador, extremely low angular wedge with Y headlights and long rear engine vents; ROW 1 MIDDLE camouflage gray-green Audi RS6 Avant long estate wagon, roof rails and large elongated cabin; ROW 1 RIGHT pale blue iridescent Mercedes C63 AMG Black Series muscular wide coupe, long hood and rear spoiler. ROW 2 LEFT dark gray Mercedes G-Class Mansory, very square tall SUV, flat rectangular roof and rear spare wheel; ROW 2 MIDDLE red Ferrari 812 Competizione, long front engine hood, compact rearward cabin, silver center stripe; ROW 2 RIGHT graphite Ferrari 488 Pista Spider, short pointed nose, open dark cockpit, yellow double stripes and rear engine vents. ROW 3 LEFT olive green Lamborghini Urus Performante, angular broad SUV with black hood details; ROW 3 MIDDLE silver-blue Porsche 911 GT3 RS 992, classic rounded 911 nose, front hood vents, very wide rear fenders and enormous rear wing; ROW 3 RIGHT silver Porsche 911 GT2 RS 991, dark carbon hood, compact rounded cabin, black rear wing and rear side intake clusters, visibly different from GT3. ROW 4 LEFT deep violet BMW M3 G80 Competition sedan, four doors, long narrow front kidney grille and carbon roof; ROW 4 MIDDLE black Ferrari 430 Scuderia, two thin silver racing stripes and teardrop headlights; ROW 4 RIGHT ivory-white Ferrari 458 Speciale, compact sculpted wedge, central blue-dark stripe, vents around front hood and triple rear exhaust. The cars must be richly shaded, beautifully drawn, instantly identifiable as twelve different cars, and usable as isolated game sprites.",
+    "sideview": "Use case: stylized-concept. Asset type: production pixel-art SIDE-VIEW supercar sprite atlas for a premium 16-bit Monaco arcade game. Exactly TWELVE isolated cars, arranged in an EXACT evenly spaced 3 columns by 4 rows grid. Wide canvas 1536 by 1024. Every cell identical 512 by 256. Real transparent alpha background; no grid lines, labels, numbers, captions, scenery, pavement, shadows outside the car, logos, watermarks. Every car is a strict clean side elevation, NOT three-quarter, NOT top-down. ALL noses face RIGHT, all four rows align their wheels on the same relative baseline within each cell. Entire vehicle including mirror, wing and tires visible, maximum size 450 pixels wide by 150 pixels high per cell, ample gutters. Premium crisp intentional hand-placed square pixel clusters, approximately 200 by 70 native pixel design per car. Detailed shaded metal using stepped 5-7 color ramps, navy outlines, dark tire tread, multi-spoke alloy wheels, brake discs and calipers, reflections in blue pixel bands, visible panel seams, headlights, splitters, intakes, vents, exhausts. Rich SNES/Neo Geo arcade pixel art, NOT a photograph, NOT a smooth vector illustration, NOT blurry pixelated photography. Distinct accurate body proportions: ROW 1 LEFT vivid yellow Lamborghini Aventador, very low angular wedge and scissor-door seam, black rear engine intakes; ROW 1 MIDDLE gray-green camouflage Audi RS6 Avant estate wagon, long four-door cabin and roof rails; ROW 1 RIGHT ice-blue iridescent Mercedes C63 AMG Black Series wide coupe with huge flares and rear wing. ROW 2 LEFT charcoal Mercedes G-Class Mansory, distinctly tall square SUV, flat roof, four doors, rear-mounted spare tire; ROW 2 MIDDLE red Ferrari 812 Competizione, long front hood and rear-set cockpit, silver center stripe; ROW 2 RIGHT graphite Ferrari 488 Pista Spider, open roof, yellow stripe accents, scalloped mid-engine air intakes. ROW 3 LEFT olive Lamborghini Urus Performante, broad tall angular SUV with sloping roof and black hood; ROW 3 MIDDLE silver-blue Porsche 911 GT3 RS 992, rounded coupe silhouette and enormous tall rear wing; ROW 3 RIGHT silver Porsche 911 GT2 RS 991, lower wing, black carbon hood, black intake behind door, different from GT3. ROW 4 LEFT deep violet BMW M3 G80 Competition four-door sedan with carbon roof and long front nose; ROW 4 MIDDLE black Ferrari 430 Scuderia with thin silver stripe, rounded front, distinctive high rear shoulder air inlet; ROW 4 RIGHT ivory-white Ferrari 458 Speciale with dark navy stripe and sharper pointed front, compact rounded cabin and sculpted side intake. Keep all sprites visually coherent with the same studio lighting from upper left, dark detailed undercarriage, crisp bright highlights. Game-ready 12-model collection, beautiful and instantly readable at 160 pixels wide.",
+    "sideviewTransparency": "Use case: background-extraction. This image is the edit target: the exact twelve pixel car sprites on the 1536 by 1024 image, three columns by four rows. Remove ONLY the dark gray background, ALL colored light glows and any shadow outside the physical cars, replacing all empty space with genuinely TRANSPARENT ALPHA. Preserve every one of the twelve cars exactly: all paint colors, models, fine pixel details, wheels, positions, sizes, right-facing side profiles, three-column/four-row ordering, and 1536x1024 canvas must stay unchanged. Do not crop or reposition cars. No gray background, no white background, no checkerboard drawn into the image, no replacement scenery, no text. Only the twelve crisp cars should be opaque; the remainder must be alpha 0."
+  },
+  "transparentBackgroundVerified": true,
+  "productionSheets": [
+    "gmk-topdown-atlas-v1.png",
+    "gmk-sideview-atlas-v2.png"
+  ]
+}

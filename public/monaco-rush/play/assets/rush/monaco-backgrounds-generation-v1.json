@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "generatedDate": "2026-11-05",
+  "method": "Built-in image_gen.imagegen; nine generated raster scenes; original pixel-art compositions and one reference-based Casino style transfer. Source PNGs preserved.",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "inspection": "All four original PNGs opened and visually inspected before selection. Crisp high-density square-pixel detail, distinct skyline/landmark compositions, no people/cars/UI/lettering. Artistic compositions compress geography and do not represent measured architectural reconstructions.",
+  "sources": [
+    {
+      "url": "https://www.ports-monaco.com/en/the-ports-of-monaco/port-hercule/",
+      "usedFor": "Natural harbour at the foot of the Rocher, marina/quays/breakwater relationship."
+    },
+    {
+      "url": "https://www.palais.mc/en/museum-and-visits/the-state-apartments-1-26.html",
+      "usedFor": "Prince's Palace fortress origins and Italian Renaissance transformation, ramparts/loggias."
+    },
+    {
+      "url": "https://www.montecarlosbm-corporate.com/the-company/history/",
+      "usedFor": "Casino / Hotel de Paris / Cafe de Paris ensemble in Monte Carlo."
+    },
+    {
+      "url": "https://www.visitmonaco.com/Documents-Site/Plan%20touristique%20Monaco.pdf",
+      "usedFor": "Monaco tourism-map landmark locations and Rocher/harbour overview."
+    },
+    {
+      "url": "https://www.montecarlosbm.com/en/casino-monaco/casino-monte-carlo",
+      "usedFor": "Official exterior photo used as architectural reference for the ornate Casino pixel scene, including clock, twin towers, dome and mosaic roof."
+    }
+  ],
+  "assets": [
+    {
+      "key": "harbour",
+      "source": "exec-a37f26b3-5bfe-44d8-a365-410ba5ff1171.png",
+      "path": "assets/rush/monaco-harbour-pixel-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: finished bitmap scenery background for a premium 2D side-scrolling Monaco arcade game, landscape 1536x1024. Create an exceptionally beautiful detailed hand-pixelled SNES/Neo-Geo era Monaco Port Hercule and La Condamine DAYTIME panorama. This must read unmistakably as MONACO, not a generic Mediterranean town. View from the low foreground harbour quay across the curved natural Port Hercule bay. Recognizable Rocher de Monaco promontory and Prince's Palace complex rising above ochre fortified walls on one side; dense irregular Condamine apartments and Monaco towers climbing the steep bowl behind the marina, dramatic pale limestone Tête de Chien massif above. Accurate varied real-world Mediterranean architecture: ornate pale-stone palace, terracotta roofs, tall ivory apartment terraces, arched seawalls, carved balconies and tiny shutters. The yacht marina fills the lower-middle: luxurious white yachts seen in side profile, intricate navy windows, gold railings, small masts and immaculate azure/cyan harbour water with articulated square-pixel reflections. A thin stone quay edge across the bottom is scenery only; no playable platforms or floating buildings. Rich sea teal, sunlit limestone, warm apricot, pine-green gardens and deep indigo cluster shadows. Lush extremely high-density pixel ART, crisp clearly visible square pixels, deliberate 2-4 pixel clusters, dense tile-level texture, controlled dithering, layered atmospheric perspective. Crisp shaded material detail, charming intricate environment art, angular silhouettes. Render as a production videogame environment, NOT a photograph run through a pixel filter, NOT blurry, NOT smooth vector, NOT rounded cartoon buildings, NOT simple repeated rectangular houses, NOT isometric, NOT 3D render. Broad horizontal composition with important harbour and palace landmarks in the middle-lower 65% and a useful but not empty blue sky above. No people, characters, cars, UI, interface, text, letters, signage, logos, watermarks, borders or collage.",
+      "landmarks": [
+        "Port Hercule yacht marina",
+        "Rocher fortified palace promontory",
+        "dense Condamine city terraces",
+        "Tete de Chien limestone massif"
+      ]
+    },
+    {
+      "key": "rocher",
+      "source": "exec-b48f1c67-74b4-4fb8-b4c4-0d28b7e613c9.png",
+      "path": "assets/rush/monaco-rocher-pixel-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: production bitmap scenery for a premium 2D Monaco rooftop climbing arcade game. Landscape 1536x1024, vertically layered composition within the wide canvas. Create an exceptionally beautiful high-density hand-pixelled SNES/Neo-Geo era background of the REAL PRINCE'S PALACE OF MONACO on the ROCHER, viewed from nearby Monaco-Ville terracotta rooftops. The main palace must be large, recognizable and visible across the middle-lower frame: the asymmetrical historic pale-stone and warm ochre palace facade, its actual fortified square crenellated towers including the prominent clock tower, Renaissance loggias and arcaded sections, red tile roofs, Monaco's red-over-white flag, the stone fortress walls and sloping ramparts that stand on the high limestone Rocher. This is a Mediterranean fortified princely palace, not a generic fantasy castle or French chateau. Layer a few distinctive old-town roof terraces and chimney silhouettes along the bottom, intricately shaded limestone walls with ivy and umbrella pines; distant turquoise Mediterranean and a glimpse of Monaco's harbour and dense hillside city beyond the ramparts. Late-morning golden light, warm sandstone and terracotta highlights, cool indigo cluster shadows, jade foliage, azurite sea. Hand-crafted square-pixel contours, rich intentional pixel clusters, tiled stone and roof texture, restrained patterned dithering, dense meaningful architectural detail, subtle atmospheric depth. This must look like gorgeous original 16-bit/Neo-Geo game environment artwork, not photorealism, not a photograph with a pixel filter, not smooth vector art, not rounded cartoons, not repetitive generic rectangular facades, not isometric. The palace and distinctive real landmark tower silhouettes dominate the central 65%; the top has layered clouds and blue sky for game camera headroom. No people, characters, cars, playable platforms, UI, text, lettering, signage, logos, watermark, border or collage.",
+      "landmarks": [
+        "Prince's Palace interpretation",
+        "crenellated stone towers and clock tower",
+        "Renaissance arcaded loggias",
+        "Rocher ramparts and old-town tiled roofs"
+      ]
+    },
+    {
+      "key": "corniche",
+      "source": "exec-3b1c1932-e62f-47d2-8874-847090e65f60.png",
+      "path": "assets/rush/monaco-corniche-pixel-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: production background bitmap for a premium 2D Monaco coastal gliding arcade game, landscape 1536x1024. Create an exceptionally gorgeous high-density hand-pixelled SNES/Neo-Geo era SUNSET CORNICHE PANORAMA overlooking unmistakable MONACO and its Mediterranean coastline. The composition follows a dramatic limestone coastal cliff from a shaded close headland at lower left into Monaco's densely terraced shoreline in the middle distance, with the curved PORT HERCULE yacht marina and the ROCHER projecting into the sea clearly readable, the warm roofscape of MONACO-VILLE and Prince's Palace silhouette, and across the bay the recognizable ornate BELLE EPOQUE roof silhouettes of CASINO DE MONTE-CARLO and HOTEL DE PARIS among high-rise terraces. An elevated Riviera coastal road curls around the cliff with stone retaining arches and a distant viaduct; roads are scenery and empty. The broad lower-right area is luminous lapis and turquoise open Mediterranean, finely articulated rectangular pixel wave reflections and a few small white yachts far below; cliffs have stratified violet limestone, umbrella pines, cypress and flowering shrubs. Huge atmospheric sense of height, elegant golden sun low over the water, layered peach/amber/lilac sky with pink pixel cloud banks. Architectural city and cliff shapes occupy the middle-lower 65% so a game hero can fly above. Rich deliberate square pixel clusters, extremely detailed shaded terrain, clear pixel-art outlines, dense crafted textures, controlled dithering and warm/cool material shading. Finished collectible 16-bit/Neo-Geo scenery, NOT photorealistic, NOT a pixel-filter photo, NOT vector graphics, NOT simple triangle mountains or repeated generic houses, NOT rounded cartoon illustration, NOT a 3D render or isometric map. No people, characters, cars, playable platforms, UI, text, lettering, logos, signs, border, watermark or collage.",
+      "landmarks": [
+        "Port Hercule crescent marina",
+        "Rocher and Monaco-Ville",
+        "Casino / Hotel de Paris silhouettes",
+        "coastal road retaining arches and limestone corniche"
+      ]
+    },
+    {
+      "key": "night",
+      "source": "exec-ec7d078b-af8d-458c-9911-862c85747303.png",
+      "path": "assets/rush/monaco-night-pixel-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: production night scenery bitmap for a premium 2D Monaco arcade game, landscape 1536x1024. Create an exceptionally beautiful high-density hand-pixelled SNES/Neo-Geo MONTE-CARLO NIGHT panorama, with the REAL CASINO DE MONTE-CARLO as the striking recognizable landmark in the middle-lower frame. Show its specific richly ornamented pale Belle Epoque facade, central arched entrance and pediment, distinctive pair of ornate green-patina domed towers, sculpted roof ornaments and glowing tall windows. Nearby HOTEL DE PARIS must have the grand cream Belle Epoque hotel silhouette with curved corner and detailed roofline, not another generic apartment block. Compose as a slightly elevated coastal game panorama where illuminated Casino terraces and palms lead toward PORT HERCULE's curved marina below and to one side, full of white luxury yachts, tiny mast lights and golden/cyan square-pixel reflections; irregular dense Monaco hillside towers and old-town roofscape rise behind beneath dark alpine limestone silhouettes. Deep indigo night sky with crisp sparse stars, rich navy sea, violet shadows, warm amber window lights, gilded stone highlights, subtle turquoise and rose city accents. Ground all buildings on convincing terraced stone headlands, retaining walls and gardens, never floating on water. This is an artistic landmark panorama with clear big architectural silhouettes and intricate materials, not a tourism photo. Crisp visible square pixels, expert deliberate 2-4 pixel clusters, dense handcrafted facade details, restrained dithering, textured stone, rich limited-color 16-bit/Neo-Geo arcade environment finish. Avoid smooth vector graphics, blurry pixel filters, photorealism, generic repeated rectangles, flat rounded cartoons, isometric map view and 3D rendering. Leave open sky across the upper quarter, keep the principal landmarks fully readable within the central lower 65%. No people, characters, cars, playable platforms, UI, lettering, words, signage, logos, border, watermark or collage.",
+      "landmarks": [
+        "Casino de Monte-Carlo ornamented facade and paired patina domes",
+        "Hotel de Paris Belle Epoque corner silhouette",
+        "illuminated Monaco hillside skyline",
+        "yacht marina and fortified Rocher"
+      ]
+    }
+  ],
+  "additionalAssets": [
+    {
+      "file": "monaco-casino-pixel-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: premium 2D pixel-art game background. Transform the supplied official exterior photo of Casino de Monte-Carlo into a gorgeous richly detailed, crisp 16-bit/32-bit adventure game background, 1536x1024 landscape. Reference photo is architecture only: faithfully preserve recognizability of the REAL Casino de Monte-Carlo front facade: two tall ornate sculpted towers flanking the central clock, pale ivory and coral Belle Epoque stonework, intricate yellow/blue diamond mosaic roof panels, broad dark oxidized-green central dome with finial, gilded capitals, statuary, balustrades, many narrow windows. This must instantly look like MONACO, not a generic castle, not a flat yellow school. Front-on side-scrolling game composition, building occupying middle upper 60%, full building and towers visible, a little luminous blue sky at top, Place du Casino gardens/palms trimmed topiary and the famous reflective circular sculpture in middle foreground, ornate lamps and cream paving. Leave bottom 22% as a broad straight empty charcoal asphalt roadway for animated car sprites overlaid by the game, with warm stone curb. No people, NO cars or vehicles, no lettering, no UI, no frames. Pixel-art cluster rendering with deliberate square pixels and dithered shadows, richly shaded carved stone, warm Mediterranean daylight, strong dark-blue silhouettes, sophisticated saturated colors, painterly depth rendered strictly as pixel art. The whole image is usable gameplay scenery, no poster layout, no gradient vector/cartoon geometry, no photorealism.",
+      "method": "Style transfer of the official Casino exterior as architecture reference; built-in image_gen, original pixel rendition.",
+      "sha256": "1dcb80470cee0534c23a682f236edf15e695edc3fe68b1411d849c11052dbfa4"
+    },
+    {
+      "file": "monaco-parking-pixel-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: top-down pixel-art Monaco driving game map, square 1024x1024. Draw a beautiful high-density 16-bit/32-bit premium arcade environment for PORT HERCULE MONACO from strict orthographic overhead camera, not perspective, no horizon. Center is an EMPTY broad elegant pale warm charcoal/stone-paved valet esplanade that occupies central 80% width and 80% height and has no buildings or obstacles in its middle; leave it usable for driving sprites and dynamic bay markers. Around its extreme outer edges, show extremely detailed distinctive Monaco waterfront: ivory Belle Epoque apartment rooftops and balconies with terracotta tiles along north edge, a tiny recognizable white angular Monaco Yacht Club overlooking blue water at upper right, turquoise marina channels with luxurious white multi-deck yachts and slender docks along right/bottom outer edge, palms with individual pixel fronds, flower planters, red-and-white Monegasque flags, striped curbs, bollards and lampposts. Dynamic gameplay objects will be drawn on top, so NO cars, NO people, NO parking-bay markings, NO signs or lettering, NO UI. Every element must use crisp square pixel clusters and rich material shading with restrained dark outlines: hundreds of purposeful tile/brick/water highlights and realistic styled miniature proportions, no simple vector rectangles, no rounded cartoon bushes. Mediterranean sun from upper left, long soft dithered pixel shadows, deep turquoise water, limestone cream, terracotta coral, dark slate asphalt. Full-bleed premium game map, the Monaco marina remains unmistakable.",
+      "method": "New generation, built-in image_gen.",
+      "sha256": "16fcc0190a5becff0bb0f9e23654afee65bef36d1d6e557fcd9f03531a810590"
+    },
+    {
+      "file": "monaco-garage-pixel-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: 1536x1024 landscape premium pixel-art racing game garage background. Highly detailed side-on 16-bit/32-bit pixel art of GMK's Monaco supercar workshop and collection atelier. A beautiful spacious modern performance garage built into a warm limestone Monaco hillside, tall open shutter at far right showing recognizable Port Hercule yachts, terraced ivory city and blue Mediterranean. Tool chests full of tiny sockets, torque wrenches, hanging exhausts, racing wheels on shelves, diagnostic screen, coiled hoses, metal workbenches, overhead strip lights, yellow lifting posts, silver cabinets, tire racks, red fire extinguisher, vintage motorsport posters with NO text. Strong blue/navy shadow palette with amber spotlights and sunbeam through the sea-facing open garage door. Center 65% width between the posts must be EMPTY at mid-height and lower half with a flat lift platform near 65% image height, to overlay a large side-view car sprite and tactile panels; no actual vehicles, no people. Every object made from carefully controlled crisp square pixel clusters with rich texture and detailed shading, like a gorgeous arcade adventure scene. Not photograph, not smooth cartoon, no vector geometry, no text, no UI, no logos. Fill whole image with believable handcrafted atmosphere; the visible coastal Monaco port anchors the location.",
+      "method": "New generation, built-in image_gen.",
+      "sha256": "2e51e5eaae0e39fe0337f17b504dcc6a921c7d7a15fc0118d93cc643bf271f47"
+    },
+    {
+      "file": "monaco-tunnel-pixel-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: 1536x1024 landscape premium pixel-art driving game background. Inside the iconic Monaco Grand Prix road tunnel beneath the Fairmont, rich 16-bit/32-bit raster pixel art, view down its elegant gently curved three-lane asphalt road toward a distant small turquoise daylight portal showing Port Hercule/Monaco marina silhouettes. Central vanishing point x50% y22%. Geometric warm limestone/concrete walls built from thousands of deliberate shaded pixel blocks, repeated rectangular amber ceiling lights, white tiled lower walls, blue safety panels, red-white Monaco curb, drain grates, ventilation ducts, exposed cable trays, strong deep navy shadows and warm golden light pools reflecting subtly across charcoal road. Road occupies the central lower 65% of the image, widening toward the full bottom edge; keep it entirely empty for animated cars, coins, hazards and game lane markers. Detailed but playable clear lane surfaces, crisp square pixel cluster shading and sophisticated arcade depth. No actual cars, no people, no letters or signs, no UI, no logos, no blurry painting, no photorealism, no flat smooth gradients/cartoon shapes.",
+      "method": "New generation, built-in image_gen.",
+      "sha256": "1af0dc0558bc21f87d8c651144b3419e7f5dc1648f560917df27946fbbd2559c"
+    },
+    {
+      "file": "monaco-marina-map-pixel-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: portrait 1024x1536 pixel-art top-down Monaco harbour RESCUE GAME PLAYFIELD, crisp premium 16-bit/32-bit high-density square-pixel art. STRICT ORTHOGRAPHIC TOP-DOWN bird's-eye view of a small harbour basin beside Port Hercule, Monaco, absolutely no horizon/perspective. Map proportions 600 wide by700 tall in virtual coordinates. The majority MUST be clear navigable deep turquoise harbour water with hundreds of beautiful small pixel ripples and gentle reflected lights. A thin wooden/limestone vertical pedestrian pier hugs each left and right edge, each pier only8% of total width and extending y3% to84%. The left and right piers must NEVER extend into the centre. A small RECTANGULAR landscaped island, at x34% to66% of width and y41% to56% of height, with cream limestone walls, little pixel palms, flowers and an ornate lamp. A small golden wooden home dock occupies x38% to62% and bottom y93% to100%. Clear water around the island on every side, with at least32% map width in each outside channel; no rocks at all. Along the extreme topmost 0–8% of the map, show a richly detailed miniature Monaco quayside with ivory terracotta-roof Belle Epoque architecture, red-white Monegasque flags, palms and a small Yacht Club style angular pavilion, all outside the water channels. Tiny deck fittings, ropes, mooring cleats and lamp shadows enrich the two thin side piers. Mood is Monaco at blue hour with warm amber pier lights reflecting on jewel-blue water. No people, NO boats or vehicles, no text, no UI, no glowing symbols; game will overlay friends/boat/traffic at exact coordinates. Not isometric, not a photo, not flat cartoon, controlled crisp pixel clusters and rich detailed material shading. Full-bleed map.",
+      "method": "New generation, built-in image_gen.",
+      "sha256": "b4bc63536faa54a641f812ae5cb175fc0be885ca6e82822a5c68fd83080c3809"
+    }
+  ],
+  "runtimeNotes": "Stage-local loading. Painted courts calibrated to driving geometry. Raster pixel scenery is layered behind original foreground gameplay. Source assets unmodified; runtime cropping/compositing anchors the scenes."
+}

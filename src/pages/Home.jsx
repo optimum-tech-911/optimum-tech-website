@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Download, Mail, MapPin, PhoneCall } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Download, Mail, MapPin, PhoneCall, Play } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
 import { SanteSection } from '../components/SanteSection';
@@ -118,22 +118,29 @@ export const Home = () => {
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#0A84FF]">Le jeu Optimum Tech · Bêta</p>
                 <h2 id="monaco-rush-title" className="mt-2 text-2xl font-bold sm:text-3xl">Monaco Rush</h2>
                 <p className={`mt-2 max-w-xl text-sm leading-6 ${mutedText}`}>
-                  Neuf mini-jeux, douze voitures et Monaco comme terrain de jeu. Télécharge la version adaptée à ton appareil.
+                  Neuf mini-jeux, douze voitures et Monaco comme terrain de jeu. Lance une partie sur ton téléphone ou ton ordinateur.
                 </p>
               </div>
             </div>
             <div className="shrink-0 lg:max-w-sm">
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="/monaco-rush/"
+                  href="/monaco-rush/play/"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#0A84FF] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0576e6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0A84FF]"
                 >
+                  <Play className="h-4 w-4" aria-hidden="true" />
+                  Jouer maintenant
+                </a>
+                <a
+                  href="/monaco-rush/"
+                  className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border px-5 py-3 text-sm font-bold transition hover:border-[#0A84FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0A84FF] ${sectionBorder}`}
+                >
                   <Download className="h-4 w-4" aria-hidden="true" />
-                  Télécharger Monaco Rush
+                  Installer / Télécharger
                 </a>
               </div>
               <p className={`mt-3 text-xs leading-5 ${mutedText}`}>
-                Android, Windows x64 et Mac · Bêta. Ouvre le fichier téléchargé pour confirmer l’installation. Version iPhone en préparation.
+                iPhone, iPad, Android, Mac et PC. Sur iPhone, ajoute le jeu à l’écran d’accueil pour l’ouvrir comme une app.
               </p>
             </div>
           </div>

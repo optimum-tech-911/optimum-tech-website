@@ -32,6 +32,14 @@
         "Cache-Control": "public, max-age=31536000, immutable"
       }
     },
+    {
+      "src": "/monaco-rush/(.*)",
+      "continue": true,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "X-Robots-Tag": "noindex, nofollow"
+      }
+    },
     { "handle": "filesystem" },
     {
       "src": "/.*",
