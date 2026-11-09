@@ -23,3 +23,9 @@ Original prompt: Make Monaco Rush playable in the browser, with a version as nea
 - Fixed cached HTML navigation with a synthetic Response that clears redirect metadata and transport headers. Same fix applied to the original game's worker generator for future builds; no native binaries rebuilt.
 - Bumped web cache revision to ed3b0fe701-web-41b9f83bc3-r2. Canonical-redirect regression reproduces all3baseline failures and fixed worker passes12checks including offline cold navigation. Full70PWA checks pass again.
 - Preserved source font license verbatim; inherited trailing whitespace excluded from code whitespace check.
+
+2026-11-09 — Mobile touch upgrade15.5
+- User reported touch controls/responsiveness after testing live. Browser release replaces shared held-action Set writes with contact-owned input, adds stage-specific joystick axes/deadzone and between-frame canvas tap latching.
+- Larger measured thumb targets, non-overlapping directional pads, immediate control feedback, preserved held buttons across height-only browser resizes and retained mobile render budget. Same save key and stages; existing native download artifacts untouched.
+- Candidate/source tests and original failing cases reproduced; final production artifact validation/publication pending.
+- Validation complete: real-time foreground touch29/29 with no advanceTime, camera quick-tap Chromium/WebKit, control ownership22, on-foot89/driving28/finale18/runtime13, PWA70 and website54-page audit pass. New browser build70d9cdab8c includes the prior Safari canonical-navigation fix.
